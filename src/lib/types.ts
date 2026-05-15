@@ -117,6 +117,7 @@ export type PrioritizedAction = {
   nextStep: string
   why: string
   confidence: Confidence
+  links?: Array<{ label: string; href: string }>
 }
 
 export type RiskSeverity = 'Critical' | 'High' | 'Watchlist' | 'Stable' | 'Positive Momentum'
