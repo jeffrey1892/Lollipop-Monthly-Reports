@@ -296,10 +296,10 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
   const managerReport = {
     available: true,
     privacyThreshold: 5,
-    description: 'The generator now supports scoped team-only manager reports conceptually: filter to one team, compare against company average, suppress other-team details, and show comment themes only when privacy thresholds are met.',
+    description: 'Manager reports should be scoped to that manager’s own team plus company average only. Other team details stay hidden, comments are shown only when privacy thresholds are met, and every manager report includes practical next actions.',
     eligibleTeams: allTeams.filter((t) => t.responses >= 5).map((t) => t.team),
     sampleWarningTeams: allTeams.filter((t) => t.responses < 5).map((t) => t.team),
-    safeguards: ['Do not expose other teams in manager views.', 'Suppress or paraphrase comments when fewer than 3 comments exist.', 'Show sample-size warnings below 5 responses.', 'Compare to company average without ranking sensitive peer teams.'],
+    safeguards: ['Manager visibility: own team plus company average only.', 'Suppress or paraphrase comments when fewer than 3 comments exist.', 'Show sample-size warnings below 5 responses.', 'Executive report may rank teams; manager reports must not expose peer-team rankings.', 'PDF outputs should support both a short executive brief and a full 10–15 page intelligence report.', 'Tone should stay practical, direct, and operator-ready.'],
   }
 
   const intelligencePoints = [
@@ -312,7 +312,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
     'Normalize team naming across months to improve team trend reliability and reduce false variance.',
     'Capture follow-up owner, request date, first-response date, closed date, and closure notes to score leadership responsiveness.',
     'Add AI-assisted comment taxonomy with human review: workload, recognition, manager behavior, staffing, wellbeing, safety, and retention intent.',
-    'Create an executive one-page PDF followed by appendix pages so CEOs see decisions first and supporting analytics second.',
+    'Create two PDF outputs: a short 3–5 page executive brief and a full 10–15 page intelligence report with appendix detail.',
   ]
   const recommendations = [
     { title: 'Target watch-team intervention', priority: 'P1' as const, urgency: retentionRisk === 'Elevated' || retentionRisk === 'High' ? 'High' : 'Medium', impact: 'High', difficulty: 'Medium', owner: 'Operations leader + HR partner', nextStep: `Hold a 30-minute review with managers for ${watchTeams.slice(0, 2).map((t) => t.team).join(' and ')} to identify workload, communication, and recognition blockers.`, why: 'Risk is concentrated by team; targeted intervention is more useful than a broad corporate message.', confidence: 'Medium' as const },
