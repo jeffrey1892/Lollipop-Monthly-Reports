@@ -1,0 +1,1226 @@
+{
+  "customer": "Cosmo Cabinets",
+  "defaultMonth": "2026-04",
+  "months": [
+    {
+      "key": "2025-10",
+      "label": "October 2025",
+      "responses": 130,
+      "avgMood": 3.85,
+      "positivePct": 60.0,
+      "negativeCount": 7,
+      "neutralCount": 45,
+      "positiveCount": 78,
+      "comments": 11,
+      "followups": 0,
+      "topEmotions": [
+        [
+          "Grateful",
+          61
+        ],
+        [
+          "Happy",
+          49
+        ],
+        [
+          "Optimistic",
+          43
+        ],
+        [
+          "Motivated",
+          42
+        ],
+        [
+          "Excited",
+          35
+        ],
+        [
+          "Content",
+          31
+        ],
+        [
+          "Appreciated",
+          18
+        ],
+        [
+          "Overwhelmed",
+          13
+        ]
+      ],
+      "teams": [
+        {
+          "team": "LEANNE'S TEAM (FINANCE)",
+          "responses": 1,
+          "avgMood": 5.0,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "EXECUTIVE",
+          "responses": 7,
+          "avgMood": 4.71,
+          "positivePct": 100.0,
+          "lowSample": false
+        },
+        {
+          "team": "SHAWN'S TEAM",
+          "responses": 11,
+          "avgMood": 4.27,
+          "positivePct": 90.9,
+          "lowSample": false
+        },
+        {
+          "team": "MATT'S TEAM",
+          "responses": 30,
+          "avgMood": 4.07,
+          "positivePct": 63.3,
+          "lowSample": false
+        },
+        {
+          "team": "LEANNE'S TEAM",
+          "responses": 2,
+          "avgMood": 4.0,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "CRAIG'S TEAM",
+          "responses": 1,
+          "avgMood": 4.0,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "CHRIS'S TEAM",
+          "responses": 14,
+          "avgMood": 3.71,
+          "positivePct": 64.3,
+          "lowSample": false
+        },
+        {
+          "team": "BRYAN'S TEAM",
+          "responses": 33,
+          "avgMood": 3.7,
+          "positivePct": 57.6,
+          "lowSample": false
+        },
+        {
+          "team": "JOE'S TEAM",
+          "responses": 18,
+          "avgMood": 3.67,
+          "positivePct": 44.4,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS TEAM ASSEMBLEY",
+          "responses": 6,
+          "avgMood": 3.5,
+          "positivePct": 33.3,
+          "lowSample": false
+        },
+        {
+          "team": "LENIA'S TEAM",
+          "responses": 5,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": false
+        },
+        {
+          "team": "MARK'S TEAM",
+          "responses": 2,
+          "avgMood": 2.5,
+          "positivePct": 0.0,
+          "lowSample": true
+        }
+      ],
+      "topResponders": [
+        [
+          "Heather Samples",
+          9
+        ],
+        [
+          "Jody Pagan",
+          5
+        ],
+        [
+          "Cody Townsend",
+          5
+        ],
+        [
+          "Ka'lyn Birston",
+          5
+        ],
+        [
+          "Mark Stines",
+          5
+        ],
+        [
+          "Trey McAbee",
+          5
+        ],
+        [
+          "Mark Stines Jr.",
+          5
+        ],
+        [
+          "Jeffrey VanderVorst",
+          5
+        ]
+      ],
+      "moodDelta": 0.0,
+      "positiveDelta": 0.0,
+      "healthLabel": "Watch",
+      "retentionRisk": "Low",
+      "engagementScore": 83,
+      "orgHealthScore": 80
+    },
+    {
+      "key": "2025-11",
+      "label": "November 2025",
+      "responses": 72,
+      "avgMood": 3.94,
+      "positivePct": 63.9,
+      "negativeCount": 2,
+      "neutralCount": 24,
+      "positiveCount": 46,
+      "comments": 5,
+      "followups": 0,
+      "topEmotions": [
+        [
+          "Grateful",
+          30
+        ],
+        [
+          "Content",
+          22
+        ],
+        [
+          "Motivated",
+          22
+        ],
+        [
+          "Optimistic",
+          22
+        ],
+        [
+          "Happy",
+          18
+        ],
+        [
+          "Excited",
+          14
+        ],
+        [
+          "Appreciated",
+          6
+        ],
+        [
+          "Overwhelmed",
+          5
+        ]
+      ],
+      "teams": [
+        {
+          "team": "SHAWN'S TEAM",
+          "responses": 4,
+          "avgMood": 4.75,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "EXECUTIVE",
+          "responses": 7,
+          "avgMood": 4.43,
+          "positivePct": 85.7,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS'S TEAM",
+          "responses": 7,
+          "avgMood": 4.43,
+          "positivePct": 100.0,
+          "lowSample": false
+        },
+        {
+          "team": "MATT'S TEAM",
+          "responses": 17,
+          "avgMood": 4.29,
+          "positivePct": 76.5,
+          "lowSample": false
+        },
+        {
+          "team": "LEANNE'S TEAM",
+          "responses": 2,
+          "avgMood": 4.0,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "BRYAN'S TEAM",
+          "responses": 19,
+          "avgMood": 3.74,
+          "positivePct": 63.2,
+          "lowSample": false
+        },
+        {
+          "team": "JOE'S TEAM",
+          "responses": 6,
+          "avgMood": 3.33,
+          "positivePct": 16.7,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS TEAM ASSEMBLEY",
+          "responses": 4,
+          "avgMood": 3.25,
+          "positivePct": 25.0,
+          "lowSample": true
+        },
+        {
+          "team": "LENIA'S TEAM",
+          "responses": 6,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": false
+        }
+      ],
+      "topResponders": [
+        [
+          "Heather Samples",
+          6
+        ],
+        [
+          "Joe Beasley",
+          4
+        ],
+        [
+          "Jody Pagan",
+          4
+        ],
+        [
+          "Mark Stines",
+          4
+        ],
+        [
+          "Shawn Mitchell",
+          4
+        ],
+        [
+          "Tim Sadler",
+          4
+        ],
+        [
+          "Jeffrey VanderVorst",
+          4
+        ],
+        [
+          "Sandy Zhang",
+          3
+        ]
+      ],
+      "moodDelta": 0.09,
+      "positiveDelta": 3.9,
+      "healthLabel": "Stable",
+      "retentionRisk": "Low",
+      "engagementScore": 54,
+      "orgHealthScore": 74
+    },
+    {
+      "key": "2025-12",
+      "label": "December 2025",
+      "responses": 85,
+      "avgMood": 3.91,
+      "positivePct": 65.9,
+      "negativeCount": 6,
+      "neutralCount": 23,
+      "positiveCount": 56,
+      "comments": 8,
+      "followups": 0,
+      "topEmotions": [
+        [
+          "Grateful",
+          42
+        ],
+        [
+          "Happy",
+          27
+        ],
+        [
+          "Motivated",
+          26
+        ],
+        [
+          "Optimistic",
+          24
+        ],
+        [
+          "Excited",
+          23
+        ],
+        [
+          "Content",
+          22
+        ],
+        [
+          "Overwhelmed",
+          10
+        ],
+        [
+          "Appreciated",
+          10
+        ]
+      ],
+      "teams": [
+        {
+          "team": "MATT'S TEAM",
+          "responses": 16,
+          "avgMood": 4.38,
+          "positivePct": 81.2,
+          "lowSample": false
+        },
+        {
+          "team": "EXECUTIVE",
+          "responses": 9,
+          "avgMood": 4.33,
+          "positivePct": 77.8,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS'S TEAM",
+          "responses": 9,
+          "avgMood": 4.22,
+          "positivePct": 100.0,
+          "lowSample": false
+        },
+        {
+          "team": "JOE'S TEAM",
+          "responses": 8,
+          "avgMood": 4.12,
+          "positivePct": 62.5,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS TEAM ASSEMBLEY",
+          "responses": 4,
+          "avgMood": 4.0,
+          "positivePct": 75.0,
+          "lowSample": true
+        },
+        {
+          "team": "SHAWN'S TEAM",
+          "responses": 4,
+          "avgMood": 4.0,
+          "positivePct": 75.0,
+          "lowSample": true
+        },
+        {
+          "team": "LEANNE'S TEAM",
+          "responses": 2,
+          "avgMood": 4.0,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "BRYAN'S TEAM",
+          "responses": 20,
+          "avgMood": 3.9,
+          "positivePct": 70.0,
+          "lowSample": false
+        },
+        {
+          "team": "LENIA'S TEAM",
+          "responses": 6,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": false
+        },
+        {
+          "team": "JUSTIN'S TEAM",
+          "responses": 2,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": true
+        },
+        {
+          "team": "LEANNE'S TEAM (FINANCE)",
+          "responses": 1,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": true
+        },
+        {
+          "team": "MARK'S TEAM",
+          "responses": 4,
+          "avgMood": 1.75,
+          "positivePct": 0.0,
+          "lowSample": true
+        }
+      ],
+      "topResponders": [
+        [
+          "Heather Samples",
+          6
+        ],
+        [
+          "Branden Keogh",
+          5
+        ],
+        [
+          "Cody Townsend",
+          5
+        ],
+        [
+          "Leo Duckstein",
+          5
+        ],
+        [
+          "Joe Beasley",
+          5
+        ],
+        [
+          "Patricia Diaz Hernandez",
+          4
+        ],
+        [
+          "Jody Pagan",
+          4
+        ],
+        [
+          "Mark Stines",
+          4
+        ]
+      ],
+      "moodDelta": -0.03,
+      "positiveDelta": 2.0,
+      "healthLabel": "Stable",
+      "retentionRisk": "Low",
+      "engagementScore": 60,
+      "orgHealthScore": 75
+    },
+    {
+      "key": "2026-01",
+      "label": "January 2026",
+      "responses": 100,
+      "avgMood": 4.12,
+      "positivePct": 66.0,
+      "negativeCount": 1,
+      "neutralCount": 33,
+      "positiveCount": 66,
+      "comments": 11,
+      "followups": 0,
+      "topEmotions": [
+        [
+          "Grateful",
+          50
+        ],
+        [
+          "Motivated",
+          45
+        ],
+        [
+          "Happy",
+          38
+        ],
+        [
+          "Optimistic",
+          32
+        ],
+        [
+          "Excited",
+          32
+        ],
+        [
+          "Content",
+          24
+        ],
+        [
+          "Appreciated",
+          19
+        ],
+        [
+          "Frustrated",
+          4
+        ]
+      ],
+      "teams": [
+        {
+          "team": "EXECUTIVE",
+          "responses": 9,
+          "avgMood": 4.78,
+          "positivePct": 88.9,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS'S TEAM",
+          "responses": 9,
+          "avgMood": 4.33,
+          "positivePct": 88.9,
+          "lowSample": false
+        },
+        {
+          "team": "SHAWN'S TEAM",
+          "responses": 7,
+          "avgMood": 4.29,
+          "positivePct": 71.4,
+          "lowSample": false
+        },
+        {
+          "team": "MATT'S TEAM",
+          "responses": 26,
+          "avgMood": 4.23,
+          "positivePct": 65.4,
+          "lowSample": false
+        },
+        {
+          "team": "JOE'S TEAM",
+          "responses": 9,
+          "avgMood": 4.11,
+          "positivePct": 66.7,
+          "lowSample": false
+        },
+        {
+          "team": "BRYAN'S TEAM",
+          "responses": 27,
+          "avgMood": 4.07,
+          "positivePct": 66.7,
+          "lowSample": false
+        },
+        {
+          "team": "LEANNE'S TEAM",
+          "responses": 2,
+          "avgMood": 4.0,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "CHRIS TEAM ASSEMBLEY",
+          "responses": 4,
+          "avgMood": 3.5,
+          "positivePct": 50.0,
+          "lowSample": true
+        },
+        {
+          "team": "LENIA'S TEAM",
+          "responses": 6,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": false
+        },
+        {
+          "team": "LEANNE'S TEAM (FINANCE)",
+          "responses": 1,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": true
+        }
+      ],
+      "topResponders": [
+        [
+          "Heather Samples",
+          8
+        ],
+        [
+          "Branden Keogh",
+          6
+        ],
+        [
+          "Sandy Zhang",
+          5
+        ],
+        [
+          "Mark Stines",
+          5
+        ],
+        [
+          "Cody Townsend",
+          5
+        ],
+        [
+          "Shawn Mitchell",
+          5
+        ],
+        [
+          "Tim Sadler",
+          5
+        ],
+        [
+          "Jeffrey VanderVorst",
+          5
+        ]
+      ],
+      "moodDelta": 0.21,
+      "positiveDelta": 0.1,
+      "healthLabel": "Stable",
+      "retentionRisk": "Low",
+      "engagementScore": 71,
+      "orgHealthScore": 80
+    },
+    {
+      "key": "2026-02",
+      "label": "February 2026",
+      "responses": 171,
+      "avgMood": 3.93,
+      "positivePct": 68.4,
+      "negativeCount": 5,
+      "neutralCount": 49,
+      "positiveCount": 117,
+      "comments": 21,
+      "followups": 0,
+      "topEmotions": [
+        [
+          "Motivated",
+          72
+        ],
+        [
+          "Grateful",
+          71
+        ],
+        [
+          "Content",
+          62
+        ],
+        [
+          "Optimistic",
+          61
+        ],
+        [
+          "Happy",
+          53
+        ],
+        [
+          "Excited",
+          37
+        ],
+        [
+          "Appreciated",
+          27
+        ],
+        [
+          "Overwhelmed",
+          10
+        ]
+      ],
+      "teams": [
+        {
+          "team": "EXECUTIVE",
+          "responses": 11,
+          "avgMood": 4.64,
+          "positivePct": 90.9,
+          "lowSample": false
+        },
+        {
+          "team": "CRAIG'S TEAM",
+          "responses": 2,
+          "avgMood": 4.5,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "JUSTIN'S TEAM",
+          "responses": 4,
+          "avgMood": 4.25,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "MATT'S TEAM",
+          "responses": 24,
+          "avgMood": 4.17,
+          "positivePct": 70.8,
+          "lowSample": false
+        },
+        {
+          "team": "LEANNE'S TEAM",
+          "responses": 6,
+          "avgMood": 4.17,
+          "positivePct": 100.0,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS TEAM ASSEMBLEY",
+          "responses": 16,
+          "avgMood": 4.12,
+          "positivePct": 100.0,
+          "lowSample": false
+        },
+        {
+          "team": "MARK'S TEAM",
+          "responses": 12,
+          "avgMood": 4.08,
+          "positivePct": 66.7,
+          "lowSample": false
+        },
+        {
+          "team": "SHAWN'S TEAM",
+          "responses": 12,
+          "avgMood": 4.08,
+          "positivePct": 75.0,
+          "lowSample": false
+        },
+        {
+          "team": "BRYAN'S TEAM",
+          "responses": 50,
+          "avgMood": 3.94,
+          "positivePct": 70.0,
+          "lowSample": false
+        },
+        {
+          "team": "JOE'S TEAM",
+          "responses": 6,
+          "avgMood": 3.83,
+          "positivePct": 50.0,
+          "lowSample": false
+        },
+        {
+          "team": "MIKE MORALES",
+          "responses": 10,
+          "avgMood": 3.5,
+          "positivePct": 40.0,
+          "lowSample": false
+        },
+        {
+          "team": "LENIA'S TEAM",
+          "responses": 4,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": true
+        },
+        {
+          "team": "MIKE ZAMBRANO",
+          "responses": 5,
+          "avgMood": 2.8,
+          "positivePct": 0.0,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS'S TEAM",
+          "responses": 9,
+          "avgMood": 2.78,
+          "positivePct": 33.3,
+          "lowSample": false
+        }
+      ],
+      "topResponders": [
+        [
+          "Heather Samples",
+          8
+        ],
+        [
+          "Kenneth Masters",
+          7
+        ],
+        [
+          "Janine Hand",
+          6
+        ],
+        [
+          "Diego Francisco Cepeda",
+          5
+        ],
+        [
+          "Cody Townsend",
+          5
+        ],
+        [
+          "Joe Beasley",
+          4
+        ],
+        [
+          "Jeff Dant",
+          4
+        ],
+        [
+          "Alyeri Lule Regalado",
+          4
+        ]
+      ],
+      "moodDelta": -0.19,
+      "positiveDelta": 2.4,
+      "healthLabel": "Stable",
+      "retentionRisk": "Watch",
+      "engagementScore": 100,
+      "orgHealthScore": 81
+    },
+    {
+      "key": "2026-03",
+      "label": "March 2026",
+      "responses": 140,
+      "avgMood": 3.99,
+      "positivePct": 68.6,
+      "negativeCount": 4,
+      "neutralCount": 40,
+      "positiveCount": 96,
+      "comments": 18,
+      "followups": 0,
+      "topEmotions": [
+        [
+          "Grateful",
+          60
+        ],
+        [
+          "Happy",
+          55
+        ],
+        [
+          "Optimistic",
+          52
+        ],
+        [
+          "Motivated",
+          49
+        ],
+        [
+          "Content",
+          43
+        ],
+        [
+          "Excited",
+          32
+        ],
+        [
+          "Appreciated",
+          23
+        ],
+        [
+          "Overwhelmed",
+          10
+        ]
+      ],
+      "teams": [
+        {
+          "team": "EXECUTIVE",
+          "responses": 14,
+          "avgMood": 4.71,
+          "positivePct": 92.9,
+          "lowSample": false
+        },
+        {
+          "team": "MARK'S TEAM",
+          "responses": 3,
+          "avgMood": 4.67,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "SHAWN'S TEAM",
+          "responses": 13,
+          "avgMood": 4.38,
+          "positivePct": 84.6,
+          "lowSample": false
+        },
+        {
+          "team": "MATT'S TEAM",
+          "responses": 20,
+          "avgMood": 4.35,
+          "positivePct": 75.0,
+          "lowSample": false
+        },
+        {
+          "team": "BRYAN'S TEAM",
+          "responses": 32,
+          "avgMood": 4.12,
+          "positivePct": 71.9,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS'S TEAM",
+          "responses": 7,
+          "avgMood": 4.0,
+          "positivePct": 71.4,
+          "lowSample": false
+        },
+        {
+          "team": "LEANNE'S TEAM",
+          "responses": 5,
+          "avgMood": 4.0,
+          "positivePct": 100.0,
+          "lowSample": false
+        },
+        {
+          "team": "JUSTIN'S TEAM",
+          "responses": 5,
+          "avgMood": 3.6,
+          "positivePct": 60.0,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS TEAM ASSEMBLEY",
+          "responses": 13,
+          "avgMood": 3.38,
+          "positivePct": 61.5,
+          "lowSample": false
+        },
+        {
+          "team": "MIKE MORALES",
+          "responses": 18,
+          "avgMood": 3.33,
+          "positivePct": 44.4,
+          "lowSample": false
+        },
+        {
+          "team": "JOE'S TEAM",
+          "responses": 6,
+          "avgMood": 3.33,
+          "positivePct": 33.3,
+          "lowSample": false
+        },
+        {
+          "team": "LENIA'S TEAM",
+          "responses": 4,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": true
+        }
+      ],
+      "topResponders": [
+        [
+          "Heather Samples",
+          8
+        ],
+        [
+          "Janine Hand",
+          5
+        ],
+        [
+          "Joe Beasley",
+          5
+        ],
+        [
+          "Jeff Dant",
+          5
+        ],
+        [
+          "Bryan Jarvis",
+          4
+        ],
+        [
+          "Arthur Wong",
+          4
+        ],
+        [
+          "Branden Keogh",
+          4
+        ],
+        [
+          "Pulkit Bhardwaj",
+          4
+        ]
+      ],
+      "moodDelta": 0.06,
+      "positiveDelta": 0.2,
+      "healthLabel": "Stable",
+      "retentionRisk": "Watch",
+      "engagementScore": 87,
+      "orgHealthScore": 79
+    },
+    {
+      "key": "2026-04",
+      "label": "April 2026",
+      "responses": 121,
+      "avgMood": 3.88,
+      "positivePct": 62.8,
+      "negativeCount": 7,
+      "neutralCount": 38,
+      "positiveCount": 76,
+      "comments": 17,
+      "followups": 0,
+      "topEmotions": [
+        [
+          "Grateful",
+          60
+        ],
+        [
+          "Motivated",
+          47
+        ],
+        [
+          "Happy",
+          44
+        ],
+        [
+          "Optimistic",
+          44
+        ],
+        [
+          "Content",
+          39
+        ],
+        [
+          "Excited",
+          32
+        ],
+        [
+          "Appreciated",
+          20
+        ],
+        [
+          "Overwhelmed",
+          9
+        ]
+      ],
+      "teams": [
+        {
+          "team": "MARK'S TEAM",
+          "responses": 1,
+          "avgMood": 5.0,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "MATT'S TEAM",
+          "responses": 20,
+          "avgMood": 4.6,
+          "positivePct": 90.0,
+          "lowSample": false
+        },
+        {
+          "team": "BRYAN'S TEAM",
+          "responses": 27,
+          "avgMood": 4.33,
+          "positivePct": 88.9,
+          "lowSample": false
+        },
+        {
+          "team": "EXECUTIVE",
+          "responses": 12,
+          "avgMood": 4.17,
+          "positivePct": 83.3,
+          "lowSample": false
+        },
+        {
+          "team": "LEANNE'S TEAM",
+          "responses": 4,
+          "avgMood": 4.0,
+          "positivePct": 100.0,
+          "lowSample": true
+        },
+        {
+          "team": "CHRIS TEAM ASSEMBLEY",
+          "responses": 12,
+          "avgMood": 3.67,
+          "positivePct": 66.7,
+          "lowSample": false
+        },
+        {
+          "team": "CHRIS'S TEAM",
+          "responses": 8,
+          "avgMood": 3.38,
+          "positivePct": 50.0,
+          "lowSample": false
+        },
+        {
+          "team": "MIKE MORALES",
+          "responses": 11,
+          "avgMood": 3.36,
+          "positivePct": 18.2,
+          "lowSample": false
+        },
+        {
+          "team": "SHAWN'S TEAM",
+          "responses": 10,
+          "avgMood": 3.3,
+          "positivePct": 30.0,
+          "lowSample": false
+        },
+        {
+          "team": "JOE'S TEAM",
+          "responses": 6,
+          "avgMood": 3.17,
+          "positivePct": 16.7,
+          "lowSample": false
+        },
+        {
+          "team": "LENIA'S TEAM",
+          "responses": 4,
+          "avgMood": 3.0,
+          "positivePct": 0.0,
+          "lowSample": true
+        },
+        {
+          "team": "JUSTIN'S TEAM",
+          "responses": 6,
+          "avgMood": 2.83,
+          "positivePct": 16.7,
+          "lowSample": false
+        }
+      ],
+      "topResponders": [
+        [
+          "Heather Samples",
+          9
+        ],
+        [
+          "Jody Pagan",
+          5
+        ],
+        [
+          "Mark Stines",
+          5
+        ],
+        [
+          "Shawn Mitchell",
+          5
+        ],
+        [
+          "Keith Whitaker",
+          5
+        ],
+        [
+          "LeAnne Walton",
+          5
+        ],
+        [
+          "Diego Francisco Cepeda",
+          5
+        ],
+        [
+          "Mark Stines Jr.",
+          5
+        ]
+      ],
+      "moodDelta": -0.11,
+      "positiveDelta": -5.8,
+      "healthLabel": "Watch",
+      "retentionRisk": "Elevated",
+      "engagementScore": 80,
+      "orgHealthScore": 73,
+      "executiveSummary": "April sentiment softened after March while participation remained above the seven-month average. Leadership attention should focus on team-level variance and reinforcing engagement consistency in watch teams.",
+      "attentionItems": [
+        "April average mood declined 0.11 points from March and positive sentiment fell 5.8 points.",
+        "Watch signals are concentrated in a small group of operational teams rather than company-wide.",
+        "Leadership responsiveness should remain a placeholder until follow-up request data is available."
+      ],
+      "recommendations": [
+        {
+          "urgency": "High",
+          "impact": "High",
+          "difficulty": "Low",
+          "title": "Reinforce participation after April softening",
+          "reason": "Sentiment softened while response volume declined from March.",
+          "action": "Launch a short reminder campaign and manager nudge before the next check-in cycle."
+        },
+        {
+          "urgency": "High",
+          "impact": "Medium",
+          "difficulty": "Medium",
+          "title": "Review watch-team friction",
+          "reason": "Justin\u2019s Team, Lenia\u2019s Team, Joe\u2019s Team, Shawn\u2019s Team, and Mike Morales showed softer April averages.",
+          "action": "Ask managers to identify workload, staffing, or communication friction before the next report."
+        },
+        {
+          "urgency": "Medium",
+          "impact": "Medium",
+          "difficulty": "Low",
+          "title": "Add follow-up tracking fields",
+          "reason": "Leadership responsiveness cannot be scored without reliable follow-up activity.",
+          "action": "Capture requested, assigned, resolved, and employee-confirmed follow-up status."
+        }
+      ],
+      "improvementSuggestions": [
+        "Add eligible employee counts by team to calculate true engagement breadth.",
+        "Add manager mapping and follow-up resolution fields for Leadership Responsiveness Score.",
+        "Flag low-sample teams automatically to avoid overinterpreting small response groups."
+      ]
+    }
+  ]
+}
