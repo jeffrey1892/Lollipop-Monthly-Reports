@@ -1,19 +1,29 @@
 # Lollipop Monthly Reports
 
-Executive workforce intelligence report preview for Lollipop monthly sentiment exports.
+Reusable workforce intelligence report generator for Lollipop customers.
 
-## V1 decisions
+Cosmo Cabinets is included as sample/demo data only to validate spreadsheet imports, metrics, and report design.
 
-- Customer demo: Cosmo Cabinets
-- Default report month: April 2026
-- No individual names in the executive report body
-- “Bottom Teams” renamed to “Watch Teams”
-- Separate web app/report preview first
-- PDF export via print/save PDF first; formal PDF export later
-- Rule-based narratives first; AI narratives later once calculations/layout are approved
-- Leadership Responsiveness shown as placeholder until follow-up data exists
-- Low sample warning for teams under 5 responses
-- Severity labels follow the master prompt
+## V1 scope
+
+- Seeded sample monthly response data from current spreadsheet format
+- Month selector
+- Executive report preview
+- Organizational health score
+- Avg mood, positive sentiment, engagement score
+- Top teams and Watch Teams
+- Team health matrix
+- Mood distribution and emotion analysis
+- Leadership responsiveness placeholder when follow-up data is unavailable
+- Product/data improvement suggestions
+
+## Future scope
+
+- Spreadsheet upload parser in UI
+- PDF export
+- AI narrative generation from master prompt
+- Customer management
+- Direct data integration
 
 ## Run
 
