@@ -60,6 +60,14 @@ export type CommentIntelligence = {
   revealing: string
   emergingRisks: string[]
   confidence: Confidence
+  executiveSummary: string
+  themeTable: Array<{ theme: string; trendDirection: 'Increasing' | 'Stable' | 'Decreasing'; sentimentType: 'Positive' | 'Mixed' | 'Negative'; primaryTeams: string; interpretation: string }>
+  positiveDrivers: string[]
+  attentionAreas: string[]
+  stressAnalysis: Array<{ category: 'Work-Related' | 'Personal' | 'Mixed'; count: number; pct: number; interpretation: string }>
+  teamSpecificInsights: Array<{ team: string; insight: string; category: string }>
+  voiceQuotes: string[]
+  leadershipRecommendations: string[]
 }
 
 export type ResponsivenessIntelligence = {

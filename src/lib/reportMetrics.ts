@@ -54,23 +54,84 @@ function buildCommentIntelligence(records: ResponseRecord[]) {
   const comments = commentRecords.map((r) => r.comments)
   const lower = comments.map((c) => c.toLowerCase())
   const countWhere = (words: string[]) => lower.filter((c) => contains(c, words)).length
-  const stress = countWhere(['stressed', 'stress', 'overwhelmed', 'exhausted', 'tired', 'unable to keep up', 'behind', 'late night', 'bad day'])
-  const recognition = countWhere(['appreciate', 'appreciated', 'grateful', 'backing', 'support', 'helping', 'great people'])
-  const leadership = countWhere(['manager', 'supervisor', 'power', 'talks to others', 'support', 'communication', 'backing'])
-  const work = countWhere(['deal', 'work', 'task', 'position', 'plant', 'clock', 'bonus', 'manager', 'supervisor', 'areas'])
-  const wellbeing = countWhere(['stressed', 'insurance', 'asthma', 'mentally', 'physically', 'tired', 'bad day'])
+  const recordsWhere = (words: string[]) => commentRecords.filter((r) => contains(r.comments.toLowerCase(), words))
+  const teamList = (items: ResponseRecord[]) => [...new Set(items.map((r) => r.team))].slice(0, 3).join(', ') || 'Limited team signal'
+  const stressWords = ['stressed', 'stress', 'overwhelmed', 'exhausted', 'tired', 'unable to keep up', 'behind', 'late night', 'bad day']
+  const workloadWords = ['workload', 'tasks', 'behind', 'unable to keep up', 'extra hours', 'late night', 'vacancies', 'positions', 'staffing']
+  const personalWords = ['insurance', 'wife', 'asthma', 'fired', 'personal', 'family', 'health']
+  const recognitionWords = ['appreciate', 'appreciated', 'grateful', 'backing', 'support', 'helping', 'great people']
+  const leadershipWords = ['manager', 'supervisor', 'power', 'talks to others', 'support', 'communication', 'backing']
+  const optimismWords = ['deal', 'opportunity', 'closer', 'optimistic', 'excited', 'motivated']
+  const stress = countWhere(stressWords)
+  const recognition = countWhere(recognitionWords)
+  const leadership = countWhere(leadershipWords)
+  const work = countWhere(['deal', 'work', 'task', 'position', 'plant', 'clock', 'bonus', 'manager', 'supervisor', 'areas', ...workloadWords])
+  const wellbeing = countWhere(personalWords.concat(['mentally', 'physically', 'tired', 'bad day']))
   const positive = commentRecords.filter((r) => r.mood >= 4 || r.emotions.some((e) => ['Grateful', 'Happy', 'Optimistic', 'Motivated', 'Appreciated', 'Excited'].includes(e))).length
+  const workStressRecords = recordsWhere(workloadWords)
+  const personalStressRecords = recordsWhere(personalWords)
+  const mixedStressRecords = workStressRecords.filter((r) => contains(r.comments.toLowerCase(), personalWords))
+  const pureWorkStress = Math.max(0, workStressRecords.length - mixedStressRecords.length)
+  const purePersonalStress = Math.max(0, personalStressRecords.length - mixedStressRecords.length)
+  const stressTotal = pureWorkStress + purePersonalStress + mixedStressRecords.length
   const themes = [
-    { theme: 'Positive momentum and optimism', count: positive, type: 'Positive' as const, signal: 'Employees are naming deals, motivation, gratitude, and optimism as sources of energy.' },
-    { theme: 'Workload and burnout pressure', count: stress, type: 'Risk' as const, signal: 'A smaller but important set of comments references stress, exhaustion, falling behind, and long hours.' },
+    { theme: 'Positive momentum and optimism', count: positive, type: 'Positive' as const, signal: 'Employees are naming progress, motivation, gratitude, and optimism as sources of energy.' },
+    { theme: 'Workload and burnout pressure', count: stress, type: 'Risk' as const, signal: 'A focused set of comments references stress, exhaustion, falling behind, and long hours.' },
     { theme: 'Recognition and manager backing', count: recognition, type: 'Leadership' as const, signal: 'Recognition and visible leadership support appear to be strong drivers of positive sentiment.' },
     { theme: 'Leadership tone and communication', count: leadership, type: 'Leadership' as const, signal: 'Several comments point to manager behavior, support, and communication as culture-shaping variables.' },
-    { theme: 'Operational staffing/friction', count: countWhere(['vacancies', 'positions', 'clock', 'bonus', 'tasks', 'behind']), type: 'Work' as const, signal: 'Operational blockers are showing up in emotional comments and may affect retention risk if unresolved.' },
+    { theme: 'Operational staffing/friction', count: countWhere(['vacancies', 'positions', 'clock', 'bonus', 'tasks', 'behind']), type: 'Work' as const, signal: 'Operational blockers are appearing in emotional comments and may affect morale if unresolved.' },
   ].filter((t) => t.count > 0)
   const representative = commentRecords
     .sort((a, b) => (b.comments.length + (b.mood <= 2 ? 80 : 0)) - (a.comments.length + (a.mood <= 2 ? 80 : 0)))
     .slice(0, 4)
-    .map((r) => `“${anonymize(r.comments).slice(0, 210)}${r.comments.length > 210 ? '…' : ''}”`)
+    .map((r) => `“${anonymize(r.comments).slice(0, 170)}${r.comments.length > 170 ? '…' : ''}”`)
+  const themeTable = [
+    { theme: 'Workload Pressure', trendDirection: stress > 2 ? 'Increasing' as const : 'Stable' as const, sentimentType: 'Negative' as const, primaryTeams: teamList(workStressRecords), interpretation: 'Repeated workload language suggests operational strain may be a root cause behind lower-mood pockets.' },
+    { theme: 'Recognition & Appreciation', trendDirection: recognition > 3 ? 'Increasing' as const : 'Stable' as const, sentimentType: 'Positive' as const, primaryTeams: teamList(recordsWhere(recognitionWords)), interpretation: 'Appreciation and visible support are reinforcing morale and should be preserved as management behaviors.' },
+    { theme: 'Leadership Support', trendDirection: leadership > 2 ? 'Stable' as const : 'Stable' as const, sentimentType: leadership > 0 ? 'Mixed' as const : 'Positive' as const, primaryTeams: teamList(recordsWhere(leadershipWords)), interpretation: 'Manager tone, communication, and backing are showing up as meaningful cultural levers.' },
+    { theme: 'Operational Bottlenecks', trendDirection: countWhere(['vacancies', 'clock', 'bonus', 'positions']) > 1 ? 'Increasing' as const : 'Stable' as const, sentimentType: 'Mixed' as const, primaryTeams: teamList(recordsWhere(['vacancies', 'clock', 'bonus', 'positions'])), interpretation: 'Process and staffing friction may be creating avoidable frustration in operational teams.' },
+    { theme: 'Optimism / Momentum', trendDirection: countWhere(optimismWords) > 2 ? 'Increasing' as const : 'Stable' as const, sentimentType: 'Positive' as const, primaryTeams: teamList(recordsWhere(optimismWords)), interpretation: 'Commercial momentum and confidence are visible positive drivers in parts of the workforce.' },
+  ]
+  const executiveSummary = 'Employee comments show a workforce with meaningful positive energy, especially around appreciation, support, progress, and optimism. At the same time, a smaller but important set of comments points to workload pressure, operational friction, and manager communication as the most likely drivers of lower-mood pockets. The comment signal appears concentrated rather than organization-wide, which makes targeted manager action more appropriate than broad messaging. Leadership should preserve recognition and peer-support behaviors while addressing the operational blockers that employees are explicitly naming.'
+  const positiveDrivers = [
+    'Employees repeatedly referenced appreciation, support, and gratitude as positive emotional drivers.',
+    'Optimism appears connected to visible progress, team momentum, and confidence that work is moving forward.',
+    'Positive comments suggest that manager backing and peer support are practical behaviors worth reinforcing.',
+  ]
+  const attentionAreas = [
+    'Workload-related language suggests some employees are experiencing sustained pressure or difficulty keeping up.',
+    'Operational friction such as staffing gaps, process issues, or administrative errors may be creating avoidable frustration.',
+    'Leadership tone and communication appear important enough to monitor because they shape whether employees feel supported or dismissed.',
+  ]
+  const stressAnalysis = [
+    { category: 'Work-Related' as const, count: pureWorkStress, pct: pct(pureWorkStress, stressTotal), interpretation: 'Primarily tied to workload, staffing, processes, or role execution.' },
+    { category: 'Personal' as const, count: purePersonalStress, pct: pct(purePersonalStress, stressTotal), interpretation: 'Driven mainly by personal, health, family, or external life factors.' },
+    { category: 'Mixed' as const, count: mixedStressRecords.length, pct: pct(mixedStressRecords.length, stressTotal), interpretation: 'Both work and personal stressors appear in the same comment.' },
+  ]
+  const byTeamComments = new Map<string, ResponseRecord[]>()
+  for (const r of commentRecords) byTeamComments.set(r.team, [...(byTeamComments.get(r.team) ?? []), r])
+  const teamSpecificInsights = [...byTeamComments.entries()]
+    .sort((a, b) => b[1].length - a[1].length)
+    .slice(0, 5)
+    .map(([team, rs]) => {
+      const text = rs.map((r) => r.comments.toLowerCase()).join(' ')
+      const category = contains(text, workloadWords) ? 'Operational pressure' : contains(text, recognitionWords) ? 'Positive support' : contains(text, leadershipWords) ? 'Leadership signal' : 'General morale'
+      const insight = category === 'Operational pressure'
+        ? `${team} comments point to workload intensity, staffing pressure, or process friction, helping explain why leadership should look beyond the score and address operating conditions directly.`
+        : category === 'Positive support'
+          ? `${team} comments emphasize appreciation, help, and support, suggesting there are management or peer behaviors worth preserving and potentially replicating.`
+          : category === 'Leadership signal'
+            ? `${team} comments reference manager support, communication, or tone, indicating that frontline leadership behavior is influencing the employee experience.`
+            : `${team} comments provide useful emotional texture but do not yet show a strong recurring theme; continue monitoring before drawing firm conclusions.`
+      return { team, insight, category }
+    })
+  const leadershipRecommendations = [
+    stress > 0 ? 'Run a targeted workload review in teams where comments reference falling behind, exhaustion, staffing gaps, or sustained pressure.' : '',
+    recognition > 0 ? 'Reinforce recognition and manager-backing behaviors that employees are already naming positively.' : '',
+    leadership > 0 ? 'Tighten manager communication cadence around expectations, changes, and support availability.' : '',
+    work > 0 ? 'Close one visible operational friction point before the next check-in cycle so employees see action from the feedback loop.' : '',
+    'Use next month’s comments to verify whether the same themes are persisting, improving, or spreading to additional teams.',
+  ].filter(Boolean)
   return {
     commentCount: comments.length,
     workRelatedCount: work,
@@ -90,6 +151,14 @@ function buildCommentIntelligence(records: ResponseRecord[]) {
       work > 0 ? 'Operational friction is appearing in open text and may affect morale if not closed quickly.' : 'Operational blockers are not a dominant theme this month.',
     ],
     confidence: confidenceFromCount(comments.length),
+    executiveSummary,
+    themeTable,
+    positiveDrivers,
+    attentionAreas,
+    stressAnalysis,
+    teamSpecificInsights,
+    voiceQuotes: representative,
+    leadershipRecommendations,
   }
 }
 
