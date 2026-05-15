@@ -187,7 +187,7 @@ export type ReportMetrics = {
   decliningTeams: TeamMetric[]
   lowConfidenceTeams: TeamMetric[]
   allTeams: TeamMetric[]
-  moodDistribution: Array<{ mood: string; count: number; pct: number; color: string }>
+  moodDistribution: Array<{ mood: string; label: string; count: number; pct: number; color: string; emoji: string }>
   topEmotions: Array<{ emotion: string; count: number; pct: number }>
   monthlyTrend: Array<{ label: string; avgMood: number; positivePct: number; responses: number }>
   comments: string[]

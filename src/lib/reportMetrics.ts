@@ -152,8 +152,14 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
   for (const r of records) for (const e of r.emotions) emotionCounts.set(e, (emotionCounts.get(e) ?? 0) + 1)
   const emotionTotal = [...emotionCounts.values()].reduce((a, b) => a + b, 0)
   const topEmotions = [...emotionCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8).map(([emotion, count]) => ({ emotion, count, pct: pct(count, emotionTotal) }))
-  const moodColors = ['#ef4444', '#f97316', '#f59e0b', '#3fa86a', '#0a81ff']
-  const moodDistribution = [1, 2, 3, 4, 5].map((m, i) => ({ mood: String(m), count: moods.filter((v) => v === m).length, pct: pct(moods.filter((v) => v === m).length, moods.length), color: moodColors[i] }))
+  const moodMeta = [
+    { mood: '1', label: 'Terrible', color: '#ef4444', emoji: '/emojis/Terrible.png' },
+    { mood: '2', label: 'Bad', color: '#f97316', emoji: '/emojis/Bad.png' },
+    { mood: '3', label: 'Ok', color: '#facc15', emoji: '/emojis/Ok.png' },
+    { mood: '4', label: 'Good', color: '#84cc16', emoji: '/emojis/Good.png' },
+    { mood: '5', label: 'Great', color: '#22c55e', emoji: '/emojis/Great.png' },
+  ]
+  const moodDistribution = moodMeta.map((meta) => { const n = Number(meta.mood); const count = moods.filter((v) => v === n).length; return { ...meta, count, pct: pct(count, moods.length) } })
   const retentionRisk = riskFromMood(avgMood, positivePct, monthChange)
   const softened = monthChange !== null && monthChange < 0
   const monthlyTrend = customer.months.map((m) => { const ms = m.responses.map((r) => r.mood).filter(Boolean); return { label: m.label, avgMood: round(avg(ms), 2), positivePct: pct(ms.filter((v) => v >= 4).length, ms.length), responses: m.responses.length } })

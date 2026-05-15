@@ -11,10 +11,10 @@ function Kpi({ label, value, delta, tone }: { label: string; value: string; delt
 }
 function ConfidenceBadge({ value }: { value: string }) { return <span className={`badge confidence ${value.toLowerCase()}`}>Confidence: {value}</span> }
 function SeverityBadge({ value }: { value: string }) { return <span className={`badge severity ${value.toLowerCase().replace(' ', '-')}`}>{value}</span> }
-function PieChart({ slices }: { slices: Array<{ mood: string; pct: number; color: string; count: number }> }) {
+function PieChart({ slices }: { slices: Array<{ mood: string; label: string; pct: number; color: string; count: number; emoji: string }> }) {
   let start = 0
   const gradient = slices.map((s) => { const end = start + s.pct; const seg = `${s.color} ${start}% ${end}%`; start = end; return seg }).join(', ')
-  return <div className="pie-wrap"><div className="pie" style={{ background: `conic-gradient(${gradient})` }}><span>{slices.reduce((a, b) => a + b.count, 0)}<small>responses</small></span></div><div className="legend">{slices.map((s) => <div key={s.mood}><i style={{ background: s.color }} />Mood {s.mood}: <strong>{s.pct}%</strong></div>)}</div></div>
+  return <div className="pie-wrap"><div className="pie" style={{ background: `conic-gradient(${gradient})` }}><span>{slices.reduce((a, b) => a + b.count, 0)}<small>responses</small></span></div><div className="legend">{slices.map((s) => <div key={s.mood}><img src={s.emoji} alt={`${s.label} mood`} />{s.label}: <strong>{s.pct}%</strong><small>{s.count}</small></div>)}</div></div>
 }
 
 export default function Home({ searchParams }: { searchParams?: { month?: string } }) {
