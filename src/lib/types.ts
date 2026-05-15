@@ -87,6 +87,7 @@ export type EngagementIntelligence = {
   optedInPopulation: number | null
   activeEmployeeCount: number | null
   responseRate: number | null
+  responseRateChange: number | null
   uniqueParticipants: number
   repeatResponderConcentration: string
   silentPopulationRisk: string
@@ -117,6 +118,7 @@ export type PrioritizedAction = {
   nextStep: string
   why: string
   confidence: Confidence
+  trigger?: string
   links?: Array<{ label: string; href: string }>
 }
 
