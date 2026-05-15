@@ -1,5 +1,6 @@
 export type Severity = 'Healthy' | 'Stable' | 'Watch' | 'Intervention Needed' | 'Elevated Risk'
 export type RetentionRisk = 'Low' | 'Watch' | 'Elevated' | 'High' | 'Critical'
+export type Confidence = 'High' | 'Medium' | 'Low' | 'Provisional'
 
 export type ResponseRecord = {
   id: string
@@ -26,6 +27,88 @@ export type TeamMetric = {
   engagementShare: number
   risk: RetentionRisk
   sampleWarning: boolean
+  confidence: Confidence
+  interpretation: string
+}
+
+export type IntelligencePoint = {
+  title: string
+  finding: string
+  whyItMatters: string
+  leadershipMove: string
+  monitorNext: string
+  confidence: Confidence
+}
+
+export type CommentTheme = {
+  theme: string
+  count: number
+  type: 'Work' | 'Wellbeing' | 'Positive' | 'Risk' | 'Leadership'
+  signal: string
+}
+
+export type CommentIntelligence = {
+  commentCount: number
+  workRelatedCount: number
+  wellbeingCount: number
+  positiveCount: number
+  stressBurnoutCount: number
+  recognitionCount: number
+  leadershipCommunicationCount: number
+  themes: CommentTheme[]
+  representativeComments: string[]
+  revealing: string
+  emergingRisks: string[]
+  confidence: Confidence
+}
+
+export type ResponsivenessIntelligence = {
+  requests: number
+  completed: number
+  open: number
+  completionPct: number | null
+  avgTimeToResponse: string
+  agingUnresolved: string
+  managerTeamResponsiveness: string
+  status: string
+  recommendation: string
+  confidence: Confidence
+}
+
+export type EngagementIntelligence = {
+  optedInPopulation: number | null
+  activeEmployeeCount: number | null
+  responseRate: number | null
+  uniqueParticipants: number
+  repeatResponderConcentration: string
+  silentPopulationRisk: string
+  participationChange: number | null
+  reliability: string
+  confidence: Confidence
+}
+
+export type TrendIntelligence = {
+  threeMonthAvgMood: number | null
+  rollingPositivePct: number | null
+  bestMonth: string
+  worstMonth: string
+  volatility: string
+  meaningfulMovement: string
+  improvingMetrics: string[]
+  decliningMetrics: string[]
+  confidence: Confidence
+}
+
+export type PrioritizedAction = {
+  title: string
+  priority: 'P1' | 'P2' | 'P3'
+  urgency: string
+  impact: string
+  difficulty: string
+  owner: string
+  nextStep: string
+  why: string
+  confidence: Confidence
 }
 
 export type ReportMetrics = {
@@ -46,15 +129,27 @@ export type ReportMetrics = {
   followUpRequests: number
   followUpCompletionPct: number | null
   unsubscribedCount: number
+  reportConfidenceScore: number
+  reportConfidence: Confidence
+  confidenceRationale: string
   topTeams: TeamMetric[]
   watchTeams: TeamMetric[]
+  improvingTeams: TeamMetric[]
+  decliningTeams: TeamMetric[]
+  lowConfidenceTeams: TeamMetric[]
   allTeams: TeamMetric[]
-  moodDistribution: Array<{ mood: string; count: number; pct: number }>
+  moodDistribution: Array<{ mood: string; count: number; pct: number; color: string }>
   topEmotions: Array<{ emotion: string; count: number; pct: number }>
   monthlyTrend: Array<{ label: string; avgMood: number; positivePct: number; responses: number }>
   comments: string[]
   executiveSummary: string
+  strategicNarrative: string[]
+  intelligencePoints: IntelligencePoint[]
   leadershipAttention: string[]
+  commentIntelligence: CommentIntelligence
+  responsiveness: ResponsivenessIntelligence
+  engagement: EngagementIntelligence
+  trend: TrendIntelligence
   improvements: string[]
-  recommendations: Array<{ title: string; urgency: string; impact: string; difficulty: string; reason: string; action: string }>
+  recommendations: PrioritizedAction[]
 }
