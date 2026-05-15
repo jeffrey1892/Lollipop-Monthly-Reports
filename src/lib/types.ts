@@ -111,6 +111,55 @@ export type PrioritizedAction = {
   confidence: Confidence
 }
 
+export type RiskSeverity = 'Critical' | 'High' | 'Watchlist' | 'Stable' | 'Positive Momentum'
+
+export type ChangeInsight = {
+  title: string
+  detail: string
+  severity: RiskSeverity
+  confidence: Confidence
+  meaning: string
+}
+
+export type TeamIntelligence = TeamMetric & {
+  positiveCount: number
+  neutralCount: number
+  negativeCount: number
+  positivePct: number
+  neutralPct: number
+  negativePct: number
+  participationTrend: number | null
+  commentThemes: string[]
+  keyConcernOrStrength: string
+  managerAction: string
+  severity: RiskSeverity
+  privacyNote?: string
+}
+
+export type ManagerReport = {
+  available: boolean
+  privacyThreshold: number
+  description: string
+  eligibleTeams: string[]
+  sampleWarningTeams: string[]
+  safeguards: string[]
+}
+
+export type HealthScoreSummary = {
+  rating: 'Strong' | 'Healthy' | 'Mixed' | 'Watchlist' | 'At Risk'
+  score: number
+  reason: string
+  components: Array<{ label: string; score: number; note: string }>
+}
+
+export type AlertInsight = {
+  title: string
+  severity: RiskSeverity
+  signal: string
+  recommendedAction: string
+  confidence: Confidence
+}
+
 export type ReportMetrics = {
   customerName: string
   month: string
@@ -152,4 +201,10 @@ export type ReportMetrics = {
   trend: TrendIntelligence
   improvements: string[]
   recommendations: PrioritizedAction[]
+  healthSummary: HealthScoreSummary
+  whatChanged: ChangeInsight[]
+  teamIntelligence: TeamIntelligence[]
+  riskWatchlist: AlertInsight[]
+  positiveMomentum: AlertInsight[]
+  managerReport: ManagerReport
 }

@@ -213,6 +213,95 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
     recommendation: followUpRequests ? 'Audit every open follow-up and require closure notes.' : 'Add required fields for follow-up owner, request date, first response date, status, closure date, and team owner.',
     confidence: followUpRequests ? 'Medium' as const : 'Provisional' as const,
   }
+  const priorThree = customer.months.slice(Math.max(0, currentIndex - 3), currentIndex)
+  const currentEmotionCounts = new Map<string, number>()
+  const previousEmotionCounts = new Map<string, number>()
+  for (const r of records) for (const e of r.emotions) currentEmotionCounts.set(e, (currentEmotionCounts.get(e) ?? 0) + 1)
+  for (const r of prevRecords) for (const e of r.emotions) previousEmotionCounts.set(e, (previousEmotionCounts.get(e) ?? 0) + 1)
+  const emotionChanges = [...currentEmotionCounts.entries()].map(([emotion, count]) => ({ emotion, change: count - (previousEmotionCounts.get(emotion) ?? 0), count })).sort((a,b) => Math.abs(b.change) - Math.abs(a.change)).slice(0,3)
+  const neutralPct = pct(moods.filter((m) => m === 3).length, moods.length)
+  const prevNeutralPct = prevMoods.length ? pct(prevMoods.filter((m) => m === 3).length, prevMoods.length) : 0
+  const negativePct = pct(moods.filter((m) => m <= 2).length, moods.length)
+  const prevNegativePct = prevMoods.length ? pct(prevMoods.filter((m) => m <= 2).length, prevMoods.length) : 0
+  const teamIntelligence = allTeams.map((t) => {
+    const teamRecords = teamMap.get(t.team) ?? []
+    const teamMoods = teamRecords.map((r) => r.mood)
+    const teamComments = teamRecords.filter((r) => r.comments.trim())
+    const posCount = teamMoods.filter((m) => m >= 4).length
+    const neuCount = teamMoods.filter((m) => m === 3).length
+    const negCount = teamMoods.filter((m) => m <= 2).length
+    const text = teamComments.map((r) => r.comments.toLowerCase()).join(' ')
+    const themes = [
+      contains(text, ['stress', 'stressed', 'overwhelmed', 'exhausted', 'behind']) ? 'workload / burnout pressure' : '',
+      contains(text, ['appreciate', 'grateful', 'appreciated', 'helping', 'support']) ? 'recognition / support' : '',
+      contains(text, ['manager', 'supervisor', 'power', 'talks', 'communication']) ? 'manager communication' : '',
+      contains(text, ['deal', 'opportunity', 'closed']) ? 'commercial momentum' : '',
+      contains(text, ['vacancies', 'positions', 'staffing']) ? 'staffing / coverage' : '',
+    ].filter(Boolean)
+    const severity = t.sampleWarning ? 'Watchlist' as const : riskRank(t.risk) >= 4 ? 'High' as const : riskRank(t.risk) >= 2 ? 'Watchlist' as const : (t.change ?? 0) > 0.2 ? 'Positive Momentum' as const : 'Stable' as const
+    const privacyNote = teamComments.length < 3 ? 'Comment themes suppressed or generalized because fewer than 3 comments are available.' : undefined
+    return {
+      ...t,
+      positiveCount: posCount,
+      neutralCount: neuCount,
+      negativeCount: negCount,
+      positivePct: pct(posCount, teamMoods.length),
+      neutralPct: pct(neuCount, teamMoods.length),
+      negativePct: pct(negCount, teamMoods.length),
+      participationTrend: previous ? teamRecords.length - (prevTeamMap.get(t.team)?.length ?? 0) : null,
+      commentThemes: teamComments.length >= 3 ? themes : [],
+      keyConcernOrStrength: severity === 'Positive Momentum' ? 'Positive momentum worth reinforcing and learning from.' : severity === 'High' ? 'Below-average mood and/or sentiment movement warrants direct manager attention.' : t.sampleWarning ? 'Signal is too small for a firm conclusion; increase participation first.' : 'No acute signal; continue monitoring and reinforce positive practices.',
+      managerAction: severity === 'High' ? `Schedule a manager listening session with ${t.team} focused on workload, staffing, communication, and recognition.` : t.sampleWarning ? `Increase sampling in ${t.team} before drawing strong conclusions from this score.` : severity === 'Positive Momentum' ? `Capture what ${t.team} is doing well and consider sharing practices with peer managers.` : `Review ${t.team}'s neutral responses and ask what would move employees from okay to positive.`,
+      severity,
+      privacyNote,
+    }
+  })
+  const whatChanged = [
+    { title: 'Morale direction', detail: monthChange === null ? 'No prior-month comparison is available.' : `Average mood moved ${monthChange > 0 ? 'up' : monthChange < 0 ? 'down' : 'flat'} ${Math.abs(monthChange).toFixed(2)} points versus ${previous?.label}.`, severity: monthChange !== null && monthChange < -0.25 ? 'Watchlist' as const : monthChange !== null && monthChange > 0.2 ? 'Positive Momentum' as const : 'Stable' as const, confidence: reportConfidence, meaning: monthChange !== null && Math.abs(monthChange) >= 0.2 ? 'Large enough to warrant leadership attention.' : 'Likely normal fluctuation unless it repeats next month.' },
+    { title: 'Positive sentiment movement', detail: positiveChange === null ? 'No prior-month comparison is available.' : `Positive sentiment changed ${positiveChange > 0 ? '+' : ''}${positiveChange} points.`, severity: positiveChange !== null && positiveChange < -5 ? 'Watchlist' as const : positiveChange !== null && positiveChange > 5 ? 'Positive Momentum' as const : 'Stable' as const, confidence: reportConfidence, meaning: 'Positive sentiment is a stronger retention signal than average mood alone.' },
+    { title: 'Neutral / negative movement', detail: `Neutral sentiment is ${neutralPct}% (${neutralPct - prevNeutralPct > 0 ? '+' : ''}${round(neutralPct - prevNeutralPct,1)} pts); negative sentiment is ${negativePct}% (${negativePct - prevNegativePct > 0 ? '+' : ''}${round(negativePct - prevNegativePct,1)} pts).`, severity: negativePct - prevNegativePct > 3 ? 'High' as const : neutralPct - prevNeutralPct > 5 ? 'Watchlist' as const : 'Stable' as const, confidence: reportConfidence, meaning: 'Rising neutral sentiment can be an early warning before employees become openly negative.' },
+    { title: 'Response volume', detail: participationChange === null ? 'No prior-month participation comparison is available.' : `Responses changed by ${participationChange > 0 ? '+' : ''}${participationChange} versus ${previous?.label}.`, severity: participationChange !== null && participationChange < -20 ? 'Watchlist' as const : 'Stable' as const, confidence: 'Medium' as const, meaning: 'Engagement quality matters because a shrinking respondent base can hide silent-population risk.' },
+    { title: 'Largest team declines', detail: decliningTeams.length ? decliningTeams.map((t) => `${t.team} (${t.change})`).join(', ') : 'No meaningful team-level decline detected above threshold.', severity: decliningTeams.length ? 'Watchlist' as const : 'Stable' as const, confidence: decliningTeams.some((t) => t.confidence === 'Low' || t.confidence === 'Provisional') ? 'Low' as const : 'Medium' as const, meaning: 'Team movement is more actionable when supported by adequate response volume.' },
+    { title: 'Largest team increases', detail: improvingTeams.length ? improvingTeams.map((t) => `${t.team} (+${t.change})`).join(', ') : 'No meaningful team-level increase detected above threshold.', severity: improvingTeams.length ? 'Positive Momentum' as const : 'Stable' as const, confidence: improvingTeams.some((t) => t.confidence === 'Low' || t.confidence === 'Provisional') ? 'Low' as const : 'Medium' as const, meaning: 'Improving teams may reveal practices worth replicating.' },
+    { title: 'Emotion mix changes', detail: emotionChanges.length ? emotionChanges.map((e) => `${e.emotion} ${e.change > 0 ? '+' : ''}${e.change}`).join(', ') : 'No emotion trend comparison available.', severity: emotionChanges.some((e) => ['Overwhelmed','Frustrated','Upset','Sad','Worried'].includes(e.emotion) && e.change > 3) ? 'Watchlist' as const : 'Stable' as const, confidence: 'Medium' as const, meaning: 'Emotion shifts help explain why the score moved, not just that it moved.' },
+  ]
+  const healthSummary = {
+    rating: healthScore >= 82 ? 'Strong' as const : healthScore >= 74 ? 'Healthy' as const : healthScore >= 64 ? 'Mixed' as const : healthScore >= 52 ? 'Watchlist' as const : 'At Risk' as const,
+    score: healthScore,
+    reason: `${severity(healthScore)} overall signal: mood is ${avgMood.toFixed(2)}, positive sentiment is ${positivePct}%, ${watchTeams.length} teams are on the watchlist, and report confidence is ${reportConfidence.toLowerCase()}.`,
+    components: [
+      { label: 'Mood', score: Math.round((avgMood / 5) * 100), note: `${avgMood.toFixed(2)} average mood` },
+      { label: 'Positive sentiment', score: Math.round(positivePct), note: `${positivePct}% positive` },
+      { label: 'Engagement quality', score: engagementScore, note: engagement.reliability },
+      { label: 'Team consistency', score: Math.max(0, 100 - watchTeams.length * 12 - lowConfidenceTeams.length * 4), note: `${watchTeams.length} watchlist teams; ${lowConfidenceTeams.length} low-sample teams` },
+      { label: 'Comment signal', score: Math.max(0, 85 - commentIntelligence.stressBurnoutCount * 4), note: `${commentIntelligence.stressBurnoutCount} stress/burnout signals` },
+    ],
+  }
+  const persistentTeams = teamIntelligence.filter((t) => {
+    const history = customer.months.slice(Math.max(0, currentIndex - 2), currentIndex + 1).map((m) => {
+      const rs = m.responses.filter((r) => r.team === t.team).map((r) => r.mood)
+      return rs.length ? avg(rs) : null
+    })
+    return history.length >= 3 && history.every((v) => v !== null && v < 3.4)
+  })
+  const riskWatchlist = [
+    ...watchTeams.slice(0, 4).map((t) => ({ title: t.team, severity: riskRank(t.risk) >= 4 ? 'High' as const : 'Watchlist' as const, signal: `${t.avgMood.toFixed(2)} avg mood, ${t.positivePct}% positive, ${t.responses} responses. ${t.sampleWarning ? 'Low-confidence sample.' : t.interpretation}`, recommendedAction: `Manager should run a focused listening check-in and close one visible blocker before the next report.`, confidence: t.confidence })),
+    ...persistentTeams.map((t) => ({ title: `${t.team} persistence risk`, severity: 'High' as const, signal: 'Below-average mood appears persistent across the recent period.', recommendedAction: 'Treat as a management operating issue, not a one-month anomaly.', confidence: t.confidence })),
+    ...(negativePct > prevNegativePct + 3 ? [{ title: 'Rising negative sentiment', severity: 'High' as const, signal: `Negative sentiment increased ${round(negativePct - prevNegativePct,1)} points.`, recommendedAction: 'Review low-mood comments and require team-level response plans where concentrated.', confidence: reportConfidence }] : []),
+  ].slice(0, 6)
+  const positiveMomentum = [
+    ...topTeams.slice(0, 3).map((t) => ({ title: t.team, severity: 'Positive Momentum' as const, signal: `${t.avgMood.toFixed(2)} avg mood with ${t.positivePct}% positive sentiment.`, recommendedAction: 'Identify the management practices creating this signal and share one replicable behavior with peer leaders.', confidence: t.confidence })),
+    ...(commentIntelligence.recognitionCount ? [{ title: 'Recognition is working', severity: 'Positive Momentum' as const, signal: `${commentIntelligence.recognitionCount} recognition/support comment signals.`, recommendedAction: 'Preserve visible appreciation and manager backing as a retention lever.', confidence: commentIntelligence.confidence }] : []),
+  ].slice(0, 5)
+  const managerReport = {
+    available: true,
+    privacyThreshold: 5,
+    description: 'The generator now supports scoped team-only manager reports conceptually: filter to one team, compare against company average, suppress other-team details, and show comment themes only when privacy thresholds are met.',
+    eligibleTeams: allTeams.filter((t) => t.responses >= 5).map((t) => t.team),
+    sampleWarningTeams: allTeams.filter((t) => t.responses < 5).map((t) => t.team),
+    safeguards: ['Do not expose other teams in manager views.', 'Suppress or paraphrase comments when fewer than 3 comments exist.', 'Show sample-size warnings below 5 responses.', 'Compare to company average without ranking sensitive peer teams.'],
+  }
+
   const intelligencePoints = [
     { title: 'Organizational health', finding: `${severity(healthScore)} health score with ${retentionRisk} retention risk.`, whyItMatters: 'The organization is stable enough for targeted intervention, but team variance can become retention risk if ignored.', leadershipMove: 'Focus on watch teams first while reinforcing positive-team behaviors.', monitorNext: 'Watch whether average mood rebounds and whether negative comments cluster in the same teams.', confidence: reportConfidence },
     { title: 'Culture and burnout signal', finding: `${commentIntelligence.stressBurnoutCount} stress/burnout comment signal(s) and ${commentIntelligence.recognitionCount} recognition signal(s).`, whyItMatters: 'Positive culture signals coexist with operational strain; both are useful levers for retention.', leadershipMove: 'Ask managers to separate workload fixes from recognition/communication fixes.', monitorNext: 'Track workload language, manager behavior comments, and low-mood comments next month.', confidence: commentIntelligence.confidence },
@@ -231,5 +320,5 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
     { title: 'Operationalize follow-up accountability', priority: 'P2' as const, urgency: 'Medium', impact: 'High', difficulty: 'Medium', owner: 'HR leader + team managers', nextStep: 'Require status, owner, first-response date, and closure note for every follow-up request.', why: 'Responsiveness is a leadership-effectiveness signal; missing data prevents Lollipop from proving closure.', confidence: responsiveness.confidence },
     { title: 'Reinforce positive culture drivers', priority: 'P3' as const, urgency: 'Medium', impact: 'Medium', difficulty: 'Low', owner: 'Frontline managers', nextStep: 'Identify what top teams are doing differently and turn it into a manager coaching prompt.', why: 'Recognition, support, and visible progress appear to be meaningful positive sentiment drivers.', confidence: commentIntelligence.confidence },
   ]
-  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations }
+  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, managerReport }
 }
