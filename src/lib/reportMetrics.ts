@@ -173,6 +173,9 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
   const reportConfidenceScore = confidenceScore(records.length, allTeams, commentIntelligence.commentCount, followUpRequests > 0)
   const reportConfidence = confidenceLabel(reportConfidenceScore)
   const participationChange = previous ? records.length - prevRecords.length : null
+  const uniqueParticipants = new Set(records.map((r) => `${r.firstName.trim().toLowerCase()}|${r.lastName.trim().toLowerCase()}|${r.team.trim().toLowerCase()}`)).size
+  const optedInPopulation = uniqueParticipants + customer.unsubscribed.length
+  const engagementRate = pct(uniqueParticipants, optedInPopulation)
   const strategicNarrative = [
     `${customer.name}'s workforce signal in ${current.label} is ${severity(healthScore).toLowerCase()} with ${retentionRisk.toLowerCase()} retention risk. The organization is not showing a broad crisis signal, but the month softened enough to require targeted leadership attention rather than passive monitoring.`,
     `The most important movement is ${softened ? `a ${Math.abs(monthChange ?? 0).toFixed(2)} point decline in average mood and a ${Math.abs(positiveChange ?? 0).toFixed(1)} point decline in positive sentiment` : 'stable-to-improving sentiment versus the prior month'}. This matters because emotional movement is uneven by team; the risk appears concentrated, not fully systemic.`,
@@ -186,12 +189,12 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
     followUpRequests === 0 ? 'Follow-up workflow data is incomplete or unused; responsiveness scoring should remain provisional.' : `${followUpRequests} follow-up requests require responsiveness review.`,
   ]
   const engagement = {
-    optedInPopulation: null,
+    optedInPopulation,
     activeEmployeeCount: null,
-    responseRate: null,
-    uniqueParticipants: records.length,
+    responseRate: engagementRate,
+    uniqueParticipants,
     repeatResponderConcentration: 'Cannot determine repeat-responder concentration until stable employee IDs are available across months.',
-    silentPopulationRisk: 'Unknown denominator: opted-in and active employee counts are needed to quantify silent population risk.',
+    silentPopulationRisk: 'Engagement rate uses unique employees checking in divided by total opted-in employees. Add active employee count later to measure eligible-population coverage.',
     participationChange,
     reliability: records.length >= 100 ? 'Strong directional read at the organization level; team-level confidence varies by response count.' : 'Directional read only; participation should be expanded before making major policy decisions.',
     confidence: records.length >= 100 ? 'Medium' as const : 'Low' as const,
@@ -311,7 +314,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
   const intelligencePoints = [
     { title: 'Organizational health', finding: `${severity(healthScore)} health score with ${retentionRisk} retention risk.`, whyItMatters: 'The organization is stable enough for targeted intervention, but team variance can become retention risk if ignored.', leadershipMove: 'Focus on watch teams first while reinforcing positive-team behaviors.', monitorNext: 'Watch whether average mood rebounds and whether negative comments cluster in the same teams.', confidence: reportConfidence },
     { title: 'Culture and burnout signal', finding: `${commentIntelligence.stressBurnoutCount} stress/burnout comment signal(s) and ${commentIntelligence.recognitionCount} recognition signal(s).`, whyItMatters: 'Positive culture signals coexist with operational strain; both are useful levers for retention.', leadershipMove: 'Ask managers to separate workload fixes from recognition/communication fixes.', monitorNext: 'Track workload language, manager behavior comments, and low-mood comments next month.', confidence: commentIntelligence.confidence },
-    { title: 'Engagement reliability', finding: `${records.length} responses across ${allTeams.length} teams; denominator unavailable.`, whyItMatters: 'The signal is useful, but response-rate and silent-population risk cannot be quantified without active/opted-in counts.', leadershipMove: 'Add denominator data and compare participation by team.', monitorNext: 'Response rate, unique responders, and repeat-responder concentration.', confidence: engagement.confidence },
+    { title: 'Engagement reliability', finding: `${uniqueParticipants} unique employees checked in out of ${optedInPopulation} opted-in employees (${engagementRate}%).`, whyItMatters: 'The signal is useful, but full eligible-population coverage still requires active employee count.', leadershipMove: 'Monitor opted-in coverage and compare participation quality by team.', monitorNext: 'Response rate, unique responders, and repeat-responder concentration.', confidence: engagement.confidence },
   ]
   const improvements = [
     'Add active employee count, opted-in population, and stable anonymized employee IDs to calculate response rate and repeat-responder concentration.',
@@ -322,7 +325,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
   ]
   const recommendations = [
     { title: 'Target watch-team intervention', priority: 'P1' as const, urgency: retentionRisk === 'Elevated' || retentionRisk === 'High' ? 'High' : 'Medium', impact: 'High', difficulty: 'Medium', owner: 'Operations leader + HR partner', nextStep: `Hold a 30-minute review with managers for ${watchTeams.slice(0, 2).map((t) => t.team).join(' and ')} to identify workload, communication, and recognition blockers.`, why: 'Risk is concentrated by team; targeted intervention is more useful than a broad corporate message.', confidence: 'Medium' as const },
-    { title: 'Close the engagement data gap', priority: 'P1' as const, urgency: 'High', impact: 'High', difficulty: 'Low', owner: 'People analytics / system admin', nextStep: 'Add active employee count, opted-in count, and anonymized participant ID to the import schema.', why: 'Without a denominator, leadership cannot distinguish healthy participation from silent-population risk.', confidence: 'High' as const },
+    { title: 'Close the engagement data gap', priority: 'P1' as const, urgency: 'High', impact: 'High', difficulty: 'Low', owner: 'People analytics / system admin', nextStep: 'Add active employee count and stable anonymized participant ID to the import schema; opted-in count is currently estimated from unique check-ins plus unsubscribed records.', why: 'Without a denominator, leadership cannot distinguish healthy participation from silent-population risk.', confidence: 'High' as const },
     { title: 'Operationalize follow-up accountability', priority: 'P2' as const, urgency: 'Medium', impact: 'High', difficulty: 'Medium', owner: 'HR leader + team managers', nextStep: 'Require status, owner, first-response date, and closure note for every follow-up request.', why: 'Responsiveness is a leadership-effectiveness signal; missing data prevents Lollipop from proving closure.', confidence: responsiveness.confidence },
     { title: 'Reinforce positive culture drivers', priority: 'P3' as const, urgency: 'Medium', impact: 'Medium', difficulty: 'Low', owner: 'Frontline managers', nextStep: 'Identify what top teams are doing differently and turn it into a manager coaching prompt.', why: 'Recognition, support, and visible progress appear to be meaningful positive sentiment drivers.', confidence: commentIntelligence.confidence },
   ]
