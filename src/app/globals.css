@@ -258,13 +258,14 @@ a.link:hover{color:#0866c9}
 .manager-videos-list a:hover{background:var(--blueSoft)}
 @media(max-width:760px){.manager-videos-list{grid-template-columns:1fr}}
 .manager-snapshot-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
-.manager-compare-row{display:grid;grid-template-columns:1fr 1.2fr;gap:18px;align-items:stretch}
+.manager-compare-row{display:grid;grid-template-columns:1fr 1.8fr;gap:18px;align-items:start}
+.manager-compare-row .manager-compare-right>.card{min-height:280px}
 .themes-card-grid{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
 @media(max-width:760px){.themes-card-grid{grid-template-columns:1fr}}
 .manager-compare-row>div,.manager-snapshot-row>div{display:flex;flex-direction:column}
 .manager-compare-row>div>.card,.manager-snapshot-row>div>.card{flex:1}
-.manager-compare-right>.card{display:flex;flex-direction:column;align-items:stretch;justify-content:center;min-height:240px}
-.manager-compare-right>.card svg{width:100%;height:100%;display:block}
+.manager-compare-right>.card{display:flex;flex-direction:column;align-items:stretch;justify-content:center;min-height:280px}
+.manager-compare-right>.card svg{width:100%;height:100%;min-height:240px;display:block}
 .manager-exec-summary{background:var(--blueSoft);border:1px solid #bddcff;border-radius:14px;padding:12px 16px}
 .manager-exec-summary .h3-micro{color:#075cae;margin:0 0 4px}
 .manager-exec-summary p:last-child{margin:0;font-size:14px;line-height:1.5;color:var(--ink);font-weight:600}
@@ -724,9 +725,9 @@ a.link:hover{color:#0866c9}
   .manager-page .kpi-card .kpi-delta-caption{font-size:6pt!important}
   .manager-page .kpi-card .trend-delta strong{font-size:9pt!important}
   /* Compare row: equal heights, 3 columns */
-  .manager-page .manager-compare-row{display:grid!important;grid-template-columns:1fr 1.2fr!important;gap:14pt!important;align-items:stretch!important}
-  .manager-page .manager-compare-row>div{display:flex;flex-direction:column}
-  .manager-page .manager-compare-row>div>.card{flex:1}
+  .manager-page .manager-compare-row{display:grid!important;grid-template-columns:1fr 1.8fr!important;gap:14pt!important;align-items:start!important}
+  .manager-page .manager-compare-row .manager-compare-right>.card{min-height:180pt!important}
+  .manager-page .manager-compare-row .manager-compare-right svg{min-height:160pt!important}
   .manager-page .themes-card-grid{display:grid!important;grid-template-columns:auto 1fr!important;gap:18pt!important}
   .manager-page .manager-compare-left,.manager-page .manager-compare-right,.manager-page .manager-compare-third{display:flex;flex-direction:column}
   .manager-page .manager-compare-left>.card,.manager-page .manager-compare-right>.card,.manager-page .manager-compare-third>.card{flex:1}
