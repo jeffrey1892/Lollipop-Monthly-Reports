@@ -109,6 +109,7 @@ export function KpiCard({
   delta,
   tone,
   help,
+  deltaCaption,
 }: {
   label: React.ReactNode
   value: React.ReactNode
@@ -116,6 +117,7 @@ export function KpiCard({
   delta?: React.ReactNode
   tone?: 'green' | 'amber' | 'coral' | 'blue' | 'neutral'
   help?: React.ReactNode
+  deltaCaption?: React.ReactNode
 }) {
   return (
     <div className={`kpi-card ${tone ?? 'neutral'} ${delta ? 'kpi-split' : ''}`}>
@@ -128,7 +130,7 @@ export function KpiCard({
         {delta && (
           <div className="kpi-body-right">
             <div className="kpi-delta">{delta}</div>
-            <div className="kpi-delta-caption">v. Prior Month</div>
+            <div className="kpi-delta-caption">{deltaCaption ?? 'v. prior month'}</div>
           </div>
         )}
       </div>

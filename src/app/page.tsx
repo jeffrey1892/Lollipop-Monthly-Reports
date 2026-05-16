@@ -16,6 +16,8 @@ import TeamRankCard from './_components/TeamRankCard'
 import PieChart from './_components/PieChart'
 import TopBar from './_components/TopBar'
 
+export const dynamic = 'force-dynamic'
+
 const URGENCY_RANK: Record<string, number> = { High: 1, Medium: 2, Low: 3 }
 
 export default async function Home({ searchParams }: { searchParams?: Promise<{ month?: string }> }) {
@@ -81,6 +83,8 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
   const topEmotion = report.topEmotions[0]
   const topEmotionMax = Math.max(...report.topEmotions.slice(0, 6).map((e) => e.count), 1)
 
+  const priorCaption = report.previousLabel ? `v. ${report.previousLabel}` : 'v. prior month'
+
   // What changed / strategic narrative split
   const sn = report.strategicNarrative
   const whatChangedNarrative = sn[0] ?? 'Stable period with no headline shifts.'
@@ -133,6 +137,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               value={report.avgMood.toFixed(2)}
               sub={<>out of 5.00</>}
               delta={<TrendDelta value={report.avgMoodChange} />}
+              deltaCaption={priorCaption}
               tone={moodTone}
             />
             <KpiCard
@@ -140,6 +145,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               value={`${report.positivePct}%`}
               sub={<>of all check-ins</>}
               delta={<TrendDelta value={report.positiveChange} suffix=" pts" />}
+              deltaCaption={priorCaption}
               tone={positiveTone}
             />
             <KpiCard
@@ -152,6 +158,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 </>
               }
               delta={<TrendDelta value={report.engagement.responseRateChange} suffix=" pp" />}
+              deltaCaption={priorCaption}
               tone="blue"
             />
             <KpiCard
@@ -159,6 +166,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               value={report.responseCount}
               sub={<>check-ins this period</>}
               delta={<TrendDelta value={report.engagement.participationChange} suffix=" check-ins" />}
+              deltaCaption={priorCaption}
               tone="neutral"
             />
             <KpiCard

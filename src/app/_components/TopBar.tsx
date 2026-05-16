@@ -33,7 +33,7 @@ export default function TopBar({
             </a>
           )}
           {months && months.length > 0 && (
-            <form className="controls" action={action} method="get" style={{ display: 'contents' }}>
+            <form className="topbar-month-form" action={action} method="get">
               <select name="month" defaultValue={selectedMonth} aria-label="Reporting month">
                 {months.map((m) => (
                   <option key={m.month} value={m.month}>

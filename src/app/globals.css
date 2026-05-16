@@ -294,6 +294,7 @@
 .action-block .label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:var(--muted);margin-bottom:2px}
 .action-card-foot{display:flex;flex-direction:column;gap:6px;margin-top:auto;padding-top:6px;border-top:1px solid var(--line)}
 .action-card-foot small{color:var(--muted);font-weight:600}
+.topbar-month-form{display:inline-flex;gap:8px;align-items:center}
 .action-next-step{margin:0;font-size:14px;line-height:1.55;color:var(--ink)}
 .action-details{margin-top:6px;font-size:12.5px;line-height:1.5;color:var(--muted)}
 .action-details summary{cursor:pointer;font-size:12px;font-weight:800;color:var(--blue);list-style:none;padding:2px 0}
