@@ -171,6 +171,18 @@ export type AlertInsight = {
   confidence: Confidence
 }
 
+export type IndividualRetentionRisk = {
+  employeeName: string
+  team: string
+  riskLevel: 'Monitor' | 'Follow-Up Suggested' | 'Manager Action Needed' | 'Urgent HR Review'
+  currentMood: number
+  lowCheckIns: number
+  trend: string
+  drivers: string[]
+  recommendedAction: string
+  confidence: Confidence
+}
+
 export type ReportMetrics = {
   customerName: string
   month: string
@@ -217,5 +229,6 @@ export type ReportMetrics = {
   teamIntelligence: TeamIntelligence[]
   riskWatchlist: AlertInsight[]
   positiveMomentum: AlertInsight[]
+  individualRetentionRisks: IndividualRetentionRisk[]
   managerReport: ManagerReport
 }
