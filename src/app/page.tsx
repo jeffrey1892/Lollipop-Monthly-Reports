@@ -67,7 +67,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               <small>Workforce Intelligence</small>
             </div>
           </div>
-          <form className="controls" action="">
+          <form className="controls" action="/" method="get">
             <select name="month" defaultValue={report.month} aria-label="Reporting month">
               {customer.months.map((m) => (
                 <option key={m.month} value={m.month}>

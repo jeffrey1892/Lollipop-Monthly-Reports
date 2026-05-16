@@ -311,6 +311,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
   const monthChange = previous ? round(avgMood - prevAvgMood, 2) : null
   const positiveChange = previous ? round(positivePct - prevPositivePct, 1) : null
   const prevTeamMap = previous ? byTeam(previous.responses) : new Map<string, ResponseRecord[]>()
+  const historyMonths = customer.months.slice(Math.max(0, currentIndex - 5), currentIndex + 1)
   const allTeams: TeamMetric[] = [...teamMap.entries()].map(([team, teamRecords]) => {
     const teamMoods = teamRecords.map((r) => r.mood).filter(Boolean)
     const previousTeamMoods = (prevTeamMap.get(team) ?? []).map((r) => r.mood).filter(Boolean)
@@ -319,6 +320,12 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
     const change = previousTeamMoods.length ? round(tAvg - avg(previousTeamMoods), 2) : null
     const risk = riskFromMood(tAvg, tPositive, change)
     const confidence = confidenceFromCount(teamRecords.length)
+    const history = historyMonths
+      .map((m) => {
+        const ms = m.responses.filter((r) => r.team === team).map((r) => r.mood).filter(Boolean)
+        return ms.length ? { month: m.month, label: m.label, avgMood: round(avg(ms), 2) } : null
+      })
+      .filter((h): h is { month: string; label: string; avgMood: number } => h !== null)
     return {
       team,
       responses: teamRecords.length,
@@ -332,6 +339,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
       interpretation: teamRecords.length < 5
         ? 'Directional only; sample is too small to overinterpret.'
         : riskRank(risk) >= 3 ? 'Leadership should review workload, communication, and local operating conditions.' : 'Healthy signal; reinforce what is working and watch for participation consistency.',
+      history,
     }
   }).sort((a, b) => b.responses - a.responses)
   const topTeams = [...allTeams].filter((t) => !t.sampleWarning).sort((a, b) => b.avgMood - a.avgMood || b.responses - a.responses).slice(0, 3)

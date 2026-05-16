@@ -29,6 +29,7 @@ export type TeamMetric = {
   sampleWarning: boolean
   confidence: Confidence
   interpretation: string
+  history: Array<{ month: string; label: string; avgMood: number }>
 }
 
 export type IntelligencePoint = {

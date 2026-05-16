@@ -430,6 +430,14 @@
   .stat-tile.wide{grid-column:span 1}
 }
 
+/* Sparkline (team rank cards) */
+.team-score-row{display:inline-flex;align-items:center;gap:8px}
+.sparkline{display:inline-block;vertical-align:middle;overflow:visible}
+.sparkline .dot-up{fill:var(--green)}
+.sparkline .dot-down{fill:var(--coral)}
+.sparkline .dot-flat{fill:var(--blue)}
+.sparkline-empty{display:inline-block;width:60px;text-align:center;color:var(--muted);font-weight:700;font-size:14px;opacity:.6}
+
 /* Print refinements for new classes */
 @media print{
   .kpi-grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:5px!important}
@@ -463,3 +471,170 @@
   .emotion-name{font-size:7.5px!important}
   .emotion-count{font-size:8px!important}
 }
+
+/* === Print rebuild — authoritative overrides for document-quality PDF === */
+@media print{
+  @page{size:letter portrait;margin:14mm 12mm}
+  html,body{
+    background:#fff!important;color:#111!important;
+    -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;
+    font-size:10pt!important;line-height:1.35!important;
+  }
+  /* Hide UI chrome */
+  .topbar,.controls,.pdf-actions,.dashboard-help,.action-links,.brand-block,
+  form.controls,button,.btn{display:none!important}
+  .wrap{width:100%!important;max-width:100%!important;margin:0!important;padding:0!important}
+  main{padding:0!important}
+  .pages{display:block!important;gap:0!important}
+  .pages>section{margin:0 0 14pt!important;page-break-inside:auto}
+  section.brief-section,section.appendix-section{page-break-before:auto}
+
+  /* Document feel — flatten shadows, soften radii */
+  .card,.kpi-card,.action-card,.team-rank-card,.team-detail-card,
+  .stat-tile,.exec-summary-card,.health-tile,.ci-theme-card,
+  .narrative-card,.appendix-block,.emotion-bars-card,.trend-chart-card,
+  .insight-card,.priority-row,.retention-card,.comment-prior-card,
+  .ci-summary-card,.ci-table-card,.ci-list,.emotion-narrative-card{
+    box-shadow:none!important;
+    border-radius:6px!important;
+    border:1px solid #d0d4dc!important;
+    background:#fff!important;
+    page-break-inside:avoid;break-inside:avoid;
+  }
+  .appendix-block{background:#fafbfc!important;padding:10pt!important}
+
+  /* Section headers */
+  .section-header,.section-head{margin:0 0 6pt!important;display:block!important}
+  .section-header h2,.section-head .h1-section,.serif-heading{
+    font-family:Georgia,serif!important;font-size:16pt!important;line-height:1.15!important;
+    letter-spacing:-.01em!important;margin:0!important;
+  }
+  .section-header .eyebrow,.section-head-eyebrow{font-size:8pt!important;margin:0 0 2pt!important}
+  .section-header .muted.small,.section-head-subtitle{font-size:8.5pt!important;margin:2pt 0 0!important}
+
+  /* Executive header */
+  .exec-header{margin-bottom:6pt!important;padding:0!important}
+  .exec-header-main .client-title{font-size:28pt!important;line-height:1!important;margin:2pt 0 4pt!important}
+  .exec-header-title-row{gap:10pt!important;margin:0 0 4pt!important}
+  .exec-header-meta{font-size:9pt!important}
+  .health-tile{padding:6pt 10pt!important;min-width:140px!important}
+  .health-tile strong{font-size:16pt!important}
+  .health-tile small,.health-tile .health-label{font-size:8pt!important}
+
+  /* KPI grid — all 5 in one row */
+  .kpi-grid{display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:6pt!important}
+  .kpi-card{padding:7pt 9pt!important;gap:2pt!important;page-break-inside:avoid}
+  .kpi-card .kpi-label{font-size:8pt!important;letter-spacing:.06em!important;margin:0!important}
+  .kpi-card .kpi-value{font-size:18pt!important;line-height:1!important}
+  .kpi-card .kpi-sub{font-size:7.5pt!important;line-height:1.2!important}
+  .kpi-card .kpi-delta,.kpi-card .trend-delta{margin-top:2pt!important;padding:1pt 4pt!important}
+  .kpi-card .trend-delta strong{font-size:8.5pt!important}
+  .kpi-card .trend-delta small,.kpi-card .trend-delta .trend-label{font-size:6.5pt!important}
+
+  /* Executive summary */
+  .exec-summary-card{padding:9pt 12pt!important;border-left:4px solid var(--blue)!important}
+  .exec-summary-lede{font-size:11.5pt!important;line-height:1.35!important;margin:0 0 6pt!important}
+  .exec-summary-list{gap:6pt 14pt!important}
+  .exec-summary-list dt{font-size:7.5pt!important}
+  .exec-summary-list dd{font-size:9pt!important;line-height:1.35!important}
+
+  /* Priority actions */
+  .action-grid-v2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7pt!important}
+  .action-card{padding:8pt 10pt!important;gap:3pt!important;border-left-width:3px!important;page-break-inside:avoid}
+  .action-card h3{font-size:12pt!important;line-height:1.2!important;margin:0!important}
+  .action-card .action-priority,.action-card .urgency-pill{font-size:7.5pt!important;padding:1pt 5pt!important}
+  .action-block{font-size:8.5pt!important;line-height:1.35!important}
+  .action-block .label{font-size:7pt!important}
+  .action-card-foot{padding-top:3pt!important}
+  .action-card-foot small{font-size:7.5pt!important}
+
+  /* Trend chart */
+  .trend-card-grid{display:grid!important;grid-template-columns:2fr 1fr!important;gap:7pt!important}
+  .trend-chart-card{padding:8pt!important}
+  .trend-chart svg{height:140px!important}
+  .trend-stats{gap:5pt!important}
+  .stat-tile{padding:5pt 7pt!important}
+  .stat-tile span{font-size:7pt!important}
+  .stat-tile strong{font-size:11pt!important;margin-top:1pt!important}
+  .stat-tile .stat-narrative{font-size:8.5pt!important}
+
+  /* Team rank cards */
+  .team-perf-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7pt!important}
+  .team-rank-card{padding:8pt 10pt!important;page-break-inside:avoid}
+  .team-rank-card header{margin-bottom:4pt!important}
+  .team-rank-card header h3{font-size:12pt!important}
+  .team-rank-card header p{font-size:8pt!important}
+  .team-rank-ordered{gap:4pt!important}
+  .team-rank-ordered li{page-break-inside:avoid;break-inside:avoid;grid-template-columns:22px 1fr!important;gap:5pt!important}
+  .team-bar-list{gap:5pt!important}
+  .team-bar-list li{page-break-inside:avoid;break-inside:avoid}
+  .team-row-head strong,.team-bar-head strong{font-size:9.5pt!important}
+  .team-row .team-score,.team-bar-head .team-score{font-size:11pt!important}
+  .team-row small,.team-bar-list small{font-size:7.5pt!important}
+  .sparkline{width:48px!important;height:16px!important}
+
+  /* Emotional wellness */
+  .emotion-grid{display:grid!important;grid-template-columns:2fr 1fr!important;gap:7pt!important}
+  .emotion-bars-card{padding:8pt!important;gap:5pt!important}
+  .emotion-row{grid-template-columns:90px 1fr 60px!important;gap:6pt!important}
+  .emotion-name{font-size:9pt!important}
+  .emotion-count{font-size:9pt!important}
+  .emotion-count small{font-size:7pt!important}
+  .emotion-narrative-card{padding:8pt!important}
+  .emotion-narrative-card p{font-size:8.5pt!important;line-height:1.35!important}
+
+  /* Comment intelligence */
+  .comment-intel-v2{padding:10pt!important;border-radius:8px!important;border-top:2px solid var(--blue)!important}
+  .ci-summary-card{padding:8pt 10pt!important}
+  .ci-summary{font-size:10pt!important;line-height:1.4!important}
+  .ci-themes-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:6pt!important}
+  .ci-theme-card{padding:6pt 8pt!important}
+  .ci-theme-card header strong{font-size:9pt!important}
+  .ci-theme-count{font-size:13pt!important}
+  .ci-theme-type{font-size:7pt!important}
+  .ci-theme-card p{font-size:8pt!important;line-height:1.3!important}
+  .ci-two-col{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7pt!important}
+  .ci-list ul,.recs-ol{font-size:8.5pt!important;line-height:1.35!important;gap:3pt!important}
+  .ci-table-card{padding:8pt!important}
+  .ci-table-card .table-wrap{overflow:visible!important}
+  .ci-theme-table th,.ci-theme-table td{padding:3pt 4pt!important;font-size:7.5pt!important}
+  .quote-grid-v2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:5pt!important}
+  .quote-grid-v2 blockquote{padding:6pt 8pt!important;font-size:8.5pt!important;line-height:1.35!important}
+  .mini-insight{padding:4pt 0!important}
+  .mini-insight strong{font-size:9pt!important}
+  .mini-insight p{font-size:8pt!important;line-height:1.3!important}
+  .stress-rows{gap:6pt!important}
+  .stress-head{font-size:8.5pt!important}
+  .stress-row small{font-size:7.5pt!important}
+
+  /* Team detail (appendix) */
+  .team-detail-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7pt!important}
+  .team-detail-card{padding:8pt!important;page-break-inside:avoid}
+  .team-detail-card header h3{font-size:11pt!important}
+  .team-detail-metrics{grid-template-columns:repeat(3,1fr)!important;gap:4pt!important}
+  .team-detail-metrics>div{padding:4pt!important}
+  .team-detail-metrics span{font-size:6.5pt!important}
+  .team-detail-metrics strong{font-size:10pt!important}
+  .team-detail-metrics small{font-size:6.5pt!important}
+  .team-detail-card p{font-size:8.5pt!important;line-height:1.35!important}
+
+  /* Pies, tables */
+  .pie{width:1.1in!important;height:1.1in!important}
+  .pie span{width:.55in!important;height:.55in!important;font-size:11pt!important}
+  .table th,.table td{padding:3pt 4pt!important;font-size:7.5pt!important}
+
+  /* Brief vs full */
+  body[data-print-mode="brief"] .appendix-section{display:none!important}
+  body[data-print-mode="full"] .appendix-section{display:block!important}
+
+  /* Brief mode — keep first-page essentials tight */
+  body[data-print-mode="brief"] .exec-header,
+  body[data-print-mode="brief"] section:nth-of-type(-n+4){page-break-inside:avoid}
+  body[data-print-mode="brief"] .trend-section{page-break-before:auto}
+
+  /* Strip link-target suffixes printed by some engines */
+  a[href]:after{content:""!important}
+  /* Avoid orphaned headings */
+  h1,h2,h3{page-break-after:avoid}
+}
+
