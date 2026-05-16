@@ -102,33 +102,51 @@ export default function MiniMoodTrend({
         </>
       )}
 
+      {/* X-axis baseline + per-month tick marks */}
+      <line
+        x1={padL}
+        x2={width - padR}
+        y1={padT + innerH}
+        y2={padT + innerH}
+        stroke="#c8ccd3"
+        strokeWidth={1}
+      />
+      {points.map((p, i) => (
+        <line
+          key={`tick-${p.month}`}
+          x1={x(i)}
+          x2={x(i)}
+          y1={padT + innerH}
+          y2={padT + innerH + 4}
+          stroke="#9aa1ac"
+          strokeWidth={1}
+        />
+      ))}
+
       <path d={path} fill="none" stroke="#1f6f4a" strokeWidth={2.5} strokeLinejoin="round" />
       {points.map((p, i) => (
         <circle key={p.month} cx={x(i)} cy={y(p.avgMood)} r={4} fill="#1f6f4a" />
       ))}
 
-      <text
-        x={x(0)}
-        y={height - 8}
-        fontSize={12}
-        fill="#7a8290"
-        textAnchor="start"
-        fontWeight={700}
-      >
-        {first.label}
-      </text>
-      {points.length > 1 && (
-        <text
-          x={x(points.length - 1)}
-          y={height - 8}
-          fontSize={12}
-          fill="#7a8290"
-          textAnchor="end"
-          fontWeight={700}
-        >
-          {last.label}
-        </text>
-      )}
+      {/* Per-month x-axis labels */}
+      {points.map((p, i) => {
+        const anchor =
+          i === 0 ? 'start' : i === points.length - 1 ? 'end' : 'middle'
+        const short = p.label.split(' ')[0]
+        return (
+          <text
+            key={`label-${p.month}`}
+            x={x(i)}
+            y={height - 8}
+            fontSize={11}
+            fill="#7a8290"
+            textAnchor={anchor}
+            fontWeight={700}
+          >
+            {short}
+          </text>
+        )
+      })}
     </svg>
   )
 }
