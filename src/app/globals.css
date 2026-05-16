@@ -651,6 +651,17 @@ a.link:hover{color:#0866c9}
   body[data-print-mode="brief"] .team-rank-grid{gap:5pt!important}
   body[data-print-mode="brief"] .narrative-card,
   body[data-print-mode="brief"] .insight-card{padding:6pt 8pt!important}
+  /* Brief: Company-wide trends — chart left (wider), 5 stat tiles tight right */
+  body[data-print-mode="brief"] .trend-section{page-break-before:auto!important;page-break-inside:avoid!important}
+  body[data-print-mode="brief"] .trend-card-grid{display:grid!important;grid-template-columns:2.4fr 1fr!important;gap:6pt!important}
+  body[data-print-mode="brief"] .trend-chart-card{padding:6pt 8pt!important}
+  body[data-print-mode="brief"] .trend-chart-card svg{max-height:140pt!important;width:100%!important;height:auto!important}
+  body[data-print-mode="brief"] .trend-stats{grid-template-columns:1fr 1fr!important;gap:4pt!important}
+  body[data-print-mode="brief"] .stat-tile{padding:4pt 6pt!important;border-radius:5pt!important}
+  body[data-print-mode="brief"] .stat-tile span{font-size:6.5pt!important}
+  body[data-print-mode="brief"] .stat-tile strong{font-size:11pt!important;margin-top:1pt!important}
+  body[data-print-mode="brief"] .stat-tile .stat-narrative{font-size:7.5pt!important;line-height:1.25!important}
+  body[data-print-mode="brief"] .stat-tile.wide{grid-column:span 2!important}
 
   /* Strip link-target suffixes printed by some engines */
   a[href]:after{content:""!important}
