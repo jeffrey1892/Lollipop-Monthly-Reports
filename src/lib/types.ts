@@ -62,9 +62,9 @@ export type CommentIntelligence = {
   emergingRisks: string[]
   confidence: Confidence
   executiveSummary: string
-  themeTable: Array<{ theme: string; trendDirection: 'Increasing' | 'Stable' | 'Decreasing'; sentimentType: 'Positive' | 'Mixed' | 'Negative'; primaryTeams: string; interpretation: string }>
-  positiveDrivers: string[]
-  attentionAreas: string[]
+  themeTable: Array<{ theme: string; trendDirection: 'Increasing' | 'Stable' | 'Decreasing'; sentimentType: 'Positive' | 'Mixed' | 'Negative'; primaryTeams: string; interpretation: string; suggestion: string }>
+  positiveDrivers: Array<{ observation: string; suggestion: string }>
+  attentionAreas: Array<{ observation: string; suggestion: string }>
   stressAnalysis: Array<{ category: 'Work-Related' | 'Personal' | 'Mixed'; count: number; pct: number; interpretation: string }>
   teamSpecificInsights: Array<{ team: string; insight: string; category: string }>
   voiceQuotes: string[]

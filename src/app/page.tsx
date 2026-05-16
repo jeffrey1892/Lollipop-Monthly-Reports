@@ -510,6 +510,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                     <th>Sentiment</th>
                     <th>Primary Teams</th>
                     <th>Executive Interpretation</th>
+                    <th>Suggested action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -520,6 +521,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                       <td><span className={`pill senti-${t.sentimentType.toLowerCase()}`}>{t.sentimentType}</span></td>
                       <td>{t.primaryTeams}</td>
                       <td>{t.interpretation}</td>
+                      <td className="ci-suggestion">{t.suggestion}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -530,17 +532,29 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           <div className="ci-two-col">
             <div className="card ci-list positive">
               <h3 className="h2-sub">Positive drivers</h3>
-              <ul>
+              <ul className="ci-driver-list">
                 {report.commentIntelligence.positiveDrivers.map((d) => (
-                  <li key={d}>{d}</li>
+                  <li key={d.observation}>
+                    <p className="ci-driver-obs">{d.observation}</p>
+                    <p className="ci-driver-action">
+                      <span className="h3-micro">Suggested action</span>
+                      {d.suggestion}
+                    </p>
+                  </li>
                 ))}
               </ul>
             </div>
             <div className="card ci-list attention">
               <h3 className="h2-sub">Areas requiring attention</h3>
-              <ul>
+              <ul className="ci-driver-list">
                 {report.commentIntelligence.attentionAreas.map((a) => (
-                  <li key={a}>{a}</li>
+                  <li key={a.observation}>
+                    <p className="ci-driver-obs">{a.observation}</p>
+                    <p className="ci-driver-action">
+                      <span className="h3-micro">Suggested action</span>
+                      {a.suggestion}
+                    </p>
+                  </li>
                 ))}
               </ul>
             </div>
