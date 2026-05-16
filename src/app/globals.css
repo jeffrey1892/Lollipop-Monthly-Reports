@@ -225,6 +225,28 @@
 .action-card-foot{display:flex;flex-direction:column;gap:6px;margin-top:auto;padding-top:6px;border-top:1px solid var(--line)}
 .action-card-foot small{color:var(--muted);font-weight:600}
 .topbar-month-form{display:inline-flex;gap:8px;align-items:center}
+/* Equalize box heights across columns in all multi-column report grids */
+.narrative-grid,.action-grid-v2,.team-perf-grid,.ci-two-col,.team-detail-grid,
+.retention-grid-v2,.quote-grid-v2,.ci-themes-grid,.emotion-grid,.exec-summary-list,
+.notes-grid,.followup-bottom-row,.manager-snapshot-row,.manager-compare-row,
+.trend-card-grid,.manager-action-grid{align-items:stretch}
+.narrative-grid>*,.action-grid-v2>*,.team-perf-grid>*,.ci-two-col>*,
+.team-detail-grid>*,.retention-grid-v2>*,.quote-grid-v2>*,.ci-themes-grid>*,
+.emotion-grid>*,.followup-bottom-row>*,.manager-snapshot-row>*,
+.manager-compare-row>*,.trend-card-grid>*{display:flex;flex-direction:column}
+.narrative-grid>*>.card,.action-grid-v2>*>.card,.team-perf-grid>*>.card,
+.ci-two-col>*>.card,.team-detail-grid>*>.card,.retention-grid-v2>*>.card,
+.quote-grid-v2>*>.card,.ci-themes-grid>*>.card,.emotion-grid>*>.card,
+.followup-bottom-row>*>.card,.manager-snapshot-row>*>.card,
+.manager-compare-row>*>.card,.trend-card-grid>*>.card{flex:1;min-height:0}
+/* Direct card children of stretched grids — make them fill column height */
+.narrative-grid>.card,.narrative-grid>.narrative-card,
+.action-grid-v2>.card,.action-grid-v2>.action-card,
+.team-perf-grid>.card,.team-perf-grid>.team-rank-box,
+.ci-two-col>.card,.team-detail-grid>.card,
+.retention-grid-v2>.card,.retention-grid-v2>.retention-card,
+.emotion-grid>.card,.followup-bottom-row>.card,
+.trend-card-grid>.card{align-self:stretch}
 .manager-page .pages{gap:18px}
 .manager-page main{padding:18px 0 60px}
 .manager-page .exec-header{margin-bottom:0}
@@ -293,7 +315,10 @@ a.link:hover{color:#0866c9}
 .action-details .h3-micro{display:block;margin-bottom:2px;color:var(--muted)}
 
 /* E. Trend chart */
-.trend-card-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+.trend-card-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px;align-items:stretch}
+.trend-card-grid>.trend-chart-card,.trend-card-grid>.trend-stats{height:100%}
+.trend-stats{align-content:stretch}
+.trend-stats>.stat-tile{display:flex;flex-direction:column;justify-content:center;min-height:0}
 .trend-chart-card{padding:18px}
 .trend-chart svg{width:100%;height:auto;display:block}
 .trend-chart-legend{display:flex;gap:16px;justify-content:center;color:var(--muted);font-size:12px;font-weight:700;margin-top:4px}
