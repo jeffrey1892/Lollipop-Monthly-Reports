@@ -125,42 +125,58 @@ export default async function ManagerPage({
           </div>
         </section>
 
-        {/* B. Snapshot KPIs */}
-        <section className="brief-section">
-          <SectionHeader title="Your team snapshot" subtitle="Headline metrics for this reporting period" />
-          <div className="kpi-grid">
-            <KpiCard
-              label="Average mood"
-              value={team.avgMood.toFixed(2)}
-              sub={<>out of 5.00</>}
-              delta={<TrendDelta value={team.change} />}
-              tone={
-                (team.change ?? 0) >= 0.05
-                  ? 'green'
-                  : (team.change ?? 0) <= -0.05
-                  ? 'coral'
-                  : 'amber'
-              }
-            />
-            <KpiCard
-              label="Positive sentiment"
-              value={`${team.positivePct}%`}
-              sub={<>of your team&apos;s check-ins</>}
-              tone={team.positivePct >= 60 ? 'green' : team.positivePct >= 40 ? 'amber' : 'coral'}
-            />
-            <KpiCard
-              label="Participation"
-              value={team.responses}
-              sub={<>check-ins this period</>}
-              delta={<TrendDelta value={team.participationTrend} suffix=" check-ins" />}
-              tone="blue"
-            />
-            <KpiCard
-              label="Confidence"
-              value={team.confidence}
-              sub={lowSample ? <>Low sample · directional</> : <>Usable read</>}
-              tone="neutral"
-            />
+        {/* B + E. Snapshot KPIs + Mood breakdown side-by-side */}
+        <section className="brief-section manager-snapshot-row">
+          <div className="manager-snapshot-left">
+            <SectionHeader title="Your team snapshot" subtitle="Headline metrics for this reporting period" />
+            <div className="kpi-grid kpi-grid-2x2">
+              <KpiCard
+                label="Average mood"
+                value={team.avgMood.toFixed(2)}
+                sub={<>out of 5.00</>}
+                delta={<TrendDelta value={team.change} />}
+                tone={
+                  (team.change ?? 0) >= 0.05
+                    ? 'green'
+                    : (team.change ?? 0) <= -0.05
+                    ? 'coral'
+                    : 'amber'
+                }
+              />
+              <KpiCard
+                label="Positive sentiment"
+                value={`${team.positivePct}%`}
+                sub={<>of your team&apos;s check-ins</>}
+                tone={team.positivePct >= 60 ? 'green' : team.positivePct >= 40 ? 'amber' : 'coral'}
+              />
+              <KpiCard
+                label="Participation"
+                value={team.responses}
+                sub={<>check-ins this period</>}
+                delta={<TrendDelta value={team.participationTrend} suffix=" check-ins" />}
+                tone="blue"
+              />
+              <KpiCard
+                label="Confidence"
+                value={team.confidence}
+                sub={lowSample ? <>Low sample · directional</> : <>Usable read</>}
+                tone="neutral"
+              />
+            </div>
+          </div>
+          <div className="manager-snapshot-right">
+            <SectionHeader title="Mood breakdown" subtitle="How this month's check-ins are distributed" />
+            <div className="card" style={{ position: 'relative' }}>
+              <div style={{ opacity: lowSample ? 0.55 : 1 }}>
+                <PieChart slices={teamSlices} />
+              </div>
+              {lowSample && (
+                <p className="muted" style={{ marginTop: 10 }}>
+                  <strong>Low sample.</strong> Fewer than 5 check-ins this period — read the
+                  distribution directionally, not as a firm conclusion.
+                </p>
+              )}
+            </div>
           </div>
         </section>
 
@@ -248,22 +264,6 @@ export default async function ManagerPage({
               <p className="muted" style={{ marginTop: 8 }}>
                 Limited history available — the trend will become more useful as more months
                 accumulate.
-              </p>
-            )}
-          </div>
-        </section>
-
-        {/* E. Mood breakdown */}
-        <section className="brief-section">
-          <SectionHeader title="Mood breakdown" subtitle="How this month's check-ins are distributed" />
-          <div className="card" style={{ position: 'relative' }}>
-            <div style={{ opacity: lowSample ? 0.55 : 1 }}>
-              <PieChart slices={teamSlices} />
-            </div>
-            {lowSample && (
-              <p className="muted" style={{ marginTop: 10 }}>
-                <strong>Low sample.</strong> Fewer than 5 check-ins this period — read the
-                distribution directionally, not as a firm conclusion.
               </p>
             )}
           </div>

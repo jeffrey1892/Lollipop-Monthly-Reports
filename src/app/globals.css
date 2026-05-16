@@ -223,6 +223,10 @@
 .manager-page .pages{gap:22px}
 .manager-page .exec-header{margin-bottom:0}
 .manager-page .exec-header-meta{margin-top:4px}
+.manager-snapshot-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.kpi-grid.kpi-grid-2x2{grid-template-columns:1fr 1fr}
+.manager-snapshot-right .card{height:100%}
+@media(max-width:900px){.manager-snapshot-row{grid-template-columns:1fr}}
 .ci-suggestion{font-style:normal;color:var(--ink);font-weight:600}
 .ci-driver-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
 .ci-driver-list li{padding:0;background:transparent;border:0}
