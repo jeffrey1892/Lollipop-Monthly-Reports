@@ -575,11 +575,44 @@
   @page{size:letter;margin:0.4in}
   .manager-page .topbar{display:none!important}
   .manager-page .card{box-shadow:none!important;border:1px solid #d9dde5!important}
-  .manager-page .brief-section{margin:0 0 8pt!important;page-break-inside:avoid}
-  .manager-page .kpi-grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:5pt!important}
-  .manager-page .kpi-card{padding:6pt 8pt!important;page-break-inside:avoid}
-  .manager-page .health-tile{padding:5pt 8pt!important}
-  .manager-page .pages{padding:0!important}
+  .manager-page .brief-section{margin:0 0 6pt!important;page-break-inside:avoid}
+  .manager-page .pages{padding:0!important;gap:6pt!important}
+  .manager-page main{padding:0!important}
+  .manager-page .exec-header{margin-bottom:0!important}
+  .manager-page .client-title{font-size:22pt!important;line-height:1!important;margin:0!important}
+  .manager-page .exec-header-meta{font-size:9pt!important;margin-top:2pt!important}
+  .manager-page .health-tile{padding:4pt 8pt!important;max-width:140pt!important}
+  .manager-page .health-tile strong{font-size:11pt!important}
+  .manager-page .health-tile small{font-size:7pt!important}
+  .manager-page .health-tile .note-ref{display:none!important}
+  /* Snapshot row: 2x2 KPI grid + Mood breakdown side-by-side */
+  .manager-page .manager-snapshot-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8pt!important;align-items:start}
+  .manager-page .kpi-grid.kpi-grid-2x2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:5pt!important}
+  .manager-page .kpi-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:5pt!important}
+  .manager-page .kpi-card{padding:5pt 7pt!important;page-break-inside:avoid}
+  .manager-page .kpi-card .kpi-label{font-size:7pt!important}
+  .manager-page .kpi-card .kpi-value{font-size:16pt!important}
+  .manager-page .kpi-card .kpi-sub{font-size:7pt!important}
+  .manager-page .kpi-card .kpi-delta-caption{font-size:6.5pt!important}
+  .manager-page .kpi-card .trend-delta strong{font-size:9pt!important}
+  /* Compare row: 3 columns */
+  .manager-page .manager-compare-row{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:8pt!important;align-items:start}
+  /* Section headers */
+  .manager-page .section-head{margin:0 0 4pt!important}
+  .manager-page .h1-section{font-size:13pt!important;line-height:1.1!important}
+  .manager-page .section-head-subtitle{font-size:8pt!important;margin:2pt 0 0!important}
+  /* Compact body text */
+  .manager-page .card p,.manager-page .card li{font-size:8.5pt!important;line-height:1.35!important}
+  .manager-page .h2-sub{font-size:10pt!important}
+  .manager-page .h3-micro{font-size:7pt!important}
+  /* Pie compact */
+  .manager-page .pie{width:1in!important;height:1in!important}
+  .manager-page .pie span{width:.5in!important;height:.5in!important;font-size:9pt!important}
+  .manager-page .pie-wrap{grid-template-columns:1in 1fr!important;gap:8pt!important}
+  .manager-page .legend img{width:14pt!important;height:14pt!important}
+  .manager-page .legend div{font-size:8pt!important}
+  /* Hide the dashboard help / unneeded links if any */
+  .manager-page .dashboard-help{display:none!important}
 }
 
 
