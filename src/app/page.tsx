@@ -163,7 +163,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
             value={report.watchTeams.length}
             sub={
               report.watchTeams.length > 0 ? (
-                <>{report.watchTeams.slice(0, 2).map((t) => t.team).join(', ')}</>
+                <>{report.watchTeams.map((t) => t.team).join(', ')}</>
               ) : (
                 <>no concentrated hotspot</>
               )
