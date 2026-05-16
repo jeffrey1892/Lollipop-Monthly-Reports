@@ -288,7 +288,7 @@ export default async function ManagerPage({
               <KpiCard
                 label="Confidence"
                 value={team.confidence}
-                sub={lowSample ? <>Low sample · directional</> : <>Usable read</>}
+                sub={lowSample ? <>Low sample — read directionally</> : <>Enough responses to act on</>}
                 tone="neutral"
               />
             </div>
