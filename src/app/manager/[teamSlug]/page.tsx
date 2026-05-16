@@ -180,8 +180,9 @@ export default async function ManagerPage({
           </div>
         </section>
 
-        {/* C. Versus company average */}
-        <section className="brief-section">
+        {/* C + D. Versus company average + Trend, side-by-side */}
+        <section className="brief-section manager-compare-row">
+          <div className="manager-compare-left">
           <SectionHeader
             title="Your team versus company average"
             subtitle="The only peer comparison in your report — no other team data is shown."
@@ -250,22 +251,21 @@ export default async function ManagerPage({
               </div>
             </div>
           </div>
-        </section>
-
-        {/* D. Trend */}
-        <section className="brief-section">
-          <SectionHeader
-            title="Your team's 6-month mood trend"
-            subtitle="Dashed line shows the current company average for context."
-          />
-          <div className="card">
-            <MiniMoodTrend points={team.history} companyAvg={report.avgMood} />
-            {team.history.length < 2 && (
-              <p className="muted" style={{ marginTop: 8 }}>
-                Limited history available — the trend will become more useful as more months
-                accumulate.
-              </p>
-            )}
+          </div>
+          <div className="manager-compare-right">
+            <SectionHeader
+              title="Your team's 6-month mood trend"
+              subtitle="Dashed line shows the current company average for context."
+            />
+            <div className="card">
+              <MiniMoodTrend points={team.history} companyAvg={report.avgMood} />
+              {team.history.length < 2 && (
+                <p className="muted" style={{ marginTop: 8 }}>
+                  Limited history available — the trend will become more useful as more months
+                  accumulate.
+                </p>
+              )}
+            </div>
           </div>
         </section>
 
