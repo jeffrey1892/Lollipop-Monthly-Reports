@@ -229,6 +229,16 @@
 .manager-page .exec-header-title-row .health-tile{padding:6px 10px;max-width:170px}
 .manager-page .exec-header-title-row .health-tile strong{font-size:16px}
 .manager-page .exec-header-meta{margin-top:2px;font-size:13px}
+.manager-tools-list{list-style:none;padding:0;margin:6px 0 0;display:grid;gap:8px}
+.manager-tools-list li{border:1px solid var(--line);border-radius:12px;background:#f7f9fc;padding:10px 12px}
+.manager-tools-list .manager-tool-link{font-weight:800;color:var(--blue);text-decoration:none;font-size:13px}
+.manager-tools-list .manager-tool-link:hover{text-decoration:underline}
+.manager-tools-list p{margin:3px 0 0;font-size:12.5px;line-height:1.4;color:var(--muted)}
+.manager-videos-list{list-style:none;padding:0;margin:6px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.manager-videos-list li{padding:0}
+.manager-videos-list a{display:inline-flex;align-items:center;gap:6px;background:white;border:1px solid var(--line);border-radius:10px;padding:6px 10px;color:var(--blue);font-weight:800;font-size:12.5px;text-decoration:none}
+.manager-videos-list a:hover{background:var(--blueSoft)}
+@media(max-width:760px){.manager-videos-list{grid-template-columns:1fr}}
 .manager-snapshot-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
 .manager-compare-row{display:grid;grid-template-columns:.85fr 1.4fr 1fr;gap:18px;align-items:start}
 .kpi-grid.kpi-grid-2x2{grid-template-columns:1fr 1fr}

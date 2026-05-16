@@ -27,6 +27,96 @@ const SEVERITY_HEALTH_CLASS: Record<string, string> = {
 
 const managerToolsUrl = 'https://www.trylollipop.com/resources-page-hidden'
 
+type Tool = { key: string; name: string; url: string; whenToUse: string }
+const TOOLS: Record<string, Tool> = {
+  quickInsights: {
+    key: 'quickInsights',
+    name: 'Quick insights',
+    url: 'https://www.trylollipop.com/resources/quick-insights',
+    whenToUse:
+      'Short, scannable manager guidance for reading team signals and choosing the right next move.',
+  },
+  conversationStarters: {
+    key: 'conversationStarters',
+    name: 'Conversation starters',
+    url: 'https://www.trylollipop.com/conversation-starters-hidden',
+    whenToUse:
+      'Use when scheduling a 1:1 or listening conversation — especially with employees showing low mood or workload pressure.',
+  },
+  smallAuthenticGestures: {
+    key: 'smallAuthenticGestures',
+    name: 'Small authentic gestures',
+    url: 'https://www.trylollipop.com/small-authentic-gestures-hidden',
+    whenToUse:
+      'Use to reinforce recognition and visible support without expensive programs — low-cost, high-signal manager habits.',
+  },
+  connectionExercises: {
+    key: 'connectionExercises',
+    name: 'Connection exercises',
+    url: 'https://www.trylollipop.com/connection-exercises-hidden',
+    whenToUse:
+      'Use to deepen trust on teams that feel disconnected or are coming out of a strained period.',
+  },
+  meetingIcebreakers: {
+    key: 'meetingIcebreakers',
+    name: 'Meeting icebreakers',
+    url: 'https://www.trylollipop.com/meeting-icebreakers-hidden',
+    whenToUse:
+      'Use at the start of team meetings to lift engagement and surface what people are actually thinking.',
+  },
+}
+
+const TRAINING_VIDEOS = [
+  { title: 'Reading your team report', url: 'https://youtu.be/RpLInjIdswM' },
+  { title: 'Running a listening conversation', url: 'https://youtu.be/inFoP-yrvqo' },
+  { title: 'Recognition that lands', url: 'https://youtu.be/NCgJuUXhXrs' },
+  { title: 'Closing the feedback loop', url: 'https://youtu.be/5PCjxElGU4g' },
+]
+
+function pickTools(opts: {
+  severity: string
+  avgMood: number
+  positivePct: number
+  participationTrend: number | null
+  lowSample: boolean
+  hasWorkloadTheme: boolean
+}): Tool[] {
+  const out: Tool[] = []
+  const add = (k: keyof typeof TOOLS) => {
+    if (!out.find((t) => t.key === k)) out.push(TOOLS[k])
+  }
+
+  if (opts.severity === 'High' || opts.avgMood < 3.5) {
+    add('conversationStarters')
+    add('quickInsights')
+  }
+  if (opts.severity === 'Watchlist' || (opts.positivePct < 55 && opts.avgMood < 3.9)) {
+    add('conversationStarters')
+    add('smallAuthenticGestures')
+  }
+  if (opts.hasWorkloadTheme) {
+    add('quickInsights')
+    add('conversationStarters')
+  }
+  if (opts.participationTrend !== null && opts.participationTrend < 0) {
+    add('meetingIcebreakers')
+  }
+  if (opts.severity === 'Positive Momentum' || opts.avgMood >= 4.2) {
+    add('connectionExercises')
+    add('smallAuthenticGestures')
+  }
+  if (opts.lowSample) {
+    add('meetingIcebreakers')
+    add('conversationStarters')
+  }
+  // Always include a baseline if nothing picked
+  if (out.length === 0) {
+    add('quickInsights')
+    add('conversationStarters')
+  }
+  return out.slice(0, 3)
+}
+
 export default async function ManagerPage({
   params,
 }: {
@@ -97,6 +187,17 @@ export default async function ManagerPage({
   ]
 
   const lowSample = team.responses < 5
+  const hasWorkloadTheme = team.commentThemes.some((t) =>
+    /workload|burnout|staffing|coverage/i.test(t),
+  )
+  const recommendedTools = pickTools({
+    severity: team.severity,
+    avgMood: team.avgMood,
+    positivePct: team.positivePct,
+    participationTrend: team.participationTrend,
+    lowSample,
+    hasWorkloadTheme,
+  })
 
   return (
     <div className="shell manager-page">
@@ -345,6 +446,36 @@ export default async function ManagerPage({
                 Open Lollipop manager tools →
               </a>
             </p>
+
+            <hr style={{ border: 0, borderTop: '1px solid var(--line)', margin: '14px 0' }} />
+
+            <p className="h3-micro">Suggested tools for this team</p>
+            <p className="muted" style={{ fontSize: 12, marginTop: 2 }}>
+              Selected based on this period's mood, participation, sentiment, and comment themes.
+            </p>
+            <ul className="manager-tools-list">
+              {recommendedTools.map((tool) => (
+                <li key={tool.key}>
+                  <a href={tool.url} target="_blank" rel="noreferrer" className="manager-tool-link">
+                    {tool.name} →
+                  </a>
+                  <p>{tool.whenToUse}</p>
+                </li>
+              ))}
+            </ul>
+
+            <p className="h3-micro" style={{ marginTop: 14 }}>
+              Manager training videos
+            </p>
+            <ul className="manager-videos-list">
+              {TRAINING_VIDEOS.map((v) => (
+                <li key={v.url}>
+                  <a href={v.url} target="_blank" rel="noreferrer">
+                    ▶ {v.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
