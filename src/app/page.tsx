@@ -436,39 +436,44 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 ))}
               </div>
 
-              <div className="card followup-trend-card">
-                <p className="h2-sub">Follow-up completion trends</p>
-                <div className="empty-chart">
-                  Trend data will appear as employee follow-up confirmations are collected.
+              <div className="followup-bottom-row">
+                <div className="card followup-trend-card">
+                  <p className="h2-sub">Follow-up completion trends</p>
+                  <div className="empty-chart">
+                    Trend data will appear as employee follow-up confirmations are collected.
+                  </div>
                 </div>
-              </div>
 
-              <div className="card followup-exceptions-card">
-                <p className="h2-sub">Follow-up exceptions</p>
-                <div className="table-wrap">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        {FOLLOWUP_PLACEHOLDER.columns.map((c) => (
-                          <th key={c}>{c}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {FOLLOWUP_PLACEHOLDER.exceptions.length === 0 ? (
-                        <tr className="empty-row">
-                          <td colSpan={FOLLOWUP_PLACEHOLDER.columns.length}>
-                            <div>No follow-up exceptions recorded yet.</div>
-                            <small className="muted">
-                              When employees indicate that requested support did not occur, those
-                              events will appear here for HR visibility and follow-through
-                              tracking.
-                            </small>
-                          </td>
+                <div className="card followup-exceptions-card">
+                  <p className="h2-sub">Missed follow-ups</p>
+                  <p className="muted" style={{ fontSize: 12, margin: '2px 0 8px' }}>
+                    Employees who indicated requested support did not occur — flagged for HR review.
+                  </p>
+                  <div className="table-wrap">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          {FOLLOWUP_PLACEHOLDER.columns.map((c) => (
+                            <th key={c}>{c}</th>
+                          ))}
                         </tr>
-                      ) : null}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {FOLLOWUP_PLACEHOLDER.exceptions.length === 0 ? (
+                          <tr className="empty-row">
+                            <td colSpan={FOLLOWUP_PLACEHOLDER.columns.length}>
+                              <div>No missed follow-ups recorded yet.</div>
+                              <small className="muted">
+                                When employees indicate that requested support did not occur, those
+                                events will appear here for HR visibility and follow-through
+                                tracking.
+                              </small>
+                            </td>
+                          </tr>
+                        ) : null}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </section>
