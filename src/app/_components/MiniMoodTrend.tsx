@@ -9,12 +9,12 @@ export default function MiniMoodTrend({
   points: Point[]
   companyAvg?: number | null
 }) {
-  const width = 340
-  const height = 120
-  const padL = 28
-  const padR = 12
-  const padT = 12
-  const padB = 22
+  const width = 460
+  const height = 210
+  const padL = 36
+  const padR = 18
+  const padT = 16
+  const padB = 28
   const innerW = width - padL - padR
   const innerH = height - padT - padB
 
@@ -50,10 +50,11 @@ export default function MiniMoodTrend({
     <svg
       viewBox={`0 0 ${width} ${height}`}
       width="100%"
-      height={height}
+      height="100%"
+      preserveAspectRatio="xMidYMid meet"
       role="img"
       aria-label="Six-month team mood trend"
-      style={{ display: 'block' }}
+      style={{ display: 'block', maxHeight: '100%', maxWidth: '100%' }}
     >
       {[1, 2, 3, 4, 5].map((tick) => (
         <line
@@ -66,13 +67,13 @@ export default function MiniMoodTrend({
           strokeWidth={1}
         />
       ))}
-      <text x={4} y={y(5) + 4} fontSize={10} fill="#7a8290" fontWeight={700}>
+      <text x={6} y={y(5) + 5} fontSize={13} fill="#7a8290" fontWeight={700}>
         5
       </text>
-      <text x={4} y={y(3) + 4} fontSize={10} fill="#7a8290" fontWeight={700}>
+      <text x={6} y={y(3) + 5} fontSize={13} fill="#7a8290" fontWeight={700}>
         3
       </text>
-      <text x={4} y={y(1) + 4} fontSize={10} fill="#7a8290" fontWeight={700}>
+      <text x={6} y={y(1) + 5} fontSize={13} fill="#7a8290" fontWeight={700}>
         1
       </text>
 
@@ -90,8 +91,8 @@ export default function MiniMoodTrend({
           />
           <text
             x={width - padR}
-            y={companyY - 4}
-            fontSize={9}
+            y={companyY - 5}
+            fontSize={11}
             fill="#3b82f6"
             textAnchor="end"
             fontWeight={700}
@@ -101,15 +102,15 @@ export default function MiniMoodTrend({
         </>
       )}
 
-      <path d={path} fill="none" stroke="#1f6f4a" strokeWidth={2} strokeLinejoin="round" />
+      <path d={path} fill="none" stroke="#1f6f4a" strokeWidth={2.5} strokeLinejoin="round" />
       {points.map((p, i) => (
-        <circle key={p.month} cx={x(i)} cy={y(p.avgMood)} r={3} fill="#1f6f4a" />
+        <circle key={p.month} cx={x(i)} cy={y(p.avgMood)} r={4} fill="#1f6f4a" />
       ))}
 
       <text
         x={x(0)}
-        y={height - 6}
-        fontSize={10}
+        y={height - 8}
+        fontSize={12}
         fill="#7a8290"
         textAnchor="start"
         fontWeight={700}
@@ -119,8 +120,8 @@ export default function MiniMoodTrend({
       {points.length > 1 && (
         <text
           x={x(points.length - 1)}
-          y={height - 6}
-          fontSize={10}
+          y={height - 8}
+          fontSize={12}
           fill="#7a8290"
           textAnchor="end"
           fontWeight={700}
