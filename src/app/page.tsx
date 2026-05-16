@@ -87,7 +87,16 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         <section className="exec-header brief-section">
           <div className="exec-header-main">
             <p className="eyebrow">Workforce Intelligence Report</p>
-            <h1 className="client-title">{report.customerName}</h1>
+            <div className="exec-header-title-row">
+              <h1 className="client-title">{report.customerName}</h1>
+              <div className={`health-tile health-${report.healthSummary.rating.toLowerCase().replace(/\s+/g, '-')}`}>
+                <span className="health-label">
+                  Organizational Health <NoteRef n={1} />
+                </span>
+                <strong>{report.healthSummary.rating}</strong>
+                <small>{report.healthSummary.score} / 100</small>
+              </div>
+            </div>
             <p className="exec-header-meta">
               {report.label} · Prepared by Lollipop ·{' '}
               <span className="muted">Confidence {report.reportConfidence}</span>
@@ -102,13 +111,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </a>
               <a href="mailto:support@trylollipop.com">support@trylollipop.com</a>
             </div>
-          </div>
-          <div className={`health-tile health-${report.healthSummary.rating.toLowerCase().replace(/\s+/g, '-')}`}>
-            <span className="health-label">
-              Organizational Health <NoteRef n={1} />
-            </span>
-            <strong>{report.healthSummary.rating}</strong>
-            <small>{report.healthSummary.score} / 100</small>
           </div>
         </section>
 
@@ -145,12 +147,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
             value={report.responseCount}
             sub={<>check-ins this period</>}
             delta={<TrendDelta value={report.engagement.participationChange} suffix=" check-ins" />}
-            tone="neutral"
-          />
-          <KpiCard
-            label="Unique Participants"
-            value={report.engagement.uniqueParticipants}
-            sub={<>distinct employees</>}
             tone="neutral"
           />
           <KpiCard
