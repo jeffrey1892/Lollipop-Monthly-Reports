@@ -182,26 +182,24 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         </section>
 
         {/* === C. Executive Summary === */}
-        <section className="brief-section narrative-grid">
-          <div className="narrative-card narr-changed">
-            <p className="eyebrow">What Changed</p>
-            <p className="narrative-headline">{whatChangedNarrative}</p>
-            {report.whatChanged[0] && (
-              <p className="narrative-detail">{report.whatChanged[0].detail}</p>
-            )}
-          </div>
-          <div className="narrative-card narr-matters">
-            <p className="eyebrow">Why It Matters</p>
-            <p className="narrative-headline">{whyItMattersNarrative}</p>
-            <p className="narrative-detail">{report.executiveSummary}</p>
-          </div>
-          <div className="narrative-card narr-focus">
-            <p className="eyebrow">Recommended Leadership Focus</p>
-            <p className="narrative-headline">{leadershipFocusNarrative}</p>
-            {report.leadershipAttention[0] && (
-              <p className="narrative-detail">{report.leadershipAttention[0]}</p>
-            )}
-          </div>
+        <section className="brief-section exec-summary-card">
+          <p className="eyebrow">Executive Summary</p>
+          <p className="exec-summary-lede">{whatChangedNarrative}</p>
+          <dl className="exec-summary-list">
+            <div>
+              <dt>Why it matters</dt>
+              <dd>{whyItMattersNarrative}</dd>
+            </div>
+            <div>
+              <dt>Recommended leadership focus</dt>
+              <dd>
+                {leadershipFocusNarrative}
+                {report.leadershipAttention[0] && leadershipFocusNarrative !== report.leadershipAttention[0] && (
+                  <> {report.leadershipAttention[0]}</>
+                )}
+              </dd>
+            </div>
+          </dl>
         </section>
 
         {/* === D. Priority Action Items === */}
