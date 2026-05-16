@@ -220,6 +220,9 @@
 .action-card-foot{display:flex;flex-direction:column;gap:6px;margin-top:auto;padding-top:6px;border-top:1px solid var(--line)}
 .action-card-foot small{color:var(--muted);font-weight:600}
 .topbar-month-form{display:inline-flex;gap:8px;align-items:center}
+.manager-page .pages{gap:22px}
+.manager-page .exec-header{margin-bottom:0}
+.manager-page .exec-header-meta{margin-top:4px}
 .ci-suggestion{font-style:normal;color:var(--ink);font-weight:600}
 .ci-driver-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
 .ci-driver-list li{padding:0;background:transparent;border:0}

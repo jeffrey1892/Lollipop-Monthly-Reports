@@ -6,7 +6,6 @@ import {
   KpiCard,
   TrendDelta,
   Delta,
-  ConfidenceBadge,
 } from '../../_components/ui'
 import PieChart from '../../_components/PieChart'
 import MiniMoodTrend from '../../_components/MiniMoodTrend'
@@ -147,7 +146,6 @@ export default async function ManagerPage({
               label="Positive sentiment"
               value={`${team.positivePct}%`}
               sub={<>of your team&apos;s check-ins</>}
-              delta={<TrendDelta value={null} />}
               tone={team.positivePct >= 60 ? 'green' : team.positivePct >= 40 ? 'amber' : 'coral'}
             />
             <KpiCard
@@ -161,7 +159,6 @@ export default async function ManagerPage({
               label="Confidence"
               value={team.confidence}
               sub={lowSample ? <>Low sample · directional</> : <>Usable read</>}
-              delta={<ConfidenceBadge value={team.confidence} />}
               tone="neutral"
             />
           </div>
