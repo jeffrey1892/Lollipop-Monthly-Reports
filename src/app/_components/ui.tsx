@@ -94,11 +94,20 @@ export function KpiCard({
   help?: React.ReactNode
 }) {
   return (
-    <div className={`kpi-card ${tone ?? 'neutral'}`}>
+    <div className={`kpi-card ${tone ?? 'neutral'} ${delta ? 'kpi-split' : ''}`}>
       <p className="kpi-label">{label}</p>
-      <div className="kpi-value">{value}</div>
-      {sub && <div className="kpi-sub">{sub}</div>}
-      {delta && <div className="kpi-delta">{delta}</div>}
+      <div className="kpi-body">
+        <div className="kpi-body-left">
+          <div className="kpi-value">{value}</div>
+          {sub && <div className="kpi-sub">{sub}</div>}
+        </div>
+        {delta && (
+          <div className="kpi-body-right">
+            <div className="kpi-delta">{delta}</div>
+            <div className="kpi-delta-caption">v. Prior Month</div>
+          </div>
+        )}
+      </div>
       {help && <div className="kpi-help">{help}</div>}
     </div>
   )
