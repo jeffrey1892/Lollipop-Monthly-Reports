@@ -256,24 +256,9 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                   <span className="urgency-pill">{r.urgency} urgency</span>
                 </div>
                 <h3 className="h2-sub">{r.title}</h3>
-                {r.trigger && (
-                  <p className="action-block">
-                    <span className="label h3-micro">Issue</span>
-                    {r.trigger}
-                  </p>
-                )}
-                <p className="action-block">
-                  <span className="label h3-micro">Why it matters</span>
-                  {r.why}
-                </p>
-                <p className="action-block">
-                  <span className="label h3-micro">Recommended action</span>
-                  {r.nextStep}
-                </p>
+                <p className="action-next-step">{r.nextStep}</p>
                 <footer className="action-card-foot">
-                  <small>
-                    {r.owner} · {r.impact} impact · {r.difficulty} difficulty
-                  </small>
+                  <small className="muted">{r.owner}</small>
                   {r.links && r.links.length > 0 && (
                     <div className="action-links">
                       {r.links.map((l) => (
@@ -284,6 +269,27 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                     </div>
                   )}
                 </footer>
+                {(r.trigger || r.why) && (
+                  <details className="action-details">
+                    <summary>More context</summary>
+                    {r.trigger && (
+                      <p>
+                        <span className="h3-micro">When to use</span>
+                        {r.trigger}
+                      </p>
+                    )}
+                    {r.why && (
+                      <p>
+                        <span className="h3-micro">Why it matters</span>
+                        {r.why}
+                      </p>
+                    )}
+                    <p className="muted">
+                      <span className="h3-micro">Impact / difficulty</span>
+                      {r.impact} impact · {r.difficulty} difficulty
+                    </p>
+                  </details>
+                )}
               </article>
             ))}
           </div>
