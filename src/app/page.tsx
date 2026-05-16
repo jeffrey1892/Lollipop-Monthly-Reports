@@ -22,7 +22,38 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
   const params = (await searchParams) ?? {}
   const report = getReport(customer.id, params.month)
 
-  const sortedRecs = [...report.recommendations].sort(
+  // === Follow-up Responsiveness placeholder data ===
+  // When real data is wired, populate these from report.followUpResponsiveness.
+  const followUp = {
+    requested: 0,
+    confirmed: 0,
+    notConfirmed: 0,
+    hrEscalations: 0,
+    completionRate: null as number | null,
+    completionRateChange: null as number | null,
+  }
+
+  const followUpAction =
+    followUp.notConfirmed > 0
+      ? {
+          title: 'Resolve unconfirmed follow-ups',
+          priority: 'P1' as const,
+          urgency: 'High' as const,
+          impact: 'High' as const,
+          difficulty: 'Low' as const,
+          owner: 'HR partner + team managers',
+          nextStep: `${followUp.notConfirmed} employee${followUp.notConfirmed === 1 ? '' : 's'} indicated requested follow-up did not occur. Coordinate manager outreach and document closure for each open exception before the next reporting period.`,
+          why: 'Support follow-through is a leadership-effectiveness signal; closing the loop reinforces that employee voice produces action.',
+          confidence: 'Medium' as const,
+          trigger: 'Use whenever a follow-up exception is recorded.',
+          links: [],
+        }
+      : null
+
+  const sortedRecs = [
+    ...(followUpAction ? [followUpAction] : []),
+    ...report.recommendations,
+  ].sort(
     (a, b) =>
       (URGENCY_RANK[a.urgency] ?? 9) - (URGENCY_RANK[b.urgency] ?? 9) ||
       a.priority.localeCompare(b.priority),
@@ -366,12 +397,16 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         {(() => {
           const FOLLOWUP_PLACEHOLDER = {
             kpis: [
-              { label: 'Employees requesting follow-up', value: '0' },
-              { label: 'Follow-up confirmed', value: '0' },
-              { label: 'Follow-up not confirmed', value: '0' },
-              { label: 'HR escalations triggered', value: '0' },
-              { label: 'Follow-up completion rate', value: '—' },
-            ],
+              { label: 'Employees requesting follow-up', value: String(followUp.requested) },
+              { label: 'Follow-up confirmed', value: String(followUp.confirmed) },
+              { label: 'Follow-up not confirmed', value: String(followUp.notConfirmed) },
+              { label: 'HR escalations triggered', value: String(followUp.hrEscalations) },
+              {
+                label: 'Follow-up completion rate',
+                value: followUp.completionRate !== null ? `${followUp.completionRate}%` : '—',
+                delta: <TrendDelta value={followUp.completionRateChange} suffix=" pp" />,
+              },
+            ] as Array<{ label: string; value: string; delta?: React.ReactNode }>,
             columns: [
               'Check-in date',
               'Employee',
@@ -402,6 +437,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                     label={k.label}
                     value={k.value}
                     sub={<span className="muted">Awaiting data</span>}
+                    delta={k.delta}
                     tone="neutral"
                   />
                 ))}
