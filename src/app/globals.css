@@ -219,8 +219,9 @@
 .exec-header{display:block;padding:10px 0 0;margin-bottom:8px}
 .exec-header-title-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin:6px 0 8px}
 .exec-header-title-row .client-title{margin:0!important}
-.exec-header-title-row .health-tile{text-align:left;min-width:0;padding:10px 14px}
-.exec-header-title-row .health-tile strong{font-size:22px}
+.exec-header-title-row .health-tile{text-align:left;min-width:0;padding:8px 12px;width:max-content;max-width:180px}
+.exec-header-title-row .health-tile strong{font-size:20px}
+.exec-header-title-row .health-tile .note-ref{display:block;margin:6px 0 0}
 .exec-header-main .client-title{font-family:Georgia,serif;font-size:clamp(36px,5.5vw,58px);line-height:1;letter-spacing:-.04em;margin:6px 0 8px}
 .exec-header-meta{margin:0;color:var(--ink);font-size:14px;font-weight:600}
 .exec-header .dashboard-help{margin-top:10px}

@@ -104,11 +104,10 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
             <div className="exec-header-title-row">
               <h1 className="client-title">{report.customerName}</h1>
               <div className={`health-tile health-${report.healthSummary.rating.toLowerCase().replace(/\s+/g, '-')}`}>
-                <span className="health-label h3-micro">
-                  Organizational health <NoteRef n={1} />
-                </span>
+                <span className="health-label h3-micro">Organizational health</span>
                 <strong>{report.healthSummary.rating}</strong>
                 <small>{report.healthSummary.score} / 100</small>
+                <NoteRef n={1} />
               </div>
             </div>
             <p className="exec-header-meta">
