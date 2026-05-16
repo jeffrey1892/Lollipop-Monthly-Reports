@@ -16,9 +16,10 @@ import PieChart from './_components/PieChart'
 
 const URGENCY_RANK: Record<string, number> = { High: 1, Medium: 2, Low: 3 }
 
-export default function Home({ searchParams }: { searchParams?: { month?: string } }) {
+export default async function Home({ searchParams }: { searchParams?: Promise<{ month?: string }> }) {
   const customer = customers[0]
-  const report = getReport(customer.id, searchParams?.month)
+  const params = (await searchParams) ?? {}
+  const report = getReport(customer.id, params.month)
 
   const sortedRecs = [...report.recommendations].sort(
     (a, b) =>
