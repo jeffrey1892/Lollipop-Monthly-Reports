@@ -334,6 +334,38 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
         return ms.length ? { month: m.month, label: m.label, avgMood: round(avg(ms), 2) } : null
       })
       .filter((h): h is { month: string; label: string; avgMood: number } => h !== null)
+    // Weekly history across the same window — Monday-start ISO weeks
+    const monthAbbrev = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const weekBuckets = new Map<string, { date: Date; moods: number[]; monthIdx: number }>()
+    for (const m of historyMonths) {
+      const teamRecs = m.responses.filter((r) => r.team === team)
+      for (const r of teamRecs) {
+        if (!r.mood) continue
+        const d = new Date(r.date)
+        if (Number.isNaN(d.getTime())) continue
+        // Snap to Monday of that week
+        const wd = d.getDay() // 0=Sun..6=Sat
+        const offset = (wd + 6) % 7 // Mon=0..Sun=6
+        const monday = new Date(d)
+        monday.setHours(0, 0, 0, 0)
+        monday.setDate(d.getDate() - offset)
+        const key = monday.toISOString().slice(0, 10)
+        const existing = weekBuckets.get(key)
+        if (existing) existing.moods.push(r.mood)
+        else weekBuckets.set(key, { date: monday, moods: [r.mood], monthIdx: monday.getMonth() })
+      }
+    }
+    const weeklyHistory = [...weekBuckets.entries()]
+      .sort((a, b) => a[1].date.getTime() - b[1].date.getTime())
+      .map(([key, b]) => {
+        const isFirstWeekOfMonth = b.date.getDate() <= 7
+        return {
+          weekStart: key,
+          label: isFirstWeekOfMonth ? `${monthAbbrev[b.monthIdx]} ${b.date.getFullYear()}` : '',
+          monthLabel: `${monthAbbrev[b.monthIdx]} ${b.date.getFullYear()}`,
+          avgMood: round(avg(b.moods), 2),
+        }
+      })
     return {
       team,
       responses: teamRecords.length,
@@ -348,6 +380,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
         ? 'Directional only; sample is too small to overinterpret.'
         : riskRank(risk) >= 3 ? 'Leadership should review workload, communication, and local operating conditions.' : 'Healthy signal; reinforce what is working and watch for participation consistency.',
       history,
+      weeklyHistory,
     }
   }).sort((a, b) => b.responses - a.responses)
   const topTeams = [...allTeams].filter((t) => !t.sampleWarning).sort((a, b) => b.avgMood - a.avgMood || b.responses - a.responses).slice(0, 3)

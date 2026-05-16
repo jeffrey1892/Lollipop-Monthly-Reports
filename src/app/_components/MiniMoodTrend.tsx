@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Point = { month: string; label: string; avgMood: number }
+type Point = { month?: string; weekStart?: string; label: string; monthLabel?: string; avgMood: number }
 
 export default function MiniMoodTrend({
   points,
@@ -39,8 +39,6 @@ export default function MiniMoodTrend({
     .map((p, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(p.avgMood).toFixed(1)}`)
     .join(' ')
 
-  const first = points[0]
-  const last = points[points.length - 1]
   const companyY =
     companyAvg !== null && companyAvg !== undefined && companyAvg >= yMin && companyAvg <= yMax
       ? y(companyAvg)
@@ -113,7 +111,7 @@ export default function MiniMoodTrend({
       />
       {points.map((p, i) => (
         <line
-          key={`tick-${p.month}`}
+          key={`tick-${p.weekStart ?? p.month}-${i}`}
           x1={x(i)}
           x2={x(i)}
           y1={padT + innerH}
@@ -125,17 +123,20 @@ export default function MiniMoodTrend({
 
       <path d={path} fill="none" stroke="#1f6f4a" strokeWidth={2.5} strokeLinejoin="round" />
       {points.map((p, i) => (
-        <circle key={p.month} cx={x(i)} cy={y(p.avgMood)} r={4} fill="#1f6f4a" />
+        <circle key={`pt-${p.weekStart ?? p.month}-${i}`} cx={x(i)} cy={y(p.avgMood)} r={3} fill="#1f6f4a" />
       ))}
 
-      {/* Per-month x-axis labels */}
+      {/* Month-only x-axis labels (always label first and last) */}
       {points.map((p, i) => {
-        const anchor =
-          i === 0 ? 'start' : i === points.length - 1 ? 'end' : 'middle'
-        const short = p.label.split(' ')[0]
+        const isFirst = i === 0
+        const isLast = i === points.length - 1
+        const shown = p.label || (isFirst || isLast ? p.monthLabel ?? '' : '')
+        if (!shown) return null
+        const anchor = isFirst ? 'start' : isLast ? 'end' : 'middle'
+        const short = shown.split(' ')[0]
         return (
           <text
-            key={`label-${p.month}`}
+            key={`label-${p.weekStart ?? p.month}-${i}`}
             x={x(i)}
             y={height - 8}
             fontSize={11}

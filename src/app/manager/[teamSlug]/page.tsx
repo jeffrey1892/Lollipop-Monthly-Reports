@@ -388,7 +388,10 @@ export default async function ManagerPage({
               subtitle="Dashed line shows the current company average for context."
             />
             <div className="card">
-              <MiniMoodTrend points={team.history} companyAvg={report.avgMood} />
+              <MiniMoodTrend
+                points={team.weeklyHistory.length >= 2 ? team.weeklyHistory : team.history}
+                companyAvg={report.avgMood}
+              />
               {team.history.length < 2 && (
                 <p className="muted" style={{ marginTop: 8 }}>
                   Limited history available — the trend will become more useful as more months
