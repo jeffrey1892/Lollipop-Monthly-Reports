@@ -672,9 +672,9 @@ a.link:hover{color:#0866c9}
 @media print{
   @page{size:letter;margin:0.4in}
   .manager-page .topbar{display:none!important}
-  .manager-page .card{box-shadow:none!important;border:1px solid #d9dde5!important;padding:8pt 10pt!important}
+  .manager-page .card{box-shadow:none!important;border:1px solid #d9dde5!important;padding:10pt 12pt!important}
   .manager-page .brief-section{margin:0!important;page-break-inside:avoid}
-  .manager-page .pages{padding:0!important;gap:5pt!important}
+  .manager-page .pages{padding:0!important;gap:10pt!important}
   .manager-page main{padding:0!important}
   .manager-page .exec-header{margin-bottom:0!important}
   .manager-page .client-title{font-size:20pt!important;line-height:1!important;margin:0!important}
@@ -684,12 +684,12 @@ a.link:hover{color:#0866c9}
   .manager-page .health-tile small{font-size:7pt!important}
   .manager-page .health-tile .note-ref{display:none!important}
   /* Snapshot row: stretch heights so 2x2 KPI grid and Mood breakdown align */
-  .manager-page .manager-snapshot-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:6pt!important;align-items:stretch!important}
+  .manager-page .manager-snapshot-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10pt!important;align-items:stretch!important}
   .manager-page .manager-snapshot-left,.manager-page .manager-snapshot-right{display:flex;flex-direction:column}
   .manager-page .manager-snapshot-right>.card{flex:1;display:flex;flex-direction:column;justify-content:center}
   .manager-page .kpi-grid.kpi-grid-2x2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:4pt!important;flex:1}
   .manager-page .kpi-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:4pt!important}
-  .manager-page .kpi-card{padding:4pt 6pt!important;page-break-inside:avoid;min-height:60pt}
+  .manager-page .kpi-card{padding:7pt 9pt!important;page-break-inside:avoid;min-height:64pt}
   .manager-page .kpi-card .kpi-label{font-size:7pt!important;margin:0 0 1pt!important}
   .manager-page .kpi-card .kpi-value{font-size:15pt!important}
   .manager-page .kpi-card .kpi-sub{font-size:6.5pt!important;margin-top:1pt}
@@ -698,19 +698,19 @@ a.link:hover{color:#0866c9}
   .manager-page .kpi-card .kpi-delta-caption{font-size:6pt!important}
   .manager-page .kpi-card .trend-delta strong{font-size:9pt!important}
   /* Compare row: equal heights, 3 columns */
-  .manager-page .manager-compare-row{display:grid!important;grid-template-columns:.85fr 1.4fr 1fr!important;gap:6pt!important;align-items:stretch!important}
+  .manager-page .manager-compare-row{display:grid!important;grid-template-columns:.85fr 1.4fr 1fr!important;gap:10pt!important;align-items:stretch!important}
   .manager-page .manager-compare-left,.manager-page .manager-compare-right,.manager-page .manager-compare-third{display:flex;flex-direction:column}
   .manager-page .manager-compare-left>.card,.manager-page .manager-compare-right>.card,.manager-page .manager-compare-third>.card{flex:1}
   .manager-page .manager-compare-right>.card{display:flex;flex-direction:column;justify-content:center}
   .manager-page .manager-compare-right svg{width:100%!important;height:auto!important;max-height:140pt!important}
   /* Section headers */
-  .manager-page .section-head{margin:0 0 3pt!important}
-  .manager-page .h1-section{font-size:11pt!important;line-height:1.1!important}
-  .manager-page .section-head-subtitle{font-size:7pt!important;margin:1pt 0 0!important;line-height:1.25!important}
+  .manager-page .section-head{margin:0 0 6pt!important}
+  .manager-page .h1-section{font-size:13pt!important;line-height:1.15!important}
+  .manager-page .section-head-subtitle{font-size:8pt!important;margin:2pt 0 0!important;line-height:1.3!important}
   /* Compact body text */
-  .manager-page .card p,.manager-page .card li{font-size:8pt!important;line-height:1.3!important}
-  .manager-page .h2-sub{font-size:9.5pt!important;margin:0 0 3pt!important}
-  .manager-page .h3-micro{font-size:6.8pt!important;margin:0 0 2pt!important}
+  .manager-page .card p,.manager-page .card li{font-size:9pt!important;line-height:1.4!important}
+  .manager-page .h2-sub{font-size:10pt!important;margin:0 0 4pt!important}
+  .manager-page .h3-micro{font-size:7.5pt!important;margin:0 0 3pt!important}
   /* Pie sized to roughly match the 2x2 KPI height; center text smaller */
   .manager-page .pie{width:.95in!important;height:.95in!important;box-shadow:inset 0 0 0 12px rgba(255,255,255,.55)!important}
   .manager-page .pie span{width:.45in!important;height:.45in!important;font-size:9pt!important;line-height:1}
@@ -723,16 +723,17 @@ a.link:hover{color:#0866c9}
   /* Themes column: keep narrative tight so heights match */
   .manager-page .manager-compare-third p{font-size:7.5pt!important;line-height:1.3!important}
   .manager-page .dashboard-help{display:none!important}
-  /* Manager action card: compress so it fits page 1 */
-  .manager-page .manager-action-grid{gap:10pt!important}
-  .manager-page .manager-action-col p,.manager-page .manager-action-col li{font-size:7.8pt!important;line-height:1.3!important}
-  .manager-page .manager-action-col ol{padding-left:14pt!important;margin:3pt 0!important}
-  .manager-page .manager-tools-list{gap:4pt!important;margin-top:3pt!important}
-  .manager-page .manager-tools-list li{padding:5pt 7pt!important;border-radius:6pt!important}
-  .manager-page .manager-tools-list a.link{font-size:8.5pt!important}
-  .manager-page .manager-tools-list p{font-size:7pt!important;margin-top:1pt!important}
-  .manager-page .manager-videos-list{grid-template-columns:1fr 1fr!important;gap:3pt!important;margin-top:3pt!important}
-  .manager-page .manager-videos-list a.link{padding:3pt 6pt!important;font-size:7.5pt!important;border-radius:5pt!important}
+  /* Manager action card */
+  .manager-page .manager-action-grid{gap:16pt!important}
+  .manager-page .manager-action-col p,.manager-page .manager-action-col li{font-size:8.5pt!important;line-height:1.4!important}
+  .manager-page .manager-action-col ol{padding-left:16pt!important;margin:4pt 0!important}
+  .manager-page .manager-action-col ol li{margin-bottom:2pt}
+  .manager-page .manager-tools-list{gap:6pt!important;margin-top:5pt!important}
+  .manager-page .manager-tools-list li{padding:7pt 9pt!important;border-radius:6pt!important}
+  .manager-page .manager-tools-list a.link{font-size:9pt!important}
+  .manager-page .manager-tools-list p{font-size:8pt!important;margin-top:2pt!important;line-height:1.35!important}
+  .manager-page .manager-videos-list{grid-template-columns:1fr 1fr!important;gap:5pt!important;margin-top:5pt!important}
+  .manager-page .manager-videos-list a.link{padding:5pt 8pt!important;font-size:8pt!important;border-radius:5pt!important}
   /* Allow the recommended-action card to split across pages if needed */
   .manager-page .manager-action-grid{page-break-inside:auto}
   /* Hide bottom "About this report" appendix in print to save space */
