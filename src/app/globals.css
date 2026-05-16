@@ -18,7 +18,8 @@
 .section-head.size-sm .section-head-subtitle{font-size:12px}
 
 /* Section rhythm — gap-based vertical spacing */
-.pages{display:grid;gap:38px}
+.pages{display:grid;gap:20px}
+.exec-header{margin-bottom:0}
 .pages>section{margin:0}
 
 /* Appendix block — visually lighter */
@@ -143,7 +144,10 @@
 .exec-header-title-row{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;margin:0;justify-content:space-between}
 .exec-header-left{flex:1;min-width:0}
 .exec-header-title-row .client-title{margin:0!important;line-height:.85!important}
-.exec-header-title-row .health-tile{text-align:left;min-width:0;padding:8px 12px;width:max-content;max-width:180px;align-self:flex-start;flex-shrink:0}
+.exec-header-title-row .health-tile{text-align:left;min-width:0;padding:6px 12px;width:max-content;max-width:170px;align-self:flex-start;flex-shrink:0;display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:0;align-items:center}
+.exec-header-title-row .health-tile .health-label{grid-column:1/-1;font-size:9px!important;margin:0!important}
+.exec-header-title-row .health-tile strong{font-size:18px;line-height:1}
+.exec-header-title-row .health-tile small{font-size:11px;color:var(--muted);font-weight:700}
 .exec-header-title-row .health-tile strong{font-size:20px}
 .exec-header-title-row .health-tile .note-ref{display:block;margin:6px 0 0}
 .exec-header-main .client-title{font-family:Georgia,serif;font-size:clamp(36px,5.5vw,58px);line-height:.85;letter-spacing:-.04em;margin:0}
@@ -586,6 +590,52 @@ a.link:hover{color:#0866c9}
   body[data-print-mode="brief"] .exec-header,
   body[data-print-mode="brief"] section:nth-of-type(-n+4){page-break-inside:avoid}
   body[data-print-mode="brief"] .trend-section{page-break-before:auto}
+
+  /* Brief mode: aggressive compaction so more content fits on page 1 */
+  body[data-print-mode="brief"] .pages{gap:6pt!important}
+  body[data-print-mode="brief"] main{padding:0!important}
+  body[data-print-mode="brief"] .exec-header{margin-bottom:0!important}
+  body[data-print-mode="brief"] .client-title{font-size:22pt!important;line-height:.95!important;margin:0!important}
+  body[data-print-mode="brief"] .exec-header-meta{font-size:8.5pt!important;margin-top:1pt!important}
+  body[data-print-mode="brief"] .dashboard-help{display:none!important}
+  body[data-print-mode="brief"] .health-tile{padding:4pt 8pt!important;max-width:130pt!important}
+  body[data-print-mode="brief"] .health-tile strong{font-size:11pt!important}
+  body[data-print-mode="brief"] .health-tile small{font-size:7pt!important}
+  body[data-print-mode="brief"] .health-tile .note-ref{display:none!important}
+  body[data-print-mode="brief"] .section-head{margin:0 0 3pt!important}
+  body[data-print-mode="brief"] .h1-section{font-size:12pt!important;line-height:1.1!important}
+  body[data-print-mode="brief"] .section-head-subtitle{font-size:7.5pt!important;margin-top:1pt!important}
+  body[data-print-mode="brief"] .brief-section{margin:0!important;page-break-inside:avoid}
+  body[data-print-mode="brief"] .card{padding:6pt 9pt!important}
+  body[data-print-mode="brief"] .kpi-grid{gap:5pt!important}
+  body[data-print-mode="brief"] .kpi-card{padding:4pt 6pt!important;min-height:0!important}
+  body[data-print-mode="brief"] .kpi-card .kpi-label{font-size:7pt!important;margin:0 0 1pt!important}
+  body[data-print-mode="brief"] .kpi-card .kpi-value{font-size:14pt!important}
+  body[data-print-mode="brief"] .kpi-card .kpi-sub{font-size:6.5pt!important}
+  body[data-print-mode="brief"] .kpi-card .kpi-delta-caption{font-size:6pt!important}
+  body[data-print-mode="brief"] .kpi-card .trend-delta{padding:3pt 6pt!important}
+  body[data-print-mode="brief"] .kpi-card .trend-delta strong{font-size:8.5pt!important}
+  body[data-print-mode="brief"] .exec-summary-card{padding:6pt 9pt!important;border-radius:6pt!important}
+  body[data-print-mode="brief"] .exec-summary-lede{font-size:9.5pt!important;margin:0 0 4pt!important;line-height:1.35!important}
+  body[data-print-mode="brief"] .exec-summary-list{gap:4pt 12pt!important}
+  body[data-print-mode="brief"] .exec-summary-list dd{font-size:8pt!important;line-height:1.3!important}
+  body[data-print-mode="brief"] .action-card{padding:6pt 9pt!important;margin-bottom:0!important}
+  body[data-print-mode="brief"] .action-card .h2-sub{font-size:9.5pt!important;margin:0 0 2pt!important}
+  body[data-print-mode="brief"] .action-next-step{font-size:8pt!important;line-height:1.3!important}
+  body[data-print-mode="brief"] .action-card-foot small{font-size:7pt!important}
+  body[data-print-mode="brief"] .action-details{display:none!important}
+  body[data-print-mode="brief"] .action-grid-v2{gap:5pt!important}
+  body[data-print-mode="brief"] .trend{height:90pt!important}
+  body[data-print-mode="brief"] .followup-section .empty-chart{min-height:50pt!important}
+  body[data-print-mode="brief"] .ci-theme-table th,
+  body[data-print-mode="brief"] .ci-theme-table td{padding:2pt 4pt!important;font-size:7pt!important}
+  body[data-print-mode="brief"] .ci-driver-list{gap:6pt!important}
+  body[data-print-mode="brief"] .ci-driver-obs{font-size:8pt!important;line-height:1.3!important}
+  body[data-print-mode="brief"] .ci-driver-action{font-size:7.5pt!important;padding:5pt 7pt!important}
+  body[data-print-mode="brief"] .followup-section .kpi-grid{margin-top:0!important}
+  body[data-print-mode="brief"] .team-rank-grid{gap:5pt!important}
+  body[data-print-mode="brief"] .narrative-card,
+  body[data-print-mode="brief"] .insight-card{padding:6pt 8pt!important}
 
   /* Strip link-target suffixes printed by some engines */
   a[href]:after{content:""!important}
