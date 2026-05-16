@@ -131,7 +131,7 @@ export default async function ManagerPage({
   if (!team) {
     return (
       <div className="shell manager-page">
-        <TopBar title="Manager report" backLink={{ href: '/', label: '← Back to executive report' }} />
+        <TopBar title="Manager report" backLink={{ href: '/', label: '← Back to executive report' }} singlePdf />
         <main className="wrap pages">
           <section className="brief-section">
             <SectionHeader
@@ -226,6 +226,7 @@ export default async function ManagerPage({
       <TopBar
         title="Manager report"
         backLink={{ href: '/', label: '← Back to executive report' }}
+        singlePdf
       />
 
       <main className="wrap pages">

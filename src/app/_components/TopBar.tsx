@@ -9,12 +9,14 @@ export default function TopBar({
   selectedMonth,
   action = '/',
   backLink,
+  singlePdf = false,
 }: {
   title?: string
   months?: Month[]
   selectedMonth?: string
   action?: string
   backLink?: { href: string; label: string }
+  singlePdf?: boolean
 }) {
   return (
     <header className="topbar">
@@ -46,7 +48,7 @@ export default function TopBar({
               </button>
             </form>
           )}
-          <DownloadPdfButton />
+          <DownloadPdfButton single={singlePdf} />
         </div>
       </div>
     </header>

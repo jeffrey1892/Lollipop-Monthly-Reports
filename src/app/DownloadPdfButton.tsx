@@ -8,7 +8,16 @@ function printWithMode(mode: 'brief' | 'full') {
   }, 1500)
 }
 
-export default function DownloadPdfButton() {
+export default function DownloadPdfButton({ single = false }: { single?: boolean } = {}) {
+  if (single) {
+    return (
+      <div className="pdf-actions" aria-label="PDF download">
+        <button className="btn" type="button" onClick={() => printWithMode('full')}>
+          Download PDF
+        </button>
+      </div>
+    )
+  }
   return (
     <div className="pdf-actions" aria-label="PDF download options">
       <button className="btn" type="button" onClick={() => printWithMode('brief')}>
