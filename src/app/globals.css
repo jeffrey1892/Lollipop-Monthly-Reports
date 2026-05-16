@@ -230,7 +230,7 @@
 .manager-page .exec-header-title-row .health-tile strong{font-size:16px}
 .manager-page .exec-header-meta{margin-top:2px;font-size:13px}
 .manager-snapshot-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
-.manager-compare-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:start}
+.manager-compare-row{display:grid;grid-template-columns:.85fr 1.4fr 1fr;gap:18px;align-items:start}
 .kpi-grid.kpi-grid-2x2{grid-template-columns:1fr 1fr}
 .manager-snapshot-right .card,.manager-compare-right .card,.manager-compare-third .card{height:100%}
 @media(max-width:900px){.manager-snapshot-row,.manager-compare-row{grid-template-columns:1fr}}
@@ -596,7 +596,7 @@
   .manager-page .kpi-card .kpi-delta-caption{font-size:6.5pt!important}
   .manager-page .kpi-card .trend-delta strong{font-size:9pt!important}
   /* Compare row: 3 columns */
-  .manager-page .manager-compare-row{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;gap:8pt!important;align-items:start}
+  .manager-page .manager-compare-row{display:grid!important;grid-template-columns:.85fr 1.4fr 1fr!important;gap:8pt!important;align-items:start}
   /* Section headers */
   .manager-page .section-head{margin:0 0 4pt!important}
   .manager-page .h1-section{font-size:13pt!important;line-height:1.1!important}

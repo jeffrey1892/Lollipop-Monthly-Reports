@@ -274,31 +274,47 @@ export default async function ManagerPage({
             />
             <div className="card">
               {team.commentThemes.length > 0 ? (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {team.commentThemes.map((t) => (
-                    <span
-                      key={t}
-                      className="h2-sub"
-                      style={{
-                        background: 'var(--blueSoft)',
-                        border: '1px solid #bddcff',
-                        borderRadius: 999,
-                        padding: '6px 12px',
-                        fontSize: 13,
-                      }}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+                <>
+                  <p className="h3-micro">Themes mentioned</p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
+                    {team.commentThemes.map((t) => (
+                      <span
+                        key={t}
+                        style={{
+                          background: 'var(--blueSoft)',
+                          border: '1px solid #bddcff',
+                          borderRadius: 999,
+                          padding: '4px 10px',
+                          fontSize: 12,
+                          fontWeight: 700,
+                          color: '#075cae',
+                        }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="h3-micro">What this suggests</p>
+                  <p style={{ marginTop: 2 }}>
+                    These are the patterns surfacing most often in your team's comments. Use them as
+                    a prompt for a 15-minute listening conversation: which of these is the team's
+                    biggest blocker right now, and what one change would help?
+                  </p>
+                </>
               ) : (
-                <p className="muted">
-                  No aggregated comment themes available for this period. Themes appear when at
-                  least 3 comments are submitted.
-                </p>
+                <>
+                  <p className="muted">
+                    No aggregated comment themes available for this period. Themes appear once at
+                    least 3 comments have been submitted in a month.
+                  </p>
+                  <p className="muted" style={{ marginTop: 8, fontSize: 12 }}>
+                    Encourage employees to share a brief comment with their next check-in — even
+                    one sentence helps surface patterns earlier.
+                  </p>
+                </>
               )}
               {team.privacyNote && (
-                <p className="muted" style={{ marginTop: 10, fontSize: 12 }}>
+                <p className="muted" style={{ marginTop: 10, fontSize: 11 }}>
                   <strong>Privacy.</strong> {team.privacyNote}
                 </p>
               )}
