@@ -3,6 +3,14 @@ import type { Confidence, CustomerData, IndividualRetentionRisk, MonthData, Repo
 
 export const customers = data.customers as CustomerData[]
 
+export function slugifyTeam(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/['’`]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
 function avg(values: number[]) { return values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0 }
 function round(value: number, digits = 1) { const m = 10 ** digits; return Math.round(value * m) / m }
 function pct(part: number, total: number) { return total ? Math.round((part / total) * 1000) / 10 : 0 }

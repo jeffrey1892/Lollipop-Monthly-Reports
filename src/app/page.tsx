@@ -1,6 +1,6 @@
 import React from 'react'
-import DownloadPdfButton from './DownloadPdfButton'
-import { getReport, customers } from '@/lib/reportMetrics'
+import Link from 'next/link'
+import { getReport, customers, slugifyTeam } from '@/lib/reportMetrics'
 import {
   Delta,
   TrendDelta,
@@ -14,6 +14,7 @@ import {
 import TrendChart from './_components/TrendChart'
 import TeamRankCard from './_components/TeamRankCard'
 import PieChart from './_components/PieChart'
+import TopBar from './_components/TopBar'
 
 const URGENCY_RANK: Record<string, number> = { High: 1, Medium: 2, Low: 3 }
 
@@ -88,31 +89,8 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
   return (
     <div className="shell">
-      {/* === Topbar (compact dashboard nav) === */}
-      <header className="topbar">
-        <div className="wrap topbar-inner">
-          <div className="brand-block">
-            <div className="brand-mark">L</div>
-            <div>
-              <strong className="brand-name">Lollipop</strong>
-              <small>Workforce Intelligence</small>
-            </div>
-          </div>
-          <form className="controls" action="/" method="get">
-            <select name="month" defaultValue={report.month} aria-label="Reporting month">
-              {customer.months.map((m) => (
-                <option key={m.month} value={m.month}>
-                  {m.label}
-                </option>
-              ))}
-            </select>
-            <button className="btn primary" type="submit">
-              Generate
-            </button>
-            <DownloadPdfButton />
-          </form>
-        </div>
-      </header>
+      <TopBar months={customer.months} selectedMonth={report.month} />
+
 
       <main className="wrap pages">
         {/* === A. Executive Header === */}
@@ -698,18 +676,54 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </div>
             </div>
             <div className="card">
-              <h3 className="h2-sub">Manager report outputs</h3>
-              <p className="muted small">Scoped team-only reports</p>
-              <p>{report.managerReport.description}</p>
-              <p>
-                <strong>Eligible teams:</strong>{' '}
-                {report.managerReport.eligibleTeams.join(', ') || 'None yet'}
+              <h3 className="h2-sub">Manager reports</h3>
+              <p className="muted small">
+                {report.managerReport.eligibleTeams.length} of {report.teamIntelligence.length}{' '}
+                teams meet the response threshold. Each manager sees only their team plus company
+                averages.
               </p>
-              <ul className="list compact">
-                {report.managerReport.safeguards.map((s) => (
-                  <li key={s}>{s}</li>
-                ))}
-              </ul>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+                  gap: 10,
+                  marginTop: 10,
+                }}
+              >
+                {report.teamIntelligence.map((t) => {
+                  const slug = slugifyTeam(t.team)
+                  const below = t.responses < 5
+                  return (
+                    <Link
+                      key={t.team}
+                      href={`/manager/${slug}`}
+                      className="rec"
+                      style={{
+                        display: 'block',
+                        textDecoration: 'none',
+                        color: 'inherit',
+                        padding: 10,
+                        border: '1px solid var(--line)',
+                        borderRadius: 12,
+                        background: '#fff',
+                      }}
+                    >
+                      <strong style={{ display: 'block' }}>{t.team}</strong>
+                      <small className="muted" style={{ display: 'block' }}>
+                        {t.responses} check-ins · {t.severity}
+                      </small>
+                      {below ? (
+                        <small className="muted" style={{ display: 'block', marginTop: 4 }}>
+                          Below threshold · directional only
+                        </small>
+                      ) : null}
+                      <small style={{ display: 'block', marginTop: 6, color: 'var(--blue)' }}>
+                        View report →
+                      </small>
+                    </Link>
+                  )
+                })}
+              </div>
             </div>
           </div>
 
