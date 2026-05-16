@@ -100,29 +100,31 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         {/* === A. Executive Header === */}
         <section className="exec-header brief-section">
           <div className="exec-header-main">
-            <p className="h3-micro">Workforce intelligence report</p>
             <div className="exec-header-title-row">
-              <h1 className="client-title">{report.customerName}</h1>
+              <div className="exec-header-left">
+                <p className="h3-micro">Workforce intelligence report</p>
+                <h1 className="client-title">{report.customerName}</h1>
+                <p className="exec-header-meta">
+                  {report.label} · Prepared by Lollipop ·{' '}
+                  <span className="muted">Confidence {report.reportConfidence}</span>
+                </p>
+                <div className="dashboard-help">
+                  <a
+                    href="https://www.trylollipop.com/resources-page-hidden"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Dashboard walkthrough
+                  </a>
+                  <a href="mailto:support@trylollipop.com">support@trylollipop.com</a>
+                </div>
+              </div>
               <div className={`health-tile health-${report.healthSummary.rating.toLowerCase().replace(/\s+/g, '-')}`}>
                 <span className="health-label h3-micro">Organizational health</span>
                 <strong>{report.healthSummary.rating}</strong>
                 <small>{report.healthSummary.score} / 100</small>
                 <NoteRef n={1} />
               </div>
-            </div>
-            <p className="exec-header-meta">
-              {report.label} · Prepared by Lollipop ·{' '}
-              <span className="muted">Confidence {report.reportConfidence}</span>
-            </p>
-            <div className="dashboard-help">
-              <a
-                href="https://www.trylollipop.com/resources-page-hidden"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Dashboard walkthrough
-              </a>
-              <a href="mailto:support@trylollipop.com">support@trylollipop.com</a>
             </div>
           </div>
         </section>
