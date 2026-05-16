@@ -356,6 +356,96 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           </div>
         </section>
 
+        {/*
+          === Follow-up Responsiveness (placeholder) ===
+          Visual placeholder only — the data layer is not yet wired. When real
+          data exists, replace `FOLLOWUP_PLACEHOLDER` with values from
+          `report.followUpResponsiveness` (KPI values, trend series, exception
+          rows) and remove the empty-state row from the exceptions table.
+        */}
+        {(() => {
+          const FOLLOWUP_PLACEHOLDER = {
+            kpis: [
+              { label: 'Employees requesting follow-up', value: '0' },
+              { label: 'Follow-up confirmed', value: '0' },
+              { label: 'Follow-up not confirmed', value: '0' },
+              { label: 'HR escalations triggered', value: '0' },
+              { label: 'Follow-up completion rate', value: '—' },
+            ],
+            columns: [
+              'Check-in date',
+              'Employee',
+              'Manager',
+              'Follow-up requested',
+              'Employee confirmed follow-up',
+              'HR escalation status',
+            ],
+            exceptions: [] as Array<Record<string, React.ReactNode>>,
+          }
+          return (
+            <section className="brief-section followup-section">
+              <SectionHeader
+                title="Follow-up responsiveness"
+                subtitle="Track whether employees who requested support later confirmed that follow-up occurred."
+                accent="blue"
+              />
+              <p className="muted followup-helper">
+                When employees request support after a low check-in, Lollipop can track whether the
+                employee later confirms that follow-up occurred. Unconfirmed follow-ups can be
+                escalated for HR visibility and support.
+              </p>
+
+              <div className="kpi-grid">
+                {FOLLOWUP_PLACEHOLDER.kpis.map((k) => (
+                  <KpiCard
+                    key={k.label}
+                    label={k.label}
+                    value={k.value}
+                    sub={<span className="muted">Awaiting data</span>}
+                    tone="neutral"
+                  />
+                ))}
+              </div>
+
+              <div className="card followup-trend-card">
+                <p className="h2-sub">Follow-up completion trends</p>
+                <div className="empty-chart">
+                  Trend data will appear as employee follow-up confirmations are collected.
+                </div>
+              </div>
+
+              <div className="card followup-exceptions-card">
+                <p className="h2-sub">Follow-up exceptions</p>
+                <div className="table-wrap">
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        {FOLLOWUP_PLACEHOLDER.columns.map((c) => (
+                          <th key={c}>{c}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {FOLLOWUP_PLACEHOLDER.exceptions.length === 0 ? (
+                        <tr className="empty-row">
+                          <td colSpan={FOLLOWUP_PLACEHOLDER.columns.length}>
+                            <div>No follow-up exceptions recorded yet.</div>
+                            <small className="muted">
+                              When employees indicate that requested support did not occur, those
+                              events will appear here for HR visibility and follow-through
+                              tracking.
+                            </small>
+                          </td>
+                        </tr>
+                      ) : null}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          )
+        })()}
+
         {/* === H. Comment Intelligence === */}
         <section className="brief-section comment-intel-v2">
           <SectionHeader

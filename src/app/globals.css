@@ -638,3 +638,12 @@
   h1,h2,h3{page-break-after:avoid}
 }
 
+/* Follow-up responsiveness (placeholder section) */
+.followup-section .followup-helper{max-width:880px;margin:6px 0 16px;font-size:14px;line-height:1.5}
+.followup-section .followup-trend-card,.followup-section .followup-exceptions-card{margin-top:16px}
+.empty-chart{margin-top:10px;min-height:180px;border:1.5px dashed var(--line);border-radius:14px;background:#f7f9fc;display:grid;place-items:center;text-align:center;padding:18px;color:var(--muted);font-size:13px;font-weight:600}
+.empty-row td{text-align:center;padding:22px 14px!important;color:var(--muted);background:#f7f9fc}
+.empty-row td div{font-weight:700;color:var(--ink);margin-bottom:4px}
+.empty-row td small{display:block;max-width:640px;margin:0 auto;line-height:1.4}
+@media print{.empty-chart{min-height:80pt;padding:8pt}.empty-row td{padding:8pt!important}}
+
