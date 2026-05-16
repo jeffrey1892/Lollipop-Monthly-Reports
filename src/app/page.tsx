@@ -143,13 +143,8 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           <KpiCard
             label="Total Responses"
             value={report.responseCount}
-            sub={
-              report.engagement.participationChange !== null ? (
-                <InlineTrend value={report.engagement.participationChange} suffix=" check-ins" />
-              ) : (
-                <>check-ins this period</>
-              )
-            }
+            sub={<>check-ins this period</>}
+            delta={<TrendDelta value={report.engagement.participationChange} suffix=" check-ins" />}
             tone="neutral"
           />
           <KpiCard

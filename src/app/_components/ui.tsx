@@ -33,8 +33,7 @@ export function TrendDelta({
   if (value === null)
     return (
       <div className="trend-delta neutral">
-        <span className="trend-label">vs prior month</span>
-        <strong>No prior comparison</strong>
+          <strong>No prior comparison</strong>
         {detail && <small>{detail}</small>}
       </div>
     )
@@ -42,7 +41,6 @@ export function TrendDelta({
   const flat = value === 0
   return (
     <div className={`trend-delta ${flat ? 'neutral' : up ? 'up' : 'down'}`}>
-      <span className="trend-label">vs prior month</span>
       <strong>
         {flat ? '→' : up ? '↗' : '↘'} {up && !flat ? '+' : ''}
         {value}
