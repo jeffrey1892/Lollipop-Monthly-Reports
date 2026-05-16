@@ -94,8 +94,70 @@ function buildIndividualRetentionRisks(customer: CustomerData, currentIndex: num
   const rank: Record<string, number> = { 'Urgent HR Review': 1, 'Manager Action Needed': 2, 'Follow-Up Suggested': 3, Monitor: 4 }
   return risks.sort((a, b) => rank[a.riskLevel] - rank[b.riskLevel] || a.currentMood - b.currentMood).slice(0, 8)
 }
-function buildCommentIntelligence(records: ResponseRecord[]) {
+type ThemeProbe = { theme: string; words: string[] }
+const COMMENT_THEME_PROBES: ThemeProbe[] = [
+  { theme: 'Workload Pressure', words: ['workload', 'tasks', 'behind', 'unable to keep up', 'extra hours', 'late night', 'vacancies', 'positions', 'staffing', 'overwhelmed', 'exhausted'] },
+  { theme: 'Recognition & Appreciation', words: ['appreciate', 'appreciated', 'grateful', 'backing', 'support', 'helping', 'great people'] },
+  { theme: 'Leadership Support', words: ['manager', 'supervisor', 'power', 'talks to others', 'support', 'communication', 'backing'] },
+  { theme: 'Operational Bottlenecks', words: ['vacancies', 'clock', 'bonus', 'positions', 'tasks', 'behind'] },
+  { theme: 'Optimism / Momentum', words: ['deal', 'opportunity', 'closer', 'optimistic', 'excited', 'motivated'] },
+  { theme: 'Personal / Wellbeing', words: ['insurance', 'wife', 'asthma', 'fired', 'personal', 'family', 'health', 'mentally', 'physically'] },
+]
+function probeThemeCounts(records: ResponseRecord[]) {
+  const map = new Map<string, { count: number; teams: Set<string> }>()
+  for (const probe of COMMENT_THEME_PROBES) map.set(probe.theme, { count: 0, teams: new Set<string>() })
+  for (const r of records) {
+    const text = r.comments.toLowerCase()
+    if (!text.trim()) continue
+    for (const probe of COMMENT_THEME_PROBES) {
+      if (contains(text, probe.words)) {
+        const entry = map.get(probe.theme)!
+        entry.count += 1
+        entry.teams.add(r.team)
+      }
+    }
+  }
+  return map
+}
+function buildPriorComparison(records: ResponseRecord[], priorRecords: ResponseRecord[]): import('./types').CommentPriorComparison {
+  const priorCommentCount = priorRecords.filter((r) => r.comments.trim()).length
+  if (priorCommentCount === 0) {
+    return { hasPriorData: false, improving: [], persisting: [], worsening: [], faded: [], spreading: [], newThemes: [], persistingTeams: [] }
+  }
+  const cur = probeThemeCounts(records)
+  const prev = probeThemeCounts(priorRecords)
+  const improving: import('./types').CommentPriorComparison['improving'] = []
+  const worsening: import('./types').CommentPriorComparison['worsening'] = []
+  const persisting: import('./types').CommentPriorComparison['persisting'] = []
+  const faded: import('./types').CommentPriorComparison['faded'] = []
+  const spreading: import('./types').CommentPriorComparison['spreading'] = []
+  const newThemes: import('./types').CommentPriorComparison['newThemes'] = []
+  const persistingTeams: import('./types').CommentPriorComparison['persistingTeams'] = []
+  for (const probe of COMMENT_THEME_PROBES) {
+    const c = cur.get(probe.theme)!
+    const p = prev.get(probe.theme)!
+    const isRisk = probe.theme === 'Workload Pressure' || probe.theme === 'Operational Bottlenecks' || probe.theme === 'Personal / Wellbeing'
+    const delta = c.count - p.count
+    if (p.count === 0 && c.count > 0) newThemes.push({ theme: probe.theme, currentCount: c.count })
+    else if (c.count === 0 && p.count > 0) faded.push({ theme: probe.theme, priorCount: p.count })
+    else if (c.count > 0 && p.count > 0) {
+      if (isRisk && delta <= -1) improving.push({ theme: probe.theme, currentCount: c.count, priorCount: p.count, delta })
+      else if (isRisk && delta >= 1) worsening.push({ theme: probe.theme, currentCount: c.count, priorCount: p.count, delta })
+      else if (!isRisk && delta >= 1) improving.push({ theme: probe.theme, currentCount: c.count, priorCount: p.count, delta })
+      else if (!isRisk && delta <= -1) worsening.push({ theme: probe.theme, currentCount: c.count, priorCount: p.count, delta })
+      else persisting.push({ theme: probe.theme, currentCount: c.count, priorCount: p.count })
+    }
+    const currentTeams = c.teams.size
+    const priorTeams = p.teams.size
+    if (currentTeams > priorTeams && currentTeams >= 2) spreading.push({ theme: probe.theme, currentTeams, priorTeams })
+    const sharedTeams = [...c.teams].filter((t) => p.teams.has(t))
+    if (sharedTeams.length >= 2 && c.count > 0 && p.count > 0) persistingTeams.push({ theme: probe.theme, teams: sharedTeams.slice(0, 4) })
+  }
+  return { hasPriorData: true, improving, persisting, worsening, faded, spreading, newThemes, persistingTeams }
+}
+function buildCommentIntelligence(records: ResponseRecord[], priorRecords: ResponseRecord[] = []) {
   const commentRecords = records.filter((r) => r.comments.trim())
+  const priorComparison = buildPriorComparison(records, priorRecords)
   const comments = commentRecords.map((r) => r.comments)
   const lower = comments.map((c) => c.toLowerCase())
   const countWhere = (words: string[]) => lower.filter((c) => contains(c, words)).length
@@ -170,12 +232,26 @@ function buildCommentIntelligence(records: ResponseRecord[]) {
             : `${team} comments provide useful emotional texture but do not yet show a strong recurring theme; continue monitoring before drawing firm conclusions.`
       return { team, insight, category }
     })
+  const closingLine = priorComparison.hasPriorData
+    ? (() => {
+        const bits: string[] = []
+        if (priorComparison.improving.length) bits.push(`${priorComparison.improving.map((i) => i.theme).join(', ')} improved versus the prior month`)
+        if (priorComparison.persisting.length) bits.push(`${priorComparison.persisting.map((i) => i.theme).join(', ')} are persisting at similar levels`)
+        if (priorComparison.worsening.length) bits.push(`${priorComparison.worsening.map((i) => i.theme).join(', ')} appear worse than the prior month`)
+        if (priorComparison.faded.length) bits.push(`${priorComparison.faded.map((i) => i.theme).join(', ')} faded from last month`)
+        if (priorComparison.spreading.length) bits.push(`${priorComparison.spreading.map((i) => i.theme).join(', ')} are spreading to more teams`)
+        if (priorComparison.newThemes.length) bits.push(`${priorComparison.newThemes.map((i) => i.theme).join(', ')} are newly present this month`)
+        return bits.length
+          ? `Comparing against the prior month's comments: ${bits.join('; ')}. Continue tracking whether these patterns repeat next month.`
+          : 'Comment themes are broadly stable versus the prior month; continue tracking for confirmation.'
+      })()
+    : 'Use next month’s comments to verify whether the same themes are persisting, improving, or spreading to additional teams.'
   const leadershipRecommendations = [
     stress > 0 ? 'Run a targeted workload review in teams where comments reference falling behind, exhaustion, staffing gaps, or sustained pressure.' : '',
     recognition > 0 ? 'Reinforce recognition and manager-backing behaviors that employees are already naming positively.' : '',
     leadership > 0 ? 'Tighten manager communication cadence around expectations, changes, and support availability.' : '',
     work > 0 ? 'Close one visible operational friction point before the next check-in cycle so employees see action from the feedback loop.' : '',
-    'Use next month’s comments to verify whether the same themes are persisting, improving, or spreading to additional teams.',
+    closingLine,
   ].filter(Boolean)
   return {
     commentCount: comments.length,
@@ -204,6 +280,7 @@ function buildCommentIntelligence(records: ResponseRecord[]) {
     teamSpecificInsights,
     voiceQuotes: representative,
     leadershipRecommendations,
+    priorComparison,
   }
 }
 
@@ -283,7 +360,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
   const bestMonth = [...monthlyTrend].sort((a, b) => b.avgMood - a.avgMood)[0]
   const worstMonth = [...monthlyTrend].sort((a, b) => a.avgMood - b.avgMood)[0]
   const volatilityValue = round(Math.max(...monthlyTrend.map((m) => m.avgMood)) - Math.min(...monthlyTrend.map((m) => m.avgMood)), 2)
-  const commentIntelligence = buildCommentIntelligence(records)
+  const commentIntelligence = buildCommentIntelligence(records, prevRecords)
   const individualRetentionRisks = buildIndividualRetentionRisks(customer, currentIndex)
   const reportConfidenceScore = confidenceScore(records.length, allTeams, commentIntelligence.commentCount, followUpRequests > 0)
   const reportConfidence = confidenceLabel(reportConfidenceScore)
