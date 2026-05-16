@@ -591,6 +591,12 @@ a.link:hover{color:#0866c9}
   /* Brief vs full */
   body[data-print-mode="brief"] .appendix-section{display:none!important}
   body[data-print-mode="full"] .appendix-section{display:block!important}
+  /* Generous breathing room between sections in print (both modes) */
+  body[data-print-mode] .pages{gap:22pt!important}
+  body[data-print-mode] .brief-section,
+  body[data-print-mode] .appendix-section{margin:0 0 8pt!important}
+  body[data-print-mode] .section-head{margin:0 0 10pt!important}
+  body[data-print-mode] .section-head-subtitle{margin-top:3pt!important}
 
   /* Full mode: roomier KPI cards — switch from horizontal split to a vertical layout */
   body[data-print-mode="full"] .kpi-grid{gap:6pt!important}
@@ -611,7 +617,7 @@ a.link:hover{color:#0866c9}
   body[data-print-mode="brief"] .trend-section{page-break-before:auto}
 
   /* Brief mode: aggressive compaction so more content fits on page 1 */
-  body[data-print-mode="brief"] .pages{gap:6pt!important}
+  body[data-print-mode="brief"] .pages{gap:18pt!important}
   body[data-print-mode="brief"] main{padding:0!important}
   body[data-print-mode="brief"] .exec-header{margin-bottom:0!important}
   body[data-print-mode="brief"] .client-title{font-size:22pt!important;line-height:.95!important;margin:0!important}
@@ -621,10 +627,10 @@ a.link:hover{color:#0866c9}
   body[data-print-mode="brief"] .health-tile strong{font-size:11pt!important}
   body[data-print-mode="brief"] .health-tile small{font-size:7pt!important}
   body[data-print-mode="brief"] .health-tile .note-ref{display:none!important}
-  body[data-print-mode="brief"] .section-head{margin:0 0 3pt!important}
+  body[data-print-mode="brief"] .section-head{margin:0 0 8pt!important}
   body[data-print-mode="brief"] .h1-section{font-size:12pt!important;line-height:1.1!important}
   body[data-print-mode="brief"] .section-head-subtitle{font-size:7.5pt!important;margin-top:1pt!important}
-  body[data-print-mode="brief"] .brief-section{margin:0!important;page-break-inside:avoid}
+  body[data-print-mode="brief"] .brief-section{margin:0 0 6pt!important;page-break-inside:avoid}
   body[data-print-mode="brief"] .card{padding:6pt 9pt!important}
   body[data-print-mode="brief"] .kpi-grid{gap:5pt!important}
   body[data-print-mode="brief"] .kpi-card{padding:4pt 6pt!important;min-height:0!important}
@@ -701,12 +707,13 @@ a.link:hover{color:#0866c9}
   @page{size:letter;margin:0.4in}
   .manager-page .topbar{display:none!important}
   .manager-page .card{box-shadow:none!important;border:1px solid #d9dde5!important;padding:12pt 14pt!important}
-  .manager-page .brief-section{margin:0!important;page-break-inside:avoid}
-  .manager-page .pages{padding:0!important;gap:14pt!important}
+  .manager-page .brief-section{margin:0 0 6pt!important;page-break-inside:avoid}
+  .manager-page .pages{padding:0!important;gap:22pt!important}
   .manager-page main{padding:0!important}
   .manager-page .exec-header{margin-bottom:0!important}
   .manager-page .client-title{font-size:20pt!important;line-height:1!important;margin:0!important}
-  .manager-page .exec-header-meta{font-size:8.5pt!important;margin-top:1pt!important}
+  .manager-page .exec-header-meta{font-size:8.5pt!important;margin-top:3pt!important;margin-bottom:6pt!important}
+  .manager-page .manager-exec-summary{margin-top:4pt!important}
   .manager-page .health-tile{padding:3pt 6pt!important;max-width:120pt!important}
   .manager-page .health-tile strong{font-size:10pt!important}
   .manager-page .health-tile small{font-size:7pt!important}
@@ -735,9 +742,9 @@ a.link:hover{color:#0866c9}
   .manager-page .manager-compare-right>.card{display:flex;flex-direction:column;justify-content:center}
   .manager-page .manager-compare-right svg{width:100%!important;height:auto!important;max-height:140pt!important}
   /* Section headers */
-  .manager-page .section-head{margin:0 0 6pt!important}
+  .manager-page .section-head{margin:0 0 10pt!important}
   .manager-page .h1-section{font-size:13pt!important;line-height:1.15!important}
-  .manager-page .section-head-subtitle{font-size:8pt!important;margin:2pt 0 0!important;line-height:1.3!important}
+  .manager-page .section-head-subtitle{font-size:8pt!important;margin:3pt 0 0!important;line-height:1.3!important}
   /* Compact body text */
   .manager-page .card p,.manager-page .card li{font-size:9pt!important;line-height:1.4!important}
   .manager-page .h2-sub{font-size:10pt!important;margin:0 0 4pt!important}
