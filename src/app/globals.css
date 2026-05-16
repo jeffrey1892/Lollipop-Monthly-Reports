@@ -217,12 +217,12 @@
 
 /* A. Executive Header */
 .exec-header{display:block;padding:10px 0 0;margin-bottom:8px}
-.exec-header-title-row{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;margin:2px 0 1px}
-.exec-header-title-row .client-title{margin:0!important;line-height:.92!important}
+.exec-header-title-row{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;margin:0}
+.exec-header-title-row .client-title{margin:0!important;line-height:.85!important}
 .exec-header-title-row .health-tile{text-align:left;min-width:0;padding:8px 12px;width:max-content;max-width:180px;align-self:flex-start}
 .exec-header-title-row .health-tile strong{font-size:20px}
 .exec-header-title-row .health-tile .note-ref{display:block;margin:6px 0 0}
-.exec-header-main .client-title{font-family:Georgia,serif;font-size:clamp(36px,5.5vw,58px);line-height:.92;letter-spacing:-.04em;margin:1px 0 2px}
+.exec-header-main .client-title{font-family:Georgia,serif;font-size:clamp(36px,5.5vw,58px);line-height:.85;letter-spacing:-.04em;margin:0}
 .exec-header-meta{margin:0;color:var(--ink);font-size:14px;font-weight:600}
 .exec-header .dashboard-help{margin-top:10px}
 .health-tile{border-radius:18px;padding:14px 18px;background:var(--card);border:1px solid var(--line);min-width:200px;text-align:right;box-shadow:0 1px 2px rgba(33,33,33,.04),0 8px 24px rgba(33,33,33,.04)}
