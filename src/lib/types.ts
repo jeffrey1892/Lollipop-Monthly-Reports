@@ -68,6 +68,18 @@ export type CommentIntelligence = {
   teamSpecificInsights: Array<{ team: string; insight: string; category: string }>
   voiceQuotes: string[]
   leadershipRecommendations: string[]
+  priorComparison: CommentPriorComparison
+}
+
+export type CommentPriorComparison = {
+  hasPriorData: boolean
+  improving: Array<{ theme: string; currentCount: number; priorCount: number; delta: number }>
+  persisting: Array<{ theme: string; currentCount: number; priorCount: number }>
+  worsening: Array<{ theme: string; currentCount: number; priorCount: number; delta: number }>
+  faded: Array<{ theme: string; priorCount: number }>
+  spreading: Array<{ theme: string; currentTeams: number; priorTeams: number }>
+  newThemes: Array<{ theme: string; currentCount: number }>
+  persistingTeams: Array<{ theme: string; teams: string[] }>
 }
 
 export type ResponsivenessIntelligence = {
