@@ -267,44 +267,42 @@ export default async function ManagerPage({
               )}
             </div>
           </div>
-        </section>
-
-        {/* F. What your team is saying */}
-        <section className="brief-section">
-          <SectionHeader
-            title="What your team is saying"
-            subtitle="Aggregated themes only — no individual quotes are shown at the team level."
-          />
-          <div className="card">
-            {team.commentThemes.length > 0 ? (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {team.commentThemes.map((t) => (
-                  <span
-                    key={t}
-                    className="h2-sub"
-                    style={{
-                      background: 'var(--blueSoft)',
-                      border: '1px solid #bddcff',
-                      borderRadius: 999,
-                      padding: '6px 12px',
-                      fontSize: 13,
-                    }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <p className="muted">
-                No aggregated comment themes available for this period. Themes appear when at least
-                3 comments are submitted.
-              </p>
-            )}
-            {team.privacyNote && (
-              <p className="muted" style={{ marginTop: 10, fontSize: 12 }}>
-                <strong>Privacy.</strong> {team.privacyNote}
-              </p>
-            )}
+          <div className="manager-compare-third">
+            <SectionHeader
+              title="What your team is saying"
+              subtitle="Aggregated themes only — no individual quotes."
+            />
+            <div className="card">
+              {team.commentThemes.length > 0 ? (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {team.commentThemes.map((t) => (
+                    <span
+                      key={t}
+                      className="h2-sub"
+                      style={{
+                        background: 'var(--blueSoft)',
+                        border: '1px solid #bddcff',
+                        borderRadius: 999,
+                        padding: '6px 12px',
+                        fontSize: 13,
+                      }}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <p className="muted">
+                  No aggregated comment themes available for this period. Themes appear when at
+                  least 3 comments are submitted.
+                </p>
+              )}
+              {team.privacyNote && (
+                <p className="muted" style={{ marginTop: 10, fontSize: 12 }}>
+                  <strong>Privacy.</strong> {team.privacyNote}
+                </p>
+              )}
+            </div>
           </div>
         </section>
 
