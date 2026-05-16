@@ -190,6 +190,28 @@ export default async function ManagerPage({
   const hasWorkloadTheme = team.commentThemes.some((t) =>
     /workload|burnout|staffing|coverage/i.test(t),
   )
+  const moodMove =
+    team.change === null
+      ? 'no prior-month comparison'
+      : team.change > 0.05
+      ? `up ${team.change.toFixed(2)} from prior month`
+      : team.change < -0.05
+      ? `down ${Math.abs(team.change).toFixed(2)} from prior month`
+      : 'flat versus prior month'
+
+  let execSummary = ''
+  if (team.severity === 'Positive Momentum') {
+    execSummary = `Your team is showing strong mood (${team.avgMood.toFixed(2)}, ${moodMove}) with ${team.positivePct}% positive sentiment. Preserve what's working and consider sharing practices with peer managers.`
+  } else if (team.severity === 'High') {
+    execSummary = `Mood (${team.avgMood.toFixed(2)}, ${moodMove}) and ${team.positivePct}% positive sentiment are below the company average. Schedule a direct listening conversation this period to identify the most pressing blocker.`
+  } else if (team.severity === 'Watchlist') {
+    execSummary = `Softer signals this period — mood ${team.avgMood.toFixed(2)} (${moodMove}), ${team.positivePct}% positive. Worth a brief check-in to surface workload, communication, or recognition gaps before they grow.`
+  } else if (lowSample) {
+    execSummary = `Only ${team.responses} check-ins this period — read the numbers directionally. Encourage more participation to make next month's signal more reliable.`
+  } else {
+    execSummary = `No acute signal — mood ${team.avgMood.toFixed(2)} (${moodMove}), ${team.positivePct}% positive. Continue your current cadence and reinforce the behaviors that are working.`
+  }
+
   const recommendedTools = pickTools({
     severity: team.severity,
     avgMood: team.avgMood,
@@ -224,6 +246,12 @@ export default async function ManagerPage({
               <span className="muted">Confidence {team.confidence}</span>
             </p>
           </div>
+        </section>
+
+        {/* A2. Short executive summary */}
+        <section className="brief-section manager-exec-summary">
+          <p className="h3-micro">Executive summary</p>
+          <p>{execSummary}</p>
         </section>
 
         {/* B + E. Snapshot KPIs + Mood breakdown side-by-side */}
