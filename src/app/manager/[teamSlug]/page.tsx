@@ -423,59 +423,65 @@ export default async function ManagerPage({
           </div>
         </section>
 
-        {/* G. Recommended manager action */}
+        {/* G. Recommended manager action — two-column layout */}
         <section className="brief-section">
           <SectionHeader title="Recommended manager action" />
-          <div className="card">
-            <p className="h3-micro">Primary read</p>
-            <p>{team.keyConcernOrStrength}</p>
-            <p className="h3-micro" style={{ marginTop: 12 }}>
-              Suggested next step
-            </p>
-            <p>{team.managerAction}</p>
-            <p className="h3-micro" style={{ marginTop: 12 }}>
-              Tactical follow-through
-            </p>
-            <ol style={{ paddingLeft: 18, margin: '6px 0' }}>
-              <li>Schedule a 15-minute listening conversation with the team.</li>
-              <li>Identify one workload, recognition, or communication blocker to close.</li>
-              <li>Document the follow-through in your manager tools.</li>
-            </ol>
-            <p style={{ marginTop: 10 }}>
-              <a href={managerToolsUrl} target="_blank" rel="noreferrer">
-                Open Lollipop manager tools →
-              </a>
-            </p>
+          <div className="card manager-action-grid">
+            <div className="manager-action-col">
+              <p className="h3-micro">Primary read</p>
+              <p>{team.keyConcernOrStrength}</p>
+              <p className="h3-micro" style={{ marginTop: 12 }}>
+                Suggested next step
+              </p>
+              <p>{team.managerAction}</p>
+              <p className="h3-micro" style={{ marginTop: 12 }}>
+                Tactical follow-through
+              </p>
+              <ol style={{ paddingLeft: 18, margin: '6px 0' }}>
+                <li>Schedule a 15-minute listening conversation with the team.</li>
+                <li>Identify one workload, recognition, or communication blocker to close.</li>
+                <li>Document the follow-through in your manager tools.</li>
+              </ol>
+              <p style={{ marginTop: 10 }}>
+                <a className="link" href={managerToolsUrl} target="_blank" rel="noreferrer">
+                  Open Lollipop manager tools →
+                </a>
+              </p>
+            </div>
+            <div className="manager-action-col">
+              <p className="h3-micro">Suggested tools for this team</p>
+              <p className="muted" style={{ fontSize: 12, marginTop: 2 }}>
+                Selected based on this period's mood, participation, sentiment, and comment themes.
+              </p>
+              <ul className="manager-tools-list">
+                {recommendedTools.map((tool) => (
+                  <li key={tool.key}>
+                    <a
+                      className="link"
+                      href={tool.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {tool.name} →
+                    </a>
+                    <p>{tool.whenToUse}</p>
+                  </li>
+                ))}
+              </ul>
 
-            <hr style={{ border: 0, borderTop: '1px solid var(--line)', margin: '14px 0' }} />
-
-            <p className="h3-micro">Suggested tools for this team</p>
-            <p className="muted" style={{ fontSize: 12, marginTop: 2 }}>
-              Selected based on this period's mood, participation, sentiment, and comment themes.
-            </p>
-            <ul className="manager-tools-list">
-              {recommendedTools.map((tool) => (
-                <li key={tool.key}>
-                  <a href={tool.url} target="_blank" rel="noreferrer" className="manager-tool-link">
-                    {tool.name} →
-                  </a>
-                  <p>{tool.whenToUse}</p>
-                </li>
-              ))}
-            </ul>
-
-            <p className="h3-micro" style={{ marginTop: 14 }}>
-              Manager training videos
-            </p>
-            <ul className="manager-videos-list">
-              {TRAINING_VIDEOS.map((v) => (
-                <li key={v.url}>
-                  <a href={v.url} target="_blank" rel="noreferrer">
-                    ▶ {v.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
+              <p className="h3-micro" style={{ marginTop: 14 }}>
+                Manager training videos
+              </p>
+              <ul className="manager-videos-list">
+                {TRAINING_VIDEOS.map((v) => (
+                  <li key={v.url}>
+                    <a className="link" href={v.url} target="_blank" rel="noreferrer">
+                      ▶ {v.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
