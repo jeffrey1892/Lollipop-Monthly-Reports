@@ -676,6 +676,8 @@ a.link:hover{color:#0866c9}
   body[data-print-mode="brief"] .action-details{display:none!important}
   body[data-print-mode="brief"] .action-grid-v2{gap:5pt!important}
   body[data-print-mode="brief"] .trend{height:90pt!important}
+  body[data-print-mode] .followup-section .followup-bottom-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:8pt!important;align-items:stretch!important}
+  body[data-print-mode] .followup-section .followup-bottom-row>.card{page-break-inside:avoid!important;flex:1;align-self:stretch}
   body[data-print-mode="brief"] .followup-section .empty-chart{min-height:50pt!important}
   body[data-print-mode="brief"] .ci-theme-table th,
   body[data-print-mode="brief"] .ci-theme-table td{padding:2pt 4pt!important;font-size:7pt!important}
