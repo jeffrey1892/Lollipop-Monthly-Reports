@@ -12,7 +12,13 @@ function TrendDelta({ value, suffix = '', detail }: { value: number | null; suff
   const flat = value === 0
   return <div className={`trend-delta ${flat ? 'neutral' : up ? 'up' : 'down'}`}><span className="trend-label">Prior month</span><strong>{flat ? '→' : up ? '↗' : '↘'} {up && !flat ? '+' : ''}{value}{suffix}</strong>{detail && <small>{detail}</small>}</div>
 }
-function Kpi({ label, value, delta, tone }: { label: React.ReactNode; value: string; delta?: React.ReactNode; tone?: string }) {
+function InlineTrend({ value, suffix = '' }: { value: number | null; suffix?: string }) {
+  if (value === null) return <span className="inline-trend neutral">No prior comparison</span>
+  const up = value >= 0
+  const flat = value === 0
+  return <span className={`inline-trend ${flat ? 'neutral' : up ? 'up' : 'down'}`}>{flat ? '→' : up ? '↗' : '↘'} {up && !flat ? '+' : ''}{value}{suffix}</span>
+}
+function Kpi({ label, value, delta, tone }: { label: React.ReactNode; value: React.ReactNode; delta?: React.ReactNode; tone?: string }) {
   return <div className={`card kpi ${tone ?? ''}`}><p className="eyebrow">{label}</p><strong>{value}</strong><div>{delta}</div></div>
 }
 function ConfidenceBadge({ value }: { value: string }) { return <span className={`badge confidence ${value.toLowerCase()}`}>Confidence: {value} <NoteRef n={3} /></span> }
@@ -36,7 +42,7 @@ export default function Home({ searchParams }: { searchParams?: { month?: string
 
 <section className="exec-cover brief-section"><div><p className="eyebrow">Prepared by Lollipop</p><h1 className="client-title">{report.customerName}</h1><p className="report-subtitle">Workforce Intelligence Report · {report.label}</p><div className="dashboard-help"><a href="https://www.trylollipop.com/resources-page-hidden" target="_blank" rel="noreferrer">Watch dashboard explanation video</a><a href="mailto:support@trylollipop.com">Dashboard support: support@trylollipop.com</a></div></div><div className={`status-tile ${report.healthSummary.rating.toLowerCase()}`}><span>Organizational Health <NoteRef n={1} /></span><strong>{report.healthSummary.rating}</strong><small>{report.healthSummary.score}/100</small></div></section>
 
-<section className="exec-dashboard brief-section four"><Kpi label="Average Mood" value={report.avgMood.toFixed(2)} delta={<TrendDelta value={report.avgMoodChange} />}/><Kpi label="Positive Sentiment" value={`${report.positivePct}%`} delta={<TrendDelta value={report.positiveChange} suffix=" pts" />}/><Kpi label="Engagement" value={report.engagement.responseRate !== null ? `${report.engagement.responseRate}%` : `${report.responseCount}`} delta={<><span className="kpi-note">{`${report.engagement.uniqueParticipants} of ${report.engagement.optedInPopulation ?? 'unknown'} opted-in`}</span><span className="kpi-note">Unique employees checking in during the period divided by total opted-in employees.</span><TrendDelta value={report.engagement.responseRateChange} suffix=" percentage points" detail={report.engagement.participationChange !== null ? `${report.engagement.participationChange > 0 ? '+' : ''}${report.engagement.participationChange} check-ins` : 'check-ins unavailable'} /></>}/><Kpi label="Watchlist Teams" value={`${report.watchTeams.length}`} delta={hotspots}/></section>
+<section className="exec-dashboard brief-section four"><Kpi label="Average Mood" value={report.avgMood.toFixed(2)} delta={<TrendDelta value={report.avgMoodChange} />}/><Kpi label="Positive Sentiment" value={`${report.positivePct}%`} delta={<TrendDelta value={report.positiveChange} suffix=" pts" />}/><Kpi label="Engagement" value={<span className="kpi-value-row"><span>{report.engagement.responseRate !== null ? `${report.engagement.responseRate}%` : `${report.responseCount}`}</span><InlineTrend value={report.engagement.responseRateChange} suffix=" pp" /></span>} delta={<><span className="kpi-note">{`${report.engagement.uniqueParticipants} of ${report.engagement.optedInPopulation ?? 'unknown'} opted-in`}{report.engagement.participationChange !== null ? ` · ${report.engagement.participationChange > 0 ? '+' : ''}${report.engagement.participationChange} check-ins` : ''}</span><span className="kpi-note">Unique employees checking in during the period divided by total opted-in employees.</span></>}/><Kpi label="Watchlist Teams" value={`${report.watchTeams.length}`} delta={hotspots}/></section>
 
 <section className="card section brief-section executive-summary-wide"><p className="eyebrow">Executive Summary</p><h2>{report.strategicNarrative[0]}</h2><p>{report.strategicNarrative[1]}</p><p className="muted">{report.strategicNarrative[2]}</p></section>
 
