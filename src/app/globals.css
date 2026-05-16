@@ -220,9 +220,15 @@
 .action-card-foot{display:flex;flex-direction:column;gap:6px;margin-top:auto;padding-top:6px;border-top:1px solid var(--line)}
 .action-card-foot small{color:var(--muted);font-weight:600}
 .topbar-month-form{display:inline-flex;gap:8px;align-items:center}
-.manager-page .pages{gap:22px}
+.manager-page .pages{gap:18px}
+.manager-page main{padding:18px 0 60px}
 .manager-page .exec-header{margin-bottom:0}
-.manager-page .exec-header-meta{margin-top:4px}
+.manager-page .exec-header-main>.h3-micro{margin:0 0 2px}
+.manager-page .exec-header-title-row{margin:0}
+.manager-page .client-title{font-size:clamp(28px,4vw,40px)!important;line-height:1!important}
+.manager-page .exec-header-title-row .health-tile{padding:6px 10px;max-width:170px}
+.manager-page .exec-header-title-row .health-tile strong{font-size:16px}
+.manager-page .exec-header-meta{margin-top:2px;font-size:13px}
 .manager-snapshot-row,.manager-compare-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
 .kpi-grid.kpi-grid-2x2{grid-template-columns:1fr 1fr}
 .manager-snapshot-right .card,.manager-compare-right .card{height:100%}
