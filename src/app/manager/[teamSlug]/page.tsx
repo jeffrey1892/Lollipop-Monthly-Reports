@@ -253,8 +253,8 @@ export default async function ManagerPage({
               <KpiCard
                 label="Participation"
                 value={team.responses}
-                sub={<>check-ins this period</>}
-                delta={<TrendDelta value={team.participationTrend} suffix=" check-ins" />}
+                sub={<>check-ins</>}
+                delta={<TrendDelta value={team.participationTrend} />}
                 tone="blue"
               />
               <KpiCard
