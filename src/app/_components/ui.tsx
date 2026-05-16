@@ -78,6 +78,30 @@ export function SeverityBadge({ value }: { value: string }) {
   )
 }
 
+export function SectionHeader({
+  eyebrow,
+  title,
+  subtitle,
+  accent,
+  size = 'lg',
+}: {
+  eyebrow?: React.ReactNode
+  title: React.ReactNode
+  subtitle?: React.ReactNode
+  accent?: 'blue' | 'muted' | 'none'
+  size?: 'lg' | 'sm'
+}) {
+  const accentClass = accent && accent !== 'none' ? ` accent-${accent}` : ''
+  const sizeClass = size === 'sm' ? ' size-sm' : ''
+  return (
+    <header className={`section-head${accentClass}${sizeClass}`}>
+      {eyebrow && <p className="h3-micro section-head-eyebrow">{eyebrow}</p>}
+      <h2 className="h1-section">{title}</h2>
+      {subtitle && <p className="section-head-subtitle">{subtitle}</p>}
+    </header>
+  )
+}
+
 export function KpiCard({
   label,
   value,

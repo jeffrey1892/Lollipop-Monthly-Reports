@@ -9,6 +9,7 @@ import {
   SeverityBadge,
   NoteRef,
   KpiCard,
+  SectionHeader,
 } from './_components/ui'
 import TrendChart from './_components/TrendChart'
 import TeamRankCard from './_components/TeamRankCard'
@@ -86,12 +87,12 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         {/* === A. Executive Header === */}
         <section className="exec-header brief-section">
           <div className="exec-header-main">
-            <p className="eyebrow">Workforce Intelligence Report</p>
+            <p className="h3-micro">Workforce intelligence report</p>
             <div className="exec-header-title-row">
               <h1 className="client-title">{report.customerName}</h1>
               <div className={`health-tile health-${report.healthSummary.rating.toLowerCase().replace(/\s+/g, '-')}`}>
-                <span className="health-label">
-                  Organizational Health <NoteRef n={1} />
+                <span className="health-label h3-micro">
+                  Organizational health <NoteRef n={1} />
                 </span>
                 <strong>{report.healthSummary.rating}</strong>
                 <small>{report.healthSummary.score} / 100</small>
@@ -115,102 +116,104 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         </section>
 
         {/* === B. Executive KPI Snapshot === */}
-        <section className="brief-section kpi-grid">
-          <KpiCard
-            label="Average Mood"
-            value={report.avgMood.toFixed(2)}
-            sub={<>out of 5.00</>}
-            delta={<TrendDelta value={report.avgMoodChange} />}
-            tone={moodTone}
-          />
-          <KpiCard
-            label="Positive Sentiment"
-            value={`${report.positivePct}%`}
-            sub={<>of all check-ins</>}
-            delta={<TrendDelta value={report.positiveChange} suffix=" pts" />}
-            tone={positiveTone}
-          />
-          <KpiCard
-            label="Participation Rate"
-            value={engagementPct !== null ? `${engagementPct}%` : '—'}
-            sub={
-              <>
-                {report.engagement.uniqueParticipants} of{' '}
-                {report.engagement.optedInPopulation ?? '—'} opted-in
-              </>
-            }
-            delta={<TrendDelta value={report.engagement.responseRateChange} suffix=" pp" />}
-            tone="blue"
-          />
-          <KpiCard
-            label="Total Responses"
-            value={report.responseCount}
-            sub={<>check-ins this period</>}
-            delta={<TrendDelta value={report.engagement.participationChange} suffix=" check-ins" />}
-            tone="neutral"
-          />
-          <KpiCard
-            label="Teams Requiring Attention"
-            value={report.watchTeams.length}
-            sub={
-              report.watchTeams.length > 0 ? (
-                <>{report.watchTeams.map((t) => t.team).join(', ')}</>
-              ) : (
-                <>no concentrated hotspot</>
-              )
-            }
-            tone={watchTone}
-          />
-          {report.followUpRequests > 0 && (
+        <section className="brief-section">
+          <SectionHeader title="Executive snapshot" subtitle="Headline metrics versus prior month" />
+          <div className="kpi-grid">
             <KpiCard
-              label="Follow-Up Requests"
-              value={report.followUpRequests}
+              label="Average mood"
+              value={report.avgMood.toFixed(2)}
+              sub={<>out of 5.00</>}
+              delta={<TrendDelta value={report.avgMoodChange} />}
+              tone={moodTone}
+            />
+            <KpiCard
+              label="Positive sentiment"
+              value={`${report.positivePct}%`}
+              sub={<>of all check-ins</>}
+              delta={<TrendDelta value={report.positiveChange} suffix=" pts" />}
+              tone={positiveTone}
+            />
+            <KpiCard
+              label="Participation rate"
+              value={engagementPct !== null ? `${engagementPct}%` : '—'}
               sub={
-                report.followUpCompletionPct !== null ? (
-                  <>{report.followUpCompletionPct}% completed</>
+                <>
+                  {report.engagement.uniqueParticipants} of{' '}
+                  {report.engagement.optedInPopulation ?? '—'} opted-in
+                </>
+              }
+              delta={<TrendDelta value={report.engagement.responseRateChange} suffix=" pp" />}
+              tone="blue"
+            />
+            <KpiCard
+              label="Total responses"
+              value={report.responseCount}
+              sub={<>check-ins this period</>}
+              delta={<TrendDelta value={report.engagement.participationChange} suffix=" check-ins" />}
+              tone="neutral"
+            />
+            <KpiCard
+              label="Teams requiring attention"
+              value={report.watchTeams.length}
+              sub={
+                report.watchTeams.length > 0 ? (
+                  <>{report.watchTeams.map((t) => t.team).join(', ')}</>
                 ) : (
-                  <>awaiting triage</>
+                  <>no concentrated hotspot</>
                 )
               }
-              tone={
-                report.followUpCompletionPct !== null && report.followUpCompletionPct >= 70
-                  ? 'green'
-                  : 'amber'
-              }
+              tone={watchTone}
             />
-          )}
+            {report.followUpRequests > 0 && (
+              <KpiCard
+                label="Follow-up requests"
+                value={report.followUpRequests}
+                sub={
+                  report.followUpCompletionPct !== null ? (
+                    <>{report.followUpCompletionPct}% completed</>
+                  ) : (
+                    <>awaiting triage</>
+                  )
+                }
+                tone={
+                  report.followUpCompletionPct !== null && report.followUpCompletionPct >= 70
+                    ? 'green'
+                    : 'amber'
+                }
+              />
+            )}
+          </div>
         </section>
 
         {/* === C. Executive Summary === */}
-        <section className="brief-section exec-summary-card">
-          <p className="eyebrow">Executive Summary</p>
-          <p className="exec-summary-lede">{whatChangedNarrative}</p>
-          <dl className="exec-summary-list">
-            <div>
-              <dt>Why it matters</dt>
-              <dd>{whyItMattersNarrative}</dd>
-            </div>
-            <div>
-              <dt>Recommended leadership focus</dt>
-              <dd>
-                {leadershipFocusNarrative}
-                {report.leadershipAttention[0] && leadershipFocusNarrative !== report.leadershipAttention[0] && (
-                  <> {report.leadershipAttention[0]}</>
-                )}
-              </dd>
-            </div>
-          </dl>
+        <section className="brief-section">
+          <SectionHeader title="Executive summary" />
+          <div className="exec-summary-card">
+            <p className="exec-summary-lede">{whatChangedNarrative}</p>
+            <dl className="exec-summary-list">
+              <div>
+                <dt className="h3-micro">Why it matters</dt>
+                <dd>{whyItMattersNarrative}</dd>
+              </div>
+              <div>
+                <dt className="h3-micro">Recommended leadership focus</dt>
+                <dd>
+                  {leadershipFocusNarrative}
+                  {report.leadershipAttention[0] && leadershipFocusNarrative !== report.leadershipAttention[0] && (
+                    <> {report.leadershipAttention[0]}</>
+                  )}
+                </dd>
+              </div>
+            </dl>
+          </div>
         </section>
 
         {/* === D. Priority Action Items === */}
         <section className="brief-section action-section">
-          <div className="section-header">
-            <div>
-              <p className="eyebrow">Priority Action Items</p>
-              <h2>What leadership should do next</h2>
-            </div>
-            <small className="muted">Sorted by urgency · {sortedRecs.length} actions</small>
-          </div>
+          <SectionHeader
+            title="Priority leadership actions"
+            subtitle={`Sorted by urgency · ${sortedRecs.length} actions`}
+          />
           <div className="action-grid-v2">
             {sortedRecs.map((r) => (
               <article
@@ -221,19 +224,19 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                   <span className="action-priority">{r.priority}</span>
                   <span className="urgency-pill">{r.urgency} urgency</span>
                 </div>
-                <h3>{r.title}</h3>
+                <h3 className="h2-sub">{r.title}</h3>
                 {r.trigger && (
                   <p className="action-block">
-                    <span className="label">Issue</span>
+                    <span className="label h3-micro">Issue</span>
                     {r.trigger}
                   </p>
                 )}
                 <p className="action-block">
-                  <span className="label">Why it matters</span>
+                  <span className="label h3-micro">Why it matters</span>
                   {r.why}
                 </p>
                 <p className="action-block">
-                  <span className="label">Recommended action</span>
+                  <span className="label h3-micro">Recommended action</span>
                   {r.nextStep}
                 </p>
                 <footer className="action-card-foot">
@@ -257,35 +260,30 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
         {/* === E. Company-Wide Trend Dashboard === */}
         <section className="brief-section trend-section">
-          <div className="section-header">
-            <div>
-              <p className="eyebrow">Company-Wide Trends</p>
-              <h2>Sentiment and participation over time</h2>
-            </div>
-          </div>
+          <SectionHeader title="Company-wide trends" subtitle="Sentiment and participation over time" />
           <div className="trend-card-grid">
             <div className="card trend-chart-card">
               <TrendChart data={report.monthlyTrend} />
             </div>
             <div className="trend-stats">
               <div className="stat-tile">
-                <span>Trailing 3-month mood</span>
+                <span className="h3-micro">Trailing 3-month mood</span>
                 <strong>{report.trend.threeMonthAvgMood ?? '—'}</strong>
               </div>
               <div className="stat-tile">
-                <span>Rolling positive</span>
+                <span className="h3-micro">Rolling positive</span>
                 <strong>{report.trend.rollingPositivePct ?? '—'}%</strong>
               </div>
               <div className="stat-tile">
-                <span>Best month</span>
+                <span className="h3-micro">Best month</span>
                 <strong>{report.trend.bestMonth}</strong>
               </div>
               <div className="stat-tile">
-                <span>Worst month</span>
+                <span className="h3-micro">Worst month</span>
                 <strong>{report.trend.worstMonth}</strong>
               </div>
               <div className="stat-tile wide">
-                <span>Persistence</span>
+                <span className="h3-micro">Persistence</span>
                 <strong className="stat-narrative">{report.trend.meaningfulMovement}</strong>
               </div>
             </div>
@@ -294,34 +292,29 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
         {/* === F. Team Performance Dashboard === */}
         <section className="brief-section team-perf-section">
-          <div className="section-header">
-            <div>
-              <p className="eyebrow">Team Performance</p>
-              <h2>Rankings and movement by team</h2>
-            </div>
-          </div>
+          <SectionHeader title="Team performance & risk" subtitle="Rankings and movement by team" />
           <div className="team-perf-grid">
             <TeamRankCard
-              title="Top Performing"
+              title="Top performing teams"
               subtitle="Highest average mood"
               teams={report.topTeams}
               tone="green"
               variant="bars"
             />
             <TeamRankCard
-              title="Watch / Lowest"
+              title="Watch teams"
               subtitle="Concentrated risk signal"
               teams={report.watchTeams}
               tone="coral"
             />
             <TeamRankCard
-              title="Biggest Improvement"
+              title="Biggest improvement"
               subtitle="Largest mood gains vs prior month"
               teams={report.improvingTeams}
               tone="blue"
             />
             <TeamRankCard
-              title="Biggest Decline"
+              title="Biggest decline"
               subtitle="Largest mood drops vs prior month"
               teams={report.decliningTeams}
               tone="amber"
@@ -331,12 +324,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
         {/* === G. Emotional Wellness === */}
         <section className="brief-section emotion-section">
-          <div className="section-header">
-            <div>
-              <p className="eyebrow">Emotional Wellness</p>
-              <h2>Most-named emotions this period</h2>
-            </div>
-          </div>
+          <SectionHeader title="Emotional wellness" subtitle="Most-named emotions this period" />
           <div className="emotion-grid">
             <div className="card emotion-bars-card">
               {report.topEmotions.slice(0, 6).map((e) => (
@@ -352,7 +340,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               ))}
             </div>
             <div className="card emotion-narrative-card">
-              <p className="eyebrow">Interpretation</p>
+              <p className="h3-micro">Interpretation</p>
               <p>
                 The dominant emotion this period is{' '}
                 <strong>{topEmotion ? topEmotion.emotion.toLowerCase() : 'unspecified'}</strong>
@@ -370,13 +358,12 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
         {/* === H. Comment Intelligence === */}
         <section className="brief-section comment-intel-v2">
-          <div className="section-header centered">
-            <p className="eyebrow ai">AI · Comment Intelligence</p>
-            <h2 className="serif-heading">What employee comments are revealing</h2>
-            <p className="muted small">
-              Synthesized from {report.commentIntelligence.commentCount} free-text comments
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow={<>AI · synthesized signal</>}
+            title="AI comment intelligence"
+            subtitle={`Synthesized from ${report.commentIntelligence.commentCount} free-text comments`}
+            accent="blue"
+          />
 
           <div className="card ci-summary-card">
             <p className="ci-summary">{report.commentIntelligence.executiveSummary}</p>
@@ -396,7 +383,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           </div>
 
           <div className="card ci-table-card">
-            <p className="eyebrow">Theme detail</p>
+            <h3 className="h2-sub">Theme detail</h3>
             <div className="table-wrap">
               <table className="table ci-theme-table">
                 <thead>
@@ -425,7 +412,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
           <div className="ci-two-col">
             <div className="card ci-list positive">
-              <p className="eyebrow">Positive Drivers</p>
+              <h3 className="h2-sub">Positive drivers</h3>
               <ul>
                 {report.commentIntelligence.positiveDrivers.map((d) => (
                   <li key={d}>{d}</li>
@@ -433,7 +420,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </ul>
             </div>
             <div className="card ci-list attention">
-              <p className="eyebrow">Areas Requiring Attention</p>
+              <h3 className="h2-sub">Areas requiring attention</h3>
               <ul>
                 {report.commentIntelligence.attentionAreas.map((a) => (
                   <li key={a}>{a}</li>
@@ -444,7 +431,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
           <div className="ci-two-col">
             <div className="card">
-              <p className="eyebrow">Personal vs Work-Related Stress</p>
+              <h3 className="h2-sub">Work vs personal stress</h3>
               <div className="stress-rows">
                 {report.commentIntelligence.stressAnalysis.map((s) => (
                   <div className={`stress-row stress-${s.category.toLowerCase().replace(/[^a-z]/g, '')}`} key={s.category}>
@@ -459,7 +446,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </div>
             </div>
             <div className="card">
-              <p className="eyebrow">Representative Employee Voice</p>
+              <h3 className="h2-sub">Representative employee voice</h3>
               <div className="quote-grid-v2">
                 {report.commentIntelligence.voiceQuotes.slice(0, 4).map((q) => (
                   <blockquote key={q}>{q}</blockquote>
@@ -470,7 +457,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
           <div className="ci-two-col">
             <div className="card">
-              <p className="eyebrow">Team-Specific Comment Insights</p>
+              <h3 className="h2-sub">Team-specific comment insights</h3>
               <div className="mini-insight-list">
                 {report.commentIntelligence.teamSpecificInsights.map((t) => (
                   <div className="mini-insight" key={t.team}>
@@ -481,7 +468,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </div>
             </div>
             <div className="card">
-              <p className="eyebrow">Leadership Recommendations</p>
+              <h3 className="h2-sub">Leadership recommendations</h3>
               <ol className="recs-ol">
                 {report.commentIntelligence.leadershipRecommendations.slice(0, 6).map((r) => (
                   <li key={r}>{r}</li>
@@ -492,29 +479,30 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         </section>
 
         {/* === I. Detailed Team Breakdowns === */}
-        <section className="appendix-section team-detail-section">
-          <div className="section-header centered">
-            <p className="eyebrow">Appendix</p>
-            <h2 className="serif-heading">Team-Level Intelligence</h2>
-            <p className="muted small">Full breakdown ranked by signal strength</p>
-          </div>
+        <section className="appendix-section appendix-block team-detail-section">
+          <SectionHeader
+            eyebrow="Appendix"
+            title="Team detail"
+            subtitle="Full breakdown ranked by signal strength"
+            size="sm"
+          />
           <div className="team-detail-grid">
             {report.teamIntelligence.map((t, index) => (
               <article className="team-detail-card" key={t.team}>
                 <header>
                   <span className="team-rank-num">#{index + 1}</span>
                   <div>
-                    <h3>{t.team}</h3>
+                    <h3 className="h2-sub">{t.team}</h3>
                     <SeverityBadge value={t.severity} />
                   </div>
                 </header>
                 <div className="team-detail-metrics">
-                  <div><span>Mood</span><strong>{t.avgMood.toFixed(2)}</strong><small><Delta value={t.change} /></small></div>
-                  <div><span>Positive</span><strong>{t.positivePct}%</strong><small>{t.positiveCount} positive</small></div>
-                  <div><span>Neutral</span><strong>{t.neutralPct}%</strong><small>{t.neutralCount} neutral</small></div>
-                  <div><span>Negative</span><strong>{t.negativePct}%</strong><small>{t.negativeCount} negative</small></div>
-                  <div><span>Participation</span><strong>{t.responses}</strong><small><Delta value={t.participationTrend} /> vs prior</small></div>
-                  <div><span>Confidence</span><strong>{t.confidence}</strong><small>{t.sampleWarning ? <>Low sample <NoteRef n={4} /></> : 'Usable read'}</small></div>
+                  <div><span className="h3-micro">Mood</span><strong>{t.avgMood.toFixed(2)}</strong><small><Delta value={t.change} /></small></div>
+                  <div><span className="h3-micro">Positive</span><strong>{t.positivePct}%</strong><small>{t.positiveCount} positive</small></div>
+                  <div><span className="h3-micro">Neutral</span><strong>{t.neutralPct}%</strong><small>{t.neutralCount} neutral</small></div>
+                  <div><span className="h3-micro">Negative</span><strong>{t.negativePct}%</strong><small>{t.negativeCount} negative</small></div>
+                  <div><span className="h3-micro">Participation</span><strong>{t.responses}</strong><small><Delta value={t.participationTrend} /> vs prior</small></div>
+                  <div><span className="h3-micro">Confidence</span><strong>{t.confidence}</strong><small>{t.sampleWarning ? <>Low sample <NoteRef n={4} /></> : 'Usable read'}</small></div>
                 </div>
                 <p><strong>Primary read.</strong> {t.keyConcernOrStrength}</p>
                 <p><strong>Manager action.</strong> {t.managerAction}</p>
@@ -530,180 +518,186 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         </section>
 
         {/* === J. Appendix === */}
-        <section className="appendix-section grid two">
-          <div className="card">
-            <p className="eyebrow">Mood Distribution</p>
-            <h2>How responses are spread</h2>
-            <PieChart slices={report.moodDistribution} />
-          </div>
-          <div className="card">
-            <p className="eyebrow">Risk / Watchlist Areas</p>
-            <div className="list">
-              {report.riskWatchlist.slice(0, 4).map((r) => (
-                <div className="rec" key={r.title}>
-                  <strong>
-                    {r.title} <SeverityBadge value={r.severity} />
-                  </strong>
-                  <p>{r.signal}</p>
-                  <p>
-                    <strong>Action:</strong> {r.recommendedAction}
-                  </p>
-                </div>
-              ))}
+        <section className="appendix-section appendix-block">
+          <SectionHeader
+            eyebrow="Appendix"
+            title="Appendix · supporting tables"
+            subtitle="Distribution, watchlists, and methodology"
+            size="sm"
+          />
+          <div className="grid two">
+            <div className="card">
+              <h3 className="h2-sub">Mood distribution</h3>
+              <p className="muted small">How responses are spread</p>
+              <PieChart slices={report.moodDistribution} />
+            </div>
+            <div className="card">
+              <h3 className="h2-sub">Risk / watchlist areas</h3>
+              <div className="list">
+                {report.riskWatchlist.slice(0, 4).map((r) => (
+                  <div className="rec" key={r.title}>
+                    <strong>
+                      {r.title} <SeverityBadge value={r.severity} />
+                    </strong>
+                    <p>{r.signal}</p>
+                    <p>
+                      <strong>Action:</strong> {r.recommendedAction}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </section>
 
-        <section className="appendix-section grid two">
-          <div className="card">
-            <p className="eyebrow">Positive Momentum / What&apos;s Working</p>
-            <div className="list">
-              {report.positiveMomentum.slice(0, 4).map((r) => (
-                <div className="rec positive" key={r.title}>
-                  <strong>{r.title}</strong>
-                  <p>{r.signal}</p>
-                  <p>
-                    <strong>Preserve:</strong> {r.recommendedAction}
-                  </p>
-                </div>
-              ))}
+          <div className="grid two">
+            <div className="card">
+              <h3 className="h2-sub">Positive momentum</h3>
+              <p className="muted small">What&apos;s working</p>
+              <div className="list">
+                {report.positiveMomentum.slice(0, 4).map((r) => (
+                  <div className="rec positive" key={r.title}>
+                    <strong>{r.title}</strong>
+                    <p>{r.signal}</p>
+                    <p>
+                      <strong>Preserve:</strong> {r.recommendedAction}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="card">
+              <h3 className="h2-sub">Manager report outputs</h3>
+              <p className="muted small">Scoped team-only reports</p>
+              <p>{report.managerReport.description}</p>
+              <p>
+                <strong>Eligible teams:</strong>{' '}
+                {report.managerReport.eligibleTeams.join(', ') || 'None yet'}
+              </p>
+              <ul className="list compact">
+                {report.managerReport.safeguards.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
             </div>
           </div>
+
           <div className="card">
-            <p className="eyebrow">Manager Report Outputs</p>
-            <h2>Scoped team-only reports</h2>
-            <p>{report.managerReport.description}</p>
-            <p>
-              <strong>Eligible teams:</strong>{' '}
-              {report.managerReport.eligibleTeams.join(', ') || 'None yet'}
+            <p className="h3-micro">
+              Data quality &amp; confidence <NoteRef n={3} />
             </p>
-            <ul className="list compact">
-              {report.managerReport.safeguards.map((s) => (
-                <li key={s}>{s}</li>
+            <h3 className="h2-sub">
+              {report.reportConfidenceScore}/100 · {report.reportConfidence}
+            </h3>
+            <p>{report.confidenceRationale}</p>
+            <p>
+              <strong>
+                Low-sample teams <NoteRef n={4} />:
+              </strong>{' '}
+              {report.lowConfidenceTeams.length
+                ? report.lowConfidenceTeams.map((t) => t.team).join(', ')
+                : 'None'}
+            </p>
+          </div>
+
+          <div className="retention-risk-section">
+            <div className="retention-risk-head">
+              <p className="h3-micro">Restricted · manager / HR follow-up <NoteRef n={2} /></p>
+              <h3 className="h2-sub">Individual retention risk</h3>
+              <p className="muted">
+                Specific names should be shown only in authorized manager or HR views. Executive PDFs
+                should summarize counts and teams rather than broadly distributing individual names.
+              </p>
+            </div>
+            <div className="retention-grid-v2">
+              {report.individualRetentionRisks.length ? (
+                report.individualRetentionRisks.map((r) => (
+                  <div className="retention-card" key={`${r.employeeName}-${r.team}`}>
+                    <div className="priority-head">
+                      <strong>{r.employeeName}</strong>
+                      <span className="urgency-pill">{r.riskLevel}</span>
+                    </div>
+                    <p>
+                      <strong>Team:</strong> {r.team}
+                    </p>
+                    <p>
+                      <strong>Current mood:</strong> {r.currentMood} ·{' '}
+                      <strong>Low check-ins:</strong> {r.lowCheckIns}
+                    </p>
+                    <p>
+                      <strong>Trend:</strong> {r.trend}
+                    </p>
+                    <p>
+                      <strong>Drivers:</strong> {r.drivers.join(', ')}
+                    </p>
+                    <p>
+                      <strong>Suggested action:</strong> {r.recommendedAction}
+                    </p>
+                    <ConfidenceBadge value={r.confidence} />
+                  </div>
+                ))
+              ) : (
+                <p>No individual retention-risk flags met the current threshold.</p>
+              )}
+            </div>
+          </div>
+
+          <div className="card">
+            <h3 className="h2-sub">Explanatory notes</h3>
+            <p className="muted small">Definitions and methodology references</p>
+            <div className="notes-grid">
+              <div id="note-1">
+                <strong>Note 1 — Organizational Health</strong>
+                <p>
+                  Organizational Health is a composite rating that summarizes overall workforce
+                  condition for the period. It synthesizes average mood, positive sentiment,
+                  engagement quality, trend direction, team consistency, risk flags, and comment
+                  signals into a practical executive read such as Strong, Healthy, Mixed, Watchlist,
+                  or At Risk.
+                </p>
+              </div>
+              <div id="note-2">
+                <strong>Note 2 — Individual Retention Risk</strong>
+                <p>
+                  Individual Retention Risk is a restricted manager/HR follow-up signal, not a public
+                  performance label or a prediction that someone will resign. It looks for repeated
+                  low check-ins, current low mood, meaningful mood declines, stress/burnout or
+                  workload language in comments, negative-emotion patterns, unresolved follow-up
+                  requests, and other load/capacity signals. Names should be visible only in
+                  authorized manager or HR views.
+                </p>
+              </div>
+              <div id="note-3">
+                <strong>Note 3 — Confidence</strong>
+                <p>
+                  Confidence is a reliability indicator, not a performance score. It reflects response
+                  volume, team coverage, comment depth, trend consistency, and data completeness.
+                  High confidence is decision-ready; medium is directional; low/provisional should be
+                  validated before major decisions.
+                </p>
+              </div>
+              <div id="note-4">
+                <strong>Note 4 — Low Sample</strong>
+                <p>
+                  Team-level findings below 5 responses should not be overinterpreted. Comment themes
+                  are suppressed or generalized below 3 comments to protect privacy and reduce
+                  over-identification risk.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="card">
+            <h3 className="h2-sub">Methodology improvements</h3>
+            <ul className="list">
+              {report.improvements.map((i) => (
+                <li key={i}>{i}</li>
               ))}
             </ul>
-          </div>
-        </section>
-
-        <section className="appendix-section card">
-          <p className="eyebrow">
-            Data Quality &amp; Confidence <NoteRef n={3} />
-          </p>
-          <h2>
-            {report.reportConfidenceScore}/100 · {report.reportConfidence}
-          </h2>
-          <p>{report.confidenceRationale}</p>
-          <p>
-            <strong>
-              Low-sample teams <NoteRef n={4} />:
-            </strong>{' '}
-            {report.lowConfidenceTeams.length
-              ? report.lowConfidenceTeams.map((t) => t.team).join(', ')
-              : 'None'}
-          </p>
-        </section>
-
-        <section className="appendix-section retention-risk-section">
-          <div className="section-header centered">
-            <p className="eyebrow">Restricted</p>
-            <h2 className="serif-heading">Individual Retention Risk</h2>
-            <p className="muted small">
-              Manager / HR follow-up view <NoteRef n={2} />
+            <p className="muted">
+              Confirmed direction: brief PDF for executives; full report with appendices for operators
+              and HR.
             </p>
           </div>
-          <p className="muted">
-            Specific names should be shown only in authorized manager or HR views. Executive PDFs
-            should summarize counts and teams rather than broadly distributing individual names.
-          </p>
-          <div className="retention-grid-v2">
-            {report.individualRetentionRisks.length ? (
-              report.individualRetentionRisks.map((r) => (
-                <div className="retention-card" key={`${r.employeeName}-${r.team}`}>
-                  <div className="priority-head">
-                    <strong>{r.employeeName}</strong>
-                    <span className="urgency-pill">{r.riskLevel}</span>
-                  </div>
-                  <p>
-                    <strong>Team:</strong> {r.team}
-                  </p>
-                  <p>
-                    <strong>Current mood:</strong> {r.currentMood} ·{' '}
-                    <strong>Low check-ins:</strong> {r.lowCheckIns}
-                  </p>
-                  <p>
-                    <strong>Trend:</strong> {r.trend}
-                  </p>
-                  <p>
-                    <strong>Drivers:</strong> {r.drivers.join(', ')}
-                  </p>
-                  <p>
-                    <strong>Suggested action:</strong> {r.recommendedAction}
-                  </p>
-                  <ConfidenceBadge value={r.confidence} />
-                </div>
-              ))
-            ) : (
-              <p>No individual retention-risk flags met the current threshold.</p>
-            )}
-          </div>
-        </section>
-
-        <section className="appendix-section card">
-          <p className="eyebrow">Explanatory Notes</p>
-          <h2>Definitions and methodology references</h2>
-          <div className="notes-grid">
-            <div id="note-1">
-              <strong>Note 1 — Organizational Health</strong>
-              <p>
-                Organizational Health is a composite rating that summarizes overall workforce
-                condition for the period. It synthesizes average mood, positive sentiment,
-                engagement quality, trend direction, team consistency, risk flags, and comment
-                signals into a practical executive read such as Strong, Healthy, Mixed, Watchlist,
-                or At Risk.
-              </p>
-            </div>
-            <div id="note-2">
-              <strong>Note 2 — Individual Retention Risk</strong>
-              <p>
-                Individual Retention Risk is a restricted manager/HR follow-up signal, not a public
-                performance label or a prediction that someone will resign. It looks for repeated
-                low check-ins, current low mood, meaningful mood declines, stress/burnout or
-                workload language in comments, negative-emotion patterns, unresolved follow-up
-                requests, and other load/capacity signals. Names should be visible only in
-                authorized manager or HR views.
-              </p>
-            </div>
-            <div id="note-3">
-              <strong>Note 3 — Confidence</strong>
-              <p>
-                Confidence is a reliability indicator, not a performance score. It reflects response
-                volume, team coverage, comment depth, trend consistency, and data completeness.
-                High confidence is decision-ready; medium is directional; low/provisional should be
-                validated before major decisions.
-              </p>
-            </div>
-            <div id="note-4">
-              <strong>Note 4 — Low Sample</strong>
-              <p>
-                Team-level findings below 5 responses should not be overinterpreted. Comment themes
-                are suppressed or generalized below 3 comments to protect privacy and reduce
-                over-identification risk.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="appendix-section card">
-          <p className="eyebrow">Methodology Improvements</p>
-          <ul className="list">
-            {report.improvements.map((i) => (
-              <li key={i}>{i}</li>
-            ))}
-          </ul>
-          <p className="muted">
-            Confirmed direction: brief PDF for executives; full report with appendices for operators
-            and HR.
-          </p>
         </section>
       </main>
     </div>
