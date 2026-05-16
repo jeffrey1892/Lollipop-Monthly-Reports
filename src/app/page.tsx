@@ -320,28 +320,31 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           <div className="team-perf-grid">
             <TeamRankCard
               title="Top performing teams"
-              subtitle="Highest average mood"
+              subtitle="Highest average mood · v. prior month"
               teams={report.topTeams}
               tone="green"
               variant="bars"
             />
             <TeamRankCard
               title="Watch teams"
-              subtitle="Concentrated risk signal"
+              subtitle="Concentrated risk signal · v. prior month"
               teams={report.watchTeams}
               tone="coral"
+              variant="bars"
             />
             <TeamRankCard
               title="Biggest improvement"
               subtitle="Largest mood gains vs prior month"
               teams={report.improvingTeams}
               tone="blue"
+              variant="bars"
             />
             <TeamRankCard
               title="Biggest decline"
               subtitle="Largest mood drops vs prior month"
               teams={report.decliningTeams}
               tone="amber"
+              variant="bars"
             />
           </div>
         </section>
