@@ -475,6 +475,19 @@ export default async function ManagerPage({
                   Open Lollipop manager tools →
                 </a>
               </p>
+
+              <p className="h3-micro" style={{ marginTop: 14 }}>
+                Manager training videos
+              </p>
+              <ul className="manager-videos-list">
+                {TRAINING_VIDEOS.map((v) => (
+                  <li key={v.url}>
+                    <a className="link" href={v.url} target="_blank" rel="noreferrer">
+                      ▶ {v.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="manager-action-col">
               <p className="h3-micro">Suggested tools for this team</p>
@@ -493,19 +506,6 @@ export default async function ManagerPage({
                       {tool.name} →
                     </a>
                     <p>{tool.whenToUse}</p>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="h3-micro" style={{ marginTop: 14 }}>
-                Manager training videos
-              </p>
-              <ul className="manager-videos-list">
-                {TRAINING_VIDEOS.map((v) => (
-                  <li key={v.url}>
-                    <a className="link" href={v.url} target="_blank" rel="noreferrer">
-                      ▶ {v.title}
-                    </a>
                   </li>
                 ))}
               </ul>
