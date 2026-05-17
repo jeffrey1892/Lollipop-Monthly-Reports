@@ -165,9 +165,12 @@
 /* B. KPI Grid */
 .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .kpi-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:0 1px 2px rgba(33,33,33,.04),0 8px 24px rgba(33,33,33,.04);display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
-.kpi-card:before{content:none}
-.kpi-card.amber:before,.kpi-card.coral:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--amber)}
+.kpi-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--line)}
+.kpi-card.green:before{background:var(--green)}
+.kpi-card.amber:before{background:var(--amber)}
 .kpi-card.coral:before{background:var(--coral)}
+.kpi-card.blue:before{background:var(--blue)}
+.kpi-card.neutral:before{background:var(--muted)}
 .kpi-card .kpi-label{margin:0;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:var(--muted)}
 .kpi-card .kpi-value{font-family:Georgia,serif;font-size:36px;letter-spacing:-.03em;line-height:1;color:var(--ink)}
 .kpi-card .kpi-sub{color:var(--muted);font-size:12px;font-weight:600}
