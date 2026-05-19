@@ -2,7 +2,7 @@
   "customers": [
     {
       "id": "cosmo-cabinets",
-      "name": "Cosmo Cabinets",
+      "name": "Acme Corporation",
       "industry": "Cabinetry / Manufacturing",
       "demo": true,
       "months": [
