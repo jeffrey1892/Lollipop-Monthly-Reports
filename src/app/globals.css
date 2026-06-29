@@ -809,4 +809,47 @@ a.link:hover{color:#0866c9}
   .manager-page .appendix-section,.manager-page .appendix-block{display:none!important}
 }
 
+/* ===== Print formatting fixes (executive report PDF) ===== */
+@media print{
+  /* Keep delta caption on one line so 'v. Mar 2026' doesn't wrap */
+  body[data-print-mode] .kpi-card .kpi-delta-caption{white-space:nowrap!important;font-size:6.5pt!important}
+
+  /* Executive snapshot — give Teams-requiring-attention card breathing room
+     so 'TEAMS REQUIRING ATTENTION' label fits on two clean lines, not three */
+  body[data-print-mode] .kpi-card .kpi-label{line-height:1.2!important;letter-spacing:.06em!important;font-size:6.8pt!important}
+
+  /* Follow-up Responsiveness — labels are long; shrink + tight line-height
+     and stretch all 5 cards to a single uniform height */
+  body[data-print-mode] .followup-section .kpi-card{min-height:50pt!important;padding:5pt 7pt!important}
+  body[data-print-mode] .followup-section .kpi-card .kpi-label{font-size:6.5pt!important;line-height:1.15!important}
+  body[data-print-mode] .followup-section .kpi-card .kpi-value{font-size:14pt!important}
+  body[data-print-mode] .followup-section .kpi-card .kpi-sub{font-size:6pt!important}
+
+  /* Follow-up Completion Rate's 'No prior comparison' chip overflows;
+     compress it and the caption underneath */
+  body[data-print-mode] .followup-section .kpi-card .trend-delta{padding:2pt 5pt!important;font-size:7pt!important;border-radius:4pt!important}
+  body[data-print-mode] .followup-section .kpi-card .trend-delta strong{font-size:7pt!important;white-space:normal!important}
+  body[data-print-mode] .followup-section .kpi-card .kpi-delta-caption{font-size:6pt!important}
+
+  /* Theme detail table — rebalance columns so PRIMARY TEAMS doesn't get
+     squeezed and the suggested-action column has room to breathe */
+  body[data-print-mode] .ci-theme-table{table-layout:fixed!important}
+  body[data-print-mode] .ci-theme-table col:nth-child(1),body[data-print-mode] .ci-theme-table th:nth-child(1),body[data-print-mode] .ci-theme-table td:nth-child(1){width:14%!important}
+  body[data-print-mode] .ci-theme-table col:nth-child(2),body[data-print-mode] .ci-theme-table th:nth-child(2),body[data-print-mode] .ci-theme-table td:nth-child(2){width:9%!important}
+  body[data-print-mode] .ci-theme-table col:nth-child(3),body[data-print-mode] .ci-theme-table th:nth-child(3),body[data-print-mode] .ci-theme-table td:nth-child(3){width:9%!important}
+  body[data-print-mode] .ci-theme-table col:nth-child(4),body[data-print-mode] .ci-theme-table th:nth-child(4),body[data-print-mode] .ci-theme-table td:nth-child(4){width:18%!important}
+  body[data-print-mode] .ci-theme-table col:nth-child(5),body[data-print-mode] .ci-theme-table th:nth-child(5),body[data-print-mode] .ci-theme-table td:nth-child(5){width:25%!important}
+  body[data-print-mode] .ci-theme-table col:nth-child(6),body[data-print-mode] .ci-theme-table th:nth-child(6),body[data-print-mode] .ci-theme-table td:nth-child(6){width:25%!important}
+  body[data-print-mode] .ci-theme-table td{word-break:normal!important;overflow-wrap:break-word!important}
+
+  /* Missed follow-ups table headers — let each header wrap to 2 lines max
+     with tighter font, evenly distribute columns */
+  body[data-print-mode] .followup-exceptions-card table{table-layout:fixed!important}
+  body[data-print-mode] .followup-exceptions-card th{font-size:6pt!important;letter-spacing:.04em!important;line-height:1.15!important;padding:3pt 4pt!important;vertical-align:bottom!important}
+  body[data-print-mode] .followup-exceptions-card td{font-size:7pt!important;padding:3pt 4pt!important}
+
+  /* Tighten 'Trailing 3-month mood' tile so 3-MONTH doesn't isolate-wrap */
+  body[data-print-mode] .stat-tile .h3-micro{line-height:1.15!important;letter-spacing:.06em!important}
+}
+
 
