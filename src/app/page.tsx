@@ -56,13 +56,24 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         }
       : null
 
+  // Engagement-focused recommendation moves into the Engagement summary
+  // section (its email links render beside the risks table); Leadership
+  // Actions keeps the mood / team-health actions only.
+  const ENGAGEMENT_REC_TITLES = ['Rebuild check-in participation', 'Maintain check-in participation cadence']
+  const engagementRec = report.recommendations.find((r) => ENGAGEMENT_REC_TITLES.includes(r.title))
+  const engagementActionLinks = (engagementRec?.links ?? []).filter((l) =>
+    l.label.toLowerCase().includes('email'),
+  )
   const sortedRecs = [
     ...(followUpAction ? [followUpAction] : []),
-    ...report.recommendations,
+    ...report.recommendations.filter((r) => !ENGAGEMENT_REC_TITLES.includes(r.title)),
   ].sort(
     (a, b) =>
       (URGENCY_RANK[a.urgency] ?? 9) - (URGENCY_RANK[b.urgency] ?? 9) ||
       a.priority.localeCompare(b.priority),
+  )
+  const moodPriorityRows = report.priorityActionRows.filter(
+    (row) => row.action !== 'Reinforce participation expectations',
   )
 
   // Engagement tone
@@ -267,34 +278,68 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 </p>
               </div>
             </div>
-            <div className="card engagement-risks-card">
-              <p className="h2-sub">Engagement risks</p>
-              {report.engagementRisks.length === 0 ? (
-                <p className="muted">No material engagement risks identified for this period.</p>
-              ) : (
-                <div className="table-wrap">
-                  <table className="table engagement-risks-table">
-                    <thead>
-                      <tr>
-                        <th>Team</th>
-                        <th>Engagement issue</th>
-                        <th style={{ textAlign: 'right' }}>Current engagement</th>
-                        <th>Change</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {report.engagementRisks.map((r) => (
-                        <tr key={r.team}>
-                          <td><strong>{r.team}</strong></td>
-                          <td>{r.issue}</td>
-                          <td style={{ textAlign: 'right' }}>{r.currentEngagement}%</td>
-                          <td>{r.change}</td>
+            <div className="engagement-risks-row">
+              <div className="card engagement-risks-card">
+                <p className="h2-sub">Engagement risks</p>
+                {report.engagementRisks.length === 0 ? (
+                  <p className="muted">No material engagement risks identified for this period.</p>
+                ) : (
+                  <div className="table-wrap">
+                    <table className="table engagement-risks-table">
+                      <thead>
+                        <tr>
+                          <th>Team</th>
+                          <th>Engagement issue</th>
+                          <th style={{ textAlign: 'right' }}>Current engagement</th>
+                          <th>Change</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+                      </thead>
+                      <tbody>
+                        {report.engagementRisks.map((r) => (
+                          <tr key={r.team}>
+                            <td><strong>{r.team}</strong></td>
+                            <td>{r.issue}</td>
+                            <td style={{ textAlign: 'right' }}>{r.currentEngagement}%</td>
+                            <td>{r.change}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+              <div className="card engagement-actions-card">
+                <p className="h2-sub">Suggested actions to increase engagement</p>
+                {report.engagementRisks.length > 0 ? (
+                  <ul className="engagement-actions-list">
+                    <li>
+                      Ask managers of {report.engagementRisks.map((r) => r.team).join(', ')} to
+                      remind employees about check-ins at their next team meeting.
+                    </li>
+                    <li>Send an employee email notice reminding the team why check-ins matter.</li>
+                    <li>Run the giveaway feature to make participation visible and rewarding.</li>
+                    <li>
+                      Have managers follow up individually with low-participation employees before
+                      the next reporting period.
+                    </li>
+                  </ul>
+                ) : (
+                  <ul className="engagement-actions-list">
+                    <li>Keep Lollipop visible with periodic team-meeting reminders.</li>
+                    <li>Send occasional employee email notices to maintain the check-in habit.</li>
+                    <li>Use the giveaway feature if participation begins to soften.</li>
+                  </ul>
+                )}
+                {engagementActionLinks.length > 0 && (
+                  <div className="action-links">
+                    {engagementActionLinks.map((l) => (
+                      <a key={l.label} href={l.href} target="_blank" rel="noreferrer">
+                        {l.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </section>
         )}
@@ -402,7 +447,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         <section className="brief-section action-section">
           <SectionHeader
             title="Leadership actions"
-            subtitle="What leadership should do next, driven by the team dashboard"
+            subtitle="What leadership should do next to improve team mood and health"
           />
           <div className="exec-summary-card action-intro-card">
             <p className="exec-summary-lede">{whatChangedNarrative}</p>
@@ -413,7 +458,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </div>
             </dl>
           </div>
-          {report.priorityActionRows.length > 0 && (
+          {moodPriorityRows.length > 0 && (
             <div className="card priority-actions-card">
               <p className="h2-sub">Priority actions</p>
               <div className="table-wrap">
@@ -427,7 +472,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                     </tr>
                   </thead>
                   <tbody>
-                    {report.priorityActionRows.map((row, i) => (
+                    {moodPriorityRows.map((row, i) => (
                       <tr key={i}>
                         <td><span className={`risk-pill priority-${row.priority.toLowerCase()}`}>{row.priority}</span></td>
                         <td><strong>{row.action}</strong></td>
