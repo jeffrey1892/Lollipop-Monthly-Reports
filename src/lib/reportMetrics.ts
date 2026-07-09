@@ -599,12 +599,13 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
     if ((t.change ?? 0) <= -0.3) moodReasons.push(`mood declined ${Math.abs(t.change ?? 0).toFixed(2)} pts this period`)
     if (negPct >= 20) moodReasons.push(`${negPct}% of check-ins were negative`)
     const engReasons: string[] = []
-    if (teamRate !== null && teamRate <= companyEngagement - 15) engReasons.push(`engagement is ${round(companyEngagement - teamRate, 0)} pts below the company average`)
-    else if (teamRate !== null && teamRate <= companyEngagement - 10) engReasons.push('engagement is below the company average')
-    if ((engChangePts ?? 0) <= -10) engReasons.push(`engagement fell ${Math.abs(engChangePts ?? 0)} pts v. prior month`)
+    const respondedNow = `${t.uniqueRespondents} of ${teamRosterProxy} responded`
+    if (teamRate !== null && teamRate <= companyEngagement - 15) engReasons.push(`engagement is ${round(companyEngagement - teamRate, 0)} pts below the company average (${respondedNow})`)
+    else if (teamRate !== null && teamRate <= companyEngagement - 10) engReasons.push(`engagement is below the company average (${respondedNow})`)
+    if ((engChangePts ?? 0) <= -10) engReasons.push(`engagement fell ${Math.abs(engChangePts ?? 0)} pts v. prior month (${respondedNow}, down from ${prevUnique} of ${teamRosterProxy})`)
     if (consecutiveDeclines >= 3) engReasons.push(`participation declined ${consecutiveDeclines} consecutive weeks`)
 
-    return { t, teamRate, engChangePts, negPct, consecutiveDeclines, moodMajor, moodMinor, engMajor, engMinor, moodReasons, engReasons }
+    return { t, teamRate, engChangePts, negPct, consecutiveDeclines, moodMajor, moodMinor, engMajor, engMinor, moodReasons, engReasons, teamRosterProxy, prevUnique }
   })
 
   const teamsNeedingAttention: TeamAttention[] = teamAssessments
@@ -671,10 +672,11 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
   const engagementRisks: EngagementRisk[] = teamAssessments
     .filter((a) => (a.engMajor || a.engMinor) && a.teamRate !== null)
     .map((a) => {
+      const counts = `${a.t.uniqueRespondents} of ${a.teamRosterProxy} responded`
       let issue = 'Low engagement'
-      let changeText = `${round(companyEngagement - (a.teamRate ?? 0), 0)} pts below company average`
-      if (a.consecutiveDeclines >= 3) { issue = 'Sustained decline'; changeText = `down ${a.consecutiveDeclines} consecutive weeks` }
-      else if ((a.engChangePts ?? 0) <= -10) { issue = 'Declining engagement'; changeText = `down ${Math.abs(a.engChangePts ?? 0)} pts` }
+      let changeText = `${round(companyEngagement - (a.teamRate ?? 0), 0)} pts below company average (${counts})`
+      if (a.consecutiveDeclines >= 3) { issue = 'Sustained decline'; changeText = `down ${a.consecutiveDeclines} consecutive weeks (${counts})` }
+      else if ((a.engChangePts ?? 0) <= -10) { issue = 'Declining engagement'; changeText = `down ${Math.abs(a.engChangePts ?? 0)} pts (${counts}, was ${a.prevUnique} of ${a.teamRosterProxy})` }
       return { team: a.t.team, issue, currentEngagement: a.teamRate ?? 0, change: changeText }
     })
     .sort((x, y) => x.currentEngagement - y.currentEngagement)
