@@ -320,14 +320,20 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
   const positiveChange = previous ? round(positivePct - prevPositivePct, 1) : null
   const prevTeamMap = previous ? byTeam(previous.responses) : new Map<string, ResponseRecord[]>()
   const historyMonths = customer.months.slice(Math.max(0, currentIndex - 5), currentIndex + 1)
+  const personKey = (r: ResponseRecord) => `${r.firstName.trim().toLowerCase()}|${r.lastName.trim().toLowerCase()}`
   const allTeams: TeamMetric[] = [...teamMap.entries()].map(([team, teamRecords]) => {
     const teamMoods = teamRecords.map((r) => r.mood).filter(Boolean)
-    const previousTeamMoods = (prevTeamMap.get(team) ?? []).map((r) => r.mood).filter(Boolean)
+    const previousTeamRecords = prevTeamMap.get(team) ?? []
+    const previousTeamMoods = previousTeamRecords.map((r) => r.mood).filter(Boolean)
     const tAvg = round(avg(teamMoods), 2)
     const tPositive = pct(teamMoods.filter((m) => m >= 4).length, teamMoods.length)
     const change = previousTeamMoods.length ? round(tAvg - avg(previousTeamMoods), 2) : null
     const risk = riskFromMood(tAvg, tPositive, change)
     const confidence = confidenceFromCount(teamRecords.length)
+    const uniqueRespondents = new Set(teamRecords.map(personKey)).size
+    const uniqueRespondentsChange = previous
+      ? uniqueRespondents - new Set(previousTeamRecords.map(personKey)).size
+      : null
     const history = historyMonths
       .map((m) => {
         const ms = m.responses.filter((r) => r.team === team).map((r) => r.mood).filter(Boolean)
@@ -381,12 +387,16 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
         : riskRank(risk) >= 3 ? 'Leadership should review workload, communication, and local operating conditions.' : 'Healthy signal; reinforce what is working and watch for participation consistency.',
       history,
       weeklyHistory,
+      uniqueRespondents,
+      uniqueRespondentsChange,
     }
   }).sort((a, b) => b.responses - a.responses)
   const topTeams = [...allTeams].filter((t) => !t.sampleWarning).sort((a, b) => b.avgMood - a.avgMood || b.responses - a.responses).slice(0, 3)
   const watchTeams = [...allTeams].sort((a, b) => riskRank(b.risk) - riskRank(a.risk) || a.avgMood - b.avgMood).slice(0, 4)
   const improvingTeams = [...allTeams].filter((t) => (t.change ?? 0) > 0.15 && !t.sampleWarning).sort((a, b) => (b.change ?? 0) - (a.change ?? 0)).slice(0, 4)
   const decliningTeams = [...allTeams].filter((t) => (t.change ?? 0) < -0.15 && !t.sampleWarning).sort((a, b) => (a.change ?? 0) - (b.change ?? 0)).slice(0, 4)
+  const engagementImprovingTeams = [...allTeams].filter((t) => (t.uniqueRespondentsChange ?? 0) > 0).sort((a, b) => (b.uniqueRespondentsChange ?? 0) - (a.uniqueRespondentsChange ?? 0)).slice(0, 4)
+  const engagementDecliningTeams = [...allTeams].filter((t) => (t.uniqueRespondentsChange ?? 0) < 0).sort((a, b) => (a.uniqueRespondentsChange ?? 0) - (b.uniqueRespondentsChange ?? 0)).slice(0, 4)
   const lowConfidenceTeams = allTeams.filter((t) => t.sampleWarning)
   const emotionCounts = new Map<string, number>()
   for (const r of records) for (const e of r.emotions) emotionCounts.set(e, (emotionCounts.get(e) ?? 0) + 1)
@@ -696,5 +706,5 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
     { title: 'Operationalize follow-up accountability', priority: 'P2' as const, urgency: 'Medium', impact: 'High', difficulty: 'Medium', owner: 'HR leader + team managers', nextStep: 'Require status, owner, first-response date, and closure note for every follow-up request. Remind managers to use the manager tools to track action items and close the feedback loop.', why: 'Responsiveness is a leadership-effectiveness signal; missing data prevents Lollipop from proving closure.', confidence: responsiveness.confidence, trigger: 'Use when follow-up requests are open, incomplete, or missing owner/status data.', links: [{ label: 'Manager tools', href: managerToolsUrl }, { label: 'Draft manager email', href: managerEmail }] },
     { title: 'Reinforce positive culture drivers', priority: 'P3' as const, urgency: 'Medium', impact: 'Medium', difficulty: 'Low', owner: 'Frontline managers', nextStep: 'Identify what top teams are doing differently and turn it into a manager coaching prompt.', why: 'Recognition, support, and visible progress appear to be meaningful positive sentiment drivers.', confidence: commentIntelligence.confidence, trigger: 'Use when positive sentiment or comment themes identify manager behaviors worth repeating.' },
   ]
-  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, individualRetentionRisks, managerReport, engagementSummary }
+  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, engagementImprovingTeams, engagementDecliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, individualRetentionRisks, managerReport, engagementSummary }
 }

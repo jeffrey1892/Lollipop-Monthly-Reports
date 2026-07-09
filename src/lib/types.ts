@@ -61,6 +61,10 @@ export type TeamMetric = {
   interpretation: string
   history: Array<{ month: string; label: string; avgMood: number }>
   weeklyHistory: WeeklyHistoryPoint[]
+  /** Unique employees (person-level) who checked in for this team this month. */
+  uniqueRespondents: number
+  /** Change in unique respondents versus the prior month; null when no prior month. */
+  uniqueRespondentsChange: number | null
 }
 
 export type IntelligencePoint = {
@@ -251,6 +255,8 @@ export type ReportMetrics = {
   topTeams: TeamMetric[]
   watchTeams: TeamMetric[]
   improvingTeams: TeamMetric[]
+  engagementImprovingTeams: TeamMetric[]
+  engagementDecliningTeams: TeamMetric[]
   decliningTeams: TeamMetric[]
   lowConfidenceTeams: TeamMetric[]
   allTeams: TeamMetric[]

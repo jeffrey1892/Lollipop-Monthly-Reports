@@ -9,6 +9,8 @@ type Team = {
   change: number | null
   sampleWarning?: boolean
   history?: Array<{ month: string; label: string; avgMood: number }>
+  uniqueRespondents?: number
+  uniqueRespondentsChange?: number | null
 }
 
 function Sparkline({ points, change }: { points: Array<{ avgMood: number }>; change: number | null }) {
@@ -53,13 +55,16 @@ export default function TeamRankCard({
   teams,
   tone = 'neutral',
   variant = 'list',
+  metric = 'mood',
 }: {
   title: string
   subtitle: string
   teams: Team[]
   tone?: 'green' | 'amber' | 'coral' | 'blue' | 'neutral'
   variant?: 'list' | 'bars'
+  metric?: 'mood' | 'engagement'
 }) {
+  const maxUnique = Math.max(...teams.map((t) => t.uniqueRespondents ?? 0), 1)
   return (
     <div className={`team-rank-card tone-${tone}`}>
       <header>
@@ -71,22 +76,37 @@ export default function TeamRankCard({
       ) : variant === 'bars' ? (
         <ul className="team-bar-list">
           {teams.map((t) => {
-            const pct = Math.max(2, Math.min(100, (t.avgMood / 5) * 100))
+            const pct = metric === 'engagement'
+              ? Math.max(2, Math.min(100, ((t.uniqueRespondents ?? 0) / maxUnique) * 100))
+              : Math.max(2, Math.min(100, (t.avgMood / 5) * 100))
             return (
               <li key={t.team}>
                 <div className="team-bar-head">
                   <strong>{t.team}</strong>
                   <span className="team-score-row">
-                    <Sparkline points={t.history ?? []} change={t.change} />
-                    <span className="team-score">{t.avgMood.toFixed(2)}</span>
+                    {metric === 'mood' && <Sparkline points={t.history ?? []} change={t.change} />}
+                    <span className="team-score">
+                      {metric === 'engagement' ? (t.uniqueRespondents ?? 0) : t.avgMood.toFixed(2)}
+                    </span>
                   </span>
                 </div>
                 <div className="team-bar">
                   <i style={{ width: `${pct}%` }} />
                 </div>
                 <small>
-                  {t.positivePct}% positive · {t.responses} responses{' '}
-                  {t.change !== null && <Delta value={t.change} />}{' '}
+                  {metric === 'engagement' ? (
+                    <>
+                      unique respondents{' '}
+                      {t.uniqueRespondentsChange != null && (
+                        <Delta value={t.uniqueRespondentsChange} suffix=" v. prior month" />
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {t.positivePct}% positive · {t.responses} responses{' '}
+                      {t.change !== null && <Delta value={t.change} />}
+                    </>
+                  )}{' '}
                   {t.sampleWarning && <span className="sample-flag">low sample</span>}
                 </small>
               </li>

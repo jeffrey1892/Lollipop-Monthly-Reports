@@ -362,7 +362,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
         {/* === F. Team Performance Dashboard === */}
         <section className="brief-section team-perf-section">
-          <SectionHeader title="Team performance & risk" subtitle="Rankings and movement by team" />
+          <SectionHeader title="Team performance & risk" subtitle="Mood and engagement rankings and movement by team" />
           <div className="team-perf-grid">
             <TeamRankCard
               title="Top performing teams"
@@ -391,6 +391,22 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               teams={report.decliningTeams}
               tone="amber"
               variant="bars"
+            />
+            <TeamRankCard
+              title="Engagement gains"
+              subtitle="More unique respondents vs prior month"
+              teams={report.engagementImprovingTeams}
+              tone="green"
+              variant="bars"
+              metric="engagement"
+            />
+            <TeamRankCard
+              title="Engagement declines"
+              subtitle="Fewer unique respondents vs prior month"
+              teams={report.engagementDecliningTeams}
+              tone="coral"
+              variant="bars"
+              metric="engagement"
             />
           </div>
         </section>
