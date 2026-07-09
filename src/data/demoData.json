@@ -18765,7 +18765,158 @@
         }
       ],
       "unsubscribed": [],
-      "optedInPopulation": 29
+      "optedInPopulation": 29,
+      "roster": [
+        {
+          "id": "17618",
+          "firstName": "Rajesh",
+          "lastName": "Dill Jr."
+        },
+        {
+          "id": "16397",
+          "firstName": "Josh",
+          "lastName": "Massengill"
+        },
+        {
+          "id": "15902",
+          "firstName": "Kathryn",
+          "lastName": "Carlson"
+        },
+        {
+          "id": "15539",
+          "firstName": "Ava Marie",
+          "lastName": "Price"
+        },
+        {
+          "id": "12999",
+          "firstName": "Kellie",
+          "lastName": "Wright",
+          "email": "kwright@worksmartstaffing.com"
+        },
+        {
+          "id": "11711",
+          "firstName": "Kashara",
+          "lastName": "Reed",
+          "email": "kreed@worksmartstaffing.com"
+        },
+        {
+          "id": "11546",
+          "firstName": "Kimberlee",
+          "lastName": "Cothran"
+        },
+        {
+          "id": "9039",
+          "firstName": "Jaemy",
+          "lastName": "Diaz",
+          "email": "jdiaz@worksmartstaffing.com"
+        },
+        {
+          "id": "8213",
+          "firstName": "Brandy",
+          "lastName": "Bryson"
+        },
+        {
+          "id": "6266",
+          "firstName": "Kaylee",
+          "lastName": "Munson",
+          "email": "kmunson@worksmartstaffing.com"
+        },
+        {
+          "id": "6210",
+          "firstName": "Mason",
+          "lastName": "Weaver"
+        },
+        {
+          "id": "6207",
+          "firstName": "Christi",
+          "lastName": "Hart"
+        },
+        {
+          "id": "6204",
+          "firstName": "Christy",
+          "lastName": "Creek"
+        },
+        {
+          "id": "6202",
+          "firstName": "Kristen",
+          "lastName": "Muirhead"
+        },
+        {
+          "id": "6200",
+          "firstName": "Alex",
+          "lastName": "Johnson"
+        },
+        {
+          "id": "6169",
+          "firstName": "Elizabeth",
+          "lastName": "Mayorga"
+        },
+        {
+          "id": "6168",
+          "firstName": "Amy",
+          "lastName": "Hauser"
+        },
+        {
+          "id": "6163",
+          "firstName": "Kinetha",
+          "lastName": "Shannon"
+        },
+        {
+          "id": "6162",
+          "firstName": "Sandra",
+          "lastName": "Ogle"
+        },
+        {
+          "id": "6161",
+          "firstName": "Diana",
+          "lastName": "Lazo"
+        },
+        {
+          "id": "6157",
+          "firstName": "Alejandra",
+          "lastName": "Yrigoyen-Hoffman"
+        },
+        {
+          "id": "6155",
+          "firstName": "Julie",
+          "lastName": "Navratil"
+        },
+        {
+          "id": "6149",
+          "firstName": "Leslie",
+          "lastName": "Patrick"
+        },
+        {
+          "id": "6148",
+          "firstName": "Tori",
+          "lastName": "Fleming"
+        },
+        {
+          "id": "6145",
+          "firstName": "Autumn",
+          "lastName": "Aldred"
+        },
+        {
+          "id": "6141",
+          "firstName": "She'Kira",
+          "lastName": "Norman"
+        },
+        {
+          "id": "6139",
+          "firstName": "Noely",
+          "lastName": "Cabrera"
+        },
+        {
+          "id": "6137",
+          "firstName": "Natalie",
+          "lastName": "Spray"
+        },
+        {
+          "id": "6135",
+          "firstName": "Dee",
+          "lastName": "Hughes"
+        }
+      ]
     }
   ]
 }

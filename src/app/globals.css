@@ -714,6 +714,20 @@ a.link:hover{color:#0866c9}
 }
 
 /* Follow-up responsiveness (placeholder section) */
+/* Engagement summary section */
+.engagement-summary-section .engagement-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:14px;align-items:stretch}
+.engagement-summary-section .engagement-grid>.card{height:100%}
+@media(max-width:900px){.engagement-summary-section .engagement-grid{grid-template-columns:1fr}}
+.engagement-table{width:100%;font-size:13px}
+.engagement-table td,.engagement-table th{padding:8px 10px}
+.engagement-total-row td{border-top:1px solid var(--line);background:#f7f9fc}
+.engagement-chart-wrap{min-height:220px}
+.engagement-note{font-size:11.5px;line-height:1.4;margin:4px 0 0}
+.engagement-weekly-table-card{margin-top:14px}
+.engagement-weekly-table th,.engagement-weekly-table td{font-size:12.5px;padding:6px 8px}
+.engagement-off-roster-card{margin-top:14px;background:#fff9ec;border-color:#f5ca76}
+.off-roster-list{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.off-roster-list li{background:white;border:1px solid #f5ca76;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;color:#8a5a00}
 .followup-section .followup-helper{max-width:880px;margin:6px 0 16px;font-size:14px;line-height:1.5}
 .followup-section .followup-trend-card,.followup-section .followup-exceptions-card{margin-top:0}
 .followup-section .followup-bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;align-items:stretch}

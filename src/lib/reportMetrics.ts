@@ -417,10 +417,82 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
   const uniqueParticipantKey = (r: ResponseRecord) => `${r.firstName.trim().toLowerCase()}|${r.lastName.trim().toLowerCase()}|${r.team.trim().toLowerCase()}`
   const uniqueParticipants = new Set(records.map(uniqueParticipantKey)).size
   const previousUniqueParticipants = previous ? new Set(prevRecords.map(uniqueParticipantKey)).size : null
-  const optedInPopulation = customer.optedInPopulation ?? (uniqueParticipants + customer.unsubscribed.length)
-  const previousOptedInPopulation = customer.optedInPopulation ?? (previousUniqueParticipants !== null ? previousUniqueParticipants + customer.unsubscribed.length : null)
-  const engagementRate = pct(uniqueParticipants, optedInPopulation)
-  const previousEngagementRate = previousOptedInPopulation ? pct(previousUniqueParticipants ?? 0, previousOptedInPopulation) : null
+
+  // === Engagement summary with off-roster inclusion ===
+  const roster = customer.roster ?? []
+  const hasRoster = roster.length > 0
+  const rosterCount = hasRoster ? roster.length : (customer.optedInPopulation ?? 0)
+  const rosterKeys = new Set(
+    roster.map((r) => `${r.firstName.trim().toLowerCase()}|${r.lastName.trim().toLowerCase()}`),
+  )
+  const respondentsThisMonth = new Set(records.map(uniqueParticipantKey))
+  const offRosterThisMonth: string[] = []
+  respondentsThisMonth.forEach((key) => { if (hasRoster && !rosterKeys.has(key)) offRosterThisMonth.push(key) })
+  const monthlyEffectiveRoster = hasRoster
+    ? rosterCount + offRosterThisMonth.length
+    : (customer.optedInPopulation ?? (uniqueParticipants + customer.unsubscribed.length))
+  const monthlyEngagementRate = pct(uniqueParticipants, monthlyEffectiveRoster)
+
+  // Prior-month effective roster and rate (for change indicator)
+  const respondentsPrev = previous ? new Set(prevRecords.map(uniqueParticipantKey)) : null
+  const offRosterPrev: string[] = []
+  respondentsPrev?.forEach((key) => { if (hasRoster && !rosterKeys.has(key)) offRosterPrev.push(key) })
+  const prevMonthlyEffectiveRoster = respondentsPrev
+    ? (hasRoster ? rosterCount + offRosterPrev.length : (customer.optedInPopulation ?? ((previousUniqueParticipants ?? 0) + customer.unsubscribed.length)))
+    : null
+  const previousEngagementRate = prevMonthlyEffectiveRoster ? pct(previousUniqueParticipants ?? 0, prevMonthlyEffectiveRoster) : null
+
+  // Weekly breakdown
+  const parseDate = (s: string): Date | null => { const d = new Date(s); return isNaN(d.getTime()) ? null : d }
+  const weekBuckets = new Map<string, { start: Date; respondents: Set<string> }>()
+  for (const r of records) {
+    const d = parseDate(r.date)
+    if (!d) continue
+    const wd = d.getDay()
+    const offset = (wd + 6) % 7 // Monday-start
+    const monday = new Date(d); monday.setHours(0, 0, 0, 0); monday.setDate(d.getDate() - offset)
+    const key = monday.toISOString().slice(0, 10)
+    const bucket = weekBuckets.get(key) ?? { start: monday, respondents: new Set<string>() }
+    bucket.respondents.add(uniqueParticipantKey(r))
+    weekBuckets.set(key, bucket)
+  }
+  const monthAbbrev = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+  const weeklyEngagement = [...weekBuckets.entries()]
+    .sort((a, b) => a[1].start.getTime() - b[1].start.getTime())
+    .map(([weekStart, b]) => {
+      const uniques = b.respondents.size
+      const offCount = hasRoster ? [...b.respondents].filter((k) => !rosterKeys.has(k)).length : 0
+      const effRoster = hasRoster ? rosterCount + offCount : (rosterCount || uniques)
+      const engagement = pct(uniques, effRoster)
+      const wd = b.start.getDate()
+      const wLabel = `Wk of ${monthAbbrev[b.start.getMonth()]} ${wd}`
+      return { weekStart, weekLabel: wLabel, uniqueRespondents: uniques, offRosterRespondents: offCount, effectiveRoster: effRoster, engagementRate: engagement }
+    })
+
+  // Off-roster respondents list (this month, with names)
+  const offRosterList = hasRoster
+    ? records.filter((r) => !rosterKeys.has(uniqueParticipantKey(r)))
+        .map((r) => `${(r.firstName || '').trim().toLowerCase()}|${(r.lastName || '').trim().toLowerCase()}|${(r.firstName || '').trim()} ${(r.lastName || '').trim()}`)
+        .filter((s, i, a) => a.indexOf(s) === i)
+        .map((s) => {
+          const parts = s.split('|')
+          return { firstName: parts[2].split(' ').slice(0, -1).join(' ') || parts[2], lastName: parts[2].split(' ').slice(-1)[0] || '', firstSeen: current.month, monthLabel: current.label }
+        })
+    : []
+
+  const engagementSummary = {
+    hasRoster,
+    rosterCount,
+    uniqueRespondents: uniqueParticipants,
+    offRosterCount: offRosterThisMonth.length,
+    effectiveRoster: monthlyEffectiveRoster,
+    engagementRate: monthlyEngagementRate,
+    offRosterList,
+    weekly: weeklyEngagement,
+  }
+
+  const optedInPopulation = monthlyEffectiveRoster
+  const engagementRate = monthlyEngagementRate
   const engagementRateChange = previousEngagementRate !== null ? round(engagementRate - previousEngagementRate, 1) : null
   const strategicNarrative = [
     `${customer.name}'s workforce signal in ${current.label} is ${severity(healthScore).toLowerCase()} with ${retentionRisk.toLowerCase()} retention risk. The organization is not showing a broad crisis signal, but the month softened enough to require targeted leadership attention rather than passive monitoring.`,
@@ -589,5 +661,5 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
     { title: 'Operationalize follow-up accountability', priority: 'P2' as const, urgency: 'Medium', impact: 'High', difficulty: 'Medium', owner: 'HR leader + team managers', nextStep: 'Require status, owner, first-response date, and closure note for every follow-up request. Remind managers to use the manager tools to track action items and close the feedback loop.', why: 'Responsiveness is a leadership-effectiveness signal; missing data prevents Lollipop from proving closure.', confidence: responsiveness.confidence, trigger: 'Use when follow-up requests are open, incomplete, or missing owner/status data.', links: [{ label: 'Manager tools', href: managerToolsUrl }, { label: 'Draft manager email', href: managerEmail }] },
     { title: 'Reinforce positive culture drivers', priority: 'P3' as const, urgency: 'Medium', impact: 'Medium', difficulty: 'Low', owner: 'Frontline managers', nextStep: 'Identify what top teams are doing differently and turn it into a manager coaching prompt.', why: 'Recognition, support, and visible progress appear to be meaningful positive sentiment drivers.', confidence: commentIntelligence.confidence, trigger: 'Use when positive sentiment or comment themes identify manager behaviors worth repeating.' },
   ]
-  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, individualRetentionRisks, managerReport }
+  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, individualRetentionRisks, managerReport, engagementSummary }
 }

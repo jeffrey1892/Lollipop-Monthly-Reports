@@ -16,7 +16,28 @@ export type ResponseRecord = {
 }
 
 export type MonthData = { month: string; label: string; responses: ResponseRecord[] }
-export type CustomerData = { id: string; name: string; industry: string; demo: boolean; months: MonthData[]; unsubscribed: Array<{ firstName: string; lastName: string; date: string; type: string }>; optedInPopulation?: number }
+export type RosterEntry = { id?: string; firstName: string; lastName: string; email?: string }
+export type CustomerData = { id: string; name: string; industry: string; demo: boolean; months: MonthData[]; unsubscribed: Array<{ firstName: string; lastName: string; date: string; type: string }>; optedInPopulation?: number; roster?: RosterEntry[] }
+
+export type WeeklyEngagementPoint = {
+  weekStart: string
+  weekLabel: string
+  uniqueRespondents: number
+  offRosterRespondents: number
+  effectiveRoster: number
+  engagementRate: number
+}
+export type OffRosterRespondent = { firstName: string; lastName: string; firstSeen: string; monthLabel: string }
+export type EngagementSummary = {
+  hasRoster: boolean
+  rosterCount: number
+  uniqueRespondents: number
+  offRosterCount: number
+  effectiveRoster: number
+  engagementRate: number
+  offRosterList: OffRosterRespondent[]
+  weekly: WeeklyEngagementPoint[]
+}
 
 export type WeeklyHistoryPoint = { weekStart: string; label: string; monthLabel: string; avgMood: number }
 
@@ -247,4 +268,5 @@ export type ReportMetrics = {
   positiveMomentum: AlertInsight[]
   individualRetentionRisks: IndividualRetentionRisk[]
   managerReport: ManagerReport
+  engagementSummary: EngagementSummary
 }
