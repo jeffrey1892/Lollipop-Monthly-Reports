@@ -93,7 +93,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
   const sn = report.strategicNarrative
   const whatChangedNarrative = sn[0] ?? 'Stable period with no headline shifts.'
   const whyItMattersNarrative = sn[1] ?? report.executiveSummary
-  const leadershipFocusNarrative = sn[2] ?? 'Continue current cadence and re-evaluate next cycle.'
 
   return (
     <div className="shell">
@@ -319,35 +318,21 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           </div>
         </section>
 
-        {/* === C. Executive Summary === */}
-        <section className="brief-section">
-          <SectionHeader title="Executive summary" />
-          <div className="exec-summary-card">
-            <p className="exec-summary-lede">{whatChangedNarrative}</p>
-            <dl className="exec-summary-list">
-              <div>
-                <dt className="h3-micro">Why it matters</dt>
-                <dd>{whyItMattersNarrative}</dd>
-              </div>
-              <div>
-                <dt className="h3-micro">Recommended leadership focus</dt>
-                <dd>
-                  {leadershipFocusNarrative}
-                  {report.leadershipAttention[0] && leadershipFocusNarrative !== report.leadershipAttention[0] && (
-                    <> {report.leadershipAttention[0]}</>
-                  )}
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </section>
-
         {/* === D. Priority Action Items === */}
         <section className="brief-section action-section">
           <SectionHeader
             title="Priority leadership actions"
             subtitle={`Sorted by urgency · ${sortedRecs.length} actions`}
           />
+          <div className="exec-summary-card action-intro-card">
+            <p className="exec-summary-lede">{whatChangedNarrative}</p>
+            <dl className="exec-summary-list">
+              <div>
+                <dt className="h3-micro">Why it matters</dt>
+                <dd>{whyItMattersNarrative}</dd>
+              </div>
+            </dl>
+          </div>
           <div className="action-grid-v2">
             {sortedRecs.map((r) => (
               <article

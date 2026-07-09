@@ -190,6 +190,8 @@
 .exec-summary-lede{font-size:20px;line-height:1.45;color:var(--ink);font-weight:700;margin:0 0 14px;letter-spacing:-.01em}
 .exec-summary-list{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px;margin:0}
 .exec-summary-list>div{display:grid;gap:4px}
+.action-intro-card{margin-bottom:14px}
+.action-intro-card .exec-summary-list{grid-template-columns:1fr}
 .exec-summary-list dt{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:var(--muted);margin:0!important}
 .exec-summary-list dd{font-size:14px;line-height:1.55;color:var(--ink);margin:0}
 .exec-summary-list>div{gap:2px}
