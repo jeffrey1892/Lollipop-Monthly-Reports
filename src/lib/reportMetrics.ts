@@ -460,12 +460,13 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
   const currentMonthNum = parseInt(current.month.slice(5, 7), 10)
   const currentYear = current.month.slice(0, 4)
   const quarterNum = Math.ceil(currentMonthNum / 3)
+  // Full calendar quarter (all three months, wherever data exists)
   const quarterMonthKeys = [1, 2, 3]
     .map((i) => `${currentYear}-${String((quarterNum - 1) * 3 + i).padStart(2, '0')}`)
-    .filter((k) => k <= current.month)
   const weeklyWindowMonths = range === 'quarter'
     ? customer.months.filter((m) => quarterMonthKeys.includes(m.month))
     : [current]
+  const weeklyWindowMonthKeys = range === 'quarter' ? quarterMonthKeys : [current.month]
   const weeklyWindowLabel = range === 'quarter' ? `Q${quarterNum} ${currentYear}` : current.label
   const monthAbbrev = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
   const buildWeekly = (recs: ResponseRecord[]) => {
@@ -493,8 +494,12 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
         return { weekStart, weekLabel: wLabel, uniqueRespondents: uniques, offRosterRespondents: offCount, effectiveRoster: effRoster, engagementRate: engagement }
       })
   }
-  // Detail table: reporting month's weeks, or the quarter's weeks in quarter view
+  // Detail table: reporting month's weeks, or the quarter's weeks in quarter
+  // view. Presentation-only filter: show weeks whose start (Monday) falls
+  // inside the selected period, so boundary weeks belonging to the prior
+  // month don't appear (e.g. 'Wk of Mar 30' is excluded from an April table).
   const weeklyEngagement = buildWeekly(weeklyWindowMonths.flatMap((m) => m.responses))
+    .filter((w) => weeklyWindowMonthKeys.includes(w.weekStart.slice(0, 7)))
   // Chart: always trailing 3 months ending at the reporting month
   const weeklyTrailing = buildWeekly(
     customer.months.slice(Math.max(0, currentIndex - 2), currentIndex + 1).flatMap((m) => m.responses),
