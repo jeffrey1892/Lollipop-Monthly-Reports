@@ -223,29 +223,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
             </div>
             <div className="engagement-grid">
               <div className="engagement-left-col">
-                <div className="card engagement-monthly-card">
-                  <p className="h2-sub">Monthly engagement</p>
-                  <table className="table engagement-table">
-                    <tbody>
-                      <tr>
-                        <td>Uploaded roster</td>
-                        <td style={{ textAlign: 'right' }}>{report.engagementSummary.rosterCount}</td>
-                      </tr>
-                      <tr>
-                        <td>Unique monthly respondents</td>
-                        <td style={{ textAlign: 'right' }}>{report.engagementSummary.uniqueRespondents}</td>
-                      </tr>
-                      <tr className="engagement-total-row">
-                        <td><strong>Monthly engagement rate</strong></td>
-                        <td style={{ textAlign: 'right' }}><strong>{report.engagementSummary.engagementRate}%</strong></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p className="muted engagement-note">
-                    Monthly engagement is calculated as the number of unique employees who checked
-                    in at least once during the month, divided by the effective roster.
-                  </p>
-                </div>
                 <div className="card engagement-weekly-table-card">
                   <p className="h2-sub">Weekly detail — {report.engagementSummary.weeklyWindowLabel}</p>
                   <div className="table-wrap">
