@@ -39,6 +39,8 @@ export type EngagementSummary = {
   weekly: WeeklyEngagementPoint[]
   /** Engagement change of the latest week versus the prior week within this reporting period (pp). Null when fewer than 2 weeks. */
   weeklyChange: number | null
+  /** Window the weekly series covers, e.g. 'May 2026' or 'Q2 2026'. */
+  weeklyWindowLabel: string
 }
 
 export type WeeklyHistoryPoint = { weekStart: string; label: string; monthLabel: string; avgMood: number }

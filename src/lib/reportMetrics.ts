@@ -292,7 +292,7 @@ function buildCommentIntelligence(records: ResponseRecord[], priorRecords: Respo
   }
 }
 
-export function getReport(customerId = 'cosmo-cabinets', month?: string): ReportMetrics {
+export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 'month' | 'quarter' = 'month'): ReportMetrics {
   const customer = customers.find((c) => c.id === customerId) ?? customers[0]
   const selected = month ? customer.months.find((m) => m.month === month) : customer.months[customer.months.length - 1]
   const current = selected ?? customer.months[customer.months.length - 1]
@@ -444,11 +444,20 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
     : null
   const previousEngagementRate = prevMonthlyEffectiveRoster ? pct(previousUniqueParticipants ?? 0, prevMonthlyEffectiveRoster) : null
 
-  // Weekly breakdown — trailing 3 months (current month plus two prior)
+  // Weekly breakdown — the reporting month's weeks by default, or the
+  // calendar quarter containing the reporting month (up to that month).
   const parseDate = (s: string): Date | null => { const d = new Date(s); return isNaN(d.getTime()) ? null : d }
-  const weeklyWindowRecords = customer.months
-    .slice(Math.max(0, currentIndex - 2), currentIndex + 1)
-    .flatMap((m) => m.responses)
+  const currentMonthNum = parseInt(current.month.slice(5, 7), 10)
+  const currentYear = current.month.slice(0, 4)
+  const quarterNum = Math.ceil(currentMonthNum / 3)
+  const quarterMonthKeys = [1, 2, 3]
+    .map((i) => `${currentYear}-${String((quarterNum - 1) * 3 + i).padStart(2, '0')}`)
+    .filter((k) => k <= current.month)
+  const weeklyWindowMonths = range === 'quarter'
+    ? customer.months.filter((m) => quarterMonthKeys.includes(m.month))
+    : [current]
+  const weeklyWindowRecords = weeklyWindowMonths.flatMap((m) => m.responses)
+  const weeklyWindowLabel = range === 'quarter' ? `Q${quarterNum} ${currentYear}` : current.label
   const weekBuckets = new Map<string, { start: Date; respondents: Set<string> }>()
   for (const r of weeklyWindowRecords) {
     const d = parseDate(r.date)
@@ -504,6 +513,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
     offRosterList,
     weekly: weeklyEngagement,
     weeklyChange: weeklyEngagementChange,
+    weeklyWindowLabel,
   }
 
   const optedInPopulation = monthlyEffectiveRoster

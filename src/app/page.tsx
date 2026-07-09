@@ -21,10 +21,13 @@ export const dynamic = 'force-dynamic'
 
 const URGENCY_RANK: Record<string, number> = { High: 1, Medium: 2, Low: 3 }
 
-export default async function Home({ searchParams }: { searchParams?: Promise<{ month?: string; customer?: string }> }) {
+export default async function Home({ searchParams }: { searchParams?: Promise<{ month?: string; customer?: string; range?: string }> }) {
   const params = (await searchParams) ?? {}
   const customer = customers.find((c) => c.id === params.customer) ?? customers[0]
-  const report = getReport(customer.id, params.month)
+  const range: 'month' | 'quarter' = params.range === 'quarter' ? 'quarter' : 'month'
+  const report = getReport(customer.id, params.month, range)
+  const rangeHref = (r: 'month' | 'quarter') =>
+    `/?customer=${customer.id}&month=${report.month}&range=${r}`
 
   // === Follow-up Responsiveness placeholder data ===
   // When real data is wired, populate these from report.followUpResponsiveness.
@@ -205,36 +208,71 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
         {/* === B2. Engagement summary — monthly + weekly === */}
         {report.engagementSummary && (
           <section className="brief-section engagement-summary-section">
-            <SectionHeader
-              title="Engagement summary"
-              subtitle="Monthly and weekly engagement with off-roster respondents included"
-            />
+            <div className="engagement-section-head">
+              <SectionHeader
+                title="Engagement summary"
+                subtitle="Monthly and weekly engagement with off-roster respondents included"
+              />
+              <div className="range-toggle" aria-label="Weekly engagement period">
+                <a className={`range-pill${range === 'month' ? ' active' : ''}`} href={rangeHref('month')}>
+                  Month
+                </a>
+                <a className={`range-pill${range === 'quarter' ? ' active' : ''}`} href={rangeHref('quarter')}>
+                  Quarter
+                </a>
+              </div>
+            </div>
             <div className="engagement-grid">
-              <div className="card engagement-weekly-table-card">
-                <p className="h2-sub">Weekly detail</p>
-                <div className="table-wrap">
-                  <table className="table engagement-weekly-table">
-                    <thead>
-                      <tr>
-                        <th>Week</th>
-                        <th style={{ textAlign: 'right' }}>Unique respondents</th>
-                        <th style={{ textAlign: 'right' }}>Engagement %</th>
-                      </tr>
-                    </thead>
+              <div className="engagement-left-col">
+                <div className="card engagement-monthly-card">
+                  <p className="h2-sub">Monthly engagement</p>
+                  <table className="table engagement-table">
                     <tbody>
-                      {report.engagementSummary.weekly.map((w) => (
-                        <tr key={w.weekStart}>
-                          <td>{w.weekLabel}</td>
-                          <td style={{ textAlign: 'right' }}>{w.uniqueRespondents}</td>
-                          <td style={{ textAlign: 'right' }}><strong>{w.engagementRate}%</strong></td>
-                        </tr>
-                      ))}
+                      <tr>
+                        <td>Uploaded roster</td>
+                        <td style={{ textAlign: 'right' }}>{report.engagementSummary.rosterCount}</td>
+                      </tr>
+                      <tr>
+                        <td>Unique monthly respondents</td>
+                        <td style={{ textAlign: 'right' }}>{report.engagementSummary.uniqueRespondents}</td>
+                      </tr>
+                      <tr className="engagement-total-row">
+                        <td><strong>Monthly engagement rate</strong></td>
+                        <td style={{ textAlign: 'right' }}><strong>{report.engagementSummary.engagementRate}%</strong></td>
+                      </tr>
                     </tbody>
                   </table>
+                  <p className="muted engagement-note">
+                    Monthly engagement is calculated as the number of unique employees who checked
+                    in at least once during the month, divided by the effective roster.
+                  </p>
+                </div>
+                <div className="card engagement-weekly-table-card">
+                  <p className="h2-sub">Weekly detail — {report.engagementSummary.weeklyWindowLabel}</p>
+                  <div className="table-wrap">
+                    <table className="table engagement-weekly-table">
+                      <thead>
+                        <tr>
+                          <th>Week</th>
+                          <th style={{ textAlign: 'right' }}>Unique respondents</th>
+                          <th style={{ textAlign: 'right' }}>Engagement %</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {report.engagementSummary.weekly.map((w) => (
+                          <tr key={w.weekStart}>
+                            <td>{w.weekLabel}</td>
+                            <td style={{ textAlign: 'right' }}>{w.uniqueRespondents}</td>
+                            <td style={{ textAlign: 'right' }}><strong>{w.engagementRate}%</strong></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
               <div className="card engagement-chart-card">
-                <p className="h2-sub">Trailing 3 month weekly engagement</p>
+                <p className="h2-sub">Weekly engagement — {report.engagementSummary.weeklyWindowLabel}</p>
                 <div className="engagement-chart-wrap">
                   <WeeklyEngagementChart points={report.engagementSummary.weekly} />
                 </div>
@@ -246,19 +284,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 </p>
               </div>
             </div>
-            {report.engagementSummary.offRosterList.length > 0 && (
-              <div className="card engagement-off-roster-card">
-                <p className="h2-sub">Respondents not found on the uploaded roster</p>
-                <p className="muted" style={{ fontSize: 12, margin: '2px 0 8px' }}>
-                  These employees are included in engagement calculations for review only.
-                </p>
-                <ul className="off-roster-list">
-                  {report.engagementSummary.offRosterList.map((p, i) => (
-                    <li key={i}>{p.firstName} {p.lastName}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </section>
         )}
 
