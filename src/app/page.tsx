@@ -156,25 +156,18 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               tone={positiveTone}
             />
             <KpiCard
-              label="Participation rate"
+              label="Monthly engagement rate"
               value={engagementPct !== null ? `${engagementPct}%` : '—'}
               sub={
                 <>
                   {report.engagement.uniqueParticipants} of{' '}
-                  {report.engagement.optedInPopulation ?? '—'} opted-in
+                  {report.engagement.optedInPopulation ?? '—'} employees checked in at least once
+                  this month
                 </>
               }
-              delta={<TrendDelta value={report.engagement.responseRateChange} suffix=" pp" />}
-              deltaCaption={priorCaption}
+              delta={<TrendDelta value={report.engagementSummary?.weeklyChange ?? null} suffix=" pp" />}
+              deltaCaption="v. prior week"
               tone="blue"
-            />
-            <KpiCard
-              label="Total responses"
-              value={report.responseCount}
-              sub={<>check-ins this period</>}
-              delta={<TrendDelta value={report.engagement.participationChange} suffix=" check-ins" />}
-              deltaCaption={priorCaption}
-              tone="neutral"
             />
             <KpiCard
               label="Teams requiring attention"
@@ -249,6 +242,10 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                     </tr>
                   </tbody>
                 </table>
+                <p className="muted engagement-note">
+                  Monthly engagement is calculated as the number of unique employees who checked in
+                  at least once during the month, divided by the effective roster.
+                </p>
               </div>
               <div className="card engagement-chart-card">
                 <p className="h2-sub">Week-by-week engagement</p>

@@ -37,6 +37,8 @@ export type EngagementSummary = {
   engagementRate: number
   offRosterList: OffRosterRespondent[]
   weekly: WeeklyEngagementPoint[]
+  /** Engagement change of the latest week versus the prior week within this reporting period (pp). Null when fewer than 2 weeks. */
+  weeklyChange: number | null
 }
 
 export type WeeklyHistoryPoint = { weekStart: string; label: string; monthLabel: string; avgMood: number }
