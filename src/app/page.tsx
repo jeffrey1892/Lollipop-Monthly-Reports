@@ -249,19 +249,12 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </div>
               <div className="card engagement-chart-card">
                 <p className="h2-sub">Weekly engagement — trailing 3 months</p>
-                <div className="engagement-chart-body">
-                  <div className="engagement-chart-wrap">
-                    <WeeklyEngagementChart points={report.engagementSummary.weeklyTrailing} />
-                  </div>
-                  <div className="engagement-chart-notes">
-                    <p className="muted engagement-note">
-                      Engagement rates are based on unique employees, with a maximum of one counted response per employee per week.
-                    </p>
-                    <p className="muted engagement-note">
-                      Respondents not found on the uploaded roster are included in both the respondent count and the effective roster count.
-                    </p>
-                  </div>
+                <div className="engagement-chart-wrap">
+                  <WeeklyEngagementChart points={report.engagementSummary.weeklyTrailing} />
                 </div>
+                <p className="muted engagement-note">
+                  Engagement rates are based on unique employees, with a maximum of one counted response per employee per week.
+                </p>
               </div>
             </div>
           </section>
