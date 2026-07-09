@@ -417,8 +417,8 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
   const uniqueParticipantKey = (r: ResponseRecord) => `${r.firstName.trim().toLowerCase()}|${r.lastName.trim().toLowerCase()}|${r.team.trim().toLowerCase()}`
   const uniqueParticipants = new Set(records.map(uniqueParticipantKey)).size
   const previousUniqueParticipants = previous ? new Set(prevRecords.map(uniqueParticipantKey)).size : null
-  const optedInPopulation = uniqueParticipants + customer.unsubscribed.length
-  const previousOptedInPopulation = previousUniqueParticipants !== null ? previousUniqueParticipants + customer.unsubscribed.length : null
+  const optedInPopulation = customer.optedInPopulation ?? (uniqueParticipants + customer.unsubscribed.length)
+  const previousOptedInPopulation = customer.optedInPopulation ?? (previousUniqueParticipants !== null ? previousUniqueParticipants + customer.unsubscribed.length : null)
   const engagementRate = pct(uniqueParticipants, optedInPopulation)
   const previousEngagementRate = previousOptedInPopulation ? pct(previousUniqueParticipants ?? 0, previousOptedInPopulation) : null
   const engagementRateChange = previousEngagementRate !== null ? round(engagementRate - previousEngagementRate, 1) : null

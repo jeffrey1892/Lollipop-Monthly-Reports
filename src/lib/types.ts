@@ -16,7 +16,7 @@ export type ResponseRecord = {
 }
 
 export type MonthData = { month: string; label: string; responses: ResponseRecord[] }
-export type CustomerData = { id: string; name: string; industry: string; demo: boolean; months: MonthData[]; unsubscribed: Array<{ firstName: string; lastName: string; date: string; type: string }> }
+export type CustomerData = { id: string; name: string; industry: string; demo: boolean; months: MonthData[]; unsubscribed: Array<{ firstName: string; lastName: string; date: string; type: string }>; optedInPopulation?: number }
 
 export type WeeklyHistoryPoint = { weekStart: string; label: string; monthLabel: string; avgMood: number }
 
