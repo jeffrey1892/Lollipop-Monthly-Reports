@@ -725,10 +725,15 @@ a.link:hover{color:#0866c9}
 .range-pill{padding:6px 16px;border-radius:999px;font-size:12.5px;font-weight:800;color:var(--muted);text-decoration:none}
 .range-pill.active{background:var(--blue);color:white}
 .range-pill:not(.active):hover{background:var(--blueSoft);color:#075cae}
-.engagement-summary-section .engagement-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:14px;align-items:stretch}
+.engagement-summary-section .engagement-grid{display:grid;grid-template-columns:1fr 3fr;gap:14px;align-items:stretch}
 .engagement-summary-section .engagement-grid>.card{height:100%}
 .engagement-left-col{display:flex;flex-direction:column;gap:14px}
 .engagement-left-col>.card{flex:1;min-height:0}
+.engagement-weekly-table-card{padding:16px}
+.engagement-weekly-table th,.engagement-weekly-table td{font-size:12px;padding:6px 6px}
+.engagement-chart-card{display:flex;flex-direction:column}
+.engagement-chart-wrap{flex:1;display:flex;align-items:stretch;min-height:280px}
+.engagement-chart-wrap svg{width:100%;height:100%}
 @media(max-width:900px){.engagement-summary-section .engagement-grid{grid-template-columns:1fr}}
 .engagement-table{width:100%;font-size:13px}
 .engagement-table td,.engagement-table th{padding:8px 10px}
