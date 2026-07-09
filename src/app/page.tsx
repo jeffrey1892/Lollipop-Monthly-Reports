@@ -287,6 +287,38 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           </section>
         )}
 
+        {/* === B3. Monthly Wide Mood Trends === */}
+        <section className="brief-section trend-section">
+          <SectionHeader title="Monthly Wide Mood Trends" subtitle="Sentiment and participation over time" />
+          <div className="trend-card-grid">
+            <div className="card trend-chart-card">
+              <TrendChart data={report.monthlyTrend} />
+            </div>
+            <div className="trend-stats">
+              <div className="stat-tile">
+                <span className="h3-micro">Trailing 3-month mood</span>
+                <strong>{report.trend.threeMonthAvgMood ?? '—'}</strong>
+              </div>
+              <div className="stat-tile">
+                <span className="h3-micro">Rolling positive</span>
+                <strong>{report.trend.rollingPositivePct ?? '—'}%</strong>
+              </div>
+              <div className="stat-tile">
+                <span className="h3-micro">Best month</span>
+                <strong>{report.trend.bestMonth}</strong>
+              </div>
+              <div className="stat-tile">
+                <span className="h3-micro">Worst month</span>
+                <strong>{report.trend.worstMonth}</strong>
+              </div>
+              <div className="stat-tile wide">
+                <span className="h3-micro">Persistence</span>
+                <strong className="stat-narrative">{report.trend.meaningfulMovement}</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* === C. Executive Summary === */}
         <section className="brief-section">
           <SectionHeader title="Executive summary" />
@@ -363,38 +395,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 )}
               </article>
             ))}
-          </div>
-        </section>
-
-        {/* === E. Company-Wide Trend Dashboard === */}
-        <section className="brief-section trend-section">
-          <SectionHeader title="Company-wide trends" subtitle="Sentiment and participation over time" />
-          <div className="trend-card-grid">
-            <div className="card trend-chart-card">
-              <TrendChart data={report.monthlyTrend} />
-            </div>
-            <div className="trend-stats">
-              <div className="stat-tile">
-                <span className="h3-micro">Trailing 3-month mood</span>
-                <strong>{report.trend.threeMonthAvgMood ?? '—'}</strong>
-              </div>
-              <div className="stat-tile">
-                <span className="h3-micro">Rolling positive</span>
-                <strong>{report.trend.rollingPositivePct ?? '—'}%</strong>
-              </div>
-              <div className="stat-tile">
-                <span className="h3-micro">Best month</span>
-                <strong>{report.trend.bestMonth}</strong>
-              </div>
-              <div className="stat-tile">
-                <span className="h3-micro">Worst month</span>
-                <strong>{report.trend.worstMonth}</strong>
-              </div>
-              <div className="stat-tile wide">
-                <span className="h3-micro">Persistence</span>
-                <strong className="stat-narrative">{report.trend.meaningfulMovement}</strong>
-              </div>
-            </div>
           </div>
         </section>
 
