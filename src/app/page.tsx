@@ -170,6 +170,12 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               delta={<TrendDelta value={report.engagementSummary?.weeklyChange ?? null} suffix=" pp" />}
               deltaCaption="v. prior week"
               tone="blue"
+              help={
+                <>
+                  Unique employees who checked in at least once during the month ÷ total
+                  employees on the roster (plus any respondents not on the roster).
+                </>
+              }
             />
             <KpiCard
               label="Teams requiring attention"

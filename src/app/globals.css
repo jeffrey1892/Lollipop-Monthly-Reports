@@ -731,6 +731,7 @@ a.link:hover{color:#0866c9}
 .engagement-left-col>.card{flex:1;min-height:0}
 .engagement-weekly-table-card{padding:16px}
 .engagement-weekly-table th,.engagement-weekly-table td{font-size:12px;padding:6px 6px}
+.kpi-card .kpi-help{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-size:10px;line-height:1.4;color:var(--muted);font-weight:600}
 .engagement-chart-card{display:flex;flex-direction:column}
 .engagement-chart-body{display:flex;gap:16px;flex:1;align-items:stretch;min-height:0}
 .engagement-chart-wrap{flex:1;display:flex;align-items:stretch;min-height:260px}
