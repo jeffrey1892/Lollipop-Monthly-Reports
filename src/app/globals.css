@@ -735,8 +735,7 @@ a.link:hover{color:#0866c9}
 .engagement-chart-body{display:flex;gap:16px;flex:1;align-items:stretch;min-height:0}
 .engagement-chart-wrap{flex:1;display:flex;align-items:stretch;min-height:260px}
 .engagement-chart-wrap svg{width:100%;height:100%}
-.engagement-chart-notes{width:140px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:12px;border-left:1px solid var(--line);padding-left:12px}
-.engagement-chart-notes .engagement-note{font-size:10.5px;line-height:1.45}
+.engagement-chart-notes{width:210px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:12px;border-left:1px solid var(--line);padding-left:14px}
 @media(max-width:900px){.engagement-chart-body{flex-direction:column}.engagement-chart-notes{width:auto;border-left:0;padding-left:0}}
 @media(max-width:900px){.engagement-summary-section .engagement-grid{grid-template-columns:1fr}}
 .engagement-table{width:100%;font-size:13px}

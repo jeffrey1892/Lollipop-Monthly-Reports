@@ -257,6 +257,9 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                     <p className="muted engagement-note">
                       Engagement rates are based on unique employees, with a maximum of one counted response per employee per week.
                     </p>
+                    <p className="muted engagement-note">
+                      Respondents not found on the uploaded roster are included in both the respondent count and the effective roster count.
+                    </p>
                   </div>
                 </div>
               </div>
