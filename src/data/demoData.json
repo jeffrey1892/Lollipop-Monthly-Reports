@@ -12721,6 +12721,6050 @@
           "type": "SMS"
         }
       ]
+    },
+    {
+      "id": "worksmart",
+      "name": "WorkSmart",
+      "industry": "Staffing",
+      "demo": false,
+      "months": [
+        {
+          "month": "2026-01",
+          "label": "Jan 2026",
+          "responses": [
+            {
+              "id": "ws-Jan-1",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "TUSCALOOSA",
+              "date": "Jan  1, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-2",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Jan  1, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Happy New Year!"
+            },
+            {
+              "id": "ws-Jan-3",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jan  1, 2026  8:01 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-4",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "TUSCALOOSA",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-5",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Happy",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-6",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-7",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-8",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-9",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "SALES",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-10",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-11",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-12",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-13",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-14",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-15",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Jan  5, 2026  4:00 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-16",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "GREENVILLE",
+              "date": "Jan  7, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-17",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "TUSCALOOSA",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-18",
+              "firstName": "Tori",
+              "lastName": "Fleming",
+              "team": "LAVONIA",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-19",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-20",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-21",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Appreciated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-22",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-23",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-24",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-25",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-26",
+              "firstName": "Susan",
+              "lastName": "Davis",
+              "team": "GREENWOOD",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-27",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-28",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-29",
+              "firstName": "Tammy",
+              "lastName": "Pearce",
+              "team": "SALES",
+              "date": "Jan  8, 2026  8:01 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-30",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "TUSCALOOSA",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-31",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-32",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-33",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-34",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "SALES",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-35",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-36",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-37",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-38",
+              "firstName": "Susan",
+              "lastName": "Davis",
+              "team": "GREENWOOD",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-39",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Jan 12, 2026  4:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-40",
+              "firstName": "Elizabeth",
+              "lastName": "Mayorga",
+              "team": "GREENVILLE",
+              "date": "Jan 14, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Content",
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-41",
+              "firstName": "Tori",
+              "lastName": "Fleming",
+              "team": "LAVONIA",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-42",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-43",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-44",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-45",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-46",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-47",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Woke up to no heat"
+            },
+            {
+              "id": "ws-Jan-48",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-49",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-50",
+              "firstName": "Susan",
+              "lastName": "Davis",
+              "team": "GREENWOOD",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-51",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-52",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "SALES",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Motivated",
+                "Happy",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-53",
+              "firstName": "Tammy",
+              "lastName": "Pearce",
+              "team": "SALES",
+              "date": "Jan 15, 2026  8:01 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-54",
+              "firstName": "Elizabeth",
+              "lastName": "Mayorga",
+              "team": "GREENVILLE",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Kinda nervous about the winter storm ahh \ud83d\ude1f"
+            },
+            {
+              "id": "ws-Jan-55",
+              "firstName": "Julia",
+              "lastName": "Odom",
+              "team": "GREENVILLE",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Excited for the new client we met today"
+            },
+            {
+              "id": "ws-Jan-56",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-57",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-58",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-59",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-60",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-61",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-62",
+              "firstName": "Susan",
+              "lastName": "Davis",
+              "team": "GREENWOOD",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-63",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-64",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-65",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-66",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Hoping we don\u2019t lose power"
+            },
+            {
+              "id": "ws-Jan-67",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jan 21, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-68",
+              "firstName": "Julia",
+              "lastName": "Odom",
+              "team": "GREENVILLE",
+              "date": "Jan 26, 2026  9:34 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Grateful to be working from home today.  Thanks WorkSmart!"
+            },
+            {
+              "id": "ws-Jan-69",
+              "firstName": "Alex",
+              "lastName": "Johnson",
+              "team": "GREENVILLE",
+              "date": "Jan 26, 2026  9:34 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-70",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "GREENVILLE",
+              "date": "Jan 26, 2026  9:34 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-71",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jan 26, 2026  9:35 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Grateful",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-72",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Jan 26, 2026  9:35 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-73",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jan 26, 2026  9:35 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-74",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "Jan 26, 2026  9:35 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Happy",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-75",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "TUSCALOOSA",
+              "date": "Jan 26, 2026  9:37 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-76",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Jan 26, 2026  9:37 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-77",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "Jan 26, 2026  9:37 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-78",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jan 26, 2026  9:37 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-79",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Jan 26, 2026  9:37 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-80",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "SALES",
+              "date": "Jan 26, 2026  9:37 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-81",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-82",
+              "firstName": "Julia",
+              "lastName": "Odom",
+              "team": "GREENVILLE",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Looking for people for new clients and JCS are not showing up.  Feeling stressed!"
+            },
+            {
+              "id": "ws-Jan-83",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-84",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-85",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Excited to have Kellie back as part of the Worksmart team!!"
+            },
+            {
+              "id": "ws-Jan-86",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-87",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-88",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-89",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-90",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-91",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-92",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "SALES",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Happy",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-93",
+              "firstName": "Tammy",
+              "lastName": "Pearce",
+              "team": "SALES",
+              "date": "Jan 28, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-94",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Jan 30, 2026 11:47 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jan-95",
+              "firstName": "Nairoby",
+              "lastName": "Hernandez",
+              "team": "GREENWOOD",
+              "date": "Jan 30, 2026 11:47 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-02",
+          "label": "Feb 2026",
+          "responses": [
+            {
+              "id": "ws-Feb-1",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Feb  3, 2026  9:22 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-2",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "SALES",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Optimistic",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-3",
+              "firstName": "Tammy",
+              "lastName": "Pearce",
+              "team": "SALES",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-4",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "GREENVILLE",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-5",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-6",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-7",
+              "firstName": "Tori",
+              "lastName": "Fleming",
+              "team": "LAVONIA",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-8",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-9",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-10",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-11",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 2.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-12",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-13",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-14",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-15",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Feb  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-16",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "SALES",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-17",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-18",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-19",
+              "firstName": "Tori",
+              "lastName": "Fleming",
+              "team": "LAVONIA",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-20",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-21",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-22",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Worried",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Grateful for WorkSmart and the support I get. Worried and overwhelmed with Joeys Medical Issues. Grateful for the Drs we have here."
+            },
+            {
+              "id": "ws-Feb-23",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-24",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-25",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-26",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-27",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-28",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-29",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Feb 11, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-30",
+              "firstName": "Tammy",
+              "lastName": "Pearce",
+              "team": "SALES",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-31",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-32",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "GREENVILLE",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-33",
+              "firstName": "Elizabeth",
+              "lastName": "Mayorga",
+              "team": "GREENVILLE",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Overwhelmed",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-34",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-35",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-36",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Happy",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-37",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-38",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-39",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-40",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Happy",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-41",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-42",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-43",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-44",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Feb 18, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-45",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Motivated",
+                "Excited",
+                "Optimistic",
+                "Content",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-46",
+              "firstName": "Elizabeth",
+              "lastName": "Mayorga",
+              "team": "GREENVILLE",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Overwhelmed",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-47",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-48",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-49",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-50",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Thankful for my WorkSmart family"
+            },
+            {
+              "id": "ws-Feb-51",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-52",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-53",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-54",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-55",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-56",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Feb-57",
+              "firstName": "Nairoby",
+              "lastName": "Hernandez",
+              "team": "GREENWOOD",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-03",
+          "label": "Mar 2026",
+          "responses": [
+            {
+              "id": "ws-Mar-1",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Feb 25, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-2",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Happy",
+                "Motivated",
+                "Content",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-3",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Content",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-4",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-5",
+              "firstName": "Tori",
+              "lastName": "Fleming",
+              "team": "LAVONIA",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-6",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-7",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-8",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-9",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-10",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-11",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-12",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-13",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-14",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Mar  4, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-15",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-16",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "GREENVILLE",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-17",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-18",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-19",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Hated to be out of work today unexpectedly due to being sick."
+            },
+            {
+              "id": "ws-Mar-20",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated",
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Computers are so slow, I feel like I spend more time watching my computer spin than I do working. Missing DISA backgrounds. Was so much easier."
+            },
+            {
+              "id": "ws-Mar-21",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Bullhorn has been so slow after 10am and takes forever to do the job. And I sure do miss DISA!!!! Vetty has too much to do and takes to much time to process."
+            },
+            {
+              "id": "ws-Mar-22",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-23",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-24",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-25",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-26",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Mar 11, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-27",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-28",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Been sick today"
+            },
+            {
+              "id": "ws-Mar-29",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Bullhorn and Able keep freeing and going down."
+            },
+            {
+              "id": "ws-Mar-30",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-31",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-32",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "GREENVILLE",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-33",
+              "firstName": "Elizabeth",
+              "lastName": "Mayorga",
+              "team": "GREENVILLE",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-34",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-35",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-36",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-37",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Just need my body to act right"
+            },
+            {
+              "id": "ws-Mar-38",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-39",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-40",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Mar 18, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-41",
+              "firstName": "Tammy",
+              "lastName": "Pearce",
+              "team": "SALES",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-42",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-43",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-44",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Grateful",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-45",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-46",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Happy",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-47",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-48",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Grateful",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-49",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-50",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-51",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Mar-52",
+              "firstName": "Nairoby",
+              "lastName": "Hernandez",
+              "team": "GREENWOOD",
+              "date": "Mar 25, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-04",
+          "label": "Apr 2026",
+          "responses": [
+            {
+              "id": "ws-Apr-1",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 2.0,
+              "emotions": [
+                "Confused"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-2",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-3",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-4",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Happy",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-5",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "GREENVILLE",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-6",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-7",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-8",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-9",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-10",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-11",
+              "firstName": "Nairoby",
+              "lastName": "Hernandez",
+              "team": "GREENWOOD",
+              "date": "Apr  1, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-12",
+              "firstName": "Tammy",
+              "lastName": "Pearce",
+              "team": "SALES",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-13",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-14",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-15",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Overwhelmed and frustrated. Every time I get help upfront, the staffing coordinator ends up full time recruiting. Its overwhelming trying to keep up with all the duties of front office by yourself."
+            },
+            {
+              "id": "ws-Apr-16",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Happy",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-17",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Motivated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-18",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-19",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-20",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-21",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-22",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Apr  8, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-23",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Thank you for caring and addressing any issues! The wellbeing of the office overall is very important and some employers just do not care. Just a reminder of why I love working for WS!!"
+            },
+            {
+              "id": "ws-Apr-24",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-25",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-26",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Motivated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-27",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-28",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Confused"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-29",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-30",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-31",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Very excited to be back in Lavonia full time \ud83d\ude0a"
+            },
+            {
+              "id": "ws-Apr-32",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Apr 15, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-33",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-34",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-35",
+              "firstName": "Tori",
+              "lastName": "Fleming",
+              "team": "LAVONIA",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-36",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-37",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Grateful",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Mostly stretched a little thin the last couple weeks. However, I enjoy it and it\u2019s good to be pushed. There is always room for growth."
+            },
+            {
+              "id": "ws-Apr-38",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-39",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-40",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-41",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-42",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-43",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Appreciated",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Ops is stressful with interruptions constantly"
+            },
+            {
+              "id": "ws-Apr-44",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-45",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-46",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-47",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-48",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "Apr 22, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-49",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-50",
+              "firstName": "Tori",
+              "lastName": "Fleming",
+              "team": "LAVONIA",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-51",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Optimistic",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-52",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Would be a lot better if my back pain would go away. \ud83e\udee4"
+            },
+            {
+              "id": "ws-Apr-53",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-54",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-55",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-56",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-57",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-58",
+              "firstName": "Nairoby",
+              "lastName": "Hernandez",
+              "team": "GREENWOOD",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-59",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-60",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-61",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "GREENVILLE",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Apr-62",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "Apr 29, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-05",
+          "label": "May 2026",
+          "responses": [
+            {
+              "id": "ws-May-1",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-2",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-3",
+              "firstName": "Tori",
+              "lastName": "Fleming",
+              "team": "LAVONIA",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-4",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-5",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-6",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-7",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-8",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-9",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "SPARTANBURG",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-10",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-11",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-12",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-13",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "GREENWOOD",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-14",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Happy",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I feel more confident in my knowledge and process of my job. I'm tummy the job instead of the job running me."
+            },
+            {
+              "id": "ws-May-15",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-16",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "GREENVILLE",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-17",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "GREENVILLE",
+              "date": "May  6, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Content",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-18",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "MAST",
+              "date": "May 13, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-19",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "MAST",
+              "date": "May 13, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-20",
+              "firstName": "Kimberlee",
+              "lastName": "Cothran",
+              "team": "SALES",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-21",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-22",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-23",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-24",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "LAVONIA",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-25",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-26",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-27",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Excited about all the BMW orders we got!!!"
+            },
+            {
+              "id": "ws-May-28",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-29",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Grateful",
+                "Appreciated",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-30",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "May 13, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-31",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "MAST",
+              "date": "May 20, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-32",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-33",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I say worried but it\u2019s more concerned and not worried. I\u2019m confident it will pass and everything will be okay."
+            },
+            {
+              "id": "ws-May-34",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-35",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "LAVONIA",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-36",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Grateful",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-37",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-38",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-39",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-40",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-41",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited",
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-42",
+              "firstName": "Tammy",
+              "lastName": "Pearce",
+              "team": "GREENVILLE",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-43",
+              "firstName": "Nairoby",
+              "lastName": "Hernandez",
+              "team": "GREENVILLE",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Content",
+                "Optimistic",
+                "Appreciated",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-44",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-45",
+              "firstName": "Ava Marie",
+              "lastName": "Price",
+              "team": "HOME OFFICE",
+              "date": "May 20, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I love my job and enjoy coming into work!!"
+            },
+            {
+              "id": "ws-May-46",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "MAST",
+              "date": "May 27, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-47",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "MAST",
+              "date": "May 27, 2026  1:00 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-48",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Distracted"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Just a lot going on in my personal life. Trying to stay focused and positive for the team."
+            },
+            {
+              "id": "ws-May-49",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-50",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "LAVONIA",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-51",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-52",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-53",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-54",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-55",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Happy",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-56",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-57",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-58",
+              "firstName": "Ava Marie",
+              "lastName": "Price",
+              "team": "HOME OFFICE",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-May-59",
+              "firstName": "Kathryn",
+              "lastName": "Carlson",
+              "team": "HOME OFFICE",
+              "date": "May 27, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-06",
+          "label": "Jun 2026",
+          "responses": [
+            {
+              "id": "ws-Jun-1",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "MAST",
+              "date": "Jun  3, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-2",
+              "firstName": "Alex",
+              "lastName": "Johnson",
+              "team": "MAST",
+              "date": "Jun  3, 2026  1:00 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-3",
+              "firstName": "Josh",
+              "lastName": "Massengill",
+              "team": "SALES",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Motivated",
+                "Happy",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-4",
+              "firstName": "Leslie",
+              "lastName": "Patrick",
+              "team": "LAVONIA",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-5",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-6",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-7",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "LAVONIA",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-8",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-9",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-10",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-11",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-12",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-13",
+              "firstName": "Elizabeth",
+              "lastName": "Mayorga",
+              "team": "GREENVILLE",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-14",
+              "firstName": "Nairoby",
+              "lastName": "Hernandez",
+              "team": "GREENVILLE",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-15",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-16",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-17",
+              "firstName": "Ava Marie",
+              "lastName": "Price",
+              "team": "HOME OFFICE",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Sad"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-18",
+              "firstName": "Kathryn",
+              "lastName": "Carlson",
+              "team": "HOME OFFICE",
+              "date": "Jun  3, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I am enjoying being at the Lavonia branch today! I am also enjoying getting some more responsibilities, learning more about WorkSmart, and getting to work closer with the team. Shoutout Josh and Amy and the Lavonia branch for working with me today."
+            },
+            {
+              "id": "ws-Jun-19",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "MAST",
+              "date": "Jun 10, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-20",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "MAST",
+              "date": "Jun 10, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-21",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "LAVONIA",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-22",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Grateful",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-23",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-24",
+              "firstName": "Noely",
+              "lastName": "Cabrera",
+              "team": "GREENWOOD",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-25",
+              "firstName": "She'Kira",
+              "lastName": "Norman",
+              "team": "GREENWOOD",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-26",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-27",
+              "firstName": "Nairoby",
+              "lastName": "Hernandez",
+              "team": "GREENVILLE",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-28",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-29",
+              "firstName": "Ava Marie",
+              "lastName": "Price",
+              "team": "HOME OFFICE",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-30",
+              "firstName": "Kathryn",
+              "lastName": "Carlson",
+              "team": "HOME OFFICE",
+              "date": "Jun 10, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Loving WorkSmart!!!"
+            },
+            {
+              "id": "ws-Jun-31",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "MAST",
+              "date": "Jun 17, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-32",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jun 17, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-33",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "LAVONIA",
+              "date": "Jun 17, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-34",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jun 17, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-35",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jun 17, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-36",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "Jun 17, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-37",
+              "firstName": "Elizabeth",
+              "lastName": "Mayorga",
+              "team": "GREENVILLE",
+              "date": "Jun 17, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Content",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-38",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Jun 17, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-39",
+              "firstName": "Ava Marie",
+              "lastName": "Price",
+              "team": "HOME OFFICE",
+              "date": "Jun 17, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-40",
+              "firstName": "Kathryn",
+              "lastName": "Carlson",
+              "team": "HOME OFFICE",
+              "date": "Jun 17, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited",
+                "Content",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Got to sit in on some really valuable meetings today!"
+            },
+            {
+              "id": "ws-Jun-41",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "MAST",
+              "date": "Jun 24, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-42",
+              "firstName": "Josh",
+              "lastName": "Massengill",
+              "team": "SALES",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-43",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-44",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "LAVONIA",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-45",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-46",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-47",
+              "firstName": "Jaemy",
+              "lastName": "Diaz",
+              "team": "SPARTANBURG",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-48",
+              "firstName": "Diana",
+              "lastName": "Lazo",
+              "team": "GREENVILLE",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-49",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-50",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jun-51",
+              "firstName": "Kathryn",
+              "lastName": "Carlson",
+              "team": "HOME OFFICE",
+              "date": "Jun 24, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Content",
+                "Happy",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Got to visit Greenwood today with Ava Marie and Autumn they\u2019re so fun\ud83e\udd70"
+            }
+          ]
+        },
+        {
+          "month": "2026-07",
+          "label": "Jul 2026",
+          "responses": [
+            {
+              "id": "ws-Jul-1",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "MAST",
+              "date": "Jul  1, 2026  1:00 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-2",
+              "firstName": "Amy",
+              "lastName": "Hauser",
+              "team": "MAST",
+              "date": "Jul  1, 2026  1:00 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-3",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jul  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-4",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jul  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-5",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "LAVONIA",
+              "date": "Jul  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-6",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jul  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Appreciated",
+                "Grateful",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-7",
+              "firstName": "Dee",
+              "lastName": "Hughes",
+              "team": "GREENVILLE",
+              "date": "Jul  1, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-8",
+              "firstName": "Elizabeth",
+              "lastName": "Mayorga",
+              "team": "GREENVILLE",
+              "date": "Jul  1, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated",
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "England not playing good not happy"
+            },
+            {
+              "id": "ws-Jul-9",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Jul  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-10",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jul  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Appreciated",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-11",
+              "firstName": "Kathryn",
+              "lastName": "Carlson",
+              "team": "HOME OFFICE",
+              "date": "Jul  1, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Content",
+                "Distracted"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-12",
+              "firstName": "Kinetha",
+              "lastName": "Shannon",
+              "team": "MAST",
+              "date": "Jul  8, 2026  1:00 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-13",
+              "firstName": "Christy",
+              "lastName": "Creek",
+              "team": "LAVONIA",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Upset",
+                "Worried",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-14",
+              "firstName": "Brandy",
+              "lastName": "Bryson",
+              "team": "LAVONIA",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-15",
+              "firstName": "Kashara",
+              "lastName": "Reed",
+              "team": "LAVONIA",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-16",
+              "firstName": "Kellie",
+              "lastName": "Wright",
+              "team": "LAVONIA",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-17",
+              "firstName": "Sandra",
+              "lastName": "Ogle",
+              "team": "SPARTANBURG",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 3.0,
+              "emotions": [
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-18",
+              "firstName": "Christi",
+              "lastName": "Hart",
+              "team": "SPARTANBURG",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-19",
+              "firstName": "Elizabeth",
+              "lastName": "Mayorga",
+              "team": "GREENVILLE",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-20",
+              "firstName": "Autumn",
+              "lastName": "Aldred",
+              "team": "HOME OFFICE",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-21",
+              "firstName": "Kristen",
+              "lastName": "Muirhead",
+              "team": "HOME OFFICE",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Appreciated",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ws-Jul-22",
+              "firstName": "Kathryn",
+              "lastName": "Carlson",
+              "team": "HOME OFFICE",
+              "date": "Jul  8, 2026  1:30 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Distracted",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        }
+      ],
+      "unsubscribed": []
     }
   ]
 }

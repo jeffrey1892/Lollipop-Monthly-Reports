@@ -119,11 +119,14 @@ function pickTools(opts: {
 
 export default async function ManagerPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ teamSlug: string }>
+  searchParams?: Promise<{ customer?: string }>
 }) {
   const { teamSlug } = await params
-  const customer = customers[0]
+  const sp = (await searchParams) ?? {}
+  const customer = customers.find((c) => c.id === sp.customer) ?? customers[0]
   const report = getReport(customer.id)
 
   const team = report.teamIntelligence.find((t) => slugifyTeam(t.team) === teamSlug)

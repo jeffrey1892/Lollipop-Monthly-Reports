@@ -2,6 +2,7 @@ import React from 'react'
 import DownloadPdfButton from '../DownloadPdfButton'
 
 type Month = { month: string; label: string }
+type Customer = { id: string; name: string }
 
 export default function TopBar({
   title = 'Workforce Intelligence',
@@ -10,6 +11,8 @@ export default function TopBar({
   action = '/',
   backLink,
   singlePdf = false,
+  customers,
+  selectedCustomer,
 }: {
   title?: string
   months?: Month[]
@@ -17,6 +20,8 @@ export default function TopBar({
   action?: string
   backLink?: { href: string; label: string }
   singlePdf?: boolean
+  customers?: Customer[]
+  selectedCustomer?: string
 }) {
   return (
     <header className="topbar">
@@ -34,15 +39,26 @@ export default function TopBar({
               {backLink.label}
             </a>
           )}
-          {months && months.length > 0 && (
+          {(months || customers) && (
             <form className="topbar-month-form" action={action} method="get">
-              <select name="month" defaultValue={selectedMonth} aria-label="Reporting month">
-                {months.map((m) => (
-                  <option key={m.month} value={m.month}>
-                    {m.label}
-                  </option>
-                ))}
-              </select>
+              {customers && customers.length > 1 && (
+                <select name="customer" defaultValue={selectedCustomer} aria-label="Customer">
+                  {customers.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              )}
+              {months && months.length > 0 && (
+                <select name="month" defaultValue={selectedMonth} aria-label="Reporting month">
+                  {months.map((m) => (
+                    <option key={m.month} value={m.month}>
+                      {m.label}
+                    </option>
+                  ))}
+                </select>
+              )}
               <button className="btn primary" type="submit">
                 Generate
               </button>

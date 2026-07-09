@@ -20,9 +20,9 @@ export const dynamic = 'force-dynamic'
 
 const URGENCY_RANK: Record<string, number> = { High: 1, Medium: 2, Low: 3 }
 
-export default async function Home({ searchParams }: { searchParams?: Promise<{ month?: string }> }) {
-  const customer = customers[0]
+export default async function Home({ searchParams }: { searchParams?: Promise<{ month?: string; customer?: string }> }) {
   const params = (await searchParams) ?? {}
+  const customer = customers.find((c) => c.id === params.customer) ?? customers[0]
   const report = getReport(customer.id, params.month)
 
   // === Follow-up Responsiveness placeholder data ===
@@ -93,7 +93,12 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
 
   return (
     <div className="shell">
-      <TopBar months={customer.months} selectedMonth={report.month} />
+      <TopBar
+        months={customer.months}
+        selectedMonth={report.month}
+        customers={customers.map((c) => ({ id: c.id, name: c.name }))}
+        selectedCustomer={customer.id}
+      />
 
 
       <main className="wrap pages">
