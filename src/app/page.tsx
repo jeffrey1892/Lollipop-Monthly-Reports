@@ -248,7 +248,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 </p>
               </div>
               <div className="card engagement-chart-card">
-                <p className="h2-sub">Week-by-week engagement</p>
+                <p className="h2-sub">Week-by-week engagement — last 3 months</p>
                 <div className="engagement-chart-wrap">
                   <WeeklyEngagementChart points={report.engagementSummary.weekly} />
                 </div>
@@ -262,7 +262,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
             </div>
             {report.engagementSummary.weekly.length > 0 && (
               <div className="card engagement-weekly-table-card">
-                <p className="h2-sub">Weekly detail</p>
+                <p className="h2-sub">Weekly detail — last 3 months</p>
                 <div className="table-wrap">
                   <table className="table engagement-weekly-table">
                     <thead>

@@ -442,10 +442,13 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string): Report
     : null
   const previousEngagementRate = prevMonthlyEffectiveRoster ? pct(previousUniqueParticipants ?? 0, prevMonthlyEffectiveRoster) : null
 
-  // Weekly breakdown
+  // Weekly breakdown — trailing 3 months (current month plus two prior)
   const parseDate = (s: string): Date | null => { const d = new Date(s); return isNaN(d.getTime()) ? null : d }
+  const weeklyWindowRecords = customer.months
+    .slice(Math.max(0, currentIndex - 2), currentIndex + 1)
+    .flatMap((m) => m.responses)
   const weekBuckets = new Map<string, { start: Date; respondents: Set<string> }>()
-  for (const r of records) {
+  for (const r of weeklyWindowRecords) {
     const d = parseDate(r.date)
     if (!d) continue
     const wd = d.getDay()

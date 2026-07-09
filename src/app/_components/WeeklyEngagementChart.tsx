@@ -37,18 +37,31 @@ export default function WeeklyEngagementChart({ points }: { points: Point[] }) {
       ))}
       <path d={areaPath} fill="#0A81FF" fillOpacity="0.08" />
       <path d={path} fill="none" stroke="#0A81FF" strokeWidth={2.4} strokeLinejoin="round" />
-      {points.map((p, i) => (
-        <g key={p.weekLabel + i}>
-          <circle cx={x(i)} cy={y(p.engagementRate)} r={4} fill="#0A81FF" stroke="white" strokeWidth={1.6} />
-          <text x={x(i)} y={y(p.engagementRate) - 10} fontSize={10.5} textAnchor="middle" fill="#0A81FF" fontWeight={800}>{p.engagementRate.toFixed(0)}%</text>
-        </g>
-      ))}
       {points.map((p, i) => {
-        const anchor = i === 0 ? 'start' : i === points.length - 1 ? 'end' : 'middle'
+        const dense = points.length > 8
+        const showValue = !dense || i % 2 === 0 || i === points.length - 1
         return (
-          <text key={`lbl-${i}`} x={x(i)} y={height - 20} fontSize={10} fill="#7a8290" textAnchor={anchor} fontWeight={700}>{p.weekLabel}</text>
+          <g key={p.weekLabel + i}>
+            <circle cx={x(i)} cy={y(p.engagementRate)} r={dense ? 3 : 4} fill="#0A81FF" stroke="white" strokeWidth={1.6} />
+            {showValue && (
+              <text x={x(i)} y={y(p.engagementRate) - 10} fontSize={dense ? 9.5 : 10.5} textAnchor="middle" fill="#0A81FF" fontWeight={800}>{p.engagementRate.toFixed(0)}%</text>
+            )}
+          </g>
         )
       })}
+      {points.map((p, i) => {
+        // With many weeks, label roughly every other tick; always label ends
+        const dense = points.length > 8
+        if (dense && i !== 0 && i !== points.length - 1 && i % 2 !== 0) return null
+        const anchor = i === 0 ? 'start' : i === points.length - 1 ? 'end' : 'middle'
+        return (
+          <text key={`lbl-${i}`} x={x(i)} y={height - 20} fontSize={dense ? 9 : 10} fill="#7a8290" textAnchor={anchor} fontWeight={700}>{p.weekLabel}</text>
+        )
+      })}
+      {points.map((p, i) => (
+        <line key={`tick-${i}`} x1={x(i)} x2={x(i)} y1={padT + innerH} y2={padT + innerH + 4} stroke="#9aa1ac" strokeWidth={1} />
+      ))}
+      <line x1={padL} x2={width - padR} y1={padT + innerH} y2={padT + innerH} stroke="#c8ccd3" strokeWidth={1} />
     </svg>
   )
 }
