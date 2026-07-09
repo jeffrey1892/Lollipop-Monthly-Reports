@@ -726,7 +726,7 @@ a.link:hover{color:#0866c9}
 .engagement-total-row td{border-top:1px solid var(--line);background:#f7f9fc}
 .engagement-chart-wrap{min-height:220px}
 .engagement-note{font-size:11.5px;line-height:1.4;margin:4px 0 0}
-.engagement-weekly-table-card{margin-top:14px}
+.engagement-weekly-table-card{margin-top:0}
 .engagement-weekly-table th,.engagement-weekly-table td{font-size:12.5px;padding:6px 8px}
 .engagement-off-roster-card{margin-top:14px;background:#fff9ec;border-color:#f5ca76}
 .off-roster-list{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}

@@ -210,45 +210,31 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               subtitle="Monthly and weekly engagement with off-roster respondents included"
             />
             <div className="engagement-grid">
-              <div className="card engagement-monthly-card">
-                <p className="h2-sub">Monthly engagement</p>
-                <table className="table engagement-table">
-                  <thead>
-                    <tr>
-                      <th>Metric</th>
-                      <th style={{ textAlign: 'right' }}>Value</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Uploaded roster</td>
-                      <td style={{ textAlign: 'right' }}>{report.engagementSummary.rosterCount}</td>
-                    </tr>
-                    <tr>
-                      <td>Unique monthly respondents</td>
-                      <td style={{ textAlign: 'right' }}>{report.engagementSummary.uniqueRespondents}</td>
-                    </tr>
-                    <tr>
-                      <td>Off-roster respondents</td>
-                      <td style={{ textAlign: 'right' }}>{report.engagementSummary.offRosterCount}</td>
-                    </tr>
-                    <tr>
-                      <td>Effective monthly roster</td>
-                      <td style={{ textAlign: 'right' }}>{report.engagementSummary.effectiveRoster}</td>
-                    </tr>
-                    <tr className="engagement-total-row">
-                      <td><strong>Monthly engagement rate</strong></td>
-                      <td style={{ textAlign: 'right' }}><strong>{report.engagementSummary.engagementRate}%</strong></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p className="muted engagement-note">
-                  Monthly engagement is calculated as the number of unique employees who checked in
-                  at least once during the month, divided by the effective roster.
-                </p>
+              <div className="card engagement-weekly-table-card">
+                <p className="h2-sub">Weekly detail</p>
+                <div className="table-wrap">
+                  <table className="table engagement-weekly-table">
+                    <thead>
+                      <tr>
+                        <th>Week</th>
+                        <th style={{ textAlign: 'right' }}>Unique respondents</th>
+                        <th style={{ textAlign: 'right' }}>Engagement %</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {report.engagementSummary.weekly.map((w) => (
+                        <tr key={w.weekStart}>
+                          <td>{w.weekLabel}</td>
+                          <td style={{ textAlign: 'right' }}>{w.uniqueRespondents}</td>
+                          <td style={{ textAlign: 'right' }}><strong>{w.engagementRate}%</strong></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div className="card engagement-chart-card">
-                <p className="h2-sub">Week-by-week engagement — last 3 months</p>
+                <p className="h2-sub">Trailing 3 month weekly engagement</p>
                 <div className="engagement-chart-wrap">
                   <WeeklyEngagementChart points={report.engagementSummary.weekly} />
                 </div>
@@ -260,35 +246,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 </p>
               </div>
             </div>
-            {report.engagementSummary.weekly.length > 0 && (
-              <div className="card engagement-weekly-table-card">
-                <p className="h2-sub">Weekly detail — last 3 months</p>
-                <div className="table-wrap">
-                  <table className="table engagement-weekly-table">
-                    <thead>
-                      <tr>
-                        <th>Week</th>
-                        <th style={{ textAlign: 'right' }}>Unique respondents</th>
-                        <th style={{ textAlign: 'right' }}>Off-roster</th>
-                        <th style={{ textAlign: 'right' }}>Effective roster</th>
-                        <th style={{ textAlign: 'right' }}>Engagement %</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {report.engagementSummary.weekly.map((w) => (
-                        <tr key={w.weekStart}>
-                          <td>{w.weekLabel}</td>
-                          <td style={{ textAlign: 'right' }}>{w.uniqueRespondents}</td>
-                          <td style={{ textAlign: 'right' }}>{w.offRosterRespondents}</td>
-                          <td style={{ textAlign: 'right' }}>{w.effectiveRoster}</td>
-                          <td style={{ textAlign: 'right' }}><strong>{w.engagementRate}%</strong></td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
             {report.engagementSummary.offRosterList.length > 0 && (
               <div className="card engagement-off-roster-card">
                 <p className="h2-sub">Respondents not found on the uploaded roster</p>
