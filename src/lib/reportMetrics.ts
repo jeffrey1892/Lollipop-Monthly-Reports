@@ -1,5 +1,5 @@
 import data from '@/data/demoData.json'
-import type { Confidence, CustomerData, IndividualRetentionRisk, MonthData, ReportMetrics, ResponseRecord, RetentionRisk, Severity, TeamMetric } from './types'
+import type { Confidence, CustomerData, EngagementRisk, IndividualRetentionRisk, MonthData, PriorityActionRow, ReportMetrics, ResponseRecord, RetentionRisk, Severity, TeamAttention, TeamMetric, TopPerformingTeam } from './types'
 
 export const customers = data.customers as CustomerData[]
 
@@ -544,6 +544,176 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
   const engagementRate = monthlyEngagementRate
   // Engagement movement is judged week-over-week within the month, not month-over-month
   const engagementRateChange = weeklyEngagementChange ?? (previousEngagementRate !== null ? round(engagementRate - previousEngagementRate, 1) : null)
+
+  // === Team risk engine: mood + engagement signals combined ===
+  // Team engagement rate uses an estimated team roster: the unique people
+  // seen responding for that team across the trailing 6-month window. This
+  // keeps calculations consistent while no per-team headcount is uploaded.
+  const teamWeeklyConsecutiveDeclines = (team: string) => {
+    const buckets = new Map<string, Set<string>>()
+    for (const m of weeklyWindowMonths) {
+      for (const r of m.responses) {
+        if (r.team !== team) continue
+        const d = parseDate(r.date)
+        if (!d) continue
+        const off = (d.getDay() + 6) % 7
+        const monday = new Date(d); monday.setHours(0, 0, 0, 0); monday.setDate(d.getDate() - off)
+        const k = monday.toISOString().slice(0, 10)
+        const set = buckets.get(k) ?? new Set<string>()
+        set.add(personKey(r))
+        buckets.set(k, set)
+      }
+    }
+    const counts = [...buckets.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1)).map(([, s]) => s.size)
+    let run = 0
+    let maxRun = 0
+    for (let i = 1; i < counts.length; i++) {
+      if (counts[i] < counts[i - 1]) { run++; maxRun = Math.max(maxRun, run) } else run = 0
+    }
+    return maxRun
+  }
+
+  const companyEngagement = monthlyEngagementRate
+  const teamAssessments = allTeams.map((t) => {
+    const teamRosterProxy = new Set(
+      historyMonths.flatMap((m) => m.responses.filter((r) => r.team === t.team).map(personKey)),
+    ).size
+    const teamRate = teamRosterProxy ? pct(t.uniqueRespondents, teamRosterProxy) : null
+    const prevUnique = new Set((prevTeamMap.get(t.team) ?? []).map(personKey)).size
+    const prevRate = teamRosterProxy && previous ? pct(prevUnique, teamRosterProxy) : null
+    const engChangePts = teamRate !== null && prevRate !== null ? round(teamRate - prevRate, 1) : null
+    const teamRecs = teamMap.get(t.team) ?? []
+    const negPct = pct(teamRecs.filter((r) => r.mood && r.mood <= 2).length, t.responses)
+    const consecutiveDeclines = teamWeeklyConsecutiveDeclines(t.team)
+
+    // Mood signals
+    const moodMajor = t.avgMood <= avgMood - 0.5 || (t.change ?? 0) <= -0.5
+    const moodMinor = !moodMajor && (t.avgMood <= avgMood - 0.2 || (t.change ?? 0) <= -0.3 || negPct >= 20)
+    // Engagement signals
+    const engMajor = teamRate !== null && (teamRate <= companyEngagement - 15 || (engChangePts ?? 0) <= -15)
+    const engMinor = !engMajor && ((engChangePts ?? 0) <= -10 || consecutiveDeclines >= 3 || (teamRate !== null && teamRate <= companyEngagement - 10))
+
+    const moodReasons: string[] = []
+    if (t.avgMood <= avgMood - 0.5) moodReasons.push(`mood is ${(avgMood - t.avgMood).toFixed(1)} pts below the company average`)
+    else if (t.avgMood <= avgMood - 0.2) moodReasons.push('mood is slightly below the company average')
+    if ((t.change ?? 0) <= -0.3) moodReasons.push(`mood declined ${Math.abs(t.change ?? 0).toFixed(2)} pts this period`)
+    if (negPct >= 20) moodReasons.push(`${negPct}% of check-ins were negative`)
+    const engReasons: string[] = []
+    if (teamRate !== null && teamRate <= companyEngagement - 15) engReasons.push(`engagement is ${round(companyEngagement - teamRate, 0)} pts below the company average`)
+    else if (teamRate !== null && teamRate <= companyEngagement - 10) engReasons.push('engagement is below the company average')
+    if ((engChangePts ?? 0) <= -10) engReasons.push(`engagement fell ${Math.abs(engChangePts ?? 0)} pts v. prior month`)
+    if (consecutiveDeclines >= 3) engReasons.push(`participation declined ${consecutiveDeclines} consecutive weeks`)
+
+    return { t, teamRate, engChangePts, negPct, consecutiveDeclines, moodMajor, moodMinor, engMajor, engMinor, moodReasons, engReasons }
+  })
+
+  const teamsNeedingAttention: TeamAttention[] = teamAssessments
+    .filter((a) => a.moodMajor || a.moodMinor || a.engMajor || a.engMinor)
+    .map((a) => {
+      const moodBad = a.moodMajor || a.moodMinor
+      const engBad = a.engMajor || a.engMinor
+      let riskLevel: TeamAttention['riskLevel']
+      if (a.t.sampleWarning) riskLevel = 'Watch'
+      else if (moodBad && engBad) riskLevel = 'Critical'
+      else if (a.moodMajor || a.engMajor) riskLevel = 'High'
+      else riskLevel = 'Moderate'
+      const reasons = [...a.moodReasons, ...a.engReasons]
+      const why = reasons.length
+        ? reasons.join('; ').replace(/^./, (c) => c.toUpperCase()) + (a.t.sampleWarning ? ` (only ${a.t.responses} responses — read directionally)` : '')
+        : 'Early signal worth monitoring'
+      const suggestedFocus =
+        riskLevel === 'Watch'
+          ? 'Monitor next period and encourage more check-ins; the sample is small'
+          : moodBad && engBad
+          ? 'Manager check-in and targeted follow-up this week'
+          : engBad
+          ? 'Re-engage the team and reinforce participation expectations'
+          : 'Manager-led listening session on workload, communication, and recognition'
+      return {
+        team: a.t.team,
+        riskLevel,
+        whyItMatters: why,
+        suggestedFocus,
+        avgMood: a.t.avgMood,
+        moodChange: a.t.change,
+        engagementRate: a.teamRate,
+        engagementChangePts: a.engChangePts,
+      }
+    })
+    .sort((x, y) => {
+      const rank: Record<string, number> = { Critical: 0, High: 1, Moderate: 2, Watch: 3 }
+      return rank[x.riskLevel] - rank[y.riskLevel] || x.avgMood - y.avgMood
+    })
+
+  const attentionTeamNames = new Set(teamsNeedingAttention.map((t) => t.team))
+  const topPerformingTeams: TopPerformingTeam[] = teamAssessments
+    .filter((a) => !attentionTeamNames.has(a.t.team) && !a.t.sampleWarning)
+    .map((a) => {
+      const strengths: string[] = []
+      const whys: string[] = []
+      if (a.t.avgMood >= avgMood + 0.3) { strengths.push('High mood'); whys.push(`mood ${a.t.avgMood.toFixed(2)} vs company ${avgMood.toFixed(2)}`) }
+      if ((a.t.change ?? 0) >= 0.2) { strengths.push('Improving mood'); whys.push(`mood improved ${(a.t.change ?? 0).toFixed(2)} pts this period`) }
+      if (a.teamRate !== null && a.teamRate >= Math.max(companyEngagement + 10, 70)) { strengths.push('Strong engagement'); whys.push(`engagement is ${a.teamRate}%`) }
+      if ((a.engChangePts ?? 0) >= 10) { strengths.push('Improving engagement'); whys.push(`engagement rose ${a.engChangePts} pts v. prior month`) }
+      if (!strengths.length) return null
+      return {
+        team: a.t.team,
+        strength: strengths.join(' + '),
+        why: whys.join('; ').replace(/^./, (c) => c.toUpperCase()),
+        _mood: a.t.avgMood,
+      }
+    })
+    .filter((x): x is TopPerformingTeam & { _mood: number } => x !== null)
+    .sort((x, y) => y._mood - x._mood)
+    .slice(0, 4)
+    .map(({ team, strength, why }) => ({ team, strength, why }))
+
+  const engagementRisks: EngagementRisk[] = teamAssessments
+    .filter((a) => (a.engMajor || a.engMinor) && a.teamRate !== null)
+    .map((a) => {
+      let issue = 'Low engagement'
+      let changeText = `${round(companyEngagement - (a.teamRate ?? 0), 0)} pts below company average`
+      if (a.consecutiveDeclines >= 3) { issue = 'Sustained decline'; changeText = `down ${a.consecutiveDeclines} consecutive weeks` }
+      else if ((a.engChangePts ?? 0) <= -10) { issue = 'Declining engagement'; changeText = `down ${Math.abs(a.engChangePts ?? 0)} pts` }
+      return { team: a.t.team, issue, currentEngagement: a.teamRate ?? 0, change: changeText }
+    })
+    .sort((x, y) => x.currentEngagement - y.currentEngagement)
+    .slice(0, 5)
+
+  const priorityActionRows: PriorityActionRow[] = []
+  {
+    const criticalHigh = teamsNeedingAttention.filter((t) => t.riskLevel === 'Critical' || t.riskLevel === 'High')
+    if (criticalHigh.length)
+      priorityActionRows.push({
+        priority: 'High',
+        action: 'Schedule manager-led listening check-ins',
+        appliesTo: criticalHigh.map((t) => t.team).join(', '),
+        reason: 'Mood and/or engagement declined materially this period',
+      })
+    const engIssue = teamsNeedingAttention.filter((t) => t.riskLevel !== 'Watch' && (t.engagementRate ?? 100) < companyEngagement)
+    if (engIssue.length)
+      priorityActionRows.push({
+        priority: 'Medium',
+        action: 'Reinforce participation expectations',
+        appliesTo: engIssue.map((t) => t.team).join(', '),
+        reason: 'Engagement is below the company average',
+      })
+    const watchers = teamsNeedingAttention.filter((t) => t.riskLevel === 'Watch')
+    if (watchers.length)
+      priorityActionRows.push({
+        priority: 'Low',
+        action: 'Monitor and grow participation before drawing conclusions',
+        appliesTo: watchers.map((t) => t.team).join(', '),
+        reason: 'Sample sizes are too small for a confident read',
+      })
+    if (topPerformingTeams.length)
+      priorityActionRows.push({
+        priority: 'Medium',
+        action: 'Recognize and learn from strong teams',
+        appliesTo: topPerformingTeams.map((t) => t.team).join(', '),
+        reason: 'High or improving mood and engagement worth replicating',
+      })
+  }
   const strategicNarrative = [
     `${customer.name}'s workforce signal in ${current.label} is ${severity(healthScore).toLowerCase()} with ${retentionRisk.toLowerCase()} retention risk. The organization is not showing a broad crisis signal, but the month softened enough to require targeted leadership attention rather than passive monitoring.`,
     `The most important movement is ${softened ? `a ${Math.abs(monthChange ?? 0).toFixed(2)} point decline in average mood and a ${Math.abs(positiveChange ?? 0).toFixed(1)} point decline in positive sentiment` : 'stable-to-improving sentiment versus the prior month'}. This matters because emotional movement is uneven by team; the risk appears concentrated, not fully systemic.`,
@@ -711,5 +881,5 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
     { title: 'Operationalize follow-up accountability', priority: 'P2' as const, urgency: 'Medium', impact: 'High', difficulty: 'Medium', owner: 'HR leader + team managers', nextStep: 'Require status, owner, first-response date, and closure note for every follow-up request. Remind managers to use the manager tools to track action items and close the feedback loop.', why: 'Responsiveness is a leadership-effectiveness signal; missing data prevents Lollipop from proving closure.', confidence: responsiveness.confidence, trigger: 'Use when follow-up requests are open, incomplete, or missing owner/status data.', links: [{ label: 'Manager tools', href: managerToolsUrl }, { label: 'Draft manager email', href: managerEmail }] },
     { title: 'Reinforce positive culture drivers', priority: 'P3' as const, urgency: 'Medium', impact: 'Medium', difficulty: 'Low', owner: 'Frontline managers', nextStep: 'Identify what top teams are doing differently and turn it into a manager coaching prompt.', why: 'Recognition, support, and visible progress appear to be meaningful positive sentiment drivers.', confidence: commentIntelligence.confidence, trigger: 'Use when positive sentiment or comment themes identify manager behaviors worth repeating.' },
   ]
-  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, engagementImprovingTeams, engagementDecliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, individualRetentionRisks, managerReport, engagementSummary }
+  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, engagementImprovingTeams, engagementDecliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, individualRetentionRisks, managerReport, engagementSummary, engagementRisks, teamsNeedingAttention, topPerformingTeams, priorityActionRows }
 }

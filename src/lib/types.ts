@@ -48,6 +48,21 @@ export type EngagementSummary = {
 
 export type WeeklyHistoryPoint = { weekStart: string; label: string; monthLabel: string; avgMood: number }
 
+export type TeamRiskLevel = 'Critical' | 'High' | 'Moderate' | 'Watch'
+export type TeamAttention = {
+  team: string
+  riskLevel: TeamRiskLevel
+  whyItMatters: string
+  suggestedFocus: string
+  avgMood: number
+  moodChange: number | null
+  engagementRate: number | null
+  engagementChangePts: number | null
+}
+export type TopPerformingTeam = { team: string; strength: string; why: string }
+export type EngagementRisk = { team: string; issue: string; currentEngagement: number; change: string }
+export type PriorityActionRow = { priority: 'High' | 'Medium' | 'Low'; action: string; appliesTo: string; reason: string }
+
 export type TeamMetric = {
   team: string
   responses: number
@@ -282,4 +297,8 @@ export type ReportMetrics = {
   individualRetentionRisks: IndividualRetentionRisk[]
   managerReport: ManagerReport
   engagementSummary: EngagementSummary
+  engagementRisks: EngagementRisk[]
+  teamsNeedingAttention: TeamAttention[]
+  topPerformingTeams: TopPerformingTeam[]
+  priorityActionRows: PriorityActionRow[]
 }

@@ -12,7 +12,6 @@ import {
   SectionHeader,
 } from './_components/ui'
 import TrendChart from './_components/TrendChart'
-import TeamRankCard from './_components/TeamRankCard'
 import PieChart from './_components/PieChart'
 import TopBar from './_components/TopBar'
 import WeeklyEngagementChart from './_components/WeeklyEngagementChart'
@@ -69,7 +68,12 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
   // Engagement tone
   const engagementPct = report.engagement.responseRate
   const watchTone: 'green' | 'amber' | 'coral' =
-    report.watchTeams.length === 0 ? 'green' : report.watchTeams.length > 2 ? 'coral' : 'amber'
+    report.teamsNeedingAttention.length === 0
+      ? 'green'
+      : report.teamsNeedingAttention.some((t) => t.riskLevel === 'Critical') ||
+        report.teamsNeedingAttention.length > 2
+      ? 'coral'
+      : 'amber'
   const moodTone: 'green' | 'amber' | 'coral' =
     (report.avgMoodChange ?? 0) >= 0.05
       ? 'green'
@@ -179,10 +183,10 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
             />
             <KpiCard
               label="Teams requiring attention"
-              value={report.watchTeams.length}
+              value={report.teamsNeedingAttention.length}
               sub={
-                report.watchTeams.length > 0 ? (
-                  <>{report.watchTeams.map((t) => t.team).join(', ')}</>
+                report.teamsNeedingAttention.length > 0 ? (
+                  <>{report.teamsNeedingAttention.map((t) => t.team).join(', ')}</>
                 ) : (
                   <>no concentrated hotspot</>
                 )
@@ -263,6 +267,35 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 </p>
               </div>
             </div>
+            <div className="card engagement-risks-card">
+              <p className="h2-sub">Engagement risks</p>
+              {report.engagementRisks.length === 0 ? (
+                <p className="muted">No material engagement risks identified for this period.</p>
+              ) : (
+                <div className="table-wrap">
+                  <table className="table engagement-risks-table">
+                    <thead>
+                      <tr>
+                        <th>Team</th>
+                        <th>Engagement issue</th>
+                        <th style={{ textAlign: 'right' }}>Current engagement</th>
+                        <th>Change</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {report.engagementRisks.map((r) => (
+                        <tr key={r.team}>
+                          <td><strong>{r.team}</strong></td>
+                          <td>{r.issue}</td>
+                          <td style={{ textAlign: 'right' }}>{r.currentEngagement}%</td>
+                          <td>{r.change}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
           </section>
         )}
 
@@ -298,11 +331,78 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           </div>
         </section>
 
-        {/* === D. Priority Action Items === */}
+        {/* === D. Team Performance Dashboard === */}
+        <section className="brief-section team-perf-section">
+          <SectionHeader
+            title="Team performance dashboard"
+            subtitle="Which teams need attention and which are performing well — mood and engagement combined"
+          />
+          <div className="card team-attention-card">
+            <p className="h2-sub">Teams needing attention</p>
+            {report.teamsNeedingAttention.length === 0 ? (
+              <p className="muted">
+                No teams require immediate attention based on this period&apos;s mood and engagement
+                data.
+              </p>
+            ) : (
+              <div className="table-wrap">
+                <table className="table team-attention-table">
+                  <thead>
+                    <tr>
+                      <th>Team</th>
+                      <th>Risk level</th>
+                      <th>Why it matters</th>
+                      <th>Suggested focus</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {report.teamsNeedingAttention.map((t) => (
+                      <tr key={t.team}>
+                        <td><strong>{t.team}</strong></td>
+                        <td><span className={`risk-pill risk-${t.riskLevel.toLowerCase()}`}>{t.riskLevel}</span></td>
+                        <td>{t.whyItMatters}</td>
+                        <td>{t.suggestedFocus}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+          <div className="card team-top-card">
+            <p className="h2-sub">Top performing teams</p>
+            {report.topPerformingTeams.length === 0 ? (
+              <p className="muted">No standout top-performing teams identified for this period.</p>
+            ) : (
+              <div className="table-wrap">
+                <table className="table team-top-table">
+                  <thead>
+                    <tr>
+                      <th>Team</th>
+                      <th>Strength</th>
+                      <th>Why it stands out</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {report.topPerformingTeams.map((t) => (
+                      <tr key={t.team}>
+                        <td><strong>{t.team}</strong></td>
+                        <td><span className="strength-pill">{t.strength}</span></td>
+                        <td>{t.why}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* === E. Leadership Actions === */}
         <section className="brief-section action-section">
           <SectionHeader
-            title="Priority leadership actions"
-            subtitle={`Sorted by urgency · ${sortedRecs.length} actions`}
+            title="Leadership actions"
+            subtitle="What leadership should do next, driven by the team dashboard"
           />
           <div className="exec-summary-card action-intro-card">
             <p className="exec-summary-lede">{whatChangedNarrative}</p>
@@ -313,6 +413,33 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </div>
             </dl>
           </div>
+          {report.priorityActionRows.length > 0 && (
+            <div className="card priority-actions-card">
+              <p className="h2-sub">Priority actions</p>
+              <div className="table-wrap">
+                <table className="table priority-actions-table">
+                  <thead>
+                    <tr>
+                      <th>Priority</th>
+                      <th>Action</th>
+                      <th>Applies to</th>
+                      <th>Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {report.priorityActionRows.map((row, i) => (
+                      <tr key={i}>
+                        <td><span className={`risk-pill priority-${row.priority.toLowerCase()}`}>{row.priority}</span></td>
+                        <td><strong>{row.action}</strong></td>
+                        <td>{row.appliesTo}</td>
+                        <td>{row.reason}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
           <div className="action-grid-v2">
             {sortedRecs.map((r) => (
               <article
@@ -360,57 +487,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 )}
               </article>
             ))}
-          </div>
-        </section>
-
-        {/* === F. Team Performance Dashboard === */}
-        <section className="brief-section team-perf-section">
-          <SectionHeader title="Team performance & risk" subtitle="Mood and engagement rankings and movement by team" />
-          <div className="team-perf-grid">
-            <TeamRankCard
-              title="Top performing teams"
-              subtitle="Highest average mood · v. prior month"
-              teams={report.topTeams}
-              tone="green"
-              variant="bars"
-            />
-            <TeamRankCard
-              title="Watch teams"
-              subtitle="Concentrated risk signal · v. prior month"
-              teams={report.watchTeams}
-              tone="coral"
-              variant="bars"
-            />
-            <TeamRankCard
-              title="Biggest improvement"
-              subtitle="Largest mood gains vs prior month"
-              teams={report.improvingTeams}
-              tone="blue"
-              variant="bars"
-            />
-            <TeamRankCard
-              title="Biggest decline"
-              subtitle="Largest mood drops vs prior month"
-              teams={report.decliningTeams}
-              tone="amber"
-              variant="bars"
-            />
-            <TeamRankCard
-              title="Engagement gains"
-              subtitle="More unique respondents vs prior month"
-              teams={report.engagementImprovingTeams}
-              tone="green"
-              variant="bars"
-              metric="engagement"
-            />
-            <TeamRankCard
-              title="Engagement declines"
-              subtitle="Fewer unique respondents vs prior month"
-              teams={report.engagementDecliningTeams}
-              tone="coral"
-              variant="bars"
-              metric="engagement"
-            />
           </div>
         </section>
 
