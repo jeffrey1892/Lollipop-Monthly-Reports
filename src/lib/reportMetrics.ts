@@ -490,7 +490,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
         const effRoster = hasRoster ? rosterCount + offCount : (rosterCount || uniques)
         const engagement = pct(uniques, effRoster)
         const wd = b.start.getDate()
-        const wLabel = `Wk of ${monthAbbrev[b.start.getMonth()]} ${wd}`
+        const wLabel = `${monthAbbrev[b.start.getMonth()]} ${wd}`
         return { weekStart, weekLabel: wLabel, uniqueRespondents: uniques, offRosterRespondents: offCount, effectiveRoster: effRoster, engagementRate: engagement }
       })
   }
