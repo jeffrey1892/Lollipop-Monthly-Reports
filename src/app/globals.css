@@ -732,8 +732,11 @@ a.link:hover{color:#0866c9}
 .engagement-weekly-table-card{padding:16px}
 .engagement-weekly-table th,.engagement-weekly-table td{font-size:12px;padding:6px 6px}
 .engagement-chart-card{display:flex;flex-direction:column}
-.engagement-chart-wrap{flex:1;display:flex;align-items:stretch;min-height:280px}
+.engagement-chart-body{display:flex;gap:16px;flex:1;align-items:stretch;min-height:0}
+.engagement-chart-wrap{flex:1;display:flex;align-items:stretch;min-height:260px}
 .engagement-chart-wrap svg{width:100%;height:100%}
+.engagement-chart-notes{width:210px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:12px;border-left:1px solid var(--line);padding-left:14px}
+@media(max-width:900px){.engagement-chart-body{flex-direction:column}.engagement-chart-notes{width:auto;border-left:0;padding-left:0}}
 @media(max-width:900px){.engagement-summary-section .engagement-grid{grid-template-columns:1fr}}
 .engagement-table{width:100%;font-size:13px}
 .engagement-table td,.engagement-table th{padding:8px 10px}

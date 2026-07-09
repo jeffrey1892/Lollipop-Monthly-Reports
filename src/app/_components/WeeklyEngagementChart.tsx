@@ -4,7 +4,7 @@ type Point = { weekLabel: string; engagementRate: number; uniqueRespondents: num
 
 export default function WeeklyEngagementChart({ points }: { points: Point[] }) {
   const width = 700
-  const height = 240
+  const height = 320
   const padL = 44
   const padR = 16
   const padT = 18
