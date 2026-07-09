@@ -248,9 +248,9 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 </div>
               </div>
               <div className="card engagement-chart-card">
-                <p className="h2-sub">Weekly engagement — {report.engagementSummary.weeklyWindowLabel}</p>
+                <p className="h2-sub">Weekly engagement — trailing 3 months</p>
                 <div className="engagement-chart-wrap">
-                  <WeeklyEngagementChart points={report.engagementSummary.weekly} />
+                  <WeeklyEngagementChart points={report.engagementSummary.weeklyTrailing} />
                 </div>
                 <p className="muted engagement-note">
                   Engagement rates are based on unique employees, with a maximum of one counted response per employee per week.

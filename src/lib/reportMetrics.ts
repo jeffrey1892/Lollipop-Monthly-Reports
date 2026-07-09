@@ -456,32 +456,39 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
   const weeklyWindowMonths = range === 'quarter'
     ? customer.months.filter((m) => quarterMonthKeys.includes(m.month))
     : [current]
-  const weeklyWindowRecords = weeklyWindowMonths.flatMap((m) => m.responses)
   const weeklyWindowLabel = range === 'quarter' ? `Q${quarterNum} ${currentYear}` : current.label
-  const weekBuckets = new Map<string, { start: Date; respondents: Set<string> }>()
-  for (const r of weeklyWindowRecords) {
-    const d = parseDate(r.date)
-    if (!d) continue
-    const wd = d.getDay()
-    const offset = (wd + 6) % 7 // Monday-start
-    const monday = new Date(d); monday.setHours(0, 0, 0, 0); monday.setDate(d.getDate() - offset)
-    const key = monday.toISOString().slice(0, 10)
-    const bucket = weekBuckets.get(key) ?? { start: monday, respondents: new Set<string>() }
-    bucket.respondents.add(uniqueParticipantKey(r))
-    weekBuckets.set(key, bucket)
-  }
   const monthAbbrev = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-  const weeklyEngagement = [...weekBuckets.entries()]
-    .sort((a, b) => a[1].start.getTime() - b[1].start.getTime())
-    .map(([weekStart, b]) => {
-      const uniques = b.respondents.size
-      const offCount = hasRoster ? [...b.respondents].filter((k) => !rosterKeys.has(k)).length : 0
-      const effRoster = hasRoster ? rosterCount + offCount : (rosterCount || uniques)
-      const engagement = pct(uniques, effRoster)
-      const wd = b.start.getDate()
-      const wLabel = `Wk of ${monthAbbrev[b.start.getMonth()]} ${wd}`
-      return { weekStart, weekLabel: wLabel, uniqueRespondents: uniques, offRosterRespondents: offCount, effectiveRoster: effRoster, engagementRate: engagement }
-    })
+  const buildWeekly = (recs: ResponseRecord[]) => {
+    const weekBuckets = new Map<string, { start: Date; respondents: Set<string> }>()
+    for (const r of recs) {
+      const d = parseDate(r.date)
+      if (!d) continue
+      const wd = d.getDay()
+      const offset = (wd + 6) % 7 // Monday-start
+      const monday = new Date(d); monday.setHours(0, 0, 0, 0); monday.setDate(d.getDate() - offset)
+      const key = monday.toISOString().slice(0, 10)
+      const bucket = weekBuckets.get(key) ?? { start: monday, respondents: new Set<string>() }
+      bucket.respondents.add(uniqueParticipantKey(r))
+      weekBuckets.set(key, bucket)
+    }
+    return [...weekBuckets.entries()]
+      .sort((a, b) => a[1].start.getTime() - b[1].start.getTime())
+      .map(([weekStart, b]) => {
+        const uniques = b.respondents.size
+        const offCount = hasRoster ? [...b.respondents].filter((k) => !rosterKeys.has(k)).length : 0
+        const effRoster = hasRoster ? rosterCount + offCount : (rosterCount || uniques)
+        const engagement = pct(uniques, effRoster)
+        const wd = b.start.getDate()
+        const wLabel = `Wk of ${monthAbbrev[b.start.getMonth()]} ${wd}`
+        return { weekStart, weekLabel: wLabel, uniqueRespondents: uniques, offRosterRespondents: offCount, effectiveRoster: effRoster, engagementRate: engagement }
+      })
+  }
+  // Detail table: reporting month's weeks, or the quarter's weeks in quarter view
+  const weeklyEngagement = buildWeekly(weeklyWindowMonths.flatMap((m) => m.responses))
+  // Chart: always trailing 3 months ending at the reporting month
+  const weeklyTrailing = buildWeekly(
+    customer.months.slice(Math.max(0, currentIndex - 2), currentIndex + 1).flatMap((m) => m.responses),
+  )
 
   // Off-roster respondents list (this month, with names)
   const offRosterList = hasRoster
@@ -494,11 +501,12 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
         })
     : []
 
-  // Weekly movement within the reporting period: latest week vs prior week
-  const weeklyEngagementChange = weeklyEngagement.length >= 2
+  // Weekly movement: latest week vs prior week (from the trailing series so
+  // the delta is stable regardless of the detail-table window)
+  const weeklyEngagementChange = weeklyTrailing.length >= 2
     ? round(
-        weeklyEngagement[weeklyEngagement.length - 1].engagementRate -
-          weeklyEngagement[weeklyEngagement.length - 2].engagementRate,
+        weeklyTrailing[weeklyTrailing.length - 1].engagementRate -
+          weeklyTrailing[weeklyTrailing.length - 2].engagementRate,
         1,
       )
     : null
@@ -512,6 +520,7 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
     engagementRate: monthlyEngagementRate,
     offRosterList,
     weekly: weeklyEngagement,
+    weeklyTrailing,
     weeklyChange: weeklyEngagementChange,
     weeklyWindowLabel,
   }

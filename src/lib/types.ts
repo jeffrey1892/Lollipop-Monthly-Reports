@@ -36,10 +36,13 @@ export type EngagementSummary = {
   effectiveRoster: number
   engagementRate: number
   offRosterList: OffRosterRespondent[]
+  /** Detail-table series: the reporting month's weeks, or the quarter's weeks in quarter view. */
   weekly: WeeklyEngagementPoint[]
-  /** Engagement change of the latest week versus the prior week within this reporting period (pp). Null when fewer than 2 weeks. */
+  /** Chart series: always the trailing 3 months ending at the reporting month. */
+  weeklyTrailing: WeeklyEngagementPoint[]
+  /** Engagement change of the latest week versus the prior week (pp). Null when fewer than 2 weeks. */
   weeklyChange: number | null
-  /** Window the weekly series covers, e.g. 'May 2026' or 'Q2 2026'. */
+  /** Window the weekly detail series covers, e.g. 'May 2026' or 'Q2 2026'. */
   weeklyWindowLabel: string
 }
 
