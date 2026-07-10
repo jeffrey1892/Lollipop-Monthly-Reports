@@ -353,55 +353,55 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           {report.priorityActionRows.length === 0 ? (
             <p className="muted">No material leadership action is recommended this period.</p>
           ) : (
-            <div className="card priority-actions-card">
-              <div className="table-wrap">
-                <table className="table priority-actions-table">
-                  <thead>
-                    <tr>
-                      <th>Priority</th>
-                      <th>Recommended action</th>
-                      <th>Applies to</th>
-                      <th>Reason</th>
-                      <th>Owner</th>
-                      <th>Timing</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {report.priorityActionRows.map((row, i) => (
-                      <tr key={i}>
-                        <td><span className={`risk-pill priority-${row.priority.toLowerCase()}`}>{row.priority}</span></td>
-                        <td><strong>{row.action}</strong></td>
-                        <td>{row.appliesTo}</td>
-                        <td>{row.reason}</td>
-                        <td>{row.owner}</td>
-                        <td>{row.timing}</td>
+            <div className="card leadership-block">
+              <div className="leadership-grid">
+                <div className="leadership-table-col">
+                  <table className="table priority-actions-table">
+                    <thead>
+                      <tr>
+                        <th>Priority</th>
+                        <th>Recommended action</th>
+                        <th>Applies to</th>
+                        <th>Reason</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {report.priorityActionRows.map((row, i) => (
+                        <tr key={i}>
+                          <td><span className={`risk-pill priority-${row.priority.toLowerCase()}`}>{row.priority}</span></td>
+                          <td><strong>{row.action}</strong></td>
+                          <td>{row.appliesTo}</td>
+                          <td>{row.reason}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="leadership-steps-col">
+                  <p className="h2-sub">Recommended next steps</p>
+                  {report.priorityActionDetails.map((d, i) => (
+                    <div className="next-step" key={d.title}>
+                      <p className="next-step-title">
+                        <span className="next-step-number">{i + 1}.</span> {d.title}
+                      </p>
+                      <p className="next-step-guidance">{d.description}</p>
+                      <p className="next-step-meta">
+                        <span><span className="h3-micro">Owner</span>{d.owner}</span>
+                        <span><span className="h3-micro">Timing</span>{d.timing}</span>
+                      </p>
+                      {d.links.length > 0 && (
+                        <div className="action-links">
+                          {d.links.map((l) => (
+                            <a key={l.label} href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}
-          {report.priorityActionDetails.map((d) => (
-            <div className="priority-detail-block" key={d.title}>
-              <div className="priority-detail-main">
-                <p className="h2-sub">{d.title}</p>
-                <p>{d.description}</p>
-              </div>
-              <div className="priority-detail-meta">
-                <p><span className="h3-micro">Applies to</span>{d.appliesTo}</p>
-                <p><span className="h3-micro">Owner</span>{d.owner}</p>
-                <p><span className="h3-micro">Timing</span>{d.timing}</p>
-                {d.links.length > 0 && (
-                  <div className="action-links">
-                    {d.links.map((l) => (
-                      <a key={l.label} href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
         </section>
 
         {/* === G. Emotional Wellness === */}
