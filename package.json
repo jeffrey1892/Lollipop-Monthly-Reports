@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check:metrics": "tsx scripts/checkMetrics.ts"
+    "check:metrics": "tsx scripts/checkMetrics.ts",
+    "export:pdf": "node scripts/export-pdf.mjs",
+    "validate:pdf": "node scripts/validate-pdf.mjs"
   },
   "dependencies": {
     "next": "16.2.6",
@@ -21,6 +23,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "puppeteer": "^25.3.0",
     "tailwindcss": "^4",
     "tsx": "^4.22.0",
     "typescript": "^5"
