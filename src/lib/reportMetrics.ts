@@ -76,6 +76,11 @@ function buildIndividualRetentionRisks(customer: CustomerData, currentIndex: num
     const lowCheckIns = sorted.filter((r) => r.mood <= 2).length
     const moodDrop = round(latest.mood - first.mood, 1)
     const text = sorted.map((r) => `${r.comments} ${r.emotions.join(' ')}`.toLowerCase()).join(' ')
+    // DATA-LOGIC NOTE: risk/workload words are matched over the concatenated
+    // 3-month comment+emotion history, so the driver text can claim
+    // "stress, burnout, or negative-emotion language" for an employee whose
+    // current mood is high (e.g. 5) because of a word like "tired" in an
+    // otherwise positive earlier comment. Not fixed here by design.
     const drivers = [
       lowCheckIns >= 2 ? `${lowCheckIns} low check-ins in the recent period` : '',
       latest.mood <= 2 ? `current mood is ${latest.mood}` : '',
@@ -816,11 +821,17 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
       participationTrend: previous ? teamRecords.length - (prevTeamMap.get(t.team)?.length ?? 0) : null,
       commentThemes: teamComments.length >= 3 ? themes : [],
       keyConcernOrStrength: severity === 'Positive Momentum' ? 'Positive momentum worth reinforcing and learning from.' : severity === 'High' ? 'Below-average mood and/or sentiment movement warrants direct manager attention.' : t.sampleWarning ? 'Signal is too small for a firm conclusion; increase participation first.' : 'No acute signal; continue monitoring and reinforce positive practices.',
+      // DATA-LOGIC NOTE: the fallback managerAction recommends reviewing the
+      // team's neutral responses even when neutralCount is 0 for the period.
       managerAction: severity === 'High' ? `Schedule a manager listening session with ${t.team} focused on workload, staffing, communication, and recognition.` : t.sampleWarning ? `Increase sampling in ${t.team} before drawing strong conclusions from this score.` : severity === 'Positive Momentum' ? `Capture what ${t.team} is doing well and consider sharing practices with peer managers.` : `Review ${t.team}'s neutral responses and ask what would move employees from okay to positive.`,
       severity,
       privacyNote,
     }
   })
+  // DATA-LOGIC NOTE: whatChanged (below) and riskWatchlist are still derived
+  // from the legacy watchTeams ranking, while the "Teams requiring attention"
+  // KPI and leadership priorities use the newer teamsNeedingAttention engine;
+  // the two team lists can disagree for the same month. Not fixed here by design.
   const whatChanged = [
     { title: 'Morale direction', detail: monthChange === null ? 'No prior-month comparison is available.' : `Average mood moved ${monthChange > 0 ? 'up' : monthChange < 0 ? 'down' : 'flat'} ${Math.abs(monthChange).toFixed(2)} points versus ${previous?.label}.`, severity: monthChange !== null && monthChange < -0.25 ? 'Watchlist' as const : monthChange !== null && monthChange > 0.2 ? 'Positive Momentum' as const : 'Stable' as const, confidence: reportConfidence, meaning: monthChange !== null && Math.abs(monthChange) >= 0.2 ? 'Large enough to warrant leadership attention.' : 'Likely normal fluctuation unless it repeats next month.' },
     { title: 'Positive sentiment movement', detail: positiveChange === null ? 'No prior-month comparison is available.' : `Positive sentiment changed ${positiveChange > 0 ? '+' : ''}${positiveChange} points.`, severity: positiveChange !== null && positiveChange < -5 ? 'Watchlist' as const : positiveChange !== null && positiveChange > 5 ? 'Positive Momentum' as const : 'Stable' as const, confidence: reportConfidence, meaning: 'Positive sentiment is a stronger retention signal than average mood alone.' },
