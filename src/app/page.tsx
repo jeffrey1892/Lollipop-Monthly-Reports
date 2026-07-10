@@ -72,9 +72,9 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
       (URGENCY_RANK[a.urgency] ?? 9) - (URGENCY_RANK[b.urgency] ?? 9) ||
       a.priority.localeCompare(b.priority),
   )
-  const moodPriorityRows = report.priorityActionRows.filter(
-    (row) => row.action !== 'Reinforce participation expectations',
-  )
+  const moodPriorityRows = report.priorityActionRows
+    .filter((row) => row.action !== 'Reinforce participation expectations')
+    .sort((a, b) => (URGENCY_RANK[a.priority] ?? 9) - (URGENCY_RANK[b.priority] ?? 9))
 
   // Engagement tone
   const engagementPct = report.engagement.responseRate
