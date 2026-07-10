@@ -739,8 +739,10 @@ a.link:hover{color:#0866c9}
 .engagement-risks-card{margin-top:0}
 .engagement-risks-table th,.engagement-risks-table td{font-size:13px;padding:8px 10px}
 .engagement-actions-card{display:flex;flex-direction:column}
-.engagement-actions-list{margin:0 0 12px;padding-left:18px;display:grid;gap:8px;font-size:13.5px;line-height:1.5}
+.engagement-actions-list{margin:0 0 14px;padding:0;list-style:none;display:grid;gap:10px;flex:1;align-content:start}
+.engagement-actions-list li{background:#f7f9fc;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:12px;padding:12px 14px;font-size:14.5px;line-height:1.5;font-weight:600;color:var(--ink)}
 .engagement-actions-card .action-links{margin-top:auto}
+.engagement-actions-card .action-links a{font-size:13px;padding:8px 12px}
 .team-attention-card{margin-bottom:14px}
 .team-attention-table th,.team-attention-table td,.team-top-table th,.team-top-table td,.priority-actions-table th,.priority-actions-table td{font-size:13px;padding:9px 10px;vertical-align:top}
 .risk-pill{display:inline-flex;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:900;white-space:nowrap}
