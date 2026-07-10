@@ -45132,6 +45132,2426 @@
         }
       ],
       "optedInPopulation": 22
+    },
+    {
+      "id": "bryson-financial",
+      "name": "Bryson Financial",
+      "industry": "Financial services",
+      "demo": false,
+      "months": [
+        {
+          "month": "2026-01",
+          "label": "Jan 2026",
+          "responses": [
+            {
+              "id": "bf-Jan-1",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Jan  5, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-2",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Jan  5, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-3",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jan  5, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-4",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jan  5, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-5",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jan  5, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "new office! cool space and i'm excited to enjoy the new features."
+            },
+            {
+              "id": "bf-Jan-6",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jan  5, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-7",
+              "firstName": "Jessica",
+              "lastName": "Goodman",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Jan  5, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-8",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Jan 12, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-9",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Jan 12, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-10",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Jan 12, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-11",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jan 12, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-12",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jan 12, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-13",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jan 12, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-14",
+              "firstName": "Esperanza",
+              "lastName": "Vasquez",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Jan 12, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-15",
+              "firstName": "Jessica",
+              "lastName": "Goodman",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Jan 12, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic",
+                "Appreciated",
+                "Grateful",
+                "Confused",
+                "Distracted"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-16",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Jan 19, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-17",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jan 19, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-18",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jan 19, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-19",
+              "firstName": "Jessica",
+              "lastName": "Goodman",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Jan 19, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Confused",
+                "Distracted"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-20",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Jan 19, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-21",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Jan 19, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-22",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jan 19, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-23",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jan 19, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Sad",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-24",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jan 26, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-25",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jan 26, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated",
+                "Disrespected"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-26",
+              "firstName": "Jessica",
+              "lastName": "Goodman",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Jan 26, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-27",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Jan 26, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-28",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Jan 26, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jan-29",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jan 26, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-02",
+          "label": "Feb 2026",
+          "responses": [
+            {
+              "id": "bf-Feb-1",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Feb  2, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-2",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Feb  2, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Content",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-3",
+              "firstName": "Esperanza",
+              "lastName": "Vasquez",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Feb  2, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-4",
+              "firstName": "Jessica",
+              "lastName": "Goodman",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Feb  2, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-5",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Feb  2, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Appreciated",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-6",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Feb  2, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-7",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Feb  2, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-8",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Feb  2, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-9",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Feb  9, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-10",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Feb  9, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-11",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Feb  9, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Content",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-12",
+              "firstName": "Esperanza",
+              "lastName": "Vasquez",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Feb  9, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-13",
+              "firstName": "Jessica",
+              "lastName": "Goodman",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Feb  9, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-14",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Feb  9, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-15",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Feb  9, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-16",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Feb  9, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-17",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Feb  9, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-18",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Feb 16, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-19",
+              "firstName": "Esperanza",
+              "lastName": "Vasquez",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Feb 16, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-20",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Feb 16, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-21",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Feb 16, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-22",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Feb 23, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-23",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Feb 23, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-24",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Feb 23, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Content",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-25",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Feb 23, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-26",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Feb 23, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Feb-27",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Feb 23, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-04",
+          "label": "Apr 2026",
+          "responses": [
+            {
+              "id": "bf-Apr-1",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Apr  6, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-2",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Apr  6, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-3",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Apr  6, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-4",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Apr  6, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-5",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Apr  6, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-6",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Apr 13, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-7",
+              "firstName": "Esperanza",
+              "lastName": "Vasquez",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Apr 13, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-8",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Apr 13, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-9",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Apr 13, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-10",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Apr 13, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-11",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Apr 13, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-12",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Apr 13, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Excited",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-13",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Apr 13, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-14",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Apr 20, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-15",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Apr 20, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-16",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Apr 20, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-17",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Apr 20, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Happy",
+                "Motivated",
+                "Content",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-18",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Apr 20, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-19",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Apr 20, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-20",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Apr 20, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-21",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Apr 27, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-22",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Apr 27, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Content",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-23",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Apr 27, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-24",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Apr 27, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Content",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Apr-25",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Apr 27, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-05",
+          "label": "May 2026",
+          "responses": [
+            {
+              "id": "bf-May-1",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "May  4, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-2",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "May  4, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Excited",
+                "Happy",
+                "Motivated",
+                "Content",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-3",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "May  4, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-4",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "May  4, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-5",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "May 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-6",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "May 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Content",
+                "Optimistic",
+                "Upset",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-7",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "May 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-8",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "May 11, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-9",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "May 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-10",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "May 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-11",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "May 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-12",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "May 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Motivated",
+                "Sad",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-13",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "May 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-14",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "May 18, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-15",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "May 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-16",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "May 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-17",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "May 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-18",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "May 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-May-19",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "May 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Upset",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-06",
+          "label": "Jun 2026",
+          "responses": [
+            {
+              "id": "bf-Jun-1",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Jun  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-2",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Jun  1, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-3",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun  1, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-4",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-5",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-6",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Excited",
+                "Motivated",
+                "Content",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-7",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Jun  1, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-8",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Jun  8, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-9",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Jun  8, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-10",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun  8, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-11",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun  8, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-12",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun  8, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-13",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun  8, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-14",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Jun  8, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Sad"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-15",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun 15, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-16",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun 15, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-17",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun 15, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-18",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun 15, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Motivated",
+                "Content",
+                "Optimistic",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-19",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Jun 15, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-20",
+              "firstName": "Esperanza",
+              "lastName": "Vasquez",
+              "team": "EMPLOYEE BENEFITS",
+              "date": "Jun 15, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-21",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Jun 22, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-22",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun 22, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-23",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun 22, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-24",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun 22, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-25",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun 22, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful",
+                "Optimistic",
+                "Content",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-26",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Jun 22, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-27",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Jun 22, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-28",
+              "firstName": "Megan",
+              "lastName": "Christensen",
+              "team": "LEADERSHIP TEAM",
+              "date": "Jun 29, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-29",
+              "firstName": "Samuel",
+              "lastName": "Mayberry",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun 29, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-30",
+              "firstName": "Melanie",
+              "lastName": "Overett",
+              "team": "BUSINESS DEVELOPMENT",
+              "date": "Jun 29, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-31",
+              "firstName": "Jeremy",
+              "lastName": "Martin",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun 29, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-32",
+              "firstName": "Erin",
+              "lastName": "de Lucia",
+              "team": "PROPERTY & CASUALTY",
+              "date": "Jun 29, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-33",
+              "firstName": "Franco",
+              "lastName": "Bechara",
+              "team": "CLAIMS",
+              "date": "Jun 29, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "bf-Jun-34",
+              "firstName": "Mia",
+              "lastName": "Graham",
+              "team": "401(K)",
+              "date": "Jun 29, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        }
+      ],
+      "unsubscribed": [],
+      "roster": [
+        {
+          "id": "11282",
+          "firstName": "Rossy",
+          "lastName": "Mosqueda-Maga\u00f1a",
+          "email": "rossym@cultureworkshr.com"
+        },
+        {
+          "id": "11249",
+          "firstName": "Aylin",
+          "lastName": "Dermenci",
+          "email": "aylin@brysonfinancial.com"
+        },
+        {
+          "id": "10523",
+          "firstName": "Cullen",
+          "lastName": "Sophy",
+          "email": "cullen@brysonfinancial.com"
+        },
+        {
+          "id": "9435",
+          "firstName": "Jerry",
+          "lastName": "Harris",
+          "email": "jerry@brysonfinancial.com"
+        },
+        {
+          "id": "9434",
+          "firstName": "Jessica",
+          "lastName": "Goodman",
+          "email": "j.goodman@brysonfinancial.com"
+        },
+        {
+          "id": "7919",
+          "firstName": "Kelli",
+          "lastName": "Watkins",
+          "email": "kelli@brysonfinancial.com"
+        },
+        {
+          "id": "7918",
+          "firstName": "Melanie",
+          "lastName": "Overett",
+          "email": "melanie@brysonfinancial.com"
+        },
+        {
+          "id": "7520",
+          "firstName": "Bobby",
+          "lastName": "Kim",
+          "email": "bobby@brysonfinancial.com"
+        },
+        {
+          "id": "6233",
+          "firstName": "Jenn",
+          "lastName": "Gage",
+          "email": "jenn.gage@brysonfinancial.com"
+        },
+        {
+          "id": "5805",
+          "firstName": "Helen",
+          "lastName": "Arevalo",
+          "email": "helen@brysonfinancial.com"
+        },
+        {
+          "id": "5804",
+          "firstName": "Chris",
+          "lastName": "Gage",
+          "email": "chris@brysonfinancial.com"
+        },
+        {
+          "id": "5375",
+          "firstName": "Erin",
+          "lastName": "de Lucia",
+          "email": "erin@brysonfinancial.com"
+        },
+        {
+          "id": "4034",
+          "firstName": "Desiree",
+          "lastName": "Valdovinos",
+          "email": "desiree@brysonfinancial.com"
+        },
+        {
+          "id": "4033",
+          "firstName": "Vicky",
+          "lastName": "Alcaraz",
+          "email": "vicky@brysonfinancial.com"
+        },
+        {
+          "id": "4032",
+          "firstName": "Franco",
+          "lastName": "Bechara",
+          "email": "franco@brysonfinancial.com"
+        },
+        {
+          "id": "4031",
+          "firstName": "Omar",
+          "lastName": "Bolden",
+          "email": "omar@brysonfinancial.com"
+        },
+        {
+          "id": "4030",
+          "firstName": "Greg",
+          "lastName": "Pyle",
+          "email": "greg@brysonfinancial.com"
+        },
+        {
+          "id": "4029",
+          "firstName": "Liz",
+          "lastName": "Borbon",
+          "email": "liz@brysonfinancial.com"
+        },
+        {
+          "id": "4028",
+          "firstName": "Jacqueline",
+          "lastName": "Zendejas",
+          "email": "jzendejas@brysonfinancial.com"
+        },
+        {
+          "id": "4027",
+          "firstName": "Jennifer",
+          "lastName": "Payne",
+          "email": "jpayne@brysonfinancial.com"
+        },
+        {
+          "id": "4026",
+          "firstName": "Jacqueline",
+          "lastName": "Paraja",
+          "email": "jacqueline@brysonfinancial.com"
+        },
+        {
+          "id": "4025",
+          "firstName": "Jeremy",
+          "lastName": "Martin",
+          "email": "jeremy@brysonfinancial.com"
+        },
+        {
+          "id": "4024",
+          "firstName": "Angelina",
+          "lastName": "Perez",
+          "email": "angelina@brysonfinancial.com"
+        },
+        {
+          "id": "4022",
+          "firstName": "Max",
+          "lastName": "Merrill",
+          "email": "max@brysonfinancial.com"
+        },
+        {
+          "id": "4021",
+          "firstName": "cinthya",
+          "lastName": "anguiano",
+          "email": "cinthya@brysonfinancial.com"
+        },
+        {
+          "id": "4020",
+          "firstName": "Kris",
+          "lastName": "Pyle",
+          "email": "kris@brysonfinancial.com"
+        },
+        {
+          "id": "4019",
+          "firstName": "Jake",
+          "lastName": "Olague",
+          "email": "jake@brysonfinancial.com"
+        },
+        {
+          "id": "4018",
+          "firstName": "Faiz",
+          "lastName": "Ahmed",
+          "email": "faiz@brysonfinancial.com"
+        },
+        {
+          "id": "4016",
+          "firstName": "Emily",
+          "lastName": "Perez",
+          "email": "emily.perez@brysonfinancial.com"
+        },
+        {
+          "id": "4014",
+          "firstName": "Natalie",
+          "lastName": "Pool",
+          "email": "natalie@brysonfinancial.com"
+        },
+        {
+          "id": "4013",
+          "firstName": "Maria",
+          "lastName": "Robles",
+          "email": "mariaro@brysonfinancial.com"
+        },
+        {
+          "id": "4012",
+          "firstName": "Jeannine",
+          "lastName": "Perez",
+          "email": "jeannine@brysonfinancial.com"
+        },
+        {
+          "id": "4011",
+          "firstName": "Esperanza",
+          "lastName": "Vasquez",
+          "email": "esperanza@brysonfinancial.com"
+        },
+        {
+          "id": "4010",
+          "firstName": "Denise",
+          "lastName": "Young",
+          "email": "denise@brysonfinancial.com"
+        },
+        {
+          "id": "4009",
+          "firstName": "Amy",
+          "lastName": "Conger",
+          "email": "amy@brysonfinancial.com"
+        },
+        {
+          "id": "4008",
+          "firstName": "Tiffany",
+          "lastName": "Cerefice",
+          "email": "tiffanyc@brysonfinancial.com"
+        },
+        {
+          "id": "4007",
+          "firstName": "Jessica",
+          "lastName": "Magallanes",
+          "email": "jessica@brysonfinancial.com"
+        },
+        {
+          "id": "4006",
+          "firstName": "Chelsie",
+          "lastName": "Matthews",
+          "email": "chelsie@brysonfinancial.com"
+        },
+        {
+          "id": "4005",
+          "firstName": "Marie",
+          "lastName": "Dorado",
+          "email": "marie@brysonfinancial.com"
+        },
+        {
+          "id": "4004",
+          "firstName": "Joe",
+          "lastName": "Park",
+          "email": "joe@brysonfinancial.com"
+        },
+        {
+          "id": "4003",
+          "firstName": "Andrew",
+          "lastName": "Moskovitz",
+          "email": "andrew@brysonfinancial.com"
+        },
+        {
+          "id": "4002",
+          "firstName": "Ericka",
+          "lastName": "Addison",
+          "email": "ericka@brysonfinancial.com"
+        },
+        {
+          "id": "4001",
+          "firstName": "Brendan",
+          "lastName": "Diette",
+          "email": "brendan@brysonfinancial.com"
+        },
+        {
+          "id": "4000",
+          "firstName": "Mia",
+          "lastName": "Graham",
+          "email": "mia@brysonfinancial.com"
+        },
+        {
+          "id": "3999",
+          "firstName": "Oxana",
+          "lastName": "Lichinsky",
+          "email": "oxana@brysonfinancial.com"
+        },
+        {
+          "id": "3997",
+          "firstName": "Jeanen",
+          "lastName": "Guevara",
+          "email": "jeanen@brysonfinancial.com"
+        },
+        {
+          "id": "3996",
+          "firstName": "Andrew",
+          "lastName": "Ganz",
+          "email": "andrew.ganz@brysonfinancial.com"
+        },
+        {
+          "id": "3995",
+          "firstName": "Josh",
+          "lastName": "Sanders",
+          "email": "josh@brysonfinancial.com"
+        },
+        {
+          "id": "3993",
+          "firstName": "Samuel",
+          "lastName": "Mayberry",
+          "email": "samuel@brysonfinancial.com"
+        },
+        {
+          "id": "3990",
+          "firstName": "Max",
+          "lastName": "Irwin",
+          "email": "max.irwin@brysonfinancial.com"
+        },
+        {
+          "id": "3989",
+          "firstName": "Emily",
+          "lastName": "Woodworth",
+          "email": "emily@brysonfinancial.com"
+        },
+        {
+          "id": "3967",
+          "firstName": "Olivia",
+          "lastName": "Wheeler",
+          "email": "olivia@brysonfinancial.com"
+        },
+        {
+          "id": "3763",
+          "firstName": "Megan",
+          "lastName": "Christensen",
+          "email": "megan@brysonfinancial.com"
+        }
+      ],
+      "optedInPopulation": 53
     }
   ]
 }
