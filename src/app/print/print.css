@@ -1,0 +1,556 @@
+/* =============================================================================
+   Print design system — loaded ONLY on the /print route (imported by
+   src/app/print/page.tsx) so the Letter-landscape @page rule does not leak
+   into manager pages, which still print themselves portrait.
+
+   Philosophy: the PDF must match the online desktop report. Screen-media
+   breakpoints never apply in print, so the desktop grid proportions defined
+   in globals.css already hold here; this file only (a) sets the landscape
+   page, (b) flattens screen-only chrome (shadows, sticky bars), (c) kills
+   fixed/min heights that create blank space, and (d) adds pagination rules.
+   No global transforms, no zoom, no viewport-width hacks.
+   ========================================================================== */
+
+/* --- Screen-only affordances for the /print route ------------------------ */
+.print-debug-banner {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 999;
+  background: #212121;
+  color: #fff;
+  font: 700 12px/1.2 Inter, system-ui, sans-serif;
+  border-radius: 8px;
+  padding: 8px 12px;
+  opacity: 0.9;
+}
+.print-debug .pages > section {
+  outline: 1px dashed rgba(255, 0, 0, 0.35);
+}
+/* Brief scope applies on screen preview too */
+.scope-brief .appendix-section,
+.scope-brief .appendix-block {
+  display: none;
+}
+
+@media print {
+  /* --- Page + tokens ------------------------------------------------------ */
+  @page {
+    size: Letter landscape;
+    margin: 0.35in;
+  }
+  :root {
+    --report-print-font-base: 10.5pt;
+    --report-print-font-small: 8.5pt;
+    --report-print-font-label: 7.5pt;
+    --report-print-gap-xs: 4pt;
+    --report-print-gap-sm: 8pt;
+    --report-print-gap-md: 12pt;
+    --report-print-gap-lg: 12pt;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+    font-size: var(--report-print-font-base);
+    line-height: 1.35;
+  }
+
+  /* --- Hide non-report UI (defense in depth; most never render here) ----- */
+  .topbar,
+  .controls,
+  .pdf-actions,
+  .range-toggle,
+  .dashboard-help,
+  .print-debug-banner,
+  nextjs-portal,
+  [data-print-hidden] {
+    display: none !important;
+  }
+  .print-debug .pages > section {
+    outline: none;
+  }
+
+  /* --- Frame -------------------------------------------------------------- */
+  .wrap {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  .pages {
+    display: block !important;
+  }
+  .pages > section {
+    margin: 0 0 var(--report-print-gap-lg) !important;
+    break-inside: auto;
+  }
+  .pages > section:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* --- Document feel: flatten shadows, soften radii, keep web colors ------ */
+  .card,
+  .kpi-card,
+  .stat-tile,
+  .exec-summary-card,
+  .health-tile,
+  .ci-theme-card,
+  .team-detail-card,
+  .retention-card,
+  .appendix-block,
+  .comment-intel-v2 {
+    box-shadow: none !important;
+  }
+  .card,
+  .kpi-card,
+  .team-detail-card,
+  .exec-summary-card,
+  .appendix-block,
+  .comment-intel-v2,
+  .leadership-block {
+    border-radius: 10px !important;
+  }
+  .stat-tile,
+  .ci-theme-card,
+  .retention-card,
+  .health-tile,
+  .notes-grid > div,
+  .engagement-actions-list li,
+  .team-detail-metrics > div,
+  .quote-grid-v2 blockquote,
+  .empty-chart {
+    border-radius: 8px !important;
+  }
+  /* Sticky/backdrop effects have no meaning on paper */
+  .shell {
+    min-height: 0 !important;
+  }
+
+  /* --- Kill fixed/min heights and 100%-stretchers (blank-space causes) ---- */
+  .engagement-chart-wrap {
+    min-height: 0 !important;
+  }
+  .empty-chart {
+    min-height: 70pt !important;
+  }
+  .engagement-summary-section .engagement-grid > .card,
+  .engagement-risks-row > .card,
+  .followup-bottom-row > .card,
+  .trend-card-grid > .trend-chart-card,
+  .trend-card-grid > .trend-stats,
+  .manager-snapshot-right .card,
+  .manager-compare-right .card {
+    height: auto !important;
+  }
+  .engagement-left-col > .card {
+    flex: 0 0 auto !important;
+    min-height: 0 !important;
+  }
+
+  /* --- Desktop grid enforcement (web proportions, explicit for print) ----- */
+  .kpi-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .followup-section .kpi-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+  .engagement-summary-section .engagement-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 3fr !important;
+  }
+  .engagement-risks-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .trend-card-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr !important;
+  }
+  .trend-stats {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .leadership-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 3fr) minmax(280px, 2fr) !important;
+  }
+  .ci-two-col {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .ci-themes-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .emotion-grid {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr !important;
+  }
+  .followup-bottom-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .team-detail-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .team-detail-rows {
+    display: block !important;
+  }
+  .team-detail-rows > .team-detail-grid {
+    break-inside: avoid;
+  }
+  .team-detail-rows > .team-detail-grid + .team-detail-grid {
+    margin-top: 10pt !important;
+  }
+  .notes-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .quote-grid-v2 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .appendix-block .grid.two,
+  .grid.two {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .retention-grid-v2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .team-detail-metrics {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* --- Typography scale (landscape usable width ~10.3in) ------------------ */
+  .section-head {
+    margin: 0 0 8pt !important;
+  }
+  .section-head .h1-section {
+    font-size: 16pt !important;
+    line-height: 1.12 !important;
+  }
+  .section-head.size-sm .h1-section {
+    font-size: 12pt !important;
+  }
+  .section-head-subtitle {
+    font-size: var(--report-print-font-small) !important;
+    margin-top: 3pt !important;
+  }
+  .h3-micro,
+  .kpi-card .kpi-label,
+  .stat-tile span,
+  .team-detail-metrics span {
+    font-size: var(--report-print-font-label) !important;
+    line-height: 1.25 !important;
+  }
+  .exec-header-main .client-title {
+    font-size: 28pt !important;
+    line-height: 0.9 !important;
+  }
+  .exec-header-meta {
+    font-size: 9pt !important;
+  }
+  .health-tile {
+    padding: 6pt 10pt !important;
+  }
+  .health-tile strong {
+    font-size: 14pt !important;
+  }
+  .table th {
+    font-size: var(--report-print-font-label) !important;
+    padding: 4pt 5pt !important;
+  }
+  .table td {
+    font-size: var(--report-print-font-small) !important;
+    padding: 4pt 5pt !important;
+  }
+  .ci-theme-table th,
+  .ci-theme-table td {
+    padding: 3pt 4pt !important;
+  }
+  .card {
+    padding: 10pt 12pt !important;
+  }
+  .kpi-card {
+    padding: 8pt 10pt !important;
+    gap: 4pt !important;
+  }
+  .kpi-card .kpi-value {
+    font-size: 15pt !important;
+  }
+  .kpi-card .kpi-sub {
+    font-size: var(--report-print-font-label) !important;
+    line-height: 1.3 !important;
+  }
+  .kpi-card .kpi-help {
+    font-size: var(--report-print-font-label) !important;
+    margin-top: 4pt !important;
+    padding-top: 4pt !important;
+  }
+  .kpi-card .kpi-delta-caption {
+    font-size: var(--report-print-font-label) !important;
+    white-space: nowrap;
+  }
+  .kpi-card .trend-delta {
+    padding: 3pt 6pt !important;
+  }
+  .kpi-card .trend-delta strong {
+    font-size: 9pt !important;
+  }
+  .exec-summary-card {
+    padding: 10pt 14pt !important;
+  }
+  .exec-summary-lede {
+    font-size: 11.5pt !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0 !important;
+  }
+  .assessment-card {
+    margin-bottom: 8pt !important;
+  }
+  .ci-summary {
+    font-size: 10pt !important;
+    line-height: 1.45 !important;
+  }
+  .ci-summary-card {
+    padding: 10pt 14pt !important;
+  }
+  .comment-intel-v2 {
+    padding: 12pt 14pt !important;
+    gap: 10pt !important;
+  }
+  .ci-theme-card {
+    padding: 8pt 10pt !important;
+  }
+  .ci-theme-card p,
+  .ci-list ul,
+  .recs-ol,
+  .mini-insight p,
+  .ci-driver-obs,
+  .team-detail-card p,
+  .emotion-narrative-card p,
+  .notes-grid p,
+  .rec p,
+  .stress-row small {
+    font-size: var(--report-print-font-small) !important;
+    line-height: 1.4 !important;
+  }
+  .ci-driver-action {
+    font-size: var(--report-print-font-small) !important;
+    padding: 5pt 7pt !important;
+  }
+  .ci-driver-list {
+    gap: 8pt !important;
+  }
+  .quote-grid-v2 blockquote {
+    padding: 8pt 10pt !important;
+    font-size: var(--report-print-font-small) !important;
+  }
+  .h2-sub {
+    font-size: 11pt !important;
+    margin-bottom: 5pt !important;
+  }
+  .stat-tile {
+    padding: 7pt 9pt !important;
+  }
+  .stat-tile strong {
+    font-size: 13pt !important;
+    margin-top: 2pt !important;
+  }
+  .stat-tile .stat-narrative {
+    font-size: var(--report-print-font-small) !important;
+  }
+  .engagement-actions-list {
+    gap: 6pt !important;
+    margin-bottom: 8pt !important;
+  }
+  .engagement-actions-list li {
+    padding: 7pt 9pt !important;
+    font-size: 9.5pt !important;
+    line-height: 1.4 !important;
+  }
+  .engagement-note {
+    font-size: var(--report-print-font-label) !important;
+  }
+  .followup-helper {
+    font-size: 9.5pt !important;
+    margin: 4pt 0 8pt !important;
+  }
+  .empty-row td {
+    padding: 8pt !important;
+  }
+  .next-step-title {
+    font-size: 9.5pt !important;
+  }
+  .next-step-guidance,
+  .next-step-meta {
+    font-size: var(--report-print-font-small) !important;
+  }
+  .leadership-table-col,
+  .leadership-steps-col {
+    padding: 10pt 12pt !important;
+  }
+  .team-detail-card {
+    padding: 8pt 10pt !important;
+    gap: 4pt !important;
+  }
+  .team-detail-card header {
+    padding-bottom: 5pt !important;
+    margin-bottom: 2pt !important;
+  }
+  .team-detail-card header h3 {
+    margin-bottom: 2pt !important;
+  }
+  .team-rank-num {
+    font-size: 14pt !important;
+  }
+  .team-detail-metrics {
+    gap: 4pt !important;
+    margin: 2pt 0 4pt !important;
+  }
+  .team-detail-metrics > div {
+    padding: 4pt 5pt !important;
+  }
+  .team-detail-metrics strong {
+    font-size: 11pt !important;
+    margin: 1pt 0 !important;
+  }
+  .team-detail-metrics small {
+    font-size: var(--report-print-font-label) !important;
+  }
+  .appendix-block {
+    padding: 10pt 12pt 8pt !important;
+    gap: 10pt !important;
+  }
+  .notes-grid {
+    gap: 6pt !important;
+  }
+  .notes-grid > div {
+    padding: 6pt 8pt !important;
+  }
+  .notes-grid strong {
+    font-size: var(--report-print-font-small) !important;
+  }
+  .notes-grid p {
+    margin: 3pt 0 0 !important;
+    line-height: 1.3 !important;
+  }
+  .rec {
+    padding-left: 8pt !important;
+  }
+  .rec strong {
+    font-size: 9pt !important;
+  }
+  .list {
+    gap: 6pt !important;
+  }
+  .mood-distribution-card .pie-wrap {
+    grid-template-columns: 130px 1fr !important;
+  }
+  .pie {
+    width: 130px !important;
+    height: 130px !important;
+  }
+  .pie span {
+    width: 64px !important;
+    height: 64px !important;
+    font-size: 16px !important;
+  }
+  .badge {
+    padding: 2pt 6pt !important;
+    font-size: var(--report-print-font-label) !important;
+  }
+  .retention-card {
+    padding: 8pt 10pt !important;
+  }
+  .retention-card p {
+    margin: 4pt 0 !important;
+    font-size: var(--report-print-font-small) !important;
+  }
+  .emotion-bars-card {
+    gap: 7pt !important;
+  }
+  .emotion-name,
+  .emotion-count {
+    font-size: 9.5pt !important;
+  }
+
+  /* --- Charts: content-driven, full column width --------------------------- */
+  .trend-chart svg,
+  .engagement-chart-wrap svg {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 170pt;
+  }
+
+  /* --- Pagination ---------------------------------------------------------- */
+  /* Headings never strand at the bottom of a page */
+  .section-head {
+    break-after: avoid-page;
+    break-inside: avoid;
+  }
+  .section-head + * {
+    break-before: avoid-page;
+  }
+  h1,
+  h2,
+  h3 {
+    break-after: avoid-page;
+  }
+  /* Cards stay whole; multi-row sections may break between cards */
+  .card,
+  .kpi-card,
+  .stat-tile,
+  .next-step,
+  .retention-card,
+  .team-detail-card,
+  .ci-theme-card,
+  .notes-grid > div,
+  .engagement-actions-list li,
+  .rec,
+  .mini-insight,
+  .quote-grid-v2 blockquote,
+  .exec-summary-card,
+  .health-tile {
+    break-inside: avoid;
+  }
+  /* Keep-together blocks marked in ReportBody. On screen .print-keep is
+     display:contents (layout-neutral); in print it becomes a real box so
+     break-inside:avoid can hold header + first content together. */
+  .print-keep {
+    display: block;
+    break-inside: avoid;
+  }
+  .comment-intel-v2 > .print-keep > * + *,
+  .retention-risk-section > .print-keep > * + * {
+    margin-top: 10pt !important;
+  }
+  /* Tables: repeat headers across pages, never split a row */
+  thead {
+    display: table-header-group;
+  }
+  tr {
+    break-inside: avoid;
+  }
+  /* Long link targets shouldn't be appended by print engines */
+  a[href]:after {
+    content: "" !important;
+  }
+
+  /* --- Scope: brief hides appendix ----------------------------------------- */
+  .scope-brief .appendix-section,
+  .scope-brief .appendix-block {
+    display: none !important;
+  }
+}
