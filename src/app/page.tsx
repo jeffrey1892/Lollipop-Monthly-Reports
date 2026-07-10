@@ -18,7 +18,6 @@ import WeeklyEngagementChart from './_components/WeeklyEngagementChart'
 
 export const dynamic = 'force-dynamic'
 
-const URGENCY_RANK: Record<string, number> = { High: 1, Medium: 2, Low: 3 }
 
 export default async function Home({ searchParams }: { searchParams?: Promise<{ month?: string; customer?: string; range?: string }> }) {
   const params = (await searchParams) ?? {}
@@ -39,42 +38,13 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
     completionRateChange: null as number | null,
   }
 
-  const followUpAction =
-    followUp.notConfirmed > 0
-      ? {
-          title: 'Resolve unconfirmed follow-ups',
-          priority: 'P1' as const,
-          urgency: 'High' as const,
-          impact: 'High' as const,
-          difficulty: 'Low' as const,
-          owner: 'HR partner + team managers',
-          nextStep: `${followUp.notConfirmed} employee${followUp.notConfirmed === 1 ? '' : 's'} indicated requested follow-up did not occur. Coordinate manager outreach and document closure for each open exception before the next reporting period.`,
-          why: 'Support follow-through is a leadership-effectiveness signal; closing the loop reinforces that employee voice produces action.',
-          confidence: 'Medium' as const,
-          trigger: 'Use whenever a follow-up exception is recorded.',
-          links: [],
-        }
-      : null
-
-  // Engagement-focused recommendation moves into the Engagement summary
-  // section (its email links render beside the risks table); Leadership
-  // Actions keeps the mood / team-health actions only.
+  // The engagement recommendation's email links render beside the
+  // Team engagement risks table in the Engagement summary section.
   const ENGAGEMENT_REC_TITLES = ['Rebuild check-in participation', 'Maintain check-in participation cadence']
   const engagementRec = report.recommendations.find((r) => ENGAGEMENT_REC_TITLES.includes(r.title))
   const engagementActionLinks = (engagementRec?.links ?? []).filter((l) =>
     l.label.toLowerCase().includes('email'),
   )
-  const sortedRecs = [
-    ...(followUpAction ? [followUpAction] : []),
-    ...report.recommendations.filter((r) => !ENGAGEMENT_REC_TITLES.includes(r.title)),
-  ].sort(
-    (a, b) =>
-      (URGENCY_RANK[a.urgency] ?? 9) - (URGENCY_RANK[b.urgency] ?? 9) ||
-      a.priority.localeCompare(b.priority),
-  )
-  const moodPriorityRows = report.priorityActionRows
-    .filter((row) => row.action !== 'Reinforce participation expectations')
-    .sort((a, b) => (URGENCY_RANK[a.priority] ?? 9) - (URGENCY_RANK[b.priority] ?? 9))
 
   // Engagement tone
   const engagementPct = report.engagement.responseRate
@@ -103,11 +73,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
   const topEmotionMax = Math.max(...report.topEmotions.slice(0, 6).map((e) => e.count), 1)
 
   const priorCaption = report.previousLabel ? `v. ${report.previousLabel}` : 'v. prior month'
-
-  // What changed / strategic narrative split
-  const sn = report.strategicNarrative
-  const whatChangedNarrative = sn[0] ?? 'Stable period with no headline shifts.'
-  const whyItMattersNarrative = sn[1] ?? report.executiveSummary
 
   return (
     <div className="shell">
@@ -376,41 +341,40 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
           </div>
         </section>
 
-        {/* === E. Leadership Actions === */}
+        {/* === E. Leadership Priorities === */}
         <section className="brief-section action-section">
           <SectionHeader
-            title="Leadership actions"
-            subtitle="What leadership should do next to improve team mood and health"
+            title="Leadership Priorities"
+            subtitle="What leadership should do next, in priority order"
           />
-          <div className="exec-summary-card action-intro-card">
-            <p className="exec-summary-lede">{whatChangedNarrative}</p>
-            <dl className="exec-summary-list">
-              <div>
-                <dt className="h3-micro">Why it matters</dt>
-                <dd>{whyItMattersNarrative}</dd>
-              </div>
-            </dl>
+          <div className="exec-summary-card assessment-card">
+            <p className="exec-summary-lede">{report.leadershipAssessment}</p>
           </div>
-          {moodPriorityRows.length > 0 && (
+          {report.priorityActionRows.length === 0 ? (
+            <p className="muted">No material leadership action is recommended this period.</p>
+          ) : (
             <div className="card priority-actions-card">
-              <p className="h2-sub">Priority actions</p>
               <div className="table-wrap">
                 <table className="table priority-actions-table">
                   <thead>
                     <tr>
                       <th>Priority</th>
-                      <th>Action</th>
+                      <th>Recommended action</th>
                       <th>Applies to</th>
                       <th>Reason</th>
+                      <th>Owner</th>
+                      <th>Timing</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {moodPriorityRows.map((row, i) => (
+                    {report.priorityActionRows.map((row, i) => (
                       <tr key={i}>
                         <td><span className={`risk-pill priority-${row.priority.toLowerCase()}`}>{row.priority}</span></td>
                         <td><strong>{row.action}</strong></td>
                         <td>{row.appliesTo}</td>
                         <td>{row.reason}</td>
+                        <td>{row.owner}</td>
+                        <td>{row.timing}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -418,54 +382,26 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </div>
             </div>
           )}
-          <div className="action-grid-v2">
-            {sortedRecs.map((r) => (
-              <article
-                key={r.title}
-                className={`action-card urgency-${r.urgency.toLowerCase()}`}
-              >
-                <div className="action-card-head">
-                  <span className="action-priority">{r.priority}</span>
-                  <span className="urgency-pill">{r.urgency} urgency</span>
-                </div>
-                <h3 className="h2-sub">{r.title}</h3>
-                <p className="action-next-step">{r.nextStep}</p>
-                <footer className="action-card-foot">
-                  <small className="muted">{r.owner}</small>
-                  {r.links && r.links.length > 0 && (
-                    <div className="action-links">
-                      {r.links.map((l) => (
-                        <a key={l.label} href={l.href} target="_blank" rel="noreferrer">
-                          {l.label}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </footer>
-                {(r.trigger || r.why) && (
-                  <details className="action-details">
-                    <summary>More context</summary>
-                    {r.trigger && (
-                      <p>
-                        <span className="h3-micro">When to use</span>
-                        {r.trigger}
-                      </p>
-                    )}
-                    {r.why && (
-                      <p>
-                        <span className="h3-micro">Why it matters</span>
-                        {r.why}
-                      </p>
-                    )}
-                    <p className="muted">
-                      <span className="h3-micro">Impact / difficulty</span>
-                      {r.impact} impact · {r.difficulty} difficulty
-                    </p>
-                  </details>
+          {report.priorityActionDetails.map((d) => (
+            <div className="priority-detail-block" key={d.title}>
+              <div className="priority-detail-main">
+                <p className="h2-sub">{d.title}</p>
+                <p>{d.description}</p>
+              </div>
+              <div className="priority-detail-meta">
+                <p><span className="h3-micro">Applies to</span>{d.appliesTo}</p>
+                <p><span className="h3-micro">Owner</span>{d.owner}</p>
+                <p><span className="h3-micro">Timing</span>{d.timing}</p>
+                {d.links.length > 0 && (
+                  <div className="action-links">
+                    {d.links.map((l) => (
+                      <a key={l.label} href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+                    ))}
+                  </div>
                 )}
-              </article>
-            ))}
-          </div>
+              </div>
+            </div>
+          ))}
         </section>
 
         {/* === G. Emotional Wellness === */}

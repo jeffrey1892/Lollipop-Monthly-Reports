@@ -61,7 +61,8 @@ export type TeamAttention = {
 }
 export type TopPerformingTeam = { team: string; strength: string; why: string }
 export type EngagementRisk = { team: string; issue: string; currentEngagement: number; change: string }
-export type PriorityActionRow = { priority: 'High' | 'Medium' | 'Low'; action: string; appliesTo: string; reason: string }
+export type PriorityActionRow = { priority: 'High' | 'Medium' | 'Low'; action: string; appliesTo: string; reason: string; owner: string; timing: string }
+export type PriorityActionDetail = { title: string; description: string; appliesTo: string; owner: string; timing: string; links: Array<{ label: string; href: string }> }
 
 export type TeamMetric = {
   team: string
@@ -301,4 +302,7 @@ export type ReportMetrics = {
   teamsNeedingAttention: TeamAttention[]
   topPerformingTeams: TopPerformingTeam[]
   priorityActionRows: PriorityActionRow[]
+  priorityActionDetails: PriorityActionDetail[]
+  /** Three-sentence executive assessment for the Leadership Priorities section. */
+  leadershipAssessment: string
 }

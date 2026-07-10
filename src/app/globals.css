@@ -755,6 +755,20 @@ a.link:hover{color:#0866c9}
 .priority-low{background:#eef0f3;color:#4b5563}
 .strength-pill{display:inline-flex;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:900;background:var(--greenSoft);color:#18683b;white-space:nowrap}
 .priority-actions-card{margin-bottom:14px}
+.assessment-card{margin-bottom:14px}
+.priority-detail-block{display:grid;grid-template-columns:2fr 1fr;gap:20px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:10px;box-shadow:0 1px 2px rgba(33,33,33,.04)}
+.priority-detail-main p{margin:6px 0 0;font-size:13.5px;line-height:1.55;color:var(--ink)}
+.priority-detail-main .h2-sub{margin:0}
+.priority-detail-meta{display:flex;flex-direction:column;gap:6px;border-left:1px solid var(--line);padding-left:16px;justify-content:center}
+.priority-detail-meta p{margin:0;font-size:12.5px;color:var(--ink)}
+.priority-detail-meta .h3-micro{display:inline-block;width:72px;margin:0}
+.priority-detail-meta .action-links{margin-top:4px}
+@media screen and (max-width:760px){.priority-detail-block{grid-template-columns:1fr}.priority-detail-meta{border-left:0;padding-left:0}}
+@media print{
+  .priority-detail-block{page-break-inside:avoid;padding:10pt 12pt!important;gap:12pt!important}
+  .priority-detail-main p{font-size:9.5pt!important}
+  .priority-detail-meta p{font-size:9pt!important}
+}
 .engagement-chart-card{display:flex;flex-direction:column}
 .engagement-chart-body{display:flex;gap:16px;flex:1;align-items:stretch;min-height:0}
 .engagement-chart-wrap{flex:1;display:flex;align-items:flex-start;min-height:0}

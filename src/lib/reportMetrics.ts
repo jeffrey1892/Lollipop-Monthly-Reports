@@ -682,40 +682,55 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
     .sort((x, y) => x.currentEngagement - y.currentEngagement)
     .slice(0, 5)
 
+  // Consolidated leadership priorities: max four rows, one row per action,
+  // mood + engagement signals combined, no team in conflicting rows
+  // (topPerformingTeams already excludes every team needing attention).
   const priorityActionRows: PriorityActionRow[] = []
   {
     const criticalHigh = teamsNeedingAttention.filter((t) => t.riskLevel === 'Critical' || t.riskLevel === 'High')
     if (criticalHigh.length)
       priorityActionRows.push({
         priority: 'High',
-        action: 'Schedule manager-led listening check-ins',
+        action: 'Conduct manager-led listening check-ins',
         appliesTo: criticalHigh.map((t) => t.team).join(', '),
-        reason: 'Mood and/or engagement declined materially this period',
-      })
-    const engIssue = teamsNeedingAttention.filter((t) => t.riskLevel !== 'Watch' && (t.engagementRate ?? 100) < companyEngagement)
-    if (engIssue.length)
-      priorityActionRows.push({
-        priority: 'Medium',
-        action: 'Reinforce participation expectations',
-        appliesTo: engIssue.map((t) => t.team).join(', '),
-        reason: 'Engagement is below the company average',
-      })
-    const watchers = teamsNeedingAttention.filter((t) => t.riskLevel === 'Watch')
-    if (watchers.length)
-      priorityActionRows.push({
-        priority: 'Low',
-        action: 'Monitor and grow participation before drawing conclusions',
-        appliesTo: watchers.map((t) => t.team).join(', '),
-        reason: 'Sample sizes are too small for a confident read',
+        reason: 'Mood and/or engagement declined materially',
+        owner: 'Operations leader + HR partner',
+        timing: 'Within 2 weeks',
       })
     if (topPerformingTeams.length)
       priorityActionRows.push({
         priority: 'Medium',
-        action: 'Recognize and learn from strong teams',
+        action: 'Recognize and replicate strong-team practices',
         appliesTo: topPerformingTeams.map((t) => t.team).join(', '),
-        reason: 'High or improving mood and engagement worth replicating',
+        reason: 'Strong or improving mood and engagement',
+        owner: 'HR leader + frontline managers',
+        timing: 'This month',
+      })
+    // Follow-up accountability appears only when real follow-up data shows
+    // requests that are not being completed.
+    if (followUpRequests > 0 && (followUpCompletionPct === null || followUpCompletionPct < 100))
+      priorityActionRows.push({
+        priority: 'Medium',
+        action: 'Close open follow-up requests',
+        appliesTo: 'Teams with open requests',
+        reason: `${followUpRequests} follow-up request${followUpRequests === 1 ? '' : 's'} with ${followUpCompletionPct ?? 0}% completed`,
+        owner: 'HR leader + team managers',
+        timing: 'Within 2 weeks',
+      })
+    const watchers = teamsNeedingAttention.filter((t) => t.riskLevel === 'Watch' || t.riskLevel === 'Moderate')
+    if (watchers.length)
+      priorityActionRows.push({
+        priority: 'Low',
+        action: 'Increase participation before drawing conclusions',
+        appliesTo: watchers.map((t) => t.team).join(', '),
+        reason: 'Sample sizes are too small for a confident read',
+        owner: 'Team managers',
+        timing: 'Next reporting period',
       })
   }
+  const priorityRank: Record<string, number> = { High: 0, Medium: 1, Low: 2 }
+  priorityActionRows.sort((a, b) => priorityRank[a.priority] - priorityRank[b.priority])
+  priorityActionRows.splice(4)
   const strategicNarrative = [
     `${customer.name}'s workforce signal in ${current.label} is ${severity(healthScore).toLowerCase()} with ${retentionRisk.toLowerCase()} retention risk. The organization is not showing a broad crisis signal, but the month softened enough to require targeted leadership attention rather than passive monitoring.`,
     `The most important movement is ${softened ? `a ${Math.abs(monthChange ?? 0).toFixed(2)} point decline in average mood and a ${Math.abs(positiveChange ?? 0).toFixed(1)} point decline in positive sentiment` : 'stable-to-improving sentiment versus the prior month'}. This matters because emotional movement is uneven by team; the risk appears concentrated, not fully systemic.`,
@@ -875,6 +890,48 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
   const employeeEmail = `mailto:?subject=${encodeURIComponent('Reminder: Please complete your Lollipop check-in')}&body=${encodeURIComponent(employeeEmailBody)}`
   const managerEmail = `mailto:?subject=${encodeURIComponent('Using Lollipop manager tools this month')}&body=${encodeURIComponent(managerEmailBody)}`
   const giveawayEmail = `mailto:?subject=${encodeURIComponent('Lollipop check-in participation giveaway')}&body=${encodeURIComponent(giveawayEmailBody)}`
+  // Three-sentence executive assessment for Leadership Priorities
+  const attentionCount = teamsNeedingAttention.length
+  const leadershipAssessment = [
+    `${customer.name}'s workforce signal ${softened ? 'softened' : 'remained stable'} in ${current.label}, with ${retentionRisk.toLowerCase()} overall retention risk.`,
+    attentionCount
+      ? `${attentionCount === 1 ? 'One team' : `${attentionCount} teams`} experienced meaningful declines that warrant targeted leadership attention.`
+      : 'No team-level declines warrant intervention this period.',
+    attentionCount
+      ? 'The risk appears concentrated rather than organization-wide.'
+      : 'Maintain the current cadence and reinforce what is working.',
+  ].join(' ')
+
+  // Detail blocks for the highest-priority one or two actions
+  const detailFor = (row: PriorityActionRow): { description: string; links: Array<{ label: string; href: string }> } => {
+    if (row.action.includes('listening check-ins'))
+      return {
+        description: `Managers in ${row.appliesTo} should conduct brief listening conversations focused on workload, communication, and recognition. Each manager should identify one recurring concern and assign one follow-up action.`,
+        links: [{ label: 'Manager tools', href: managerToolsUrl }, { label: 'Draft manager email', href: managerEmail }],
+      }
+    if (row.action.includes('strong-team practices'))
+      return {
+        description: `Identify the specific practices behind strong results in ${row.appliesTo} and turn them into a short coaching prompt shared with peer managers.`,
+        links: [{ label: 'Manager tools', href: managerToolsUrl }],
+      }
+    if (row.action.includes('follow-up requests'))
+      return {
+        description: 'Assign an owner, first-response date, and closure note to each open follow-up request so employees see that raising a concern produces action.',
+        links: [{ label: 'Manager tools', href: managerToolsUrl }, { label: 'Draft manager email', href: managerEmail }],
+      }
+    return {
+      description: `Encourage more consistent check-ins in ${row.appliesTo} before drawing conclusions from the current scores.`,
+      links: [{ label: 'Draft employee reminder email', href: employeeEmail }],
+    }
+  }
+  const priorityActionDetails = priorityActionRows.slice(0, 2).map((row) => ({
+    title: row.action,
+    ...detailFor(row),
+    appliesTo: row.appliesTo,
+    owner: row.owner,
+    timing: row.timing,
+  }))
+
   const recommendations = [
     engagementDrop
       ? { title: 'Rebuild check-in participation', priority: 'P1' as const, urgency: 'High', impact: 'High', difficulty: 'Low', owner: 'HR / operations leader + managers', nextStep: `Engagement ${engagementRateChange !== null ? `moved ${engagementRateChange > 0 ? '+' : ''}${engagementRateChange} pts` : 'softened'} versus the prior month. Use the new giveaway feature, team-meeting reminders, employee email notices, and manager follow-up to restore participation before the next report.`, why: 'When company or team engagement drops, leadership loses visibility into silent-population risk and the report becomes less representative.', confidence: engagement.confidence, trigger: 'Use when company engagement falls 5+ percentage points, response volume falls by 10+ check-ins, or a team shows a meaningful participation decline.', links: [{ label: 'Draft employee reminder email', href: employeeEmail }, { label: 'Draft giveaway email', href: giveawayEmail }, { label: 'Manager tools', href: managerToolsUrl }] }
@@ -883,5 +940,5 @@ export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 
     { title: 'Operationalize follow-up accountability', priority: 'P2' as const, urgency: 'Medium', impact: 'High', difficulty: 'Medium', owner: 'HR leader + team managers', nextStep: 'Require status, owner, first-response date, and closure note for every follow-up request. Remind managers to use the manager tools to track action items and close the feedback loop.', why: 'Responsiveness is a leadership-effectiveness signal; missing data prevents Lollipop from proving closure.', confidence: responsiveness.confidence, trigger: 'Use when follow-up requests are open, incomplete, or missing owner/status data.', links: [{ label: 'Manager tools', href: managerToolsUrl }, { label: 'Draft manager email', href: managerEmail }] },
     { title: 'Reinforce positive culture drivers', priority: 'P3' as const, urgency: 'Medium', impact: 'Medium', difficulty: 'Low', owner: 'Frontline managers', nextStep: 'Identify what top teams are doing differently and turn it into a manager coaching prompt.', why: 'Recognition, support, and visible progress appear to be meaningful positive sentiment drivers.', confidence: commentIntelligence.confidence, trigger: 'Use when positive sentiment or comment themes identify manager behaviors worth repeating.' },
   ]
-  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, engagementImprovingTeams, engagementDecliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, individualRetentionRisks, managerReport, engagementSummary, engagementRisks, teamsNeedingAttention, topPerformingTeams, priorityActionRows }
+  return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, engagementImprovingTeams, engagementDecliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, individualRetentionRisks, managerReport, engagementSummary, engagementRisks, teamsNeedingAttention, topPerformingTeams, priorityActionRows, priorityActionDetails, leadershipAssessment }
 }
