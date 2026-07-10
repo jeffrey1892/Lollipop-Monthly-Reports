@@ -41893,6 +41893,3245 @@
         }
       ],
       "optedInPopulation": 99
+    },
+    {
+      "id": "knot-standard-ghurka",
+      "name": "Knot Standard / Ghurka",
+      "industry": "Apparel / Luxury goods",
+      "demo": false,
+      "months": [
+        {
+          "month": "2026-02",
+          "label": "Feb 2026",
+          "responses": [
+            {
+              "id": "ksg-Feb-1",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-2",
+              "firstName": "Matthew",
+              "lastName": "Mueller",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Dev is causing far more problems than they are solving"
+            },
+            {
+              "id": "ksg-Feb-3",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-4",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-5",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-6",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content",
+                "Frustrated",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Frustrated with Dev. I want to give feedback because I care about the quality of our work. Recently I\u2019ve noticed a few deliverables have come in later than expected, and there have been details missed. Precision is really important in this company and its not being reflected."
+            },
+            {
+              "id": "ksg-Feb-7",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-8",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-9",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-10",
+              "firstName": "Taylor",
+              "lastName": "Lynch",
+              "team": "KNOT STANDARD",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-11",
+              "firstName": "Rachel",
+              "lastName": "Cancelliere",
+              "team": "GHURKA",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-12",
+              "firstName": "Bart",
+              "lastName": "Berning",
+              "team": "GHURKA",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-13",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-14",
+              "firstName": "Luis F",
+              "lastName": "Huerta",
+              "team": "GHURKA",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-15",
+              "firstName": "Simon",
+              "lastName": "Zerdoun",
+              "team": "GHURKA",
+              "date": "Feb 11, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-16",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Feb 12, 2026 10:27 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Worried",
+                "Frustrated",
+                "Confused",
+                "Overwhelmed",
+                "Sad"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-17",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-18",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "tired"
+            },
+            {
+              "id": "ksg-Feb-19",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Motivated",
+                "Excited",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "One day at a time."
+            },
+            {
+              "id": "ksg-Feb-20",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-21",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-22",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Overwhelmed",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Feeling slightly overwhelmed by the volume of Nordstrom shipments to pack yesterday and now needing to catch up on other work today. Optimistic though for the spring launch!!"
+            },
+            {
+              "id": "ksg-Feb-23",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-24",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-25",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-26",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-27",
+              "firstName": "Taylor",
+              "lastName": "Lynch",
+              "team": "KNOT STANDARD",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated",
+                "Grateful",
+                "Confused",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-28",
+              "firstName": "Rachel",
+              "lastName": "Cancelliere",
+              "team": "GHURKA",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-29",
+              "firstName": "Bart",
+              "lastName": "Berning",
+              "team": "GHURKA",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-30",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Content",
+                "Appreciated",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-31",
+              "firstName": "Luis F",
+              "lastName": "Huerta",
+              "team": "GHURKA",
+              "date": "Feb 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Excited",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-32",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-33",
+              "firstName": "Matthew",
+              "lastName": "Mueller",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated",
+                "Grateful",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-34",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated",
+                "Excited",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-35",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-36",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-37",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-38",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Sad",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Sad training for London was rescheduled but hopeful as we are not losing momentum after today\u2019s call"
+            },
+            {
+              "id": "ksg-Feb-39",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-40",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-41",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-42",
+              "firstName": "Taylor",
+              "lastName": "Lynch",
+              "team": "KNOT STANDARD",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-43",
+              "firstName": "Rachel",
+              "lastName": "Cancelliere",
+              "team": "GHURKA",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-44",
+              "firstName": "Bart",
+              "lastName": "Berning",
+              "team": "GHURKA",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-45",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Feb-46",
+              "firstName": "Simon",
+              "lastName": "Zerdoun",
+              "team": "GHURKA",
+              "date": "Feb 25, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-03",
+          "label": "Mar 2026",
+          "responses": [
+            {
+              "id": "ksg-Mar-1",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I am honored by the opportunity to represent KS in the wild on these speaking engagements. It makes me super energized to feel how much more connected and dynamic we are relative to most."
+            },
+            {
+              "id": "ksg-Mar-2",
+              "firstName": "Matthew",
+              "lastName": "Mueller",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Motivated",
+                "Optimistic",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-3",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Happy",
+                "Worried",
+                "Distracted",
+                "Optimistic",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-4",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-5",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-6",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-7",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated",
+                "Overwhelmed",
+                "Upset"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-8",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Worried",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I have too much on my plate and don\u2019t see an end in sight"
+            },
+            {
+              "id": "ksg-Mar-9",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-10",
+              "firstName": "Taylor",
+              "lastName": "Lynch",
+              "team": "KNOT STANDARD",
+              "date": "Mar  4, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated",
+                "Grateful",
+                "Content",
+                "Distracted"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-11",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Had a great Claude session with Matt yesterday, grateful for the development opportunities!"
+            },
+            {
+              "id": "ksg-Mar-12",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-13",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-14",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-15",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-16",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Distracted",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-17",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-18",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-19",
+              "firstName": "Taylor",
+              "lastName": "Lynch",
+              "team": "KNOT STANDARD",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-20",
+              "firstName": "Rachel",
+              "lastName": "Cancelliere",
+              "team": "GHURKA",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-21",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-22",
+              "firstName": "Luis F",
+              "lastName": "Huerta",
+              "team": "GHURKA",
+              "date": "Mar 11, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-23",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Excited",
+                "Motivated",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "good to feel like myself again :)"
+            },
+            {
+              "id": "ksg-Mar-24",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-25",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-26",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-27",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-28",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Distracted",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-29",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-30",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-31",
+              "firstName": "Rachel",
+              "lastName": "Cancelliere",
+              "team": "GHURKA",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-32",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Mar 18, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-33",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-34",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Is it possible to just not really feel anything sometimes?"
+            },
+            {
+              "id": "ksg-Mar-35",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-36",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-37",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-38",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-39",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-40",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful",
+                "Worried",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-41",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-42",
+              "firstName": "Taylor",
+              "lastName": "Lynch",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-43",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-44",
+              "firstName": "Luis F",
+              "lastName": "Huerta",
+              "team": "GHURKA",
+              "date": "Mar 25, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Grateful",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Mar-45",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Mar 25, 2026 12:02 PM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "It is amazing how just hearing happiness in your child's voice over the phone can change your entire day. \ud83d\ude00"
+            }
+          ]
+        },
+        {
+          "month": "2026-04",
+          "label": "Apr 2026",
+          "responses": [
+            {
+              "id": "ksg-Apr-1",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Strong month of March. Great momentum, sunny days, feeling positive!"
+            },
+            {
+              "id": "ksg-Apr-2",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-3",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Is it possible to just be ok with having any noticable feelings that apply?"
+            },
+            {
+              "id": "ksg-Apr-4",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-5",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-6",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-7",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-8",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-9",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-10",
+              "firstName": "Taylor",
+              "lastName": "Lynch",
+              "team": "KNOT STANDARD",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Overwhelmed",
+                "Frustrated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-11",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Apr  1, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-12",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Apr  8, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "A lot of things in the world that we cannot control, but we do our best to everyday to keep the company and all of our livelihoods in tact!"
+            },
+            {
+              "id": "ksg-Apr-13",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Apr  8, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-14",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Apr  8, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I don't ever feel anything in the mornings so normally I just click how I think I should feel."
+            },
+            {
+              "id": "ksg-Apr-15",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Apr  8, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-16",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Apr  8, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-17",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "Apr  8, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-18",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Apr  8, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-19",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Apr  8, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-20",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Apr  8, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-21",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-22",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-23",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Not functioning at 100% so overall frustrated, but at nothing inparticular"
+            },
+            {
+              "id": "ksg-Apr-24",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-25",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-26",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-27",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Another week starting with issues. It\u2019s exhausting"
+            },
+            {
+              "id": "ksg-Apr-28",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Upset",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-29",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-30",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-31",
+              "firstName": "Luis F",
+              "lastName": "Huerta",
+              "team": "GHURKA",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-32",
+              "firstName": "Simon",
+              "lastName": "Zerdoun",
+              "team": "GHURKA",
+              "date": "Apr 15, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-33",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Apr 22, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-34",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Apr 22, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Sad",
+                "Worried"
+              ],
+              "followUpRequested": true,
+              "followUpStatus": "Escalation Pending",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-35",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Apr 22, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Excited",
+                "Content",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-36",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Apr 22, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-37",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Apr 22, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-38",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "Apr 22, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-39",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Apr 22, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-40",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Apr 22, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Tired"
+            },
+            {
+              "id": "ksg-Apr-41",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Apr 29, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-42",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Apr 29, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-43",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Apr 29, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-44",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Apr 29, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-45",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Apr 29, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-46",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Apr 29, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-47",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Apr 29, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated",
+                "Upset"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-48",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Apr 29, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Happy",
+                "Frustrated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Apr-49",
+              "firstName": "Simon",
+              "lastName": "Zerdoun",
+              "team": "GHURKA",
+              "date": "Apr 29, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-05",
+          "label": "May 2026",
+          "responses": [
+            {
+              "id": "ksg-May-1",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "May  6, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-2",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "May  6, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-3",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "May  6, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-4",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "May  6, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Confused"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-5",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "May  6, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-6",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "May  6, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-7",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "May  6, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-8",
+              "firstName": "Rachel",
+              "lastName": "Cancelliere",
+              "team": "GHURKA",
+              "date": "May  6, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-9",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Grateful",
+                "Excited"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I feel incredibly honored to represent the company at these conferences and take the mandate seriously!"
+            },
+            {
+              "id": "ksg-May-10",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-11",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic",
+                "Excited",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I am just clicking things at this point. I truly think this is a useless experiment. I'll keep doing it but I can honestly say that if I thought about it I feel everyone of these emotions and none of them"
+            },
+            {
+              "id": "ksg-May-12",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-13",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-14",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-15",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-16",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Upset"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-17",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-18",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Appreciated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-19",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated",
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-20",
+              "firstName": "Simon",
+              "lastName": "Zerdoun",
+              "team": "GHURKA",
+              "date": "May 13, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-21",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "May 13, 2026 10:08 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Happy",
+                "Excited",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I hit submit by accident on my last one but point is this really gives no good indication of anything about how I'm feeling about anything. This entire thing makes me happy excited grateful motivated content optimistic appreciated sad upset overwhelmed confused worried disrespected distracted and frustrated while AT the same time I am also NOT happy excited grateful motivated content optimistic appreciated sad upset overwhelmed confused worried disrespected distracted or frustrated. Maybe this should not be sent on Wed. morning at 10am. Pick maybe after a client call. Or when a bug is found. Point is... They day hasn't gotten good or bad yet. Just a thought. Hopefully this is meaningful otherwise."
+            },
+            {
+              "id": "ksg-May-22",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-23",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated",
+                "Upset"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-24",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-25",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-26",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-27",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Confused",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-28",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Distracted",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-29",
+              "firstName": "Taylor",
+              "lastName": "Lynch",
+              "team": "KNOT STANDARD",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 1.0,
+              "emotions": [
+                "Frustrated",
+                "Upset"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-30",
+              "firstName": "Rachel",
+              "lastName": "Cancelliere",
+              "team": "GHURKA",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-31",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "May 20, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy",
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-32",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "May 27, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-33",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "May 27, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-34",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "May 27, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-35",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "May 27, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "My coffee was great this morning. Going to be a good day!! \ud83d\ude07"
+            },
+            {
+              "id": "ksg-May-36",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "May 27, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-37",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "May 27, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Overwhelmed"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-38",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "May 27, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-39",
+              "firstName": "Rachel",
+              "lastName": "Cancelliere",
+              "team": "GHURKA",
+              "date": "May 27, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-May-40",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "May 27, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        },
+        {
+          "month": "2026-06",
+          "label": "Jun 2026",
+          "responses": [
+            {
+              "id": "ksg-Jun-1",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Jun  3, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Completed my 1000th pure barre class this morning!"
+            },
+            {
+              "id": "ksg-Jun-2",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Jun  3, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-3",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Jun  3, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-4",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Jun  3, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-5",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Jun  3, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-6",
+              "firstName": "John",
+              "lastName": "Truex",
+              "team": "GHURKA",
+              "date": "Jun  3, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-7",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Jun 10, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Happy",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "Had the best retreat!"
+            },
+            {
+              "id": "ksg-Jun-8",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Jun 10, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content",
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-9",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Jun 10, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Worried",
+                "Motivated",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-10",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Jun 10, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-11",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Jun 10, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-12",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Jun 10, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-13",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Jun 10, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-14",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Jun 10, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-15",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Jun 17, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Grateful",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I\u2019m still on a high from my YPO Retreat! \u2764\ufe0f"
+            },
+            {
+              "id": "ksg-Jun-16",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Jun 17, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Happy"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-17",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Jun 17, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Motivated",
+                "Excited",
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-18",
+              "firstName": "Teddy",
+              "lastName": "Siebert",
+              "team": "KNOT STANDARD",
+              "date": "Jun 17, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-19",
+              "firstName": "Amanda",
+              "lastName": "Moriarty",
+              "team": "KNOT STANDARD",
+              "date": "Jun 17, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-20",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Jun 17, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-21",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Jun 17, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-22",
+              "firstName": "Juliette",
+              "lastName": "Del Priore",
+              "team": "KNOT STANDARD",
+              "date": "Jun 17, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-23",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Jun 17, 2026  1:22 PM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-24",
+              "firstName": "Valerie",
+              "lastName": "Bleza",
+              "team": "KNOT STANDARD",
+              "date": "Jun 24, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Optimistic",
+                "Motivated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I always get so elated to see when people respond to the KPI emails. I believe it\u2019s really changed the culture overall for both KS and Ghurka.\n\nAdditionally, managing and developing people energizes me. I feel that the time spent these past weeks working with the Ghurka team has been impactful \ud83d\udc4d"
+            },
+            {
+              "id": "ksg-Jun-25",
+              "firstName": "Julien",
+              "lastName": "Renouard",
+              "team": "KNOT STANDARD",
+              "date": "Jun 24, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-26",
+              "firstName": "Adam",
+              "lastName": "Namejko",
+              "team": "KNOT STANDARD",
+              "date": "Jun 24, 2026 10:00 AM",
+              "mood": 5.0,
+              "emotions": [
+                "Motivated",
+                "Optimistic",
+                "Worried"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": "I figure as long as I am motivated and optimistic the worries may eventually disppear"
+            },
+            {
+              "id": "ksg-Jun-27",
+              "firstName": "Nicole",
+              "lastName": "Gibaldi",
+              "team": "KNOT STANDARD",
+              "date": "Jun 24, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-28",
+              "firstName": "Sara",
+              "lastName": "Trapani",
+              "team": "KNOT STANDARD",
+              "date": "Jun 24, 2026 10:00 AM",
+              "mood": 3.0,
+              "emotions": [
+                "Optimistic"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-29",
+              "firstName": "Fabrizio",
+              "lastName": "Lauri",
+              "team": "KNOT STANDARD",
+              "date": "Jun 24, 2026 10:00 AM",
+              "mood": 2.0,
+              "emotions": [
+                "Upset",
+                "Worried",
+                "Frustrated"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            },
+            {
+              "id": "ksg-Jun-30",
+              "firstName": "Molly",
+              "lastName": "Fleck",
+              "team": "KNOT STANDARD",
+              "date": "Jun 24, 2026 10:00 AM",
+              "mood": 4.0,
+              "emotions": [
+                "Optimistic",
+                "Content"
+              ],
+              "followUpRequested": false,
+              "followUpStatus": "",
+              "comments": ""
+            }
+          ]
+        }
+      ],
+      "unsubscribed": [],
+      "roster": [
+        {
+          "id": "15374",
+          "firstName": "Brooke",
+          "lastName": "Kochman"
+        },
+        {
+          "id": "13494",
+          "firstName": "Emma",
+          "lastName": "Martin"
+        },
+        {
+          "id": "13149",
+          "firstName": "Glenn",
+          "lastName": "Pollack",
+          "email": "glenn@ghurka.com"
+        },
+        {
+          "id": "13148",
+          "firstName": "Max",
+          "lastName": "Milstein"
+        },
+        {
+          "id": "13147",
+          "firstName": "Simon",
+          "lastName": "Zerdoun"
+        },
+        {
+          "id": "13146",
+          "firstName": "Luis F",
+          "lastName": "Huerta"
+        },
+        {
+          "id": "13145",
+          "firstName": "John",
+          "lastName": "Truex"
+        },
+        {
+          "id": "13144",
+          "firstName": "Bart",
+          "lastName": "Berning"
+        },
+        {
+          "id": "13143",
+          "firstName": "Rachel",
+          "lastName": "Cancelliere"
+        },
+        {
+          "id": "13142",
+          "firstName": "Moez",
+          "lastName": "Hajiri",
+          "email": "moez@knotstandard.com"
+        },
+        {
+          "id": "13141",
+          "firstName": "Taylor",
+          "lastName": "Lynch"
+        },
+        {
+          "id": "13140",
+          "firstName": "Juliette",
+          "lastName": "Del Priore"
+        },
+        {
+          "id": "13139",
+          "firstName": "Molly",
+          "lastName": "Fleck"
+        },
+        {
+          "id": "13138",
+          "firstName": "Fabrizio",
+          "lastName": "Lauri"
+        },
+        {
+          "id": "13137",
+          "firstName": "Sara",
+          "lastName": "Trapani"
+        },
+        {
+          "id": "13136",
+          "firstName": "Amanda",
+          "lastName": "Moriarty"
+        },
+        {
+          "id": "13135",
+          "firstName": "Nicole",
+          "lastName": "Gibaldi"
+        },
+        {
+          "id": "13134",
+          "firstName": "Teddy",
+          "lastName": "Siebert"
+        },
+        {
+          "id": "13133",
+          "firstName": "Adam",
+          "lastName": "Namejko"
+        },
+        {
+          "id": "13132",
+          "firstName": "Julien",
+          "lastName": "Renouard",
+          "email": "julien@knotstandard.com"
+        },
+        {
+          "id": "13131",
+          "firstName": "Matthew",
+          "lastName": "Mueller",
+          "email": "matt@knotstandard.com"
+        },
+        {
+          "id": "13130",
+          "firstName": "Valerie",
+          "lastName": "Bleza",
+          "email": "valerie.bleza@knotstandard.com"
+        }
+      ],
+      "optedInPopulation": 22
     }
   ]
 }
