@@ -13,6 +13,7 @@ export default function TopBar({
   singlePdf = false,
   customers,
   selectedCustomer,
+  range = 'month',
 }: {
   title?: string
   months?: Month[]
@@ -22,6 +23,7 @@ export default function TopBar({
   singlePdf?: boolean
   customers?: Customer[]
   selectedCustomer?: string
+  range?: string
 }) {
   return (
     <header className="topbar">
@@ -64,7 +66,12 @@ export default function TopBar({
               </button>
             </form>
           )}
-          <DownloadPdfButton single={singlePdf} />
+          <DownloadPdfButton
+            single={singlePdf}
+            customer={selectedCustomer}
+            month={selectedMonth}
+            range={range}
+          />
         </div>
       </div>
     </header>
