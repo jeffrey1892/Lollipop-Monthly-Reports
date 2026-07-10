@@ -182,8 +182,8 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                   this month
                 </>
               }
-              delta={<TrendDelta value={report.engagementSummary?.weeklyChange ?? null} suffix=" pp" />}
-              deltaCaption="v. prior week"
+              delta={<TrendDelta value={report.engagement.responseRateChange} suffix=" pp" />}
+              deltaCaption={priorCaption}
               tone="blue"
               help={
                 <>
