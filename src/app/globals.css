@@ -755,6 +755,14 @@ a.link:hover{color:#0866c9}
 .priority-low{background:#eef0f3;color:#4b5563}
 .strength-pill{display:inline-flex;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:900;background:var(--greenSoft);color:#18683b;white-space:nowrap}
 .assessment-card{margin-bottom:14px}
+/* Appendix: stack mood distribution + positive momentum in the left column */
+.appendix-stack{display:flex;flex-direction:column;gap:16px}
+.appendix-stack>.card{flex:0 0 auto}
+.mood-distribution-card .pie-wrap{grid-template-columns:170px 1fr;gap:14px}
+.mood-distribution-card .pie{width:170px;height:170px;box-shadow:inset 0 0 0 14px rgba(255,255,255,.55)}
+.mood-distribution-card .pie span{width:84px;height:84px;font-size:22px}
+.mood-distribution-card .legend{gap:5px}
+.mood-distribution-card .legend img{width:22px;height:22px}
 /* Leadership Priorities — single block: table left, next steps right */
 .leadership-block{padding:0}
 .leadership-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(300px,2fr)}

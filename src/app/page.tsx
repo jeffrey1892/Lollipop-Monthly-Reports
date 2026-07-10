@@ -722,10 +722,27 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
             size="sm"
           />
           <div className="grid two">
-            <div className="card">
-              <h3 className="h2-sub">Mood distribution</h3>
-              <p className="muted small">How responses are spread</p>
-              <PieChart slices={report.moodDistribution} />
+            <div className="appendix-stack">
+              <div className="card mood-distribution-card">
+                <h3 className="h2-sub">Mood distribution</h3>
+                <p className="muted small">How responses are spread</p>
+                <PieChart slices={report.moodDistribution} />
+              </div>
+              <div className="card">
+                <h3 className="h2-sub">Positive momentum</h3>
+                <p className="muted small">What&apos;s working</p>
+                <div className="list">
+                  {report.positiveMomentum.slice(0, 4).map((r) => (
+                    <div className="rec positive" key={r.title}>
+                      <strong>{r.title}</strong>
+                      <p>{r.signal}</p>
+                      <p>
+                        <strong>Preserve:</strong> {r.recommendedAction}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
             <div className="card">
               <h3 className="h2-sub">Risk / watchlist areas</h3>
@@ -745,22 +762,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
             </div>
           </div>
 
-          <div className="grid two">
-            <div className="card">
-              <h3 className="h2-sub">Positive momentum</h3>
-              <p className="muted small">What&apos;s working</p>
-              <div className="list">
-                {report.positiveMomentum.slice(0, 4).map((r) => (
-                  <div className="rec positive" key={r.title}>
-                    <strong>{r.title}</strong>
-                    <p>{r.signal}</p>
-                    <p>
-                      <strong>Preserve:</strong> {r.recommendedAction}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
             <div className="card">
               <h3 className="h2-sub">Manager reports</h3>
               <p className="muted small">
@@ -811,7 +812,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
                 })}
               </div>
             </div>
-          </div>
 
           <div className="card">
             <p className="h3-micro">
