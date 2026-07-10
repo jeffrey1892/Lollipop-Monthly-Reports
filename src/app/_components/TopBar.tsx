@@ -1,5 +1,6 @@
 import React from 'react'
 import DownloadPdfButton from '../DownloadPdfButton'
+import TopBarControls from './TopBarControls'
 
 type Month = { month: string; label: string }
 type Customer = { id: string; name: string }
@@ -42,29 +43,13 @@ export default function TopBar({
             </a>
           )}
           {(months || customers) && (
-            <form className="topbar-month-form" action={action} method="get">
-              {customers && customers.length > 1 && (
-                <select name="customer" defaultValue={selectedCustomer} aria-label="Customer">
-                  {customers.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.name}
-                    </option>
-                  ))}
-                </select>
-              )}
-              {months && months.length > 0 && (
-                <select name="month" defaultValue={selectedMonth} aria-label="Reporting month">
-                  {months.map((m) => (
-                    <option key={m.month} value={m.month}>
-                      {m.label}
-                    </option>
-                  ))}
-                </select>
-              )}
-              <button className="btn primary" type="submit">
-                Generate
-              </button>
-            </form>
+            <TopBarControls
+              action={action}
+              months={months}
+              selectedMonth={selectedMonth}
+              customers={customers}
+              selectedCustomer={selectedCustomer}
+            />
           )}
           <DownloadPdfButton
             single={singlePdf}
