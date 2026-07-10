@@ -1,6 +1,5 @@
 import React from 'react'
-import Link from 'next/link'
-import { getReport, customers, slugifyTeam } from '@/lib/reportMetrics'
+import { getReport, customers } from '@/lib/reportMetrics'
 import {
   Delta,
   TrendDelta,
@@ -761,57 +760,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
               </div>
             </div>
           </div>
-
-            <div className="card">
-              <h3 className="h2-sub">Manager reports</h3>
-              <p className="muted small">
-                {report.managerReport.eligibleTeams.length} of {report.teamIntelligence.length}{' '}
-                teams meet the response threshold. Each manager sees only their team plus company
-                averages.
-              </p>
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
-                  gap: 10,
-                  marginTop: 10,
-                }}
-              >
-                {report.teamIntelligence.map((t) => {
-                  const slug = slugifyTeam(t.team)
-                  const below = t.responses < 5
-                  return (
-                    <Link
-                      key={t.team}
-                      href={`/manager/${slug}`}
-                      className="rec"
-                      style={{
-                        display: 'block',
-                        textDecoration: 'none',
-                        color: 'inherit',
-                        padding: 10,
-                        border: '1px solid var(--line)',
-                        borderRadius: 12,
-                        background: '#fff',
-                      }}
-                    >
-                      <strong style={{ display: 'block' }}>{t.team}</strong>
-                      <small className="muted" style={{ display: 'block' }}>
-                        {t.responses} check-ins · {t.severity}
-                      </small>
-                      {below ? (
-                        <small className="muted" style={{ display: 'block', marginTop: 4 }}>
-                          Below threshold · directional only
-                        </small>
-                      ) : null}
-                      <small style={{ display: 'block', marginTop: 6, color: 'var(--blue)' }}>
-                        View report →
-                      </small>
-                    </Link>
-                  )
-                })}
-              </div>
-            </div>
 
           <div className="card">
             <p className="h3-micro">
