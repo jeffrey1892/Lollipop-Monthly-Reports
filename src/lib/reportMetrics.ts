@@ -297,7 +297,7 @@ function buildCommentIntelligence(records: ResponseRecord[], priorRecords: Respo
   }
 }
 
-export function getReport(customerId = 'cosmo-cabinets', month?: string, range: 'month' | 'quarter' = 'month'): ReportMetrics {
+export function getReport(customerId?: string, month?: string, range: 'month' | 'quarter' = 'month'): ReportMetrics {
   const customer = customers.find((c) => c.id === customerId) ?? customers[0]
   const selected = month ? customer.months.find((m) => m.month === month) : customer.months[customer.months.length - 1]
   const current = selected ?? customer.months[customer.months.length - 1]
