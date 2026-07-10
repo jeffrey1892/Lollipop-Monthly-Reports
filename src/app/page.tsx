@@ -982,18 +982,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<{ 
             </div>
           </div>
 
-          <div className="card">
-            <h3 className="h2-sub">Methodology improvements</h3>
-            <ul className="list">
-              {report.improvements.map((i) => (
-                <li key={i}>{i}</li>
-              ))}
-            </ul>
-            <p className="muted">
-              Confirmed direction: brief PDF for executives; full report with appendices for operators
-              and HR.
-            </p>
-          </div>
         </section>
       </main>
     </div>
