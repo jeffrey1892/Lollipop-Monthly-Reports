@@ -28,6 +28,9 @@ export type WeeklyEngagementPoint = {
   engagementRate: number
 }
 export type OffRosterRespondent = { firstName: string; lastName: string; firstSeen: string; monthLabel: string }
+export type CheckInCompletion = { name: string; completed: number; total: number; onRoster: boolean }
+export type OptedOutEmployee = { name: string; date?: string; type?: string }
+
 export type EngagementSummary = {
   hasRoster: boolean
   rosterCount: number
@@ -44,6 +47,10 @@ export type EngagementSummary = {
   weeklyChange: number | null
   /** Window the weekly detail series covers, e.g. 'May 2026' or 'Q2 2026'. */
   weeklyWindowLabel: string
+  /** Employees who completed fewer than the total check-in deliveries in the window, fewest first. */
+  checkInCompletion: CheckInCompletion[]
+  /** Roster employees who have opted out of check-ins. */
+  optedOut: OptedOutEmployee[]
 }
 
 export type WeeklyHistoryPoint = { weekStart: string; label: string; monthLabel: string; avgMood: number }

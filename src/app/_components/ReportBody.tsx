@@ -281,6 +281,50 @@ export default function ReportBody({
               </div>
             </div>
           </div>
+          <div className="completion-row">
+            <div className="card completion-card">
+              <p className="h2-sub">
+                Incomplete check-ins — {report.engagementSummary.weeklyWindowLabel}
+              </p>
+              <p className="muted completion-note">
+                Employees who completed fewer than the {report.engagementSummary.weekly.length}{' '}
+                check-in deliveries this period.
+              </p>
+              {report.engagementSummary.checkInCompletion.length === 0 ? (
+                <p className="muted">Every employee completed all check-ins this period.</p>
+              ) : (
+                <ul className="completion-list">
+                  {report.engagementSummary.checkInCompletion.map((p) => (
+                    <li key={p.name}>
+                      <span className="completion-name">
+                        {p.name}
+                        {!p.onRoster && <span className="sample-flag"> off-roster</span>}
+                      </span>
+                      <span className="completion-count">
+                        {p.completed} of {p.total}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div className="card opted-out-card">
+              <p className="h2-sub">Opted out</p>
+              <p className="muted completion-note">Roster employees who opted out of check-ins.</p>
+              {report.engagementSummary.optedOut.length === 0 ? (
+                <p className="muted">No opted-out employees on record.</p>
+              ) : (
+                <ul className="opted-out-list">
+                  {report.engagementSummary.optedOut.map((p) => (
+                    <li key={p.name}>
+                      <span className="completion-name">{p.name}</span>
+                      {p.date && <span className="muted completion-date">{p.date}</span>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
           <div className="engagement-risks-row">
             <div className="card engagement-risks-card">
               <p className="h2-sub">Team engagement risks</p>

@@ -531,6 +531,52 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
       )
     : null
 
+  // Check-in completion per employee across the window's delivery weeks.
+  // A "delivery" is one Monday-start week shown in the Weekly detail table;
+  // completed = distinct weeks the employee checked in at least once.
+  const windowWeekKeys = new Set(weeklyEngagement.map((w) => w.weekStart))
+  const totalDeliveries = windowWeekKeys.size
+  const personWeeks = new Map<string, Set<string>>()
+  const personDisplay = new Map<string, string>()
+  for (const m of weeklyWindowMonths) {
+    for (const r of m.responses) {
+      const dte = parseDate(r.date)
+      if (!dte) continue
+      const off = (dte.getDay() + 6) % 7
+      const mon = new Date(dte); mon.setHours(0, 0, 0, 0); mon.setDate(dte.getDate() - off)
+      const wk = mon.toISOString().slice(0, 10)
+      if (!windowWeekKeys.has(wk)) continue
+      const key = uniqueParticipantKey(r)
+      const set = personWeeks.get(key) ?? new Set<string>()
+      set.add(wk)
+      personWeeks.set(key, set)
+      if (!personDisplay.has(key)) personDisplay.set(key, `${(r.firstName || '').trim()} ${(r.lastName || '').trim()}`.trim())
+    }
+  }
+  const completionPeople = new Map<string, { name: string; completed: number; onRoster: boolean }>()
+  for (const e of roster) {
+    const key = `${e.firstName.trim().toLowerCase()}|${e.lastName.trim().toLowerCase()}`
+    completionPeople.set(key, {
+      name: `${e.firstName.trim()} ${e.lastName.trim()}`.trim(),
+      completed: personWeeks.get(key)?.size ?? 0,
+      onRoster: true,
+    })
+  }
+  personWeeks.forEach((weeks, key) => {
+    if (!completionPeople.has(key))
+      completionPeople.set(key, { name: personDisplay.get(key) ?? key, completed: weeks.size, onRoster: false })
+  })
+  const checkInCompletion = [...completionPeople.values()]
+    .filter((p) => p.completed < totalDeliveries)
+    .map((p) => ({ ...p, total: totalDeliveries }))
+    .sort((a, b) => a.completed - b.completed || a.name.localeCompare(b.name))
+
+  const optedOut = (customer.unsubscribed ?? []).map((u) => ({
+    name: `${(u.firstName || '').trim()} ${(u.lastName || '').trim()}`.trim(),
+    date: u.date,
+    type: u.type,
+  }))
+
   const engagementSummary = {
     hasRoster,
     rosterCount,
@@ -543,6 +589,8 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
     weeklyTrailing,
     weeklyChange: weeklyEngagementChange,
     weeklyWindowLabel,
+    checkInCompletion,
+    optedOut,
   }
 
   const optedInPopulation = monthlyEffectiveRoster

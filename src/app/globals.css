@@ -485,6 +485,24 @@ a.link:hover{color:#0866c9}
 .engagement-weekly-table-card{padding:16px}
 .engagement-weekly-table th,.engagement-weekly-table td{font-size:14px;padding:13px 10px}
 .kpi-card .kpi-help{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-size:10px;line-height:1.4;color:var(--muted);font-weight:600}
+/* Check-in completion + opted-out row (3/4 + 1/4) */
+.completion-row{display:grid;grid-template-columns:3fr 1fr;gap:14px;margin-top:14px;align-items:stretch}
+.completion-row>.card{height:100%}
+.completion-note{font-size:12px;margin:2px 0 10px}
+.completion-list{list-style:none;margin:0;padding:0;columns:2;column-gap:28px;font-size:12px}
+.completion-list li{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px solid #f1f3f6;break-inside:avoid}
+.completion-name{color:var(--ink);font-weight:600}
+.completion-count{color:var(--muted);font-weight:700;white-space:nowrap}
+.completion-date{font-size:11px}
+.opted-out-list{list-style:none;margin:0;padding:0;font-size:12px;display:grid;gap:4px}
+.opted-out-list li{display:flex;flex-direction:column;padding:3px 0;border-bottom:1px solid #f1f3f6}
+@media screen and (max-width:900px){.completion-row{grid-template-columns:1fr}.completion-list{columns:1}}
+@media print{
+  .completion-row{display:grid!important;grid-template-columns:3fr 1fr!important;gap:8pt!important}
+  .completion-list{font-size:8pt!important;columns:2!important}
+  .completion-list li{padding:2pt 0!important}
+  .completion-row>.card{break-inside:auto}
+}
 /* Engagement risks callout + team dashboard tables */
 .engagement-risks-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;align-items:stretch}
 .engagement-risks-row>.card{height:100%}
