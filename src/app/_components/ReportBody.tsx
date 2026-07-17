@@ -293,19 +293,30 @@ export default function ReportBody({
               {report.engagementSummary.checkInCompletion.length === 0 ? (
                 <p className="muted">Every employee completed all check-ins this period.</p>
               ) : (
-                <ul className="completion-list">
-                  {report.engagementSummary.checkInCompletion.map((p) => (
-                    <li key={p.name}>
-                      <span className="completion-name">
-                        {p.name}
-                        {!p.onRoster && <span className="sample-flag"> off-roster</span>}
-                      </span>
-                      <span className="completion-count">
-                        {p.completed} of {p.total}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <>
+                  <ul className="completion-list">
+                    {report.engagementSummary.checkInCompletion.slice(0, 20).map((p) => (
+                      <li key={p.name}>
+                        <span className="completion-name">
+                          {p.name}
+                          {!p.onRoster && <span className="sample-flag"> off-roster</span>}
+                        </span>
+                        <span className="completion-count">
+                          {p.completed} of {p.total}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  {report.engagementSummary.checkInCompletion.length > 20 && (
+                    <p className="completion-more">
+                      Showing the 20 least active employees.{' '}
+                      <a href="#full-checkin-list">
+                        The full list of {report.engagementSummary.checkInCompletion.length}{' '}
+                        employees with incomplete check-ins is at the end of this report.
+                      </a>
+                    </p>
+                  )}
+                </>
               )}
             </div>
             <div className="card opted-out-card">
@@ -1016,6 +1027,33 @@ export default function ReportBody({
         </div>
 
       </section>
+
+      {/* Full check-in completion list — referenced from Engagement summary */}
+      {report.engagementSummary && report.engagementSummary.checkInCompletion.length > 20 && (
+        <section id="full-checkin-list" className="appendix-section appendix-block full-completion-section">
+          <SectionHeader
+            eyebrow="Appendix"
+            title={`Full check-in completion list — ${report.engagementSummary.weeklyWindowLabel}`}
+            subtitle={`All ${report.engagementSummary.checkInCompletion.length} employees who completed fewer than the ${report.engagementSummary.weekly.length} check-in deliveries this period, least active first`}
+            size="sm"
+          />
+          <div className="card">
+            <ul className="completion-list full-completion-list">
+              {report.engagementSummary.checkInCompletion.map((p) => (
+                <li key={p.name}>
+                  <span className="completion-name">
+                    {p.name}
+                    {!p.onRoster && <span className="sample-flag"> off-roster</span>}
+                  </span>
+                  <span className="completion-count">
+                    {p.completed} of {p.total}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
     </main>
   )
 }

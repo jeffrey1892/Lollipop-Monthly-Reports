@@ -494,6 +494,11 @@ a.link:hover{color:#0866c9}
 .completion-name{color:var(--ink);font-weight:600}
 .completion-count{color:var(--muted);font-weight:700;white-space:nowrap}
 .completion-date{font-size:11px}
+.completion-more{margin:12px 0 0;padding:10px 12px;background:var(--amberSoft);border:1px solid #f5ca76;border-radius:10px;font-size:12.5px;font-weight:700;color:#8a5a00}
+.completion-more a{color:#8a5a00;text-decoration:underline}
+.full-completion-list{columns:3}
+@media screen and (max-width:900px){.full-completion-list{columns:1}}
+@media print{.full-completion-list{columns:3!important;font-size:8pt!important}.full-completion-section .card{break-inside:auto}}
 .opted-out-list{list-style:none;margin:0;padding:0;font-size:12px;display:grid;gap:4px}
 .opted-out-list li{display:flex;flex-direction:column;padding:3px 0;border-bottom:1px solid #f1f3f6}
 @media screen and (max-width:900px){.completion-row{grid-template-columns:1fr}.completion-list{columns:1}}
