@@ -295,7 +295,7 @@ export default function ReportBody({
               ) : (
                 <>
                   <ul className="completion-list">
-                    {report.engagementSummary.checkInCompletion.slice(0, 20).map((p) => (
+                    {report.engagementSummary.checkInCompletion.slice(0, 30).map((p) => (
                       <li key={p.name}>
                         <span className="completion-name">
                           {p.name}
@@ -307,9 +307,9 @@ export default function ReportBody({
                       </li>
                     ))}
                   </ul>
-                  {report.engagementSummary.checkInCompletion.length > 20 && (
+                  {report.engagementSummary.checkInCompletion.length > 30 && (
                     <p className="completion-more">
-                      Showing the 20 least active employees.{' '}
+                      Showing the 30 least active employees.{' '}
                       <a href="#full-checkin-list">
                         The full list of {report.engagementSummary.checkInCompletion.length}{' '}
                         employees with incomplete check-ins is at the end of this report.
@@ -1029,7 +1029,7 @@ export default function ReportBody({
       </section>
 
       {/* Full check-in completion list — referenced from Engagement summary */}
-      {report.engagementSummary && report.engagementSummary.checkInCompletion.length > 20 && (
+      {report.engagementSummary && report.engagementSummary.checkInCompletion.length > 30 && (
         <section id="full-checkin-list" className="appendix-section appendix-block full-completion-section">
           <SectionHeader
             eyebrow="Appendix"
