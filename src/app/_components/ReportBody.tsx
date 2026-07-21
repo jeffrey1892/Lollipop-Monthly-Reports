@@ -1,5 +1,6 @@
 import React from 'react'
 import type { ReportMetrics } from '@/lib/types'
+import { MONTHLY_ENGAGEMENT_NOTE } from '@/lib/engagementCalc'
 import {
   Delta,
   TrendDelta,
@@ -175,20 +176,15 @@ export default function ReportBody({
               value={engagementPct !== null ? `${engagementPct}%` : '—'}
               sub={
                 <>
+                  average of the month&apos;s weekly rates ·{' '}
                   {report.engagement.uniqueParticipants} of{' '}
-                  {report.engagement.optedInPopulation ?? '—'} employees checked in at least once
-                  this month
+                  {report.engagement.optedInPopulation ?? '—'} checked in at least once
                 </>
               }
               delta={<TrendDelta value={report.engagement.responseRateChange} suffix=" pp" />}
               deltaCaption={priorCaption}
               tone="blue"
-              help={
-                <>
-                  Unique employees who checked in at least once during the month ÷ total
-                  employees on the roster (plus any respondents not on the roster).
-                </>
-              }
+              help={<>{MONTHLY_ENGAGEMENT_NOTE}</>}
             />
             <KpiCard
               label="Teams requiring attention"
@@ -268,6 +264,7 @@ export default function ReportBody({
                       </tbody>
                     </table>
                   </div>
+                  <p className="muted engagement-note">{MONTHLY_ENGAGEMENT_NOTE}</p>
                 </div>
               </div>
               <div className="card engagement-chart-card">
@@ -287,7 +284,9 @@ export default function ReportBody({
                 Incomplete check-ins — {report.engagementSummary.weeklyWindowLabel}
               </p>
               <p className="muted completion-note">
-                Employees who completed fewer than the {report.engagementSummary.weekly.length}{' '}
+                Employees who completed fewer than the{' '}
+                {report.engagementSummary.checkInCompletion[0]?.total ??
+                  report.engagementSummary.weekly.length}{' '}
                 check-in deliveries this period.
               </p>
               {report.engagementSummary.checkInCompletion.length === 0 ? (

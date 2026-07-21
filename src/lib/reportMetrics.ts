@@ -1,4 +1,5 @@
 import data from '@/data/demoData.json'
+import { computeMonthlyEngagement, computeWeeklyRates, monthRange } from './engagementCalc'
 import type { Confidence, CustomerData, EngagementRisk, IndividualRetentionRisk, MonthData, PriorityActionRow, ReportMetrics, ResponseRecord, RetentionRisk, Severity, TeamAttention, TeamMetric, TopPerformingTeam } from './types'
 
 export const customers = data.customers as CustomerData[]
@@ -445,19 +446,36 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
   const respondentsThisMonth = new Set(records.map(uniqueParticipantKey))
   const offRosterThisMonth: string[] = []
   respondentsThisMonth.forEach((key) => { if (hasRoster && !rosterKeys.has(key)) offRosterThisMonth.push(key) })
+  // Displayed alongside the rate for context ("X of Y checked in at least once")
   const monthlyEffectiveRoster = hasRoster
     ? rosterCount + offRosterThisMonth.length
     : (customer.optedInPopulation ?? (uniqueParticipants + customer.unsubscribed.length))
-  const monthlyEngagementRate = pct(uniqueParticipants, monthlyEffectiveRoster)
 
-  // Prior-month effective roster and rate (for change indicator)
-  const respondentsPrev = previous ? new Set(prevRecords.map(uniqueParticipantKey)) : null
-  const offRosterPrev: string[] = []
-  respondentsPrev?.forEach((key) => { if (hasRoster && !rosterKeys.has(key)) offRosterPrev.push(key) })
-  const prevMonthlyEffectiveRoster = respondentsPrev
-    ? (hasRoster ? rosterCount + offRosterPrev.length : (customer.optedInPopulation ?? ((previousUniqueParticipants ?? 0) + customer.unsubscribed.length)))
+  // METHODOLOGY (Jul 2026): monthly engagement is the equal-weight average of
+  // the weekly engagement rates for every calendar week overlapping the month
+  // (one count per employee per week; partial weeks use only in-month
+  // check-ins). It is NOT unique-monthly-respondents ÷ roster. Centralized in
+  // src/lib/engagementCalc.ts so web, print, and PDF all agree.
+  const noRosterFallback = customer.optedInPopulation ?? (uniqueParticipants + customer.unsubscribed.length)
+  const currentMonthCalc = computeMonthlyEngagement({
+    records,
+    monthKey: current.month,
+    rosterKeys,
+    rosterCount,
+    fallbackDenominator: noRosterFallback,
+  })
+  const monthlyEngagementRate = currentMonthCalc.monthlyRate
+
+  // Prior-month rate (same weekly-average methodology) for the change indicator
+  const previousEngagementRate = previous
+    ? computeMonthlyEngagement({
+        records: prevRecords,
+        monthKey: previous.month,
+        rosterKeys,
+        rosterCount,
+        fallbackDenominator: customer.optedInPopulation ?? ((previousUniqueParticipants ?? 0) + customer.unsubscribed.length),
+      }).monthlyRate
     : null
-  const previousEngagementRate = prevMonthlyEffectiveRoster ? pct(previousUniqueParticipants ?? 0, prevMonthlyEffectiveRoster) : null
 
   // Weekly breakdown — the reporting month's weeks by default, or the
   // calendar quarter containing the reporting month (up to that month).
@@ -471,44 +489,36 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
   const weeklyWindowMonths = range === 'quarter'
     ? customer.months.filter((m) => quarterMonthKeys.includes(m.month))
     : [current]
-  const weeklyWindowMonthKeys = range === 'quarter' ? quarterMonthKeys : [current.month]
   const weeklyWindowLabel = range === 'quarter' ? `Q${quarterNum} ${currentYear}` : current.label
-  const monthAbbrev = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-  const buildWeekly = (recs: ResponseRecord[]) => {
-    const weekBuckets = new Map<string, { start: Date; respondents: Set<string> }>()
-    for (const r of recs) {
-      const d = parseDate(r.date)
-      if (!d) continue
-      const wd = d.getDay()
-      const offset = (wd + 6) % 7 // Monday-start
-      const monday = new Date(d); monday.setHours(0, 0, 0, 0); monday.setDate(d.getDate() - offset)
-      const key = monday.toISOString().slice(0, 10)
-      const bucket = weekBuckets.get(key) ?? { start: monday, respondents: new Set<string>() }
-      bucket.respondents.add(uniqueParticipantKey(r))
-      weekBuckets.set(key, bucket)
-    }
-    return [...weekBuckets.entries()]
-      .sort((a, b) => a[1].start.getTime() - b[1].start.getTime())
-      .map(([weekStart, b]) => {
-        const uniques = b.respondents.size
-        const offCount = hasRoster ? [...b.respondents].filter((k) => !rosterKeys.has(k)).length : 0
-        const effRoster = hasRoster ? rosterCount + offCount : (rosterCount || uniques)
-        const engagement = pct(uniques, effRoster)
-        const wd = b.start.getDate()
-        const wLabel = `${monthAbbrev[b.start.getMonth()]} ${wd}`
-        return { weekStart, weekLabel: wLabel, uniqueRespondents: uniques, offRosterRespondents: offCount, effectiveRoster: effRoster, engagementRate: engagement }
+  // Detail table — the same weekly series that the monthly average is built
+  // from, so the displayed rows average exactly to the headline figure.
+  // Month view: every calendar week overlapping the month (incl. partials).
+  // Quarter view: every week overlapping the quarter's months with data.
+  const weeklyEngagement = range === 'quarter'
+    ? (weeklyWindowMonths.length
+        ? computeWeeklyRates({
+            records: weeklyWindowMonths.flatMap((m) => m.responses),
+            rangeStart: monthRange(weeklyWindowMonths[0].month).start,
+            rangeEnd: monthRange(weeklyWindowMonths[weeklyWindowMonths.length - 1].month).end,
+            rosterKeys,
+            rosterCount,
+            fallbackDenominator: noRosterFallback,
+          })
+        : [])
+    : currentMonthCalc.weeks
+  // Chart: always trailing 3 months ending at the reporting month, same
+  // weekly formula (one count per employee per week).
+  const trailingMonths = customer.months.slice(Math.max(0, currentIndex - 2), currentIndex + 1)
+  const weeklyTrailing = trailingMonths.length
+    ? computeWeeklyRates({
+        records: trailingMonths.flatMap((m) => m.responses),
+        rangeStart: monthRange(trailingMonths[0].month).start,
+        rangeEnd: monthRange(trailingMonths[trailingMonths.length - 1].month).end,
+        rosterKeys,
+        rosterCount,
+        fallbackDenominator: noRosterFallback,
       })
-  }
-  // Detail table: reporting month's weeks, or the quarter's weeks in quarter
-  // view. Presentation-only filter: show weeks whose start (Monday) falls
-  // inside the selected period, so boundary weeks belonging to the prior
-  // month don't appear (e.g. 'Wk of Mar 30' is excluded from an April table).
-  const weeklyEngagement = buildWeekly(weeklyWindowMonths.flatMap((m) => m.responses))
-    .filter((w) => weeklyWindowMonthKeys.includes(w.weekStart.slice(0, 7)))
-  // Chart: always trailing 3 months ending at the reporting month
-  const weeklyTrailing = buildWeekly(
-    customer.months.slice(Math.max(0, currentIndex - 2), currentIndex + 1).flatMap((m) => m.responses),
-  )
+    : []
 
   // Off-roster respondents list (this month, with names)
   const offRosterList = hasRoster
@@ -534,7 +544,9 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
   // Check-in completion per employee across the window's delivery weeks.
   // A "delivery" is one Monday-start week shown in the Weekly detail table;
   // completed = distinct weeks the employee checked in at least once.
-  const windowWeekKeys = new Set(weeklyEngagement.map((w) => w.weekStart))
+  // Deliveries = weeks in the window where at least one check-in went out
+  // (empty/partial calendar weeks are not counted as missed deliveries).
+  const windowWeekKeys = new Set(weeklyEngagement.filter((w) => w.uniqueRespondents > 0).map((w) => w.weekStart))
   const totalDeliveries = windowWeekKeys.size
   const personWeeks = new Map<string, Set<string>>()
   const personDisplay = new Map<string, string>()
@@ -628,12 +640,31 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
 
   const companyEngagement = monthlyEngagementRate
   const teamAssessments = allTeams.map((t) => {
-    const teamRosterProxy = new Set(
+    const teamRosterProxyKeys = new Set(
       historyMonths.flatMap((m) => m.responses.filter((r) => r.team === t.team).map(personKey)),
-    ).size
-    const teamRate = teamRosterProxy ? pct(t.uniqueRespondents, teamRosterProxy) : null
+    )
+    const teamRosterProxy = teamRosterProxyKeys.size
+    // Team engagement uses the same weekly-average methodology as the
+    // company figure (one count per employee per week, averaged across the
+    // month's calendar weeks), with the trailing-6-month respondent pool as
+    // the estimated team roster.
+    const teamRate = teamRosterProxy
+      ? computeMonthlyEngagement({
+          records: (teamMap.get(t.team) ?? []),
+          monthKey: current.month,
+          rosterKeys: teamRosterProxyKeys,
+          rosterCount: teamRosterProxy,
+        }).monthlyRate
+      : null
     const prevUnique = new Set((prevTeamMap.get(t.team) ?? []).map(personKey)).size
-    const prevRate = teamRosterProxy && previous ? pct(prevUnique, teamRosterProxy) : null
+    const prevRate = teamRosterProxy && previous
+      ? computeMonthlyEngagement({
+          records: (prevTeamMap.get(t.team) ?? []),
+          monthKey: previous.month,
+          rosterKeys: teamRosterProxyKeys,
+          rosterCount: teamRosterProxy,
+        }).monthlyRate
+      : null
     const engChangePts = teamRate !== null && prevRate !== null ? round(teamRate - prevRate, 1) : null
     const teamRecs = teamMap.get(t.team) ?? []
     const negPct = pct(teamRecs.filter((r) => r.mood && r.mood <= 2).length, t.responses)
@@ -929,7 +960,7 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
   const intelligencePoints = [
     { title: 'Organizational health', finding: `${severity(healthScore)} health score with ${retentionRisk} retention risk.`, whyItMatters: 'The organization is stable enough for targeted intervention, but team variance can become retention risk if ignored.', leadershipMove: 'Focus on watch teams first while reinforcing positive-team behaviors.', monitorNext: 'Watch whether average mood rebounds and whether negative comments cluster in the same teams.', confidence: reportConfidence },
     { title: 'Culture and burnout signal', finding: `${commentIntelligence.stressBurnoutCount} stress/burnout comment signal(s) and ${commentIntelligence.recognitionCount} recognition signal(s).`, whyItMatters: 'Positive culture signals coexist with operational strain; both are useful levers for retention.', leadershipMove: 'Ask managers to separate workload fixes from recognition/communication fixes.', monitorNext: 'Track workload language, manager behavior comments, and low-mood comments next month.', confidence: commentIntelligence.confidence },
-    { title: 'Engagement reliability', finding: `${uniqueParticipants} unique employees checked in out of ${optedInPopulation} opted-in employees (${engagementRate}%).`, whyItMatters: 'The signal is useful, but full eligible-population coverage still requires active employee count.', leadershipMove: 'Monitor opted-in coverage and compare participation quality by team.', monitorNext: 'Response rate, unique responders, and repeat-responder concentration.', confidence: engagement.confidence },
+    { title: 'Engagement reliability', finding: `Monthly engagement is ${engagementRate}% (average of the month's weekly rates); ${uniqueParticipants} of ${optedInPopulation} eligible employees checked in at least once.`, whyItMatters: 'The signal is useful, but full eligible-population coverage still requires active employee count.', leadershipMove: 'Monitor opted-in coverage and compare participation quality by team.', monitorNext: 'Weekly engagement rates, unique responders, and repeat-responder concentration.', confidence: engagement.confidence },
   ]
   const improvements = [
     'Add active employee count, opted-in population, and stable anonymized employee IDs to calculate response rate and repeat-responder concentration.',
