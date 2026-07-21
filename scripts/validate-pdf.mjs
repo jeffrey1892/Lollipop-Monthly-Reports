@@ -4,7 +4,7 @@
  *
  * Exports the WorkSmart 2026-04 report (full + brief) via scripts/export-pdf.mjs
  * against a running dev server, then asserts:
- *   - page count between 3 and 10 (full) / 1 and 10 (brief)
+ *   - page count between 3 and 18 (full) / 1 and 18 (brief)
  *   - file size < 5 MB
  *   - if pdftoppm is available: renders PNG previews into exports/preview/ for
  *     manual review and fails if any rendered page is > 98% white pixels
@@ -20,6 +20,8 @@ import { exportPdf } from './export-pdf.mjs'
 const CUSTOMER = 'worksmart'
 const MONTH = '2026-04'
 const MAX_BYTES = 5 * 1024 * 1024
+// Letter portrait (8.5×11) paginates longer than the old landscape layout.
+const MAX_PAGES = 18
 
 let failures = 0
 const fail = (msg) => {
@@ -76,7 +78,7 @@ async function validate(scope, minPages) {
 
   const pages = pageCount(outPath)
   if (pages === null) console.warn(`warn: could not determine page count of ${outPath}`)
-  else if (pages < minPages || pages > 10) fail(`${outPath} has ${pages} pages (expected ${minPages}-10)`)
+  else if (pages < minPages || pages > MAX_PAGES) fail(`${outPath} has ${pages} pages (expected ${minPages}-${MAX_PAGES})`)
   else ok(`${path.basename(outPath)} page count ${pages}`)
 
   const pdftoppm = which('pdftoppm')

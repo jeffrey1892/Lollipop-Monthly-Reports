@@ -77,10 +77,10 @@ export async function exportPdf(options = {}) {
     await page.pdf({
       path: outPath,
       format: 'Letter',
-      landscape: true,
+      landscape: false,
       printBackground: true,
       preferCSSPageSize: true,
-      margin: { top: '0.35in', right: '0.35in', bottom: '0.35in', left: '0.35in' },
+      margin: { top: '0.5in', right: '0.5in', bottom: '0.5in', left: '0.5in' },
     })
     console.log(`Wrote ${outPath}`)
     return outPath

@@ -43,6 +43,14 @@ export default function PrintClient({ autoprint, debug }: { autoprint: boolean; 
     return () => window.removeEventListener('resize', update)
   }, [debug])
 
-  if (!debug) return null
-  return <div className="print-debug-banner">print debug · viewport {viewport}</div>
+  return (
+    <>
+      <div className="print-setup-note" data-print-hidden>
+        Print settings: Paper size <strong>Letter (8.5×11)</strong> · Margins{' '}
+        <strong>Default</strong> · Background graphics <strong>on</strong>. &ldquo;Margins:
+        None&rdquo; removes the page borders entirely.
+      </div>
+      {debug && <div className="print-debug-banner">print debug · viewport {viewport}</div>}
+    </>
+  )
 }

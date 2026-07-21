@@ -1,17 +1,27 @@
 /* =============================================================================
    Print design system — loaded ONLY on the /print route (imported by
-   src/app/print/page.tsx) so the Letter-landscape @page rule does not leak
-   into manager pages, which still print themselves portrait.
+   src/app/print/page.tsx) so its @page rule does not leak into manager
+   pages, which print themselves via window.print().
 
-   Philosophy: the PDF must match the online desktop report. Screen-media
-   breakpoints never apply in print, so the desktop grid proportions defined
-   in globals.css already hold here; this file only (a) sets the landscape
-   page, (b) flattens screen-only chrome (shadows, sticky bars), (c) kills
-   fixed/min heights that create blank space, and (d) adds pagination rules.
+   Page setup: Letter portrait (8.5×11). Wide desktop rows are restacked into
+   one or two columns for the narrower page. Pagination favors dense packing:
+   sections flow continuously, small cards drop whole to the next page, and
+   long list cards break cleanly between rows instead of clipping mid-line.
    No global transforms, no zoom, no viewport-width hacks.
    ========================================================================== */
 
 /* --- Screen-only affordances for the /print route ------------------------ */
+.print-setup-note {
+  position: sticky;
+  top: 0;
+  z-index: 998;
+  background: #fff7e0;
+  border-bottom: 1px solid #f0dfa8;
+  color: #6b5518;
+  font: 500 13px/1.4 Inter, system-ui, sans-serif;
+  padding: 8px 16px;
+  text-align: center;
+}
 .print-debug-banner {
   position: fixed;
   right: 12px;
@@ -36,8 +46,8 @@
 @media print {
   /* --- Page + tokens ------------------------------------------------------ */
   @page {
-    size: Letter landscape;
-    margin: 0.35in;
+    size: Letter;
+    margin: 0.5in;
   }
   :root {
     --report-print-font-base: 10.5pt;
@@ -152,53 +162,73 @@
     flex: 0 0 auto !important;
     min-height: 0 !important;
   }
+  .completion-row > .card {
+    height: auto !important;
+  }
+  .completion-list {
+    font-size: var(--report-print-font-small) !important;
+  }
 
-  /* --- Desktop grid enforcement (web proportions, explicit for print) ----- */
+  /* --- Grid restacking for the portrait page (usable width ~7.5in) -------- */
   .kpi-grid {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr) !important;
     /* On paper, cards size to their own content instead of stretching to the
        tallest sibling — equal-height rows read as blank space in a document. */
     align-items: start !important;
   }
   .followup-section .kpi-grid {
-    grid-template-columns: repeat(5, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
   .engagement-summary-section .engagement-grid {
-    display: grid !important;
-    grid-template-columns: 1fr 3fr !important;
+    display: block !important;
+  }
+  .engagement-summary-section .engagement-grid > * + * {
+    margin-top: 10pt !important;
   }
   .engagement-risks-row {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
+    display: block !important;
+  }
+  .engagement-risks-row > * + * {
+    margin-top: 10pt !important;
   }
   .trend-card-grid {
-    display: grid !important;
-    grid-template-columns: 2fr 1fr !important;
+    display: block !important;
+  }
+  .trend-card-grid > * + * {
+    margin-top: 10pt !important;
   }
   .trend-stats {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
   .leadership-grid {
-    display: grid !important;
-    grid-template-columns: minmax(0, 3fr) minmax(280px, 2fr) !important;
+    display: block !important;
+  }
+  .leadership-grid > * + * {
+    margin-top: 10pt !important;
   }
   .ci-two-col {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
+    display: block !important;
+  }
+  .ci-two-col > * + * {
+    margin-top: 10pt !important;
   }
   .ci-themes-grid {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
   .emotion-grid {
-    display: grid !important;
-    grid-template-columns: 2fr 1fr !important;
+    display: block !important;
+  }
+  .emotion-grid > * + * {
+    margin-top: 10pt !important;
   }
   .followup-bottom-row {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
+    display: block !important;
+  }
+  .followup-bottom-row > * + * {
+    margin-top: 10pt !important;
   }
   .team-detail-grid {
     display: grid !important;
@@ -235,7 +265,7 @@
     grid-template-columns: repeat(3, 1fr) !important;
   }
 
-  /* --- Typography scale (landscape usable width ~10.3in) ------------------ */
+  /* --- Typography scale --------------------------------------------------- */
   .section-head {
     margin: 0 0 8pt !important;
   }
@@ -499,7 +529,16 @@
   .engagement-chart-wrap svg {
     width: 100% !important;
     height: auto !important;
-    max-height: 170pt;
+    max-height: 150pt;
+  }
+
+  /* The AI comment-intelligence wrapper spans multiple pages; its gradient
+     box fragments into stray decorated slivers at page edges. Flatten the
+     wrapper in print — the inner cards carry the visuals. */
+  .comment-intel-v2 {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
   }
 
   /* --- Pagination ---------------------------------------------------------- */
@@ -533,12 +572,28 @@
   .health-tile {
     break-inside: avoid;
   }
+  /* Long list cards are taller than a page: forbidding internal breaks makes
+     the engine clip mid-row instead. Let them break, but only between rows.
+     Cards built around a table get the same treatment — thead repeats on the
+     next page and tr rows are protected, so mid-row cuts cannot happen. */
+  .completion-card,
+  .opted-out-card,
+  .full-completion-section .card,
+  .card:has(.table) {
+    break-inside: auto !important;
+  }
+  .completion-list li,
+  .opted-out-list li,
+  .full-completion-list li {
+    break-inside: avoid;
+  }
   /* Keep-together blocks marked in ReportBody. On screen .print-keep is
-     display:contents (layout-neutral); in print it becomes a real box so
-     break-inside:avoid can hold header + first content together. */
+     display:contents (layout-neutral); in print it becomes a real box. It no
+     longer forbids internal breaks — blanket keeps pushed whole sections to
+     the next page and left large blank gaps; the section-head rules above
+     already prevent stranded headings. */
   .print-keep {
     display: block;
-    break-inside: avoid;
   }
   .comment-intel-v2 > .print-keep > * + *,
   .retention-risk-section > .print-keep > * + * {
