@@ -157,6 +157,9 @@
   .kpi-grid {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr) !important;
+    /* On paper, cards size to their own content instead of stretching to the
+       tallest sibling — equal-height rows read as blank space in a document. */
+    align-items: start !important;
   }
   .followup-section .kpi-grid {
     grid-template-columns: repeat(5, 1fr) !important;
@@ -294,9 +297,14 @@
     line-height: 1.3 !important;
   }
   .kpi-card .kpi-help {
-    font-size: var(--report-print-font-label) !important;
-    margin-top: 4pt !important;
-    padding-top: 4pt !important;
+    /* The monthly-engagement methodology note is printed in full in the
+       Weekly detail card footnote; repeating it inside the KPI card doubles
+       the KPI row height and pushes the Engagement summary off page 1. */
+    display: none !important;
+  }
+  .engagement-weekly-table td:first-child,
+  .engagement-weekly-table th:first-child {
+    white-space: nowrap;
   }
   .kpi-card .kpi-delta-caption {
     font-size: var(--report-print-font-label) !important;
