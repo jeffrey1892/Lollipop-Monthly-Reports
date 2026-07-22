@@ -46,9 +46,8 @@ export default function PrintClient({ autoprint, debug }: { autoprint: boolean; 
   return (
     <>
       <div className="print-setup-note" data-print-hidden>
-        Print settings: Paper size <strong>Letter (8.5×11)</strong> · Margins{' '}
-        <strong>Default</strong> · Background graphics <strong>on</strong>. &ldquo;Margins:
-        None&rdquo; removes the page borders entirely.
+        Print settings: Paper size <strong>Letter (8.5×11)</strong> · Margins <strong>None</strong>{' '}
+        or <strong>Default</strong> · Background graphics <strong>on</strong>.
       </div>
       {debug && <div className="print-debug-banner">print debug · viewport {viewport}</div>}
     </>

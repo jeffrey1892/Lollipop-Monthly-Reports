@@ -11,6 +11,21 @@
    ========================================================================== */
 
 /* --- Screen-only affordances for the /print route ------------------------ */
+/* On screen the print frame is layout-neutral: the spacer rows vanish and
+   the table boxes behave as plain blocks. */
+@media screen {
+  .print-frame,
+  .print-frame > tbody,
+  .print-frame tr,
+  .print-frame td {
+    display: block;
+  }
+  .print-frame > thead,
+  .print-frame > tfoot {
+    display: none;
+  }
+}
+
 .print-setup-note {
   position: sticky;
   top: 0;
@@ -45,9 +60,45 @@
 
 @media print {
   /* --- Page + tokens ------------------------------------------------------ */
+  /* Margin is deliberately 0: Chrome's print dialog "Margins" setting
+     overrides any CSS page margin (a sticky "None" produced borderless
+     printouts), so the visual margins come from the .print-frame below,
+     which is immune to the dialog. */
   @page {
     size: Letter;
-    margin: 0.5in;
+    margin: 0;
+  }
+
+  /* The repeating page frame: thead/tfoot re-render at the top and bottom
+     of every printed page (standard table fragmentation), providing the
+     vertical margins; the cell's horizontal padding provides the sides. */
+  .print-frame {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+  .print-frame > thead {
+    display: table-header-group !important;
+  }
+  .print-frame > tfoot {
+    display: table-footer-group !important;
+  }
+  .print-frame > tbody {
+    display: table-row-group !important;
+  }
+  .print-frame tr {
+    display: table-row !important;
+  }
+  .print-frame td {
+    display: table-cell !important;
+    padding: 0;
+  }
+  .print-frame > thead td,
+  .print-frame > tfoot td {
+    height: 0.5in;
+  }
+  .print-frame-cell {
+    padding: 0 0.5in !important;
   }
   :root {
     --report-print-font-base: 10.5pt;

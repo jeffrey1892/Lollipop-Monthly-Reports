@@ -80,7 +80,9 @@ export async function exportPdf(options = {}) {
       landscape: false,
       printBackground: true,
       preferCSSPageSize: true,
-      margin: { top: '0.5in', right: '0.5in', bottom: '0.5in', left: '0.5in' },
+      // 0 everywhere: page margins are built into the document's .print-frame
+      // so output is identical whatever the print dialog's margin setting is.
+      margin: { top: '0', right: '0', bottom: '0', left: '0' },
     })
     console.log(`Wrote ${outPath}`)
     return outPath

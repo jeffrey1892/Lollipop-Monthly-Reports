@@ -51,13 +51,36 @@ export default async function PrintPage({
   return (
     <div className={rootClass} data-pdf-ready="true">
       <PrintClient autoprint={params.autoprint === '1'} debug={debug} />
-      <ReportBody
-        report={report}
-        customerId={customer.id}
-        range={range}
-        renderMode="print"
-        audience={audience}
-      />
+      {/* Print frame: @page margin is 0 (the browser print dialog's
+          "Margins: None" would strip any CSS page margin anyway), so page
+          margins are built into the content — thead/tfoot rows repeat at the
+          top and bottom of every printed page and the cell carries the
+          horizontal inset. On screen the frame is neutralized in print.css. */}
+      <table className="print-frame">
+        <thead>
+          <tr>
+            <td aria-hidden="true" />
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="print-frame-cell">
+              <ReportBody
+                report={report}
+                customerId={customer.id}
+                range={range}
+                renderMode="print"
+                audience={audience}
+              />
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td aria-hidden="true" />
+          </tr>
+        </tfoot>
+      </table>
     </div>
   )
 }
