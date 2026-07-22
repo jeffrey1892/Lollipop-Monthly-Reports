@@ -235,7 +235,7 @@
     display: block !important;
   }
   .engagement-summary-section .engagement-grid > * + * {
-    margin-top: 10pt !important;
+    margin-top: 6pt !important;
   }
   .engagement-risks-row {
     display: block !important;
@@ -306,6 +306,24 @@
   .grid.two {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
+  }
+  /* Chromium fragments a two-column CSS grid poorly across a page break —
+     it tends to hold the whole row hostage to its tallest cell rather than
+     letting the shorter column's cards flow onto the earlier page (same
+     issue documented for .team-detail-rows below). Stacking the mood
+     distribution / positive momentum / risk cards lets each one move up
+     independently to fill whatever space is left on the prior page. */
+  .grid.two.appendix-supporting-grid {
+    display: block !important;
+  }
+  .appendix-supporting-grid > * + * {
+    margin-top: 10pt !important;
+  }
+  .appendix-stack {
+    display: block !important;
+  }
+  .appendix-stack > * + * {
+    margin-top: 10pt !important;
   }
   .retention-grid-v2 {
     display: grid !important;
@@ -580,7 +598,7 @@
   .engagement-chart-wrap svg {
     width: 100% !important;
     height: auto !important;
-    max-height: 150pt;
+    max-height: 128pt;
   }
 
   /* The AI comment-intelligence wrapper spans multiple pages; its gradient

@@ -836,7 +836,7 @@ export default function ReportBody({
           subtitle="Distribution, watchlists, and methodology"
           size="sm"
         />
-        <div className="grid two">
+        <div className="grid two appendix-supporting-grid">
           <div className="appendix-stack">
             <div className="card mood-distribution-card">
               <h3 className="h2-sub">Mood distribution</h3>
