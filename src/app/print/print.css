@@ -3,7 +3,7 @@
    src/app/print/page.tsx) so its @page rule does not leak into manager
    pages, which print themselves via window.print().
 
-   Page setup: Letter portrait (8.5×11). Wide desktop rows are restacked into
+   Page setup: Letter landscape (11×8.5). Desktop rows keep their web columns on
    one or two columns for the narrower page. Pagination favors dense packing:
    sections flow continuously, small cards drop whole to the next page, and
    long list cards break cleanly between rows instead of clipping mid-line.
@@ -52,10 +52,19 @@
 .print-debug .pages > section {
   outline: 1px dashed rgba(255, 0, 0, 0.35);
 }
-/* Brief scope applies on screen preview too */
+/* Brief scope applies on screen preview too.
+   The snapshot (brief) report is capped at ~2 landscape pages: it keeps the
+   header, KPI snapshot, engagement summary core, mood trends, and Leadership
+   Priorities — and drops AI comment intelligence, emotional wellness,
+   follow-up responsiveness, the incomplete check-in roster card, and all
+   appendix material. */
 .scope-brief .appendix-section,
-.scope-brief .appendix-block {
-  display: none;
+.scope-brief .appendix-block,
+.scope-brief .comment-intel-v2,
+.scope-brief .emotion-section,
+.scope-brief .followup-section,
+.scope-brief .completion-row {
+  display: none !important;
 }
 
 @media print {
@@ -65,7 +74,7 @@
      printouts), so the visual margins come from the .print-frame below,
      which is immune to the dialog. */
   @page {
-    size: Letter;
+    size: Letter landscape;
     margin: 0;
   }
 
@@ -223,63 +232,61 @@
   /* --- Grid restacking for the portrait page (usable width ~7.5in) -------- */
   .kpi-grid {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(4, 1fr) !important;
     /* On paper, cards size to their own content instead of stretching to the
        tallest sibling — equal-height rows read as blank space in a document. */
     align-items: start !important;
   }
   .followup-section .kpi-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(5, 1fr) !important;
   }
   .engagement-summary-section .engagement-grid {
-    display: block !important;
-  }
-  .engagement-summary-section .engagement-grid > * + * {
-    margin-top: 6pt !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) !important;
+    gap: 10pt !important;
+    align-items: start !important;
   }
   .engagement-risks-row {
-    display: block !important;
-  }
-  .engagement-risks-row > * + * {
-    margin-top: 10pt !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10pt !important;
+    align-items: start !important;
   }
   .trend-card-grid {
-    display: block !important;
-  }
-  .trend-card-grid > * + * {
-    margin-top: 10pt !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) !important;
+    gap: 10pt !important;
+    align-items: start !important;
   }
   .trend-stats {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
   }
   .leadership-grid {
-    display: block !important;
-  }
-  .leadership-grid > * + * {
-    margin-top: 10pt !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) !important;
   }
   .ci-two-col {
-    display: block !important;
-  }
-  .ci-two-col > * + * {
-    margin-top: 10pt !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10pt !important;
+    align-items: start !important;
   }
   .ci-themes-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
   }
   .emotion-grid {
-    display: block !important;
-  }
-  .emotion-grid > * + * {
-    margin-top: 10pt !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10pt !important;
+    align-items: start !important;
   }
   .followup-bottom-row {
-    display: block !important;
-  }
-  .followup-bottom-row > * + * {
-    margin-top: 10pt !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10pt !important;
+    align-items: start !important;
   }
   .team-detail-grid {
     display: grid !important;
@@ -684,5 +691,194 @@
   .scope-brief .appendix-section,
   .scope-brief .appendix-block {
     display: none !important;
+  }
+}
+
+
+/* --- Brief-scope compaction: the snapshot must fit two landscape pages --- */
+@media print {
+  .scope-brief {
+    font-size: 8.5pt !important;
+    line-height: 1.3 !important;
+  }
+  .scope-brief .pages > section {
+    margin-bottom: 8pt !important;
+  }
+  .scope-brief .exec-header h1 {
+    font-size: 14pt !important;
+  }
+  .scope-brief .pages > section > h2,
+  .scope-brief .section-title {
+    font-size: 11pt !important;
+  }
+  .scope-brief h3 {
+    font-size: 9.5pt !important;
+  }
+  .scope-brief .card,
+  .scope-brief .kpi-card,
+  .scope-brief .assessment-card {
+    padding: 6pt 8pt !important;
+  }
+  .scope-brief .kpi-value {
+    font-size: 18pt !important;
+  }
+  .scope-brief table th,
+  .scope-brief table td {
+    padding: 2.5pt 4pt !important;
+    font-size: 7.5pt !important;
+  }
+  .scope-brief .engagement-grid,
+  .scope-brief .engagement-risks-row,
+  .scope-brief .trend-card-grid,
+  .scope-brief .leadership-grid {
+    gap: 6pt !important;
+  }
+  .scope-brief .exec-header {
+    margin-bottom: 6pt !important;
+  }
+  .scope-brief .pages > section {
+    margin-bottom: 6pt !important;
+  }
+  .scope-brief .engagement-actions-list li,
+  .scope-brief .rec {
+    padding: 3pt 6pt !important;
+    font-size: 8pt !important;
+  }
+  .scope-brief .next-step {
+    padding: 4pt 6pt !important;
+    font-size: 8pt !important;
+  }
+  .scope-brief .kpi-note,
+  .scope-brief .kpi-sub,
+  .scope-brief .muted {
+    font-size: 7pt !important;
+  }
+  .scope-brief .trend-card-grid svg {
+    max-height: 130pt;
+  }
+  .scope-brief .engagement-chart-card svg {
+    max-height: 140pt;
+  }
+  .scope-brief .assessment-card {
+    font-size: 8.5pt !important;
+  }
+  .scope-brief .stat-tile {
+    padding: 5pt 7pt !important;
+  }
+  .scope-brief .section-head {
+    margin-bottom: 4pt !important;
+  }
+  .scope-brief .engagement-note {
+    font-size: 6.5pt !important;
+    line-height: 1.25 !important;
+    margin-top: 3pt !important;
+  }
+  .scope-brief .engagement-risks-row table th,
+  .scope-brief .engagement-risks-row table td {
+    padding: 2pt 3pt !important;
+    font-size: 7pt !important;
+  }
+  .scope-brief .engagement-actions-list li {
+    padding: 2pt 5pt !important;
+    font-size: 7.5pt !important;
+  }
+  .scope-brief .engagement-chart-card svg {
+    max-height: 120pt;
+  }
+  .scope-brief .kpi-card {
+    padding: 5pt 7pt !important;
+  }
+  .scope-brief .kpi-value {
+    font-size: 16pt !important;
+  }
+  .scope-brief .exec-header h1 {
+    font-size: 13pt !important;
+    margin: 0 !important;
+  }
+  .scope-brief .exec-header * {
+    margin-top: 0 !important;
+    margin-bottom: 2pt !important;
+  }
+  .scope-brief .pages > section > h2,
+  .scope-brief .section-title {
+    font-size: 10pt !important;
+    margin-bottom: 1pt !important;
+  }
+  .scope-brief .section-head p,
+  .scope-brief .pages > section > h2 + p {
+    font-size: 6.5pt !important;
+    margin: 0 0 3pt !important;
+  }
+  .scope-brief .engagement-chart-card svg {
+    height: 110pt !important;
+    max-height: 110pt !important;
+    width: 100% !important;
+  }
+  .scope-brief .trend-card-grid svg {
+    height: 120pt !important;
+    max-height: 120pt !important;
+    width: 100% !important;
+  }
+  .scope-brief .engagement-grid,
+  .scope-brief .engagement-risks-row {
+    gap: 5pt !important;
+  }
+  .scope-brief .engagement-weekly-table-card table th,
+  .scope-brief .engagement-weekly-table-card table td {
+    padding: 1.5pt 3pt !important;
+  }
+  /* Brief pages trade some breathing room for the 2-page cap */
+  .scope-brief .print-frame > thead td,
+  .scope-brief .print-frame > tfoot td {
+    height: 0.3in !important;
+  }
+  .scope-brief .h2-sub {
+    font-size: 9pt !important;
+    margin: 0 0 3pt !important;
+  }
+  .scope-brief .engagement-risks-row {
+    align-items: start !important;
+  }
+  .scope-brief .engagement-risks-row > .card {
+    height: auto !important;
+  }
+  /* Email-draft pill links are dead in a printed snapshot */
+  .scope-brief .action-links {
+    display: none !important;
+  }
+  /* The weekly-table card already carries the methodology note */
+  .scope-brief .engagement-chart-card .engagement-note {
+    display: none !important;
+  }
+  .scope-brief .trend-card-grid svg {
+    height: 100pt !important;
+    max-height: 100pt !important;
+  }
+  .scope-brief .stat-tile {
+    padding: 4pt 6pt !important;
+  }
+  .scope-brief .stat-tile * {
+    font-size: 8pt !important;
+  }
+  /* Let the leadership two-column block start mid-page and continue overleaf */
+  .scope-brief .leadership-grid,
+  .scope-brief .leadership-grid > *,
+  .scope-brief .leadership-block,
+  .scope-brief .leadership-block .card {
+    break-inside: auto !important;
+  }
+  .scope-brief .assessment-card {
+    padding: 5pt 8pt !important;
+    margin-bottom: 4pt !important;
+  }
+  /* The action section is the last visible block in the brief; a trailing
+     margin here spills a blank third page */
+  .scope-brief .action-section {
+    margin-bottom: 0 !important;
+  }
+  .scope-brief .engagement-risks-row table th,
+  .scope-brief .engagement-risks-row table td {
+    padding: 1.5pt 3pt !important;
+    font-size: 6.5pt !important;
   }
 }

@@ -727,52 +727,13 @@ export default function ReportBody({
           </div>
         </div>
 
-        <div className="ci-two-col">
-          <div className="card">
-            <h3 className="h2-sub">Work vs personal stress</h3>
-            <div className="stress-rows">
-              {report.commentIntelligence.stressAnalysis.map((s) => (
-                <div className={`stress-row stress-${s.category.toLowerCase().replace(/[^a-z]/g, '')}`} key={s.category}>
-                  <div className="stress-head">
-                    <strong>{s.category}</strong>
-                    <span>{s.pct}% · {s.count}</span>
-                  </div>
-                  <div className="stress-bar"><i style={{ width: `${s.pct}%` }} /></div>
-                  <small>{s.interpretation}</small>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="card">
-            <h3 className="h2-sub">Representative employee voice</h3>
-            <div className="quote-grid-v2">
-              {report.commentIntelligence.voiceQuotes.slice(0, 4).map((q) => (
-                <blockquote key={q}>{q}</blockquote>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="ci-two-col">
-          <div className="card">
-            <h3 className="h2-sub">Team-specific comment insights</h3>
-            <div className="mini-insight-list">
-              {report.commentIntelligence.teamSpecificInsights.map((t) => (
-                <div className="mini-insight" key={t.team}>
-                  <strong>{t.team}</strong>
-                  <p>{t.insight}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="card">
-            <h3 className="h2-sub">Leadership recommendations</h3>
-            <ol className="recs-ol">
-              {report.commentIntelligence.leadershipRecommendations.slice(0, 6).map((r) => (
-                <li key={r}>{r}</li>
-              ))}
-            </ol>
-          </div>
+        <div className="card">
+          <h3 className="h2-sub">Leadership recommendations</h3>
+          <ol className="recs-ol">
+            {report.commentIntelligence.leadershipRecommendations.slice(0, 6).map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ol>
         </div>
       </section>
 

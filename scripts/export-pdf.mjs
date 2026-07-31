@@ -77,7 +77,7 @@ export async function exportPdf(options = {}) {
     await page.pdf({
       path: outPath,
       format: 'Letter',
-      landscape: false,
+      landscape: true,
       printBackground: true,
       preferCSSPageSize: true,
       // 0 everywhere: page margins are built into the document's .print-frame
