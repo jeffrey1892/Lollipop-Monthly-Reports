@@ -1319,7 +1319,7 @@
   /* Uniform scale-down absorbs the last fraction of an inch without
      distorting any one element */
   .scope-brief .pages {
-    zoom: 0.93;
+    zoom: 0.91;
   }
 
   /* Snapshot strip: key figures from omitted sections + full-report pointer */
@@ -1362,5 +1362,111 @@
     max-width: 100% !important;
     display: block !important;
     margin: 0 auto !important;
+  }
+
+  /* --- Geometry: every row's cards share the same height, columns align --- */
+  .scope-brief .pages {
+    align-items: stretch !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  }
+  .scope-brief .engagement-summary-section .engagement-grid,
+  .scope-brief .engagement-risks-row {
+    align-items: stretch !important;
+  }
+  .scope-brief .engagement-grid > .card,
+  .scope-brief .engagement-left-col > .card,
+  .scope-brief .engagement-risks-row > .card {
+    height: 100% !important;
+  }
+  .scope-brief .engagement-chart-card {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .scope-brief .engagement-chart-card .engagement-chart-wrap {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .scope-brief .engagement-chart-card .engagement-chart-wrap > svg {
+    flex: 1 1 auto !important;
+  }
+  /* Bottom band: both columns fill the row; last block in each grows */
+  .scope-brief .trend-section .print-keep,
+  .scope-brief .action-section .print-keep {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+  .scope-brief .trend-section .trend-card-grid,
+  .scope-brief .action-section .leadership-block {
+    flex: 1 1 auto !important;
+  }
+  .scope-brief .trend-card-grid {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .scope-brief .trend-chart-card {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  /* Stat tiles: clean 3-column lattice, persistence spans the remainder */
+  .scope-brief .trend-stats .stat-tile.wide {
+    grid-column: span 2 !important;
+  }
+  .scope-brief .trend-stats .stat-tile {
+    height: 100% !important;
+  }
+  /* Flex the sections themselves so percentage heights resolve in print */
+  .scope-brief .trend-section,
+  .scope-brief .action-section {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .scope-brief .trend-section .print-keep,
+  .scope-brief .action-section .print-keep {
+    flex: 1 1 auto !important;
+    height: auto !important;
+  }
+  /* Let the mood chart use the card's height instead of floating in it */
+  .scope-brief .trend-card-grid svg {
+    height: 104pt !important;
+    max-height: 104pt !important;
+  }
+}
+
+
+/* --- Geometry overrides (last word in the cascade) ----------------------- */
+@media print {
+  .scope-brief .pages {
+    align-items: stretch !important;
+  }
+  .scope-brief .trend-section,
+  .scope-brief .action-section {
+    align-self: stretch !important;
+  }
+  /* Leadership text matches the rest of the page's scale and fills its row */
+  .scope-brief .priority-actions-table th,
+  .scope-brief .priority-actions-table td {
+    font-size: 5pt !important;
+    line-height: 1.2 !important;
+    padding: 1.5pt 2.5pt !important;
+  }
+  .scope-brief .leadership-steps-col,
+  .scope-brief .leadership-steps-col * {
+    font-size: 5pt !important;
+    line-height: 1.25 !important;
+  }
+  .scope-brief .leadership-steps-col .h2-sub {
+    font-size: 6.5pt !important;
+  }
+  .scope-brief .assessment-card,
+  .scope-brief .assessment-card * {
+    font-size: 5.5pt !important;
+    line-height: 1.25 !important;
+  }
+  .scope-brief .next-step + .next-step {
+    margin-top: 2.5pt !important;
   }
 }
