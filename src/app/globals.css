@@ -673,3 +673,6 @@ a.link:hover{color:#0866c9}
   .topbar,.controls,.pdf-actions,.range-toggle,.dashboard-help,
   nextjs-portal,[data-print-hidden]{display:none!important}
 }
+
+/* Snapshot-only strip; the print brief re-enables it */
+.brief-more-section{display:none}

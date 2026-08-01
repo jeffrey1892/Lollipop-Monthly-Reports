@@ -1316,9 +1316,51 @@
   .scope-brief .trend-stats .stat-tile.wide {
     grid-column: auto !important;
   }
-  /* Uniform 5% scale-down absorbs the last fraction of an inch without
+  /* Uniform scale-down absorbs the last fraction of an inch without
      distorting any one element */
   .scope-brief .pages {
-    zoom: 0.95;
+    zoom: 0.93;
+  }
+
+  /* Snapshot strip: key figures from omitted sections + full-report pointer */
+  .scope-brief .brief-more-section {
+    display: block !important;
+    grid-column: 1 / -1 !important;
+  }
+  .scope-brief .brief-more-card {
+    background: #f5f7fa !important;
+    border: 1px solid #dfe5ec !important;
+    padding: 3pt 6pt !important;
+  }
+  .scope-brief .brief-more-data {
+    font-size: 6pt !important;
+    line-height: 1.3 !important;
+    margin: 0 0 1pt !important;
+  }
+  .scope-brief .brief-more-note {
+    font-size: 5.5pt !important;
+    line-height: 1.25 !important;
+    margin: 0 !important;
+    color: #5a6572 !important;
+    font-style: italic !important;
+  }
+
+  /* Charts fill their boxes instead of letterboxing: fix the height, let the
+     box shrink to the chart's natural width, and center it */
+  .scope-brief .engagement-chart-card svg {
+    height: 88pt !important;
+    max-height: 88pt !important;
+    width: auto !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  .scope-brief .trend-card-grid svg {
+    height: 80pt !important;
+    max-height: 80pt !important;
+    width: auto !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin: 0 auto !important;
   }
 }
