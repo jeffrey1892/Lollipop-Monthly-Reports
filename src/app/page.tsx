@@ -1,5 +1,5 @@
 import React from 'react'
-import { getReport, customers } from '@/lib/reportMetrics'
+import { getReport, getDrilldown, customers } from '@/lib/reportMetrics'
 import TopBar from './_components/TopBar'
 import ReportBody, { type ReportAudience } from './_components/ReportBody'
 
@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 export default async function Home({
   searchParams,
 }: {
-  searchParams?: Promise<{ month?: string; customer?: string; range?: string; audience?: string }>
+  searchParams?: Promise<{ month?: string; customer?: string; range?: string; audience?: string; team?: string; employee?: string }>
 }) {
   const params = (await searchParams) ?? {}
   const customer = customers.find((c) => c.id === params.customer) ?? customers[0]
@@ -17,6 +17,7 @@ export default async function Home({
   // the named retention-risk cards. Default is the summarized executive view.
   const audience: ReportAudience = params.audience === 'hr-restricted' ? 'hr-restricted' : 'executive'
   const report = getReport(customer.id, params.month, range)
+  const drill = getDrilldown(customer.id, report.month, params.team, params.employee)
 
   return (
     <div className="shell">
@@ -33,6 +34,7 @@ export default async function Home({
         range={range}
         renderMode="web"
         audience={audience}
+        drill={drill}
       />
     </div>
   )

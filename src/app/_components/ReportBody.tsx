@@ -1,5 +1,6 @@
 import React from 'react'
 import type { ReportMetrics } from '@/lib/types'
+import type { DrilldownScope } from '@/lib/reportMetrics'
 import { MONTHLY_ENGAGEMENT_NOTE } from '@/lib/engagementCalc'
 import {
   Delta,
@@ -13,6 +14,7 @@ import {
 import TrendChart from './TrendChart'
 import PieChart from './PieChart'
 import WeeklyEngagementChart from './WeeklyEngagementChart'
+import ScopeControls from './ScopeControls'
 
 export type ReportRenderMode = 'web' | 'print'
 export type ReportAudience = 'executive' | 'hr-restricted'
@@ -31,14 +33,22 @@ export default function ReportBody({
   range,
   renderMode,
   audience,
+  drill,
 }: {
   report: ReportMetrics
   customerId: string
   range: 'month' | 'quarter'
   renderMode: ReportRenderMode
   audience: ReportAudience
+  /** Team/employee drill-down scope (web only). Sections fall back to the
+      company-wide series when no team is selected. */
+  drill?: DrilldownScope | null
 }) {
   const isWeb = renderMode === 'web'
+  const scoped = isWeb && drill && drill.team ? drill : null
+  const scopeQS = `customer=${customerId}&month=${report.month}${range === 'quarter' ? '&range=quarter' : ''}${
+    audience === 'hr-restricted' ? '&audience=hr-restricted' : ''
+  }`
   const rangeHref = (r: 'month' | 'quarter') =>
     `/?customer=${customerId}&month=${report.month}&range=${r}${
       audience === 'hr-restricted' ? '&audience=hr-restricted' : ''
@@ -229,6 +239,18 @@ export default function ReportBody({
                 title="Engagement summary"
                 subtitle="Monthly and weekly engagement with off-roster respondents included"
               />
+              {isWeb && drill && (
+                <ScopeControls
+                  customer={customerId}
+                  month={report.month}
+                  range={range}
+                  audience={audience}
+                  teams={drill.teams}
+                  selectedTeam={drill.teamSlug}
+                  employees={drill.employees.map((e) => ({ key: e.key, name: e.name }))}
+                  selectedEmployee={drill.employee?.key ?? null}
+                />
+              )}
               {isWeb && (
                 <div className="range-toggle" aria-label="Weekly engagement period">
                   <a className={`range-pill${range === 'month' ? ' active' : ''}`} href={rangeHref('month')}>
@@ -243,7 +265,10 @@ export default function ReportBody({
             <div className="engagement-grid">
               <div className="engagement-left-col">
                 <div className="card engagement-weekly-table-card">
-                  <p className="h2-sub">Weekly detail — {report.engagementSummary.weeklyWindowLabel}</p>
+                  <p className="h2-sub">
+                    Weekly detail — {report.engagementSummary.weeklyWindowLabel}
+                    {scoped ? ` — ${scoped.scopeLabel}` : ''}
+                  </p>
                   <div className="table-wrap">
                     <table className="table engagement-weekly-table">
                       <thead>
@@ -254,7 +279,7 @@ export default function ReportBody({
                         </tr>
                       </thead>
                       <tbody>
-                        {report.engagementSummary.weekly.map((w) => (
+                        {(scoped ? scoped.weekly : report.engagementSummary.weekly).map((w) => (
                           <tr key={w.weekStart}>
                             <td>{w.weekLabel}</td>
                             <td style={{ textAlign: 'right' }}>{w.uniqueRespondents}</td>
@@ -264,13 +289,24 @@ export default function ReportBody({
                       </tbody>
                     </table>
                   </div>
-                  <p className="muted engagement-note">{MONTHLY_ENGAGEMENT_NOTE}</p>
+                  <p className="muted engagement-note">
+                    {MONTHLY_ENGAGEMENT_NOTE}
+                    {scoped
+                      ? ` Team scope: eligible employees are the ${scoped.eligible} unique people seen responding for this ${
+                          scoped.employee ? 'employee/team' : 'team'
+                        } across the trailing 6 months (no per-team roster is uploaded).`
+                      : ''}
+                  </p>
                 </div>
               </div>
               <div className="card engagement-chart-card">
-                <p className="h2-sub">Weekly engagement — trailing 3 months</p>
+                <p className="h2-sub">
+                  Weekly engagement — trailing 3 months{scoped ? ` — ${scoped.scopeLabel}` : ''}
+                </p>
                 <div className="engagement-chart-wrap">
-                  <WeeklyEngagementChart points={report.engagementSummary.weeklyTrailing} />
+                  <WeeklyEngagementChart
+                    points={scoped ? scoped.weeklyTrailing : report.engagementSummary.weeklyTrailing}
+                  />
                 </div>
                 <p className="muted engagement-note">
                   Engagement rates are based on unique employees, with a maximum of one counted response per employee per week.
@@ -278,6 +314,93 @@ export default function ReportBody({
               </div>
             </div>
           </div>
+          {scoped && !scoped.employee && (
+            <div className="card drill-panel" data-print-hidden>
+              <p className="h2-sub">Employees — {scoped.team}</p>
+              <p className="muted completion-note">
+                Everyone seen responding for this team in the trailing 6 months. Click a name (or use
+                the Employee dropdown) to drill into an individual&#39;s check-in history.
+              </p>
+              <div className="table-wrap">
+                <table className="table drill-employee-table">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th style={{ textAlign: 'right' }}>Check-ins ({report.label})</th>
+                      <th style={{ textAlign: 'right' }}>Weeks active</th>
+                      <th style={{ textAlign: 'right' }}>Avg mood</th>
+                      <th style={{ textAlign: 'right' }}>Mood vs prior mo.</th>
+                      <th>Last check-in</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {scoped.employees.map((e) => (
+                      <tr key={e.key}>
+                        <td>
+                          <a
+                            className="drill-emp-link"
+                            href={`/?${scopeQS}&team=${scoped.teamSlug}&employee=${encodeURIComponent(e.key)}`}
+                          >
+                            {e.name}
+                          </a>
+                        </td>
+                        <td style={{ textAlign: 'right' }}>{e.checkIns}</td>
+                        <td style={{ textAlign: 'right' }}>
+                          {e.weeksActive} of {e.totalWeeks}
+                        </td>
+                        <td style={{ textAlign: 'right' }}>{e.avgMood ?? '—'}</td>
+                        <td style={{ textAlign: 'right' }}>
+                          {e.moodChange !== null ? <Delta value={e.moodChange} /> : '—'}
+                        </td>
+                        <td>{e.lastCheckIn ?? '—'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+          {scoped && scoped.employee && (
+            <div className="card drill-panel" data-print-hidden>
+              <div className="drill-emp-head">
+                <p className="h2-sub">Check-in history — {scoped.employee.name}</p>
+                <a className="drill-emp-link" href={`/?${scopeQS}&team=${scoped.teamSlug}`}>
+                  ← Back to {scoped.team}
+                </a>
+              </div>
+              <p className="muted completion-note">
+                Trailing 3 months, newest first. Mood is the employee&#39;s own 1–5 rating.
+              </p>
+              {scoped.history.length === 0 ? (
+                <p className="muted">No check-ins recorded in the trailing 3 months.</p>
+              ) : (
+                <div className="table-wrap">
+                  <table className="table drill-history-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th style={{ textAlign: 'right' }}>Mood</th>
+                        <th>Emotions</th>
+                        <th>Comment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {scoped.history.map((h, i) => (
+                        <tr key={i}>
+                          <td style={{ whiteSpace: 'nowrap' }}>{h.date}</td>
+                          <td style={{ textAlign: 'right' }}>
+                            <strong>{h.mood || '—'}</strong>
+                          </td>
+                          <td>{h.emotions.join(', ') || '—'}</td>
+                          <td>{h.comments || '—'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          )}
           <div className="completion-row">
             <div className="card completion-card">
               <p className="h2-sub">
@@ -404,31 +527,42 @@ export default function ReportBody({
       {/* === B3. Monthly Wide Mood Trends === */}
       <section className="brief-section trend-section">
         <div className="print-keep">
-          <SectionHeader title="Monthly Wide Mood Trends" subtitle="Sentiment and participation over time" />
+          <SectionHeader
+            title="Monthly Wide Mood Trends"
+            subtitle={
+              scoped
+                ? `Sentiment and participation over time — ${scoped.scopeLabel}`
+                : 'Sentiment and participation over time'
+            }
+          />
           <div className="trend-card-grid">
             <div className="card trend-chart-card">
-              <TrendChart data={report.monthlyTrend} />
+              <TrendChart data={scoped ? scoped.monthlyTrend : report.monthlyTrend} />
             </div>
             <div className="trend-stats">
               <div className="stat-tile">
                 <span className="h3-micro">Trailing 3-month mood</span>
-                <strong>{report.trend.threeMonthAvgMood ?? '—'}</strong>
+                <strong>{(scoped ? scoped.trendStats.threeMonthAvgMood : report.trend.threeMonthAvgMood) ?? '—'}</strong>
               </div>
               <div className="stat-tile">
                 <span className="h3-micro">Rolling positive</span>
-                <strong>{report.trend.rollingPositivePct ?? '—'}%</strong>
+                <strong>{(scoped ? scoped.trendStats.rollingPositivePct : report.trend.rollingPositivePct) ?? '—'}%</strong>
               </div>
               <div className="stat-tile">
                 <span className="h3-micro">Best month</span>
-                <strong>{report.trend.bestMonth}</strong>
+                <strong>{scoped ? scoped.trendStats.bestMonth : report.trend.bestMonth}</strong>
               </div>
               <div className="stat-tile">
                 <span className="h3-micro">Worst month</span>
-                <strong>{report.trend.worstMonth}</strong>
+                <strong>{scoped ? scoped.trendStats.worstMonth : report.trend.worstMonth}</strong>
               </div>
               <div className="stat-tile wide">
-                <span className="h3-micro">Persistence</span>
-                <strong className="stat-narrative">{report.trend.meaningfulMovement}</strong>
+                <span className="h3-micro">{scoped ? 'Scope' : 'Persistence'}</span>
+                <strong className="stat-narrative">
+                  {scoped
+                    ? `${scoped.scopeLabel} — months with no responses are omitted from the chart.`
+                    : report.trend.meaningfulMovement}
+                </strong>
               </div>
             </div>
           </div>

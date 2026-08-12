@@ -1,6 +1,6 @@
 import data from '@/data/demoData.json'
 import { computeMonthlyEngagement, computeWeeklyRates, monthRange } from './engagementCalc'
-import type { Confidence, CustomerData, EngagementRisk, IndividualRetentionRisk, MonthData, PriorityActionRow, ReportMetrics, ResponseRecord, RetentionRisk, Severity, TeamAttention, TeamMetric, TopPerformingTeam } from './types'
+import type { Confidence, CustomerData, EngagementRisk, IndividualRetentionRisk, MonthData, PriorityActionRow, ReportMetrics, ResponseRecord, RetentionRisk, Severity, TeamAttention, TeamMetric, TopPerformingTeam, WeeklyEngagementPoint } from './types'
 
 export const customers = data.customers as CustomerData[]
 
@@ -1031,4 +1031,201 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
     { title: 'Reinforce positive culture drivers', priority: 'P3' as const, urgency: 'Medium', impact: 'Medium', difficulty: 'Low', owner: 'Frontline managers', nextStep: 'Identify what top teams are doing differently and turn it into a manager coaching prompt.', why: 'Recognition, support, and visible progress appear to be meaningful positive sentiment drivers.', confidence: commentIntelligence.confidence, trigger: 'Use when positive sentiment or comment themes identify manager behaviors worth repeating.' },
   ]
   return { customerName: customer.name, month: current.month, label: current.label, previousLabel: previous?.label, responseCount: records.length, avgMood, avgMoodChange: monthChange, positivePct, positiveChange, negativeCount, engagementScore, healthScore, healthSeverity: severity(healthScore), retentionRisk, followUpRequests, followUpCompletionPct, unsubscribedCount: customer.unsubscribed.length, reportConfidenceScore, reportConfidence, confidenceRationale: `${records.length} responses, ${commentIntelligence.commentCount} comments, ${allTeams.filter((t) => t.sampleWarning).length} low-sample teams, and ${followUpRequests ? 'available' : 'missing'} follow-up workflow data.`, topTeams, watchTeams, improvingTeams, decliningTeams, engagementImprovingTeams, engagementDecliningTeams, lowConfidenceTeams, allTeams, moodDistribution, topEmotions, monthlyTrend, comments: records.map((r) => r.comments).filter(Boolean).slice(0, 8), executiveSummary, strategicNarrative, intelligencePoints, leadershipAttention, commentIntelligence, responsiveness, engagement, trend, improvements, recommendations, healthSummary, whatChanged, teamIntelligence, riskWatchlist, positiveMomentum, individualRetentionRisks, managerReport, engagementSummary, engagementRisks, teamsNeedingAttention, topPerformingTeams, priorityActionRows, priorityActionDetails, leadershipAssessment }
+}
+
+// === Interactive drill-down: team / employee scope for the web report ======
+// The admin can rescope the Engagement summary and Mood Trends sections to a
+// single team, then to a single employee. Team eligibility uses the same
+// proxy as the team risk engine: the unique people seen responding for that
+// team across the trailing 6 months (no per-team headcount is uploaded).
+
+export type DrilldownEmployee = {
+  key: string
+  name: string
+  checkIns: number
+  weeksActive: number
+  totalWeeks: number
+  avgMood: number | null
+  moodChange: number | null
+  lastCheckIn: string | null
+}
+
+export type DrilldownScope = {
+  teams: Array<{ name: string; slug: string }>
+  team: string | null
+  teamSlug: string | null
+  employee: { key: string; name: string } | null
+  scopeLabel: string
+  eligible: number
+  employees: DrilldownEmployee[]
+  weekly: WeeklyEngagementPoint[]
+  weeklyTrailing: WeeklyEngagementPoint[]
+  monthlyTrend: Array<{ label: string; avgMood: number; positivePct: number; responses: number }>
+  trendStats: { threeMonthAvgMood: number | null; rollingPositivePct: number | null; bestMonth: string; worstMonth: string }
+  history: Array<{ date: string; mood: number; emotions: string[]; comments: string }>
+}
+
+export function getDrilldown(
+  customerId?: string,
+  month?: string,
+  teamParam?: string,
+  employeeParam?: string,
+): DrilldownScope {
+  const customer = customers.find((c) => c.id === customerId) ?? customers[0]
+  const selected = month ? customer.months.find((m) => m.month === month) : customer.months[customer.months.length - 1]
+  const current = selected ?? customer.months[customer.months.length - 1]
+  const currentIndex = customer.months.findIndex((m) => m.month === current.month)
+  const windowMonths = customer.months.slice(Math.max(0, currentIndex - 5), currentIndex + 1)
+  const trailing3 = customer.months.slice(Math.max(0, currentIndex - 2), currentIndex + 1)
+
+  const pKey = (r: ResponseRecord) => `${r.firstName.trim().toLowerCase()}|${r.lastName.trim().toLowerCase()}`
+  const pName = (r: ResponseRecord) => `${r.firstName.trim()} ${r.lastName.trim()}`.trim()
+  const parseD = (s: string): Date | null => { const d = new Date(s); return isNaN(d.getTime()) ? null : d }
+  const mondayOf = (d: Date) => { const m = new Date(d); m.setHours(0, 0, 0, 0); m.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return m }
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+  // Teams seen in the trailing window, alphabetical
+  const teamNames = [...new Set(windowMonths.flatMap((m) => m.responses.map((r) => r.team).filter(Boolean)))].sort((a, b) => a.localeCompare(b))
+  const teams = teamNames.map((name) => ({ name, slug: slugifyTeam(name) }))
+  const team = teamParam ? teamNames.find((t) => slugifyTeam(t) === teamParam) ?? null : null
+
+  const teamRecords = (m: MonthData) => (team ? m.responses.filter((r) => r.team === team) : m.responses)
+
+  // Employee resolution (within the team when one is selected)
+  let employee: { key: string; name: string } | null = null
+  if (team && employeeParam) {
+    for (const m of windowMonths) {
+      const hit = teamRecords(m).find((r) => pKey(r) === employeeParam)
+      if (hit) { employee = { key: employeeParam, name: pName(hit) }; break }
+    }
+  }
+
+  const scopedRecords = (m: MonthData) =>
+    employee ? teamRecords(m).filter((r) => pKey(r) === employee!.key) : teamRecords(m)
+
+  // Eligible denominator: employee = 1; team = unique people seen for the
+  // team in the trailing window; company handled by the main engine (this
+  // function is only rendered when a team is selected).
+  const teamPeople = new Set(windowMonths.flatMap((m) => teamRecords(m).map(pKey)))
+  const eligible = employee ? 1 : teamPeople.size
+
+  // Weekly series for a month: Monday-start weeks overlapping the month,
+  // in-month check-ins only — mirrors the company-wide weekly detail.
+  const weeksForMonth = (m: MonthData): WeeklyEngagementPoint[] => {
+    const [y, mo] = m.month.split('-').map(Number)
+    const first = new Date(y, mo - 1, 1)
+    const last = new Date(y, mo, 0)
+    const weeks: WeeklyEngagementPoint[] = []
+    for (let w = mondayOf(first); w <= last; w = new Date(w.getFullYear(), w.getMonth(), w.getDate() + 7)) {
+      const wEnd = new Date(w.getFullYear(), w.getMonth(), w.getDate() + 7)
+      const uniq = new Set<string>()
+      for (const r of scopedRecords(m)) {
+        const d = parseD(r.date)
+        if (d && d >= w && d < wEnd) uniq.add(pKey(r))
+      }
+      weeks.push({
+        weekStart: w.toISOString().slice(0, 10),
+        weekLabel: `${MON[w.getMonth()]} ${w.getDate()}`,
+        uniqueRespondents: uniq.size,
+        offRosterRespondents: 0,
+        effectiveRoster: eligible,
+        engagementRate: eligible ? Math.round((uniq.size / eligible) * 1000) / 10 : 0,
+      })
+    }
+    return weeks
+  }
+
+  const weekly = weeksForMonth(current)
+  const weeklyTrailing = (() => {
+    const seen = new Map<string, WeeklyEngagementPoint>()
+    for (const m of trailing3) for (const w of weeksForMonth(m)) {
+      const prev = seen.get(w.weekStart)
+      // A boundary week appears in two months; keep the larger in-month count
+      if (!prev || w.uniqueRespondents > prev.uniqueRespondents) seen.set(w.weekStart, w)
+    }
+    return [...seen.values()].sort((a, b) => (a.weekStart < b.weekStart ? -1 : 1))
+  })()
+
+  // Scoped mood trend across all loaded months (chart skips empty months)
+  const monthlyTrend = customer.months
+    .map((m) => {
+      const ms = scopedRecords(m).map((r) => r.mood).filter(Boolean)
+      return { label: m.label, avgMood: round(avg(ms), 2), positivePct: pct(ms.filter((v) => v >= 4).length, ms.length), responses: ms.length }
+    })
+    .filter((t) => t.responses > 0)
+  const trendWindow = monthlyTrend.slice(-3)
+  const trendMoods = trendWindow.map((t) => t.avgMood)
+  const best = monthlyTrend.length ? [...monthlyTrend].sort((a, b) => b.avgMood - a.avgMood)[0] : null
+  const worst = monthlyTrend.length ? [...monthlyTrend].sort((a, b) => a.avgMood - b.avgMood)[0] : null
+  const trendStats = {
+    threeMonthAvgMood: trendMoods.length ? round(avg(trendMoods), 2) : null,
+    rollingPositivePct: trendWindow.length ? round(avg(trendWindow.map((t) => t.positivePct)), 1) : null,
+    bestMonth: best ? `${best.label} (${best.avgMood})` : '—',
+    worstMonth: worst ? `${worst.label} (${worst.avgMood})` : '—',
+  }
+
+  // Per-employee roll-up for the selected team (current month, window recency)
+  const employees: DrilldownEmployee[] = []
+  if (team && !employee) {
+    const previous = currentIndex > 0 ? customer.months[currentIndex - 1] : null
+    const totalWeeks = weekly.length
+    const byPerson = new Map<string, { name: string; recs: ResponseRecord[] }>()
+    for (const m of windowMonths) for (const r of teamRecords(m)) {
+      const k = pKey(r)
+      const e = byPerson.get(k) ?? { name: pName(r), recs: [] }
+      e.recs.push(r)
+      byPerson.set(k, e)
+    }
+    for (const [k, e] of byPerson) {
+      const cur = teamRecords(current).filter((r) => pKey(r) === k)
+      const prev = previous ? teamRecords(previous).filter((r) => pKey(r) === k) : []
+      const weeksActive = new Set(cur.map((r) => { const d = parseD(r.date); return d ? mondayOf(d).toISOString().slice(0, 10) : '' }).filter(Boolean)).size
+      const moods = cur.map((r) => r.mood).filter(Boolean)
+      const prevMoods = prev.map((r) => r.mood).filter(Boolean)
+      const lastDate = e.recs.map((r) => parseD(r.date)).filter((d): d is Date => !!d).sort((a, b) => b.getTime() - a.getTime())[0]
+      employees.push({
+        key: k,
+        name: e.name,
+        checkIns: cur.length,
+        weeksActive,
+        totalWeeks,
+        avgMood: moods.length ? round(avg(moods), 2) : null,
+        moodChange: moods.length && prevMoods.length ? round(avg(moods) - avg(prevMoods), 2) : null,
+        lastCheckIn: lastDate ? `${MON[lastDate.getMonth()]} ${lastDate.getDate()}, ${lastDate.getFullYear()}` : null,
+      })
+    }
+    employees.sort((a, b) => b.checkIns - a.checkIns || a.name.localeCompare(b.name))
+  }
+
+  // Check-in history for the selected employee (trailing 3 months, newest first)
+  const history = employee
+    ? trailing3
+        .flatMap((m) => scopedRecords(m))
+        .map((r) => ({ r, d: parseD(r.date) }))
+        .filter((x): x is { r: ResponseRecord; d: Date } => !!x.d)
+        .sort((a, b) => b.d.getTime() - a.d.getTime())
+        .map(({ r, d }) => ({
+          date: `${MON[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`,
+          mood: r.mood,
+          emotions: r.emotions,
+          comments: r.comments,
+        }))
+    : []
+
+  const scopeLabel = employee ? `${employee.name} — ${team}` : team ? `Team: ${team}` : 'All teams'
+
+  return {
+    teams,
+    team,
+    teamSlug: team ? slugifyTeam(team) : null,
+    employee,
+    scopeLabel,
+    eligible,
+    employees,
+    weekly,
+    weeklyTrailing,
+    monthlyTrend,
+    trendStats,
+    history,
+  }
 }

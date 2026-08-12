@@ -473,7 +473,7 @@ a.link:hover{color:#0866c9}
 
 /* Follow-up responsiveness (placeholder section) */
 /* Engagement summary section */
-.engagement-section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.engagement-section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
 .range-toggle{display:inline-flex;gap:0;border:1px solid var(--line);border-radius:999px;background:white;padding:3px;flex-shrink:0}
 .range-pill{padding:6px 16px;border-radius:999px;font-size:12.5px;font-weight:800;color:var(--muted);text-decoration:none}
 .range-pill.active{background:var(--blue);color:white}
@@ -676,3 +676,14 @@ a.link:hover{color:#0866c9}
 
 /* Snapshot-only strip; the print brief re-enables it */
 .brief-more-section{display:none}
+
+/* === Drill-down scope controls & panels (interactive web report) === */
+.scope-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-right:12px}
+.scope-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted,#898781)}
+.scope-controls select{font:500 13px/1.2 Inter,system-ui,sans-serif;padding:6px 10px;border:1px solid var(--line,#e1e0d9);border-radius:10px;background:#fff;color:var(--ink,#0b0b0b);max-width:220px}
+.drill-panel{margin-top:14px}
+.drill-emp-link{color:#2a78d6;font-weight:600;text-decoration:none}
+.drill-emp-link:hover{text-decoration:underline}
+.drill-emp-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.drill-history-table td{vertical-align:top}
+@media print{.scope-controls{display:none!important}}
