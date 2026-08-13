@@ -139,13 +139,6 @@ export default function ReportBody({
               </p>
               {isWeb && (
                 <div className="dashboard-help">
-                  <a
-                    href="https://www.trylollipop.com/resources-page-hidden"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Dashboard walkthrough
-                  </a>
                   <a href="mailto:support@trylollipop.com">support@trylollipop.com</a>
                 </div>
               )}

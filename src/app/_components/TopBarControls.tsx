@@ -57,9 +57,6 @@ export default function TopBarControls({
           ))}
         </select>
       )}
-      <button className="btn primary" type="submit">
-        Generate
-      </button>
     </form>
   )
 }
