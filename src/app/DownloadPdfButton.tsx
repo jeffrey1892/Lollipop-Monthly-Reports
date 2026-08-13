@@ -45,15 +45,6 @@ export default function DownloadPdfButton({
       <a className="btn" href={`${base}&scope=full`} target="_blank" rel="noreferrer">
         Download full PDF
       </a>
-      <a
-        className="btn pdf-hr-link"
-        href={`${base}&scope=full&audience=hr-restricted`}
-        target="_blank"
-        rel="noreferrer"
-        title="Includes named individual retention-risk cards — restricted distribution"
-      >
-        HR version
-      </a>
     </div>
   )
 }

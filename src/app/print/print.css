@@ -412,6 +412,20 @@
   .engagement-weekly-table th:first-child {
     white-space: nowrap;
   }
+  /* Keep the three weekly-detail columns inside the narrow left column:
+     smaller wrapped headers and tighter numeric cells */
+  .engagement-weekly-table th {
+    font-size: 6pt !important;
+    letter-spacing: 0.03em !important;
+    white-space: normal !important;
+    padding: 3pt 3pt !important;
+  }
+  .engagement-weekly-table th:first-child {
+    white-space: nowrap !important;
+  }
+  .engagement-weekly-table td {
+    padding: 3pt 3pt !important;
+  }
   .kpi-card .kpi-delta-caption {
     font-size: var(--report-print-font-label) !important;
     white-space: nowrap;

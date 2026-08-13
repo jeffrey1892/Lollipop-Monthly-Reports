@@ -14,6 +14,7 @@ import {
 import TrendChart from './TrendChart'
 import PieChart from './PieChart'
 import WeeklyEngagementChart from './WeeklyEngagementChart'
+import Link from 'next/link'
 import ScopeControls from './ScopeControls'
 import IncompleteCheckinsModal from './IncompleteCheckinsModal'
 
@@ -331,12 +332,13 @@ export default function ReportBody({
                     {scoped.employees.map((e) => (
                       <tr key={e.key}>
                         <td>
-                          <a
+                          <Link
                             className="drill-emp-link"
+                            scroll={false}
                             href={`/?${scopeQS}&team=${scoped.teamSlug}&employee=${encodeURIComponent(e.key)}`}
                           >
                             {e.name}
-                          </a>
+                          </Link>
                         </td>
                         <td style={{ textAlign: 'right' }}>{e.checkIns}</td>
                         <td style={{ textAlign: 'right' }}>
@@ -358,9 +360,9 @@ export default function ReportBody({
             <div className="card drill-panel" data-print-hidden>
               <div className="drill-emp-head">
                 <p className="h2-sub">Check-in history — {scoped.employee.name}</p>
-                <a className="drill-emp-link" href={`/?${scopeQS}&team=${scoped.teamSlug}`}>
+                <Link className="drill-emp-link" scroll={false} href={`/?${scopeQS}&team=${scoped.teamSlug}`}>
                   ← Back to {scoped.team}
-                </a>
+                </Link>
               </div>
               <p className="muted completion-note">
                 Trailing 3 months, newest first. Mood is the employee&#39;s own 1–5 rating.

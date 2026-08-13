@@ -703,3 +703,13 @@ a.link:hover{color:#0866c9}
 @media print{.completion-dialog{display:none}}
 .completion-row.web-single{grid-template-columns:1fr}
 .completion-dialog-optedout{margin-top:16px;padding-top:12px;border-top:1px solid var(--line,#e1e0d9)}
+
+/* Weekly detail table: keep the numeric columns inside the card (the
+   uppercase headers were pushing the table wider than the 1fr column) */
+.table-wrap{overflow-x:auto}
+.engagement-weekly-table{table-layout:auto;min-width:0}
+.engagement-weekly-table th,.engagement-weekly-table td{font-size:13px;padding:10px 6px}
+.engagement-weekly-table th{font-size:10px;letter-spacing:.04em;white-space:normal}
+.engagement-weekly-table th:first-child,.engagement-weekly-table td:first-child{padding-left:0;white-space:nowrap}
+.engagement-weekly-table th:last-child,.engagement-weekly-table td:last-child{padding-right:0}
+.scope-pending select{opacity:.55;transition:opacity .15s}
