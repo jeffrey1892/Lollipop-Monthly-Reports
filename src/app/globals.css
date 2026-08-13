@@ -687,3 +687,4 @@ a.link:hover{color:#0866c9}
 .drill-emp-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .drill-history-table td{vertical-align:top}
 @media print{.scope-controls{display:none!important}}
+.trend-section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}

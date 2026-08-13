@@ -520,14 +520,28 @@ export default function ReportBody({
       {/* === B3. Monthly Wide Mood Trends === */}
       <section className="brief-section trend-section">
         <div className="print-keep">
-          <SectionHeader
-            title="Monthly Wide Mood Trends"
-            subtitle={
-              scoped
-                ? `Sentiment and participation over time — ${scoped.scopeLabel}`
-                : 'Sentiment and participation over time'
-            }
-          />
+          <div className="trend-section-head">
+            <SectionHeader
+              title="Monthly Wide Mood Trends"
+              subtitle={
+                scoped
+                  ? `Sentiment and participation over time — ${scoped.scopeLabel}`
+                  : 'Sentiment and participation over time'
+              }
+            />
+            {isWeb && drill && (
+              <ScopeControls
+                customer={customerId}
+                month={report.month}
+                range={range}
+                audience={audience}
+                teams={drill.teams}
+                selectedTeam={drill.teamSlug}
+                employees={drill.employees.map((e) => ({ key: e.key, name: e.name }))}
+                selectedEmployee={drill.employee?.key ?? null}
+              />
+            )}
+          </div>
           <div className="trend-card-grid">
             <div className="card trend-chart-card">
               <TrendChart data={scoped ? scoped.monthlyTrend : report.monthlyTrend} />
