@@ -15,6 +15,7 @@ import TrendChart from './TrendChart'
 import PieChart from './PieChart'
 import WeeklyEngagementChart from './WeeklyEngagementChart'
 import ScopeControls from './ScopeControls'
+import IncompleteCheckinsModal from './IncompleteCheckinsModal'
 
 export type ReportRenderMode = 'web' | 'print'
 export type ReportAudience = 'executive' | 'hr-restricted'
@@ -394,46 +395,61 @@ export default function ReportBody({
               )}
             </div>
           )}
-          <div className="completion-row">
+          <div className={`completion-row${isWeb ? ' web-single' : ''}`}>
             <div className="card completion-card">
-              <p className="h2-sub">
-                Incomplete check-ins — {report.engagementSummary.weeklyWindowLabel}
-              </p>
-              <p className="muted completion-note">
-                Employees who completed fewer than the{' '}
-                {report.engagementSummary.checkInCompletion[0]?.total ??
-                  report.engagementSummary.weekly.length}{' '}
-                check-in deliveries this period.
-              </p>
-              {report.engagementSummary.checkInCompletion.length === 0 ? (
-                <p className="muted">Every employee completed all check-ins this period.</p>
+              {isWeb ? (
+                <IncompleteCheckinsModal
+                  windowLabel={report.engagementSummary.weeklyWindowLabel}
+                  totalDeliveries={
+                    report.engagementSummary.checkInCompletion[0]?.total ??
+                    report.engagementSummary.weekly.length
+                  }
+                  items={report.engagementSummary.checkInCompletion}
+                  optedOut={report.engagementSummary.optedOut}
+                />
               ) : (
                 <>
-                  <ul className="completion-list">
-                    {report.engagementSummary.checkInCompletion.slice(0, 30).map((p) => (
-                      <li key={p.name}>
-                        <span className="completion-name">
-                          {p.name}
-                          {!p.onRoster && <span className="sample-flag"> off-roster</span>}
-                        </span>
-                        <span className="completion-count">
-                          {p.completed} of {p.total}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  {report.engagementSummary.checkInCompletion.length > 30 && (
-                    <p className="completion-more">
-                      Showing the 30 least active employees.{' '}
-                      <a href="#full-checkin-list">
-                        The full list of {report.engagementSummary.checkInCompletion.length}{' '}
-                        employees with incomplete check-ins is at the end of this report.
-                      </a>
-                    </p>
+                  <p className="h2-sub">
+                    Incomplete check-ins — {report.engagementSummary.weeklyWindowLabel}
+                  </p>
+                  <p className="muted completion-note">
+                    Employees who completed fewer than the{' '}
+                    {report.engagementSummary.checkInCompletion[0]?.total ??
+                      report.engagementSummary.weekly.length}{' '}
+                    check-in deliveries this period.
+                  </p>
+                  {report.engagementSummary.checkInCompletion.length === 0 ? (
+                    <p className="muted">Every employee completed all check-ins this period.</p>
+                  ) : (
+                    <>
+                      <ul className="completion-list">
+                        {report.engagementSummary.checkInCompletion.slice(0, 30).map((p) => (
+                          <li key={p.name}>
+                            <span className="completion-name">
+                              {p.name}
+                              {!p.onRoster && <span className="sample-flag"> off-roster</span>}
+                            </span>
+                            <span className="completion-count">
+                              {p.completed} of {p.total}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      {report.engagementSummary.checkInCompletion.length > 30 && (
+                        <p className="completion-more">
+                          Showing the 30 least active employees.{' '}
+                          <a href="#full-checkin-list">
+                            The full list of {report.engagementSummary.checkInCompletion.length}{' '}
+                            employees with incomplete check-ins is at the end of this report.
+                          </a>
+                        </p>
+                      )}
+                    </>
                   )}
                 </>
               )}
             </div>
+            {!isWeb && (
             <div className="card opted-out-card">
               <p className="h2-sub">Opted out</p>
               <p className="muted completion-note">Roster employees who opted out of check-ins.</p>
@@ -450,6 +466,7 @@ export default function ReportBody({
                 </ul>
               )}
             </div>
+            )}
           </div>
           <div className="engagement-risks-row">
             <div className="card engagement-risks-card">
