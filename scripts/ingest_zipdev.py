@@ -89,6 +89,9 @@ def main():
     ap.add_argument('--main-roster')
     ap.add_argument('--dev2-roster')
     ap.add_argument('--data', default=str(DATA))
+    ap.add_argument('--effective-from', default=datetime.now().strftime('%Y-%m'),
+                    help='month (YYYY-MM) the new combined roster takes effect; '
+                         'earlier months keep their historical roster version')
     args = ap.parse_args()
     if not any([args.main_responses, args.dev2_responses, args.main_roster, args.dev2_roster]):
         ap.error('nothing to ingest — pass at least one file')
@@ -117,6 +120,14 @@ def main():
             continue
         seen_names.add(k)
         roster.append(e)
+    if args.main_roster or args.dev2_roster:
+        versions = cust.get('rosterVersions') or [dict(effectiveFrom='0000-00', roster=cust.get('roster', []))]
+        versions = [v for v in versions if v['effectiveFrom'] != args.effective_from]
+        versions.append(dict(effectiveFrom=args.effective_from, roster=roster))
+        versions.sort(key=lambda v: v['effectiveFrom'])
+        cust['rosterVersions'] = versions
+        print(f'roster version added, effective {args.effective_from} '
+              '(earlier months keep their historical denominator)')
     cust['roster'] = roster
     print(f'combined roster: {len(roster)} employees '
           f'({len(main_half)} main + {len(dev2_half)} dev2, deduped)')

@@ -4,6 +4,30 @@ import type { Confidence, CustomerData, EngagementRisk, IndividualRetentionRisk,
 
 export const customers = data.customers as CustomerData[]
 
+/** Roster in force for a given month. Customers carry rosterVersions (a
+    snapshot per upload, keyed by the month it takes effect); a month uses the
+    latest version effective on or before it, so uploading a new roster never
+    rewrites historical denominators. Customers without versions fall back to
+    the single legacy roster. */
+export function rosterForMonth(customer: CustomerData, monthKey: string) {
+  const versions = customer.rosterVersions
+  if (versions && versions.length) {
+    const sorted = [...versions].sort((a, b) => (a.effectiveFrom < b.effectiveFrom ? -1 : 1))
+    let pick = sorted[0]
+    for (const v of sorted) if (v.effectiveFrom <= monthKey) pick = v
+    return pick.roster
+  }
+  return customer.roster ?? []
+}
+
+function rosterKeysFor(customer: CustomerData, monthKey: string) {
+  const roster = rosterForMonth(customer, monthKey)
+  return {
+    rosterKeys: new Set(roster.map((r) => `${r.firstName.trim().toLowerCase()}|${r.lastName.trim().toLowerCase()}`)),
+    rosterCount: roster.length,
+  }
+}
+
 export function slugifyTeam(name: string): string {
   return name
     .toLowerCase()
@@ -437,7 +461,7 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
   const previousUniqueParticipants = previous ? new Set(prevRecords.map(uniqueParticipantKey)).size : null
 
   // === Engagement summary with off-roster inclusion ===
-  const roster = customer.roster ?? []
+  const roster = rosterForMonth(customer, current.month)
   const hasRoster = roster.length > 0
   const rosterCount = hasRoster ? roster.length : (customer.optedInPopulation ?? 0)
   const rosterKeys = new Set(
@@ -471,8 +495,8 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
     ? computeMonthlyEngagement({
         records: prevRecords,
         monthKey: previous.month,
-        rosterKeys,
-        rosterCount,
+        rosterKeys: rosterKeysFor(customer, previous.month).rosterKeys,
+        rosterCount: rosterKeysFor(customer, previous.month).rosterCount,
         fallbackDenominator: customer.optedInPopulation ?? ((previousUniqueParticipants ?? 0) + customer.unsubscribed.length),
       }).monthlyRate
     : null
@@ -494,6 +518,7 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
   // from, so the displayed rows average exactly to the headline figure.
   // Month view: every calendar week overlapping the month (incl. partials).
   // Quarter view: every week overlapping the quarter's months with data.
+  const rosterForWeek = (weekMonday: string) => rosterKeysFor(customer, weekMonday.slice(0, 7))
   const weeklyEngagement = range === 'quarter'
     ? (weeklyWindowMonths.length
         ? computeWeeklyRates({
@@ -503,6 +528,7 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
             rosterKeys,
             rosterCount,
             fallbackDenominator: noRosterFallback,
+            rosterForWeek,
           })
         : [])
     : currentMonthCalc.weeks
@@ -517,6 +543,7 @@ export function getReport(customerId?: string, month?: string, range: 'month' | 
         rosterKeys,
         rosterCount,
         fallbackDenominator: noRosterFallback,
+        rosterForWeek,
       })
     : []
 

@@ -88,9 +88,13 @@ export function computeWeeklyRates(opts: {
   rosterCount: number
   /** Denominator fallback when no roster exists (e.g. legacy customers). */
   fallbackDenominator?: number | null
+  /** Optional per-week roster override for ranges spanning months with
+      different roster versions: given a week's Monday (YYYY-MM-DD), return
+      the roster in force for that week. Falls back to rosterKeys/rosterCount
+      when omitted or when it returns undefined. */
+  rosterForWeek?: (weekMonday: string) => { rosterKeys: Set<string>; rosterCount: number } | undefined
 }): WeekRate[] {
-  const { records, rangeStart, rangeEnd, rosterKeys, rosterCount, fallbackDenominator } = opts
-  const hasRoster = rosterKeys.size > 0
+  const { records, rangeStart, rangeEnd, rosterKeys, rosterCount, fallbackDenominator, rosterForWeek } = opts
 
   const byWeek = new Map<string, Set<string>>()
   for (const r of records) {
@@ -105,12 +109,16 @@ export function computeWeeklyRates(opts: {
 
   return weeksOverlappingRange(rangeStart, rangeEnd).map((monday) => {
     const wk = isoDate(monday)
+    const weekRoster = rosterForWeek?.(wk)
+    const wKeys = weekRoster?.rosterKeys ?? rosterKeys
+    const wCount = weekRoster?.rosterCount ?? rosterCount
+    const hasRoster = wKeys.size > 0
     const persons = byWeek.get(wk) ?? new Set<string>()
     const uniques = persons.size
-    const off = hasRoster ? [...persons].filter((k) => !rosterKeys.has(k)).length : 0
+    const off = hasRoster ? [...persons].filter((k) => !wKeys.has(k)).length : 0
     const denom = hasRoster
-      ? rosterCount + off
-      : (fallbackDenominator ?? rosterCount) || uniques
+      ? wCount + off
+      : (fallbackDenominator ?? wCount) || uniques
     const rate = denom > 0 ? Math.round((uniques / denom) * 1000) / 10 : 0
     return {
       weekStart: wk,

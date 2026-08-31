@@ -16,8 +16,11 @@ export type ResponseRecord = {
 }
 
 export type MonthData = { month: string; label: string; responses: ResponseRecord[] }
-export type RosterEntry = { id?: string; firstName: string; lastName: string; email?: string }
-export type CustomerData = { id: string; name: string; industry: string; demo: boolean; months: MonthData[]; unsubscribed: Array<{ firstName: string; lastName: string; date: string; type: string }>; optedInPopulation?: number; roster?: RosterEntry[] }
+export type RosterEntry = { id?: string; firstName: string; lastName: string; email?: string; source?: string }
+/** A roster snapshot effective from a given month (inclusive). Months before
+    the earliest version use that earliest version. */
+export type RosterVersion = { effectiveFrom: string; roster: RosterEntry[] }
+export type CustomerData = { id: string; name: string; industry: string; demo: boolean; months: MonthData[]; unsubscribed: Array<{ firstName: string; lastName: string; date: string; type: string }>; optedInPopulation?: number; roster?: RosterEntry[]; rosterVersions?: RosterVersion[] }
 
 export type WeeklyEngagementPoint = {
   weekStart: string
