@@ -48,6 +48,11 @@ def parse_responses(path, force_team=None):
         first = str(r[1]).strip()
         last = str(r[2] or '').strip()
         team = force_team if force_team else str(r[3] or '').strip()
+        # The main account's own 'INTERNAL' team is the same group that moved
+        # to the dev2 account — keep one continuous team name. (Safe on
+        # re-ingest: month merge dedupes identical rows.)
+        if not force_team and team.upper() == 'INTERNAL':
+            team = DEV2_TEAM
         date = ' '.join(str(r[4] or '').strip().split())
         mood = float(r[5]) if r[5] is not None else None
         emotions = [e.strip() for e in str(r[6] or '').split(',') if e.strip()] if len(r) > 6 else []
