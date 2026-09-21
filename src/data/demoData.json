@@ -113879,7 +113879,7 @@
         "Disrespected"
        ],
        "followUpRequested": true,
-       "followUpStatus": "Follow In Progress",
+       "followUpStatus": "Follow Completed",
        "comments": "I would like to share some concerns about my current work situation. My intention is not to create conflict, but to have an honest conversation with someone while hoping it does not negatively affect my already fragile working relationship with Tammy.\n\nOne of my main concerns is the amount of scope creep that has happened since I joined. I was hired primarily for a business development and lead generation role. Today, I am handling high-level executive recruitment processes for three different organizations simultaneously. This includes marketing open positions, candidate sourcing, screening, interview coordination, document preparation, scheduling, communications, and managing the day-to-day operational workflow for each search. I also continue to manage RFP research and related business development work.\n\nI'm able to handle this workload largely because I've designed automations, templates, and systems that make many of these processes efficient. However, these responsibilities are significantly different from my professional background and the role I originally accepted.\n\nAnother concern is compensation. Since I was hired, the Colombian peso has appreciated significantly against the U.S. dollar. Because I was paid in USD while living in Colombia, my effective income in local currency decreased by roughly 25%, substantially reducing my purchasing power. This loss of income, among other personal and professional reasons, ultimately contributed to my decision to relocate to Argentina. At the same time, my responsibilities have continued to expand, including absorbing many of the duties of a coworker who left the organization.\n\nI also struggle with the lack of structure around my work. Goals are rarely defined for projects or recurring responsibilities. Most work is assigned through individual emails or text messages without measurable objectives, timelines, or success metrics. This makes it difficult to prioritize work or understand what success looks like.\n\nReporting is another source of frustration. I regularly prepare reports when requested, but I have never received meaningful feedback on them or guidance on how they could be improved. Likewise, I have never seen those reports used to evaluate results or support decision-making. Instead, conversations tend to focus on day-to-day operational issues or new requests rather than progress toward broader business goals.\n\nCommunication itself is often challenging. Nearly everything is managed through Gmail and text messages, even routine operational discussions that would be much easier to organize in project management or collaboration tools. Although I've introduced systems such as a CRM and proposed other tools to improve visibility and coordination, they have not been adopted. As a result, information is frequently scattered across long email threads, previous conversations are difficult to reference, and the same information often has to be shared multiple times.\n\nThe overall experience is frustrating because there is a constant sense that something is wrong, yet there is little discussion about improving the underlying processes that create those issues. I believe many of the daily frustrations could be reduced with clearer goals, defined workflows, and better communication systems.\n\nI value the opportunity to contribute and have demonstrated that I can take on complex responsibilities. My hope is simply to have an honest conversation about whether my current responsibilities, compensation, and expectations are aligned, while ensuring that raising these concerns does not negatively affect my working relationship with Tammy."
       },
       {
@@ -120421,6 +120421,23 @@
       },
       {
        "id": "zipdev-2026-09-55",
+       "firstName": "Sara",
+       "lastName": "Marsden",
+       "team": "MEXICO",
+       "date": "Sep 8, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Excited",
+        "Content",
+        "Appreciated",
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": "Today I was praised at work, so happy!!"
+      },
+      {
+       "id": "zipdev-2026-09-56",
        "firstName": "Daniela",
        "lastName": "Perez",
        "team": "MEXICO",
@@ -120435,7 +120452,7 @@
        "comments": "Happy to work with ZipDev"
       },
       {
-       "id": "zipdev-2026-09-56",
+       "id": "zipdev-2026-09-57",
        "firstName": "Mitzi",
        "lastName": "Guizar",
        "team": "MEXICO",
@@ -120449,7 +120466,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-57",
+       "id": "zipdev-2026-09-58",
        "firstName": "Eloisa",
        "lastName": "Alvarenga",
        "team": "HONDURAS",
@@ -120463,7 +120480,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-58",
+       "id": "zipdev-2026-09-59",
        "firstName": "Luisa",
        "lastName": "Pereira",
        "team": "COLOMBIA",
@@ -120481,7 +120498,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-59",
+       "id": "zipdev-2026-09-60",
        "firstName": "Luis",
        "lastName": "Rangel",
        "team": "COLOMBIA",
@@ -120496,7 +120513,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-60",
+       "id": "zipdev-2026-09-61",
        "firstName": "Diego",
        "lastName": "Quintero",
        "team": "COLOMBIA",
@@ -120513,7 +120530,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-61",
+       "id": "zipdev-2026-09-62",
        "firstName": "Gustavo",
        "lastName": "Cacioni",
        "team": "ARGENTINA",
@@ -120533,7 +120550,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-62",
+       "id": "zipdev-2026-09-63",
        "firstName": "Cassio",
        "lastName": "Takarada",
        "team": "BRAZIL",
@@ -120547,7 +120564,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-63",
+       "id": "zipdev-2026-09-64",
        "firstName": "Victor",
        "lastName": "Moreira",
        "team": "BRAZIL",
@@ -120562,7 +120579,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-64",
+       "id": "zipdev-2026-09-65",
        "firstName": "Adriana",
        "lastName": "Salvarani",
        "team": "BRAZIL",
@@ -120578,7 +120595,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-65",
+       "id": "zipdev-2026-09-66",
        "firstName": "Antonio",
        "lastName": "Calazans",
        "team": "BRAZIL",
@@ -120592,7 +120609,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-66",
+       "id": "zipdev-2026-09-67",
        "firstName": "Jo\u00e3o Paulo",
        "lastName": "Nogueira",
        "team": "BRAZIL",
@@ -120606,7 +120623,7 @@
        "comments": "Reskinning a game for a new release is very exciting."
       },
       {
-       "id": "zipdev-2026-09-67",
+       "id": "zipdev-2026-09-68",
        "firstName": "Luciano",
        "lastName": "Lucena",
        "team": "BRAZIL",
@@ -120623,7 +120640,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-68",
+       "id": "zipdev-2026-09-69",
        "firstName": "Maicon",
        "lastName": "Freire",
        "team": "BRAZIL",
@@ -120637,7 +120654,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-69",
+       "id": "zipdev-2026-09-70",
        "firstName": "Rodrigo",
        "lastName": "Marques",
        "team": "BRAZIL",
@@ -120651,7 +120668,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-70",
+       "id": "zipdev-2026-09-71",
        "firstName": "Diego",
        "lastName": "Villegas",
        "team": "Internal Team",
@@ -120667,7 +120684,7 @@
        "comments": "Today, I will learn more about my new role and start with the plan"
       },
       {
-       "id": "zipdev-2026-09-71",
+       "id": "zipdev-2026-09-72",
        "firstName": "Ana",
        "lastName": "Davila",
        "team": "Internal Team",
@@ -120681,7 +120698,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-72",
+       "id": "zipdev-2026-09-73",
        "firstName": "Maria",
        "lastName": "Silva",
        "team": "Internal Team",
@@ -120695,7 +120712,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-73",
+       "id": "zipdev-2026-09-74",
        "firstName": "Miguel",
        "lastName": "Palacio",
        "team": "Internal Team",
@@ -120709,7 +120726,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-74",
+       "id": "zipdev-2026-09-75",
        "firstName": "Paulina",
        "lastName": "Briones",
        "team": "Internal Team",
@@ -120724,7 +120741,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-75",
+       "id": "zipdev-2026-09-76",
        "firstName": "Lizeth",
        "lastName": "Carrillo",
        "team": "Internal Team",
@@ -120738,7 +120755,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-76",
+       "id": "zipdev-2026-09-77",
        "firstName": "Karla",
        "lastName": "Deneken",
        "team": "Internal Team",
@@ -120753,7 +120770,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-77",
+       "id": "zipdev-2026-09-78",
        "firstName": "Alfredo",
        "lastName": "Broggi",
        "team": "Internal Team",
@@ -120770,7 +120787,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-78",
+       "id": "zipdev-2026-09-79",
        "firstName": "Lino",
        "lastName": "Quintero",
        "team": "MEXICO",
@@ -120787,7 +120804,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-79",
+       "id": "zipdev-2026-09-80",
        "firstName": "Daniela",
        "lastName": "Perez",
        "team": "MEXICO",
@@ -120802,7 +120819,7 @@
        "comments": "Happy working"
       },
       {
-       "id": "zipdev-2026-09-80",
+       "id": "zipdev-2026-09-81",
        "firstName": "Mitzi",
        "lastName": "Guizar",
        "team": "MEXICO",
@@ -120817,7 +120834,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-81",
+       "id": "zipdev-2026-09-82",
        "firstName": "Sergio",
        "lastName": "Gonzalez",
        "team": "MEXICO",
@@ -120831,7 +120848,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-82",
+       "id": "zipdev-2026-09-83",
        "firstName": "Maria Fernanda",
        "lastName": "Hernandez",
        "team": "MEXICO",
@@ -120851,7 +120868,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-83",
+       "id": "zipdev-2026-09-84",
        "firstName": "Karla",
        "lastName": "Coronado",
        "team": "MEXICO",
@@ -120869,7 +120886,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-84",
+       "id": "zipdev-2026-09-85",
        "firstName": "Eloisa",
        "lastName": "Alvarenga",
        "team": "HONDURAS",
@@ -120883,7 +120900,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-85",
+       "id": "zipdev-2026-09-86",
        "firstName": "Mateo",
        "lastName": "Gutierrez",
        "team": "COLOMBIA",
@@ -120897,7 +120914,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-86",
+       "id": "zipdev-2026-09-87",
        "firstName": "Luisa",
        "lastName": "Pereira",
        "team": "COLOMBIA",
@@ -120916,7 +120933,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-87",
+       "id": "zipdev-2026-09-88",
        "firstName": "Diego",
        "lastName": "Quintero",
        "team": "COLOMBIA",
@@ -120932,7 +120949,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-88",
+       "id": "zipdev-2026-09-89",
        "firstName": "Elmer",
        "lastName": "Hurtado Dolz",
        "team": "BOLIVIA",
@@ -120947,7 +120964,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-89",
+       "id": "zipdev-2026-09-90",
        "firstName": "Anderson",
        "lastName": "Vargas",
        "team": "VENEZUELA",
@@ -120966,7 +120983,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-90",
+       "id": "zipdev-2026-09-91",
        "firstName": "Cassio",
        "lastName": "Takarada",
        "team": "BRAZIL",
@@ -120980,7 +120997,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-91",
+       "id": "zipdev-2026-09-92",
        "firstName": "Adriana",
        "lastName": "Salvarani",
        "team": "BRAZIL",
@@ -120996,7 +121013,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-92",
+       "id": "zipdev-2026-09-93",
        "firstName": "Jo\u00e3o Paulo",
        "lastName": "Nogueira",
        "team": "BRAZIL",
@@ -121010,7 +121027,7 @@
        "comments": "Too much going! I need to rest in the weekend."
       },
       {
-       "id": "zipdev-2026-09-93",
+       "id": "zipdev-2026-09-94",
        "firstName": "Maicon",
        "lastName": "Freire",
        "team": "BRAZIL",
@@ -121024,7 +121041,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-94",
+       "id": "zipdev-2026-09-95",
        "firstName": "Rodrigo",
        "lastName": "Marques",
        "team": "BRAZIL",
@@ -121038,7 +121055,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-95",
+       "id": "zipdev-2026-09-96",
        "firstName": "Clerivaldo",
        "lastName": "Dos Santos",
        "team": "BRAZIL",
@@ -121053,7 +121070,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-96",
+       "id": "zipdev-2026-09-97",
        "firstName": "Gustavo",
        "lastName": "Cacioni",
        "team": "ARGENTINA",
@@ -121073,7 +121090,7 @@
        "comments": ""
       },
       {
-       "id": "zipdev-2026-09-97",
+       "id": "zipdev-2026-09-98",
        "firstName": "Dmitrii",
        "lastName": "Golovin",
        "team": "ARGENTINA",
@@ -121082,6 +121099,762 @@
        "emotions": [
         "Content",
         "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-99",
+       "firstName": "Lino",
+       "lastName": "Quintero",
+       "team": "MEXICO",
+       "date": "Sep 15, 2026 9:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Excited",
+        "Content"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-100",
+       "firstName": "Mitzi",
+       "lastName": "Guizar",
+       "team": "MEXICO",
+       "date": "Sep 15, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Optimistic",
+        "Grateful",
+        "Content"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-101",
+       "firstName": "Maria Fernanda",
+       "lastName": "Hernandez",
+       "team": "MEXICO",
+       "date": "Sep 15, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Happy",
+        "Excited",
+        "Grateful",
+        "Motivated",
+        "Content",
+        "Optimistic",
+        "Appreciated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-102",
+       "firstName": "Karla",
+       "lastName": "Coronado",
+       "team": "MEXICO",
+       "date": "Sep 15, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Happy",
+        "Motivated",
+        "Appreciated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-103",
+       "firstName": "Eloisa",
+       "lastName": "Alvarenga",
+       "team": "HONDURAS",
+       "date": "Sep 15, 2026 9:00 AM",
+       "mood": 3.0,
+       "emotions": [
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-104",
+       "firstName": "Alejandro",
+       "lastName": "Delgadillo",
+       "team": "NICARAGUA",
+       "date": "Sep 15, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Excited",
+        "Grateful",
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-105",
+       "firstName": "Luisa",
+       "lastName": "Pereira",
+       "team": "COLOMBIA",
+       "date": "Sep 15, 2026 10:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Happy",
+        "Excited",
+        "Grateful",
+        "Motivated",
+        "Content",
+        "Optimistic",
+        "Appreciated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-106",
+       "firstName": "Alejandra",
+       "lastName": "Casas",
+       "team": "COLOMBIA",
+       "date": "Sep 15, 2026 10:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Grateful",
+        "Optimistic",
+        "Content"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-107",
+       "firstName": "Diego",
+       "lastName": "Quintero",
+       "team": "COLOMBIA",
+       "date": "Sep 15, 2026 10:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Grateful",
+        "Content",
+        "Motivated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-108",
+       "firstName": "Elmer",
+       "lastName": "Hurtado Dolz",
+       "team": "BOLIVIA",
+       "date": "Sep 15, 2026 11:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Optimistic",
+        "Content"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-109",
+       "firstName": "Anderson",
+       "lastName": "Vargas",
+       "team": "VENEZUELA",
+       "date": "Sep 15, 2026 11:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Happy",
+        "Grateful",
+        "Motivated",
+        "Content",
+        "Optimistic",
+        "Appreciated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-110",
+       "firstName": "Valentin",
+       "lastName": "Vidal",
+       "team": "ARGENTINA",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Happy",
+        "Content",
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-111",
+       "firstName": "Cassio",
+       "lastName": "Takarada",
+       "team": "BRAZIL",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 4.0,
+       "emotions": [
+        "Content"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-112",
+       "firstName": "Victor",
+       "lastName": "Moreira",
+       "team": "BRAZIL",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Grateful"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-113",
+       "firstName": "Adriana",
+       "lastName": "Salvarani",
+       "team": "BRAZIL",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 4.0,
+       "emotions": [
+        "Happy",
+        "Excited",
+        "Grateful"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-114",
+       "firstName": "Rai",
+       "lastName": "Lima de Oliveira",
+       "team": "BRAZIL",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 4.0,
+       "emotions": [
+        "Content",
+        "Motivated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-115",
+       "firstName": "Antonio",
+       "lastName": "Calazans",
+       "team": "BRAZIL",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Grateful"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-116",
+       "firstName": "Jo\u00e3o Paulo",
+       "lastName": "Nogueira",
+       "team": "BRAZIL",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 3.0,
+       "emotions": [
+        "Overwhelmed",
+        "Motivated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": "Past days were exhausting, but this Wednesday is the deadline for the game reskin I worked the past days."
+      },
+      {
+       "id": "zipdev-2026-09-117",
+       "firstName": "Maicon",
+       "lastName": "Freire",
+       "team": "BRAZIL",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 4.0,
+       "emotions": [
+        "Excited"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-118",
+       "firstName": "Clerivaldo",
+       "lastName": "Dos Santos",
+       "team": "BRAZIL",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Grateful",
+        "Optimistic",
+        "Appreciated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-119",
+       "firstName": "Rodrigo",
+       "lastName": "Garcia",
+       "team": "PARAGUAY",
+       "date": "Sep 15, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Happy",
+        "Grateful",
+        "Content",
+        "Optimistic",
+        "Appreciated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-120",
+       "firstName": "Diego",
+       "lastName": "Villegas",
+       "team": "Internal Team",
+       "date": "Sep 16, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Excited",
+        "Grateful",
+        "Happy"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": "started the cold sequences today, looking forward to the results"
+      },
+      {
+       "id": "zipdev-2026-09-121",
+       "firstName": "Ana",
+       "lastName": "Davila",
+       "team": "Internal Team",
+       "date": "Sep 16, 2026 9:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Grateful",
+        "Motivated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-122",
+       "firstName": "Maria",
+       "lastName": "Silva",
+       "team": "Internal Team",
+       "date": "Sep 16, 2026 9:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Content"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-123",
+       "firstName": "Miguel",
+       "lastName": "Palacio",
+       "team": "Internal Team",
+       "date": "Sep 16, 2026 9:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-124",
+       "firstName": "Paulina",
+       "lastName": "Briones",
+       "team": "Internal Team",
+       "date": "Sep 16, 2026 9:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Excited"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-125",
+       "firstName": "Andrea",
+       "lastName": "Martinez",
+       "team": "Internal Team",
+       "date": "Sep 16, 2026 9:00 AM",
+       "mood": 3.0,
+       "emotions": [
+        "Distracted",
+        "Grateful"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-126",
+       "firstName": "Alfredo",
+       "lastName": "Broggi",
+       "team": "Internal Team",
+       "date": "Sep 16, 2026 9:00 AM",
+       "mood": 2.0,
+       "emotions": [
+        "Overwhelmed",
+        "Worried",
+        "Frustrated",
+        "Upset"
+       ],
+       "followUpRequested": true,
+       "followUpStatus": "Follow Pending",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-127",
+       "firstName": "Linda",
+       "lastName": "De la Rans",
+       "team": "Internal Team",
+       "date": "Sep 16, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Excited",
+        "Optimistic",
+        "Grateful"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-128",
+       "firstName": "Lino",
+       "lastName": "Quintero",
+       "team": "MEXICO",
+       "date": "Sep 17, 2026 9:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Happy",
+        "Motivated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-129",
+       "firstName": "Mitzi",
+       "lastName": "Guizar",
+       "team": "MEXICO",
+       "date": "Sep 17, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Happy",
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-130",
+       "firstName": "Maria Fernanda",
+       "lastName": "Hernandez",
+       "team": "MEXICO",
+       "date": "Sep 17, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Happy",
+        "Excited",
+        "Grateful",
+        "Motivated",
+        "Content",
+        "Optimistic",
+        "Appreciated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-131",
+       "firstName": "Karla",
+       "lastName": "Coronado",
+       "team": "MEXICO",
+       "date": "Sep 17, 2026 9:00 AM",
+       "mood": 5.0,
+       "emotions": [
+        "Excited",
+        "Content",
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-132",
+       "firstName": "Eloisa",
+       "lastName": "Alvarenga",
+       "team": "HONDURAS",
+       "date": "Sep 17, 2026 9:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-133",
+       "firstName": "Gaston",
+       "lastName": "Trujillo",
+       "team": "COLOMBIA",
+       "date": "Sep 17, 2026 10:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Excited",
+        "Grateful",
+        "Optimistic",
+        "Motivated",
+        "Overwhelmed"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": "All good here. Lots of work to complete, but so far everyting is under schedule."
+      },
+      {
+       "id": "zipdev-2026-09-134",
+       "firstName": "Luisa",
+       "lastName": "Pereira",
+       "team": "COLOMBIA",
+       "date": "Sep 17, 2026 10:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Happy",
+        "Excited",
+        "Motivated",
+        "Content"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-135",
+       "firstName": "Diego",
+       "lastName": "Quintero",
+       "team": "COLOMBIA",
+       "date": "Sep 17, 2026 10:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Grateful",
+        "Optimistic",
+        "Appreciated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-136",
+       "firstName": "Elmer",
+       "lastName": "Hurtado Dolz",
+       "team": "BOLIVIA",
+       "date": "Sep 17, 2026 11:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Grateful",
+        "Content"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-137",
+       "firstName": "Anderson",
+       "lastName": "Vargas",
+       "team": "VENEZUELA",
+       "date": "Sep 17, 2026 11:00 AM",
+       "mood": 4.0,
+       "emotions": [
+        "Optimistic",
+        "Content",
+        "Motivated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-138",
+       "firstName": "Cassio",
+       "lastName": "Takarada",
+       "team": "BRAZIL",
+       "date": "Sep 17, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Excited"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-139",
+       "firstName": "Adriana",
+       "lastName": "Salvarani",
+       "team": "BRAZIL",
+       "date": "Sep 17, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Happy",
+        "Excited",
+        "Grateful",
+        "Motivated"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-140",
+       "firstName": "Rai",
+       "lastName": "Lima de Oliveira",
+       "team": "BRAZIL",
+       "date": "Sep 17, 2026 12:00 PM",
+       "mood": 4.0,
+       "emotions": [
+        "Motivated",
+        "Grateful",
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-141",
+       "firstName": "Antonio",
+       "lastName": "Calazans",
+       "team": "BRAZIL",
+       "date": "Sep 17, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Grateful"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-142",
+       "firstName": "Luciano",
+       "lastName": "Lucena",
+       "team": "BRAZIL",
+       "date": "Sep 17, 2026 12:00 PM",
+       "mood": 4.0,
+       "emotions": [
+        "Grateful",
+        "Optimistic",
+        "Happy",
+        "Content"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-143",
+       "firstName": "Maicon",
+       "lastName": "Freire",
+       "team": "BRAZIL",
+       "date": "Sep 17, 2026 12:00 PM",
+       "mood": 4.0,
+       "emotions": [
+        "Happy",
+        "Grateful"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-144",
+       "firstName": "Victor",
+       "lastName": "Bicudo",
+       "team": "BRAZIL",
+       "date": "Sep 17, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Grateful",
+        "Optimistic"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-145",
+       "firstName": "Rodrigo",
+       "lastName": "Marques",
+       "team": "BRAZIL",
+       "date": "Sep 17, 2026 12:00 PM",
+       "mood": 4.0,
+       "emotions": [
+        "Grateful"
+       ],
+       "followUpRequested": false,
+       "followUpStatus": "",
+       "comments": ""
+      },
+      {
+       "id": "zipdev-2026-09-146",
+       "firstName": "Valentin",
+       "lastName": "Vidal",
+       "team": "ARGENTINA",
+       "date": "Sep 17, 2026 12:00 PM",
+       "mood": 5.0,
+       "emotions": [
+        "Happy",
+        "Motivated",
+        "Distracted"
        ],
        "followUpRequested": false,
        "followUpStatus": "",
