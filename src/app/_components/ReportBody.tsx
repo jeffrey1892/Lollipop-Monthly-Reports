@@ -593,6 +593,36 @@ export default function ReportBody({
             </div>
           </div>
         </div>
+        {/* Snapshot-only strip: key figures from the sections the one-page
+            brief omits, plus a pointer to the full report. Hidden everywhere
+            except the print brief (globals.css / print.css), where it fills the
+            space under the trends column beside the taller leadership column. */}
+        <div className="brief-more-section">
+          <div className="card brief-more-card">
+            <p className="brief-more-data">
+              <strong>Also this month:</strong>{' '}
+              {report.followUpRequests} follow-up request{report.followUpRequests === 1 ? '' : 's'}
+              {report.followUpRequests > 0 && report.followUpCompletionPct !== null
+                ? ` (${report.followUpCompletionPct}% addressed)`
+                : ''}
+              {' · '}
+              {report.engagementSummary.checkInCompletion.length} employee
+              {report.engagementSummary.checkInCompletion.length === 1 ? '' : 's'} with incomplete
+              check-ins · {report.engagementSummary.optedOut.length} opted out ·{' '}
+              {report.commentIntelligence.commentCount} comments analyzed
+              {report.topEmotions.length > 0
+                ? ` · Top emotions: ${report.topEmotions
+                    .slice(0, 3)
+                    .map((e) => `${e.emotion} ${e.pct}%`)
+                    .join(', ')}`
+                : ''}
+            </p>
+            <p className="brief-more-note">
+              Full report: AI comment intelligence, emotional wellness, follow-ups, check-in and
+              opt-out rosters, team appendix.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* === E. Leadership Priorities === */}
@@ -657,37 +687,6 @@ export default function ReportBody({
               </div>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Snapshot-only strip: key figures from the sections the one-page
-          brief omits, plus a pointer to the full report. Hidden everywhere
-          except the print brief (globals.css / print.css). */}
-      <section className="brief-section brief-more-section">
-        <div className="card brief-more-card">
-          <p className="brief-more-data">
-            <strong>Also this month:</strong>{' '}
-            {report.followUpRequests} follow-up request{report.followUpRequests === 1 ? '' : 's'}
-            {report.followUpRequests > 0 && report.followUpCompletionPct !== null
-              ? ` (${report.followUpCompletionPct}% addressed)`
-              : ''}
-            {' · '}
-            {report.engagementSummary.checkInCompletion.length} employee
-            {report.engagementSummary.checkInCompletion.length === 1 ? '' : 's'} with incomplete
-            check-ins · {report.engagementSummary.optedOut.length} opted out ·{' '}
-            {report.commentIntelligence.commentCount} comments analyzed
-            {report.topEmotions.length > 0
-              ? ` · Top emotions: ${report.topEmotions
-                  .slice(0, 3)
-                  .map((e) => `${e.emotion} ${e.pct}%`)
-                  .join(', ')}`
-              : ''}
-          </p>
-          <p className="brief-more-note">
-            See the full report for AI comment intelligence, emotional wellness, follow-up
-            responsiveness, the complete check-in and opted-out rosters, and team-level appendix
-            detail.
-          </p>
         </div>
       </section>
 
