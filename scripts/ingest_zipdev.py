@@ -97,6 +97,8 @@ def main():
     ap.add_argument('--effective-from', default=datetime.now().strftime('%Y-%m'),
                     help='month (YYYY-MM) the new combined roster takes effect; '
                          'earlier months keep their historical roster version')
+    ap.add_argument('--through', help='ignore responses after this month (YYYY-MM), '
+                                      'e.g. to drop a partial current month')
     args = ap.parse_args()
     if not any([args.main_responses, args.dev2_responses, args.main_roster, args.dev2_roster]):
         ap.error('nothing to ingest — pass at least one file')
@@ -146,6 +148,8 @@ def main():
         out = {}
         for rec in recs:
             mk, d = month_key(rec)
+            if args.through and mk > args.through:
+                continue
             out.setdefault(mk, []).append((d, rec))
         return out
 
