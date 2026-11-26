@@ -4,13 +4,13 @@ Copy everything below the line into a new Claude Code session, ideally in a new,
 
 ---
 
-Build a production-ready web app for the **Harvard Business School Young Presidents/Leaders (YPL) program, Week 2: Lead Session**. Work through the phases below in order. Commit after each phase. Ask me only about things you cannot decide yourself, such as API keys or the sending domain. For everything else, pick a sensible default and write it down in the README.
+Build a production-ready web app for the **Harvard Business School (HBS) YPL program, Week 2: Lead Session**. Work through the phases below in order. Commit after each phase. Ask me only about things you cannot decide yourself, such as API keys or the sending domain. For everything else, pick a sensible default and write it down in the README.
 
 ## 1. How the session works
 
 1. **Before the session**, each participant scans a QR code or opens a link, registers with their **name, email, chapter, and need**, and chooses a **need category**: *Professional Services*, *Fundraising*, or *Other*. They can sign back in later to edit their need.
-2. **Once the leads are in**, the facilitator clicks **Generate PowerPoint** and downloads a deck with one slide per participant showing their name, their need, and their leads. The deck is built from whatever is in the database at the moment of the click.
-3. **During the session**, each participant presents their need in turn. People in the room who have a lead raise their hand. Each signed-in participant checks the leads that apply to **their own need**: they **tick the names of the people who raised their hands** for them and rate each lead from **5 (strong) to 1 (weak)**. The facilitator can record or correct leads for anyone. Participants can also **take notes** on anyone's need.
+2. **During the session**, each participant presents their need in turn. People in the room who have a lead raise their hand. Each signed-in participant checks the leads that apply to **their own need**: they **tick the names of the people who raised their hands** for them and rate each lead from **5 (strong) to 1 (weak)**. The facilitator can record or correct leads for anyone. Participants can also **take notes** on anyone's need.
+3. **Once the leads are in**, the facilitator clicks **Generate PowerPoint** and downloads a deck with one slide per participant showing their name, their need, and their leads. The deck is built from whatever is in the database at the moment of the click.
 4. **After the session**, the app generates a **personal summary** for every registrant. It covers their need, every lead offered (who, contact email, chapter, strength 1–5, notes), suggested next steps and a **draft outreach email to each lead** for the person to copy and paste into their own email. The app never sends outreach emails itself. The app emails each summary to the address the person registered with. It also sends a **group digest** of everyone's needs and leads to all registrants.
 
 ## 2. Tech stack (use unless there is a strong reason not to)
@@ -20,7 +20,6 @@ Build a production-ready web app for the **Harvard Business School Young Preside
   - Postgres for the data
   - Realtime Broadcast, so lead changes show up on every device at once
 - **Simple email-only login, no password and no emailed code** (see section 4, "Login"). Do not use Supabase Auth. Keep the session in a signed, httpOnly cookie (use `jose` or `iron-session`).
-  - Row Level Security
 - **Anthropic TypeScript SDK (`@anthropic-ai/sdk`)** to write the summaries and the outreach drafts
   - Model `claude-opus-5-5`, set through the `ANTHROPIC_MODEL` environment variable
   - Use `output_config.effort` = `"medium"`
@@ -41,7 +40,7 @@ Provide `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_AN
   - `summaries_sent_at`
   - Build for multiple events so the app can be reused in later weeks.
 - `participants`
-  - `id`, `event_id`, `name`, `email` (stored lowercase and trimmed; unique per event), `chapter`, `role` (`participant` | `facilitator`), `presentation_order`, `created_at`, `updated_at`
+  - `id`, `event_id`, `name`, `email` (stored lowercase and trimmed; unique per event), `chapter`, `role` (`participant` | `facilitator` | `guest`), `presentation_order` (defaults to registration order), `created_at`, `updated_at`
 - `needs`
   - `id`, `participant_id`, `event_id`, `category` (`professional_services` | `fundraising` | `other`), `title` (short headline), `description`, `updated_at`
   - One active need per participant per event.
@@ -61,7 +60,9 @@ All database access goes through server routes and server actions using the serv
 - Only signed-in participants of an event can read that event's needs, leads, and shared notes.
 - Participants can only edit their own registration and their own notes.
 - Private notes are visible only to their author.
-- **Leads**: while the event is `live`, a participant can only add, change, or remove leads on **their own need**. Facilitators can do this for anyone.
+- **Leads**: a participant can only add, change, or remove leads on **their own need**. They can do this while the event is `live`, and after it is `closed` until summaries are sent. Facilitators can do this for anyone at any time.
+- **Needs**: participants can edit their own need until the event is `closed`. Locking registration only stops new sign-ups.
+- **Outreach drafts**: participants can create and edit drafts for their own leads at any time.
 - Facilitators can do everything.
 
 ## 4. Pages and features
@@ -72,7 +73,7 @@ All database access goes through server routes and server actions using the serv
 - If the email is registered for this event, sign the person in right away with a signed, httpOnly cookie that lasts 30 days, and send them to the live board.
 - If it isn't registered, send them to registration with the email already filled in.
 - Every page except registration and login sends signed-out visitors here. Add a Sign out link in the menu.
-- **Facilitators**: an email listed in `ADMIN_EMAILS` also has to enter the shared `ADMIN_PIN` once before admin features turn on. Without the PIN, anyone who typed the facilitator's email would get admin access.
+- **Facilitators**: an email listed in `ADMIN_EMAILS` can sign in without registering as a participant, but has to enter the shared `ADMIN_PIN` once before admin features turn on. Without the PIN, anyone who typed the facilitator's email would get admin access.
 - Put a note in the README that email-only login trusts people to type their own email. That is fine for a closed session, but it is not strong security.
 
 ### A. Registration: `/e/[slug]/register`
@@ -86,7 +87,7 @@ All database access goes through server routes and server actions using the serv
 - If the email is already registered, sign the person in and open their existing registration for editing. Do not create a duplicate.
 - Registering on a new phone or laptop, or logging in again with the same email, opens the same record.
 - Autosave drafts and show a "Saved ✓" indicator.
-- When the event is `registration_locked` or later, show a read-only message.
+- When the event is `registration_locked` or later, new registrations are closed; show a message telling walk-ins to see the facilitator. Existing participants can still sign in and edit.
 
 ### B. QR code: `/e/[slug]/qr` (facilitator only)
 
@@ -100,6 +101,7 @@ All database access goes through server routes and server actions using the serv
   - The panel is a searchable list of every other participant's name, each with a checkbox and large tap targets.
   - Checking a name opens a quick picker with five buttons, `5 Strong`, `4`, `3`, `2`, `1 Weak`. One tap saves it.
   - Unchecking a name removes that lead. Tapping the rating changes it.
+  - **Add someone not on the list**: if the person who raised their hand never registered, type their name (and optionally email and chapter). Save them as a `guest` participant who cannot sign in, so the lead still counts and appears in the PowerPoint and summary.
   - Participants can also open this panel at any time from **My Need**, so they can check leads after they finish presenting.
   - Everyone else sees the presenter's checked leads as read-only chips with ratings, and cannot change them.
 - **Realtime**: after each lead change, the server sends a "leads changed" message on a Supabase Realtime Broadcast channel for the event. The message carries no personal data, and clients refetch from the API when they receive it, so changes show up on every device within about 1 second. Use optimistic UI, retry on failure, and show an offline banner that queues writes in IndexedDB and syncs on reconnect.
@@ -107,7 +109,7 @@ All database access goes through server routes and server actions using the serv
 - **Follow mode**: participants' screens can follow the facilitator's current presenter, or they can browse on their own.
 - **Projector view** at `/e/[slug]/live?display=projector`: read-only, large type, showing the current presenter's need and a live count and list of leads.
 
-### D. Index tab: `/e/[slug]/index`
+### D. Index tab: `/e/[slug]/needs`
 
 - A tab in the main navigation that groups all needs under three headings: **Professional Services**, **Fundraising**, and **Other**.
 - Each entry shows name, chapter, need title and description, number of leads, and average lead strength.
@@ -125,7 +127,8 @@ All database access goes through server routes and server actions using the serv
 
 ### F. Facilitator admin: `/e/[slug]/admin`
 
-- Participant table with edit, remove, and set presentation order, plus CSV export of participants, needs, leads, and notes.
+- **Event setup**: create and edit an event (title, slug, date, start and end times, timezone), so the app can be reused for later weeks without code changes.
+- Participant table with add (for walk-ins), edit, remove, and set presentation order, plus CSV export of participants, needs, leads, and notes.
 - Event status controls: open registration, lock registration, start the live session, close the session.
 - **Generate PowerPoint**: a single button. One click builds the deck on the server with `pptxgenjs` from the current data and downloads it as `YPL-Week2-Lead-Session-YYYY-MM-DD.pptx`. There are no other slides or versions.
   - A clean 16:9 deck in HBS crimson (`#A51C30`), white, and dark gray.
