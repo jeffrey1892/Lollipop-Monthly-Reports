@@ -1,0 +1,193 @@
+# Prompt for Claude Code: HBS YPL Week 2 Lead Session App
+
+Copy everything below the line into a new Claude Code session, ideally in a new, empty repository.
+
+---
+
+Build a production-ready web app for the **Harvard Business School Young Presidents/Leaders (YPL) program, Week 2: Lead Session**. Work through the phases below in order. Commit after each phase. Ask me only about things you cannot decide yourself, such as API keys or the sending domain. For everything else, pick a sensible default and write it down in the README.
+
+## 1. How the session works
+
+1. **Before the session**, each participant scans a QR code or opens a link, registers with their **name, email, chapter, and need**, and chooses a **need category**: *Professional Services*, *Fundraising*, or *Other*. They can sign back in later to edit their need.
+2. **Right before the session**, the facilitator downloads a **PowerPoint** with one slide per participant showing their name, chapter, category, and need, plus a "Leads" area.
+3. **During the session**, each participant presents their need in turn. People in the room who have a lead raise their hand. Any signed-in participant can use the app to **tap the names of the people who raised their hands** and rate each lead from **5 (strong) to 1 (weak)**. Participants can also **take notes** on anyone's need.
+4. **After the session**, the app generates a **personal summary** for every registrant. It covers their need, every lead offered (who, contact email, chapter, strength 1–5, notes) and a **sample outreach email** they can send to each lead, written from their need. The app emails each summary to the address the person registered with. It also sends a **group digest** of everyone's needs and leads to all registrants.
+
+## 2. Tech stack (use unless there is a strong reason not to)
+
+- **Next.js (App Router) + TypeScript + Tailwind + shadcn/ui**, deployed on **Vercel**
+- **Supabase**:
+  - Postgres for the data
+  - Auth with email one-time codes, so it is passwordless and works well on phones
+  - Realtime, so lead taps show up on every device at once
+  - Row Level Security
+- **Anthropic TypeScript SDK (`@anthropic-ai/sdk`)** to write the summaries and sample emails
+  - Model `claude-opus-5-5`, set through the `ANTHROPIC_MODEL` environment variable
+  - Use `output_config.effort` = `"medium"`
+  - Use structured outputs (`output_config.format`) so the JSON can be parsed reliably
+  - Check `stop_reason` before reading content, and handle a `"refusal"`
+- **Resend** for email, with a verified sending domain from an environment variable and HTML plus plain-text templates (React Email)
+- **`pptxgenjs`** for the PowerPoint export
+- **`qrcode`** to make the QR code (PNG and SVG)
+- **Zod** to validate every form and API input
+
+Provide `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL`, `RESEND_API_KEY`, `EMAIL_FROM`, `APP_BASE_URL`, `ADMIN_EMAILS` (comma-separated) and `CRON_SECRET`.
+
+## 3. Data model (Supabase migrations in `supabase/migrations/`)
+
+- `events`
+  - `id`, `slug` (for example `ypl-week-2-lead-session`), `title`, `starts_at`, `ends_at`, `timezone`
+  - `status`: `registration_open` | `registration_locked` | `live` | `closed`
+  - `summaries_sent_at`
+  - Build for multiple events so the app can be reused in later weeks.
+- `participants`
+  - `id`, `event_id`, `user_id` (references auth.users), `name`, `email`, `chapter`, `role` (`participant` | `facilitator`), `presentation_order`, `created_at`, `updated_at`
+- `needs`
+  - `id`, `participant_id`, `event_id`, `category` (`professional_services` | `fundraising` | `other`), `title` (short headline), `description`, `sample_email` (AI draft), `updated_at`
+  - One active need per participant per event.
+- `leads`
+  - `id`, `need_id`, `giver_participant_id`, `strength` (integer 1–5), `recorded_by`, `created_at`, `updated_at`
+  - Unique on (`need_id`, `giver_participant_id`). A repeat tap updates the existing row instead of creating a duplicate.
+  - Keep a `lead_history` audit table for every change.
+- `notes`
+  - `id`, `need_id`, `author_participant_id`, `body`, `visibility` (`shared` | `private`), `created_at`, `updated_at`
+- `summaries`
+  - `id`, `participant_id`, `event_id`, `content_json`, `html`, `status` (`draft` | `approved` | `sent` | `failed`), `sent_at`, `error`
+
+**RLS rules:**
+
+- Only registered participants of an event can read that event's needs, leads, and shared notes.
+- Users can only edit their own registration and their own notes.
+- Private notes are visible only to their author.
+- Any participant can create or update leads while the event is `live`.
+- Facilitators (emails listed in `ADMIN_EMAILS`) can do everything.
+
+## 4. Pages and features
+
+### A. Registration: `/e/[slug]/register`
+
+- Mobile-first form with **Name, Email, Chapter, Need category, Need**. Add placeholder help text such as "What would move the needle for you in the next 90 days?"
+- Optionally, a "Suggest a category" button that asks Claude to classify the need. The person always has the final choice.
+- On submit:
+  1. Send a one-time code to verify the email.
+  2. Create the participant and need records.
+  3. Generate the **sample outreach email** in the background.
+  4. Show a confirmation screen with a preview of the sample email and an "Edit my need" button.
+- If the email is already registered, sign the person in and open their existing registration for editing. Do not create a duplicate.
+- Autosave drafts and show a "Saved ✓" indicator.
+- When the event is `registration_locked` or later, show a read-only message.
+
+### B. QR code: `/e/[slug]/qr` (facilitator only)
+
+- Full-screen, high-contrast QR code pointing to `APP_BASE_URL/e/[slug]/register`, with the short URL printed underneath for people who cannot scan.
+- Buttons to download PNG (2048 px) and SVG, plus a print-friendly layout.
+- Add a QR code slide to the PowerPoint as well (see section F).
+
+### C. Live session board: `/e/[slug]/live` (the main in-room screen)
+
+- **Presenter view**: a large card for the current presenter showing name, chapter, category badge, and need. Add Previous and Next controls and a presenter list in `presentation_order`. The facilitator can drag to reorder.
+- **Lead capture**: under the card, a searchable grid of every other participant's name as large tap targets.
+  - Tapping a name opens a quick picker with five buttons, `5 Strong`, `4`, `3`, `2`, `1 Weak`. One tap saves it.
+  - Show selected givers as chips with their rating. Tapping a chip changes the rating; long-press or ✕ removes it.
+- **Realtime**: lead changes show up on every device within about 1 second through Supabase Realtime. Use optimistic UI, retry on failure, and show an offline banner that queues writes in IndexedDB and syncs on reconnect.
+- **Notes panel**: a notes box on each presenter card with a Shared/Private toggle. It autosaves after 800 ms of inactivity, with a "Saved ✓" indicator. Show shared notes from others underneath, with author and time.
+- **Follow mode**: participants' screens can follow the facilitator's current presenter, or they can browse on their own.
+- **Projector view** at `/e/[slug]/live?display=projector`: read-only, large type, showing the current presenter's need and a live count and list of leads.
+
+### D. Index tab: `/e/[slug]/index`
+
+- A tab in the main navigation that groups all needs under three headings: **Professional Services**, **Fundraising**, and **Other**.
+- Each entry shows name, chapter, need title and description, number of leads, and average lead strength.
+- Add search, a chapter filter, sorting (by name, chapter, or number of leads), and a "My notes" indicator.
+- Clicking an entry opens the person's detail page with the full need, all leads, notes (where the notes box is also editable), and their sample email.
+
+### E. My need: `/e/[slug]/me`
+
+- Lets a participant edit their need and category, regenerate their sample email, see the leads they have received live, and see the notes they have written.
+
+### F. Facilitator admin: `/e/[slug]/admin`
+
+- Participant table with edit, remove, and set presentation order, plus CSV export of participants, needs, leads, and notes.
+- Event status controls: open registration, lock registration, start the live session, close the session.
+- **Download PowerPoint (pre-session)**. Generate it on the server with `pptxgenjs`, as a clean 16:9 deck in HBS crimson (`#A51C30`), white, and dark gray:
+  1. Title slide: "HBS YPL · Week 2 · Lead Session", the date, and the number of participants.
+  2. QR code slide with the registration link.
+  3. One slide per participant, in presentation order:
+     - Name, large
+     - Chapter
+     - Category badge
+     - Need title and description; shrink the font to fit long text
+     - A "Leads" box with blank lines to fill in by hand
+     - Speaker notes containing the full need text
+  4. An index slide grouping names by category.
+- **Download PowerPoint (post-session)**: the same deck with each participant's leads filled in (giver name and strength).
+- **Summaries workflow**:
+  1. Generate all summaries.
+  2. Show a preview list where each summary can be opened, edited inline, and approved.
+  3. Offer a "Send all approved" button and a "Send test to me" button.
+  4. Add an **auto-send option**: a Vercel Cron job (secured with `CRON_SECRET`) checks every 10 minutes. When an event's status is `closed`, or its `ends_at` plus a configurable delay (default 30 minutes) has passed, and summaries have not been sent yet, it generates and sends them automatically.
+  5. Sending must be idempotent: never email the same person twice for the same event. Record each send's status in `summaries`, and offer a retry for failures.
+
+## 5. AI generation (in `lib/ai/`, server-side only)
+
+1. **`generateSampleEmail(need, participant)`**: write a short, warm, specific outreach email of 120–180 words that the participant could send to a fellow YPL member who offered a lead.
+   - Include a subject line.
+   - Use placeholders such as `{{LeadName}}`.
+   - Refer to the YPL Week 2 session, say exactly what the need is, and make a clear, low-friction ask (for example, a 20-minute call or an introduction).
+   - Return JSON: `{ subject, body }`.
+2. **`generateParticipantSummary(participant, need, leads[], notes[])`**: return JSON with:
+   - `need_recap` (2–3 sentences)
+   - `leads[]`, each with `giver_name`, `giver_email`, `chapter`, `strength`, `suggested_next_step`, and `personalized_email` (`subject` and `body`, adapted from the sample email with the giver's name filled in)
+   - `top_3_actions`
+   - `notes_digest`, built only from shared notes plus the participant's own private notes
+   - Sort leads from strongest to weakest. If there are no leads, include encouragement and suggested next steps.
+3. **`generateGroupDigest(event)`**: a short overview of all needs by category, with lead counts and the total number of connections made.
+
+Keep the prompts in versioned files. Never include anyone else's private notes in a prompt. Use prompt caching on the shared system prompt. Run generation for all participants in parallel with a concurrency limit of 5, and use exponential backoff on HTTP 429 and 5xx errors.
+
+## 6. Emails (`emails/`)
+
+- **Personal summary email**, subject "Your YPL Week 2 Lead Session summary: N leads":
+  - Need recap
+  - A table of leads with a ★ strength rating, each with a mailto link to the giver
+  - Each personalized email draft in a copy-friendly block, plus a "Open in my email" mailto link with the subject and body pre-filled
+  - Top 3 actions
+  - A link back to the app
+- **Group digest email**: everyone's needs grouped by category, with lead counts.
+- **Registration confirmation email**: confirms their need, includes their sample email, and links to edit.
+
+## 7. Quality bar
+
+- Mobile-first and usable with one hand in a crowded room: tap targets of at least 44 px, fast loading, and WCAG AA contrast.
+- Every change saves automatically. A participant can never lose input on refresh. Show a "Saved ✓" indicator everywhere.
+- Navigation tabs: **Live · Index · My Need · (Admin)**.
+- Tests:
+  - Vitest unit tests for the Zod schemas, lead upsert and dedupe logic, and summary assembly, with Claude and Resend mocked
+  - Playwright end-to-end tests: register → edit need → live lead tap and rating → notes autosave → admin generates the PowerPoint → generate summaries → send (mocked)
+- A seed script (`npm run seed`) that creates a demo event with 12 fake participants across 4 chapters, needs in all three categories, leads, and notes, so I can rehearse the session.
+- README covering:
+  - Setup
+  - Supabase project creation
+  - Running the migrations
+  - Resend domain verification
+  - Deploying to Vercel and setting up Cron
+  - A **day-of-session runbook**:
+    1. Open registration
+    2. Project the QR code
+    3. Lock registration
+    4. Download the PowerPoint
+    5. Go live
+    6. Close the session
+    7. Review and send the summaries
+
+## 8. Delivery phases
+
+1. Scaffold, database schema, RLS, auth, and seed data
+2. Registration, My Need, and sample email generation
+3. QR code page and the pre-session PowerPoint
+4. Live session board with leads, ratings, notes, and realtime
+5. Index tab and participant detail pages
+6. Admin dashboard, summaries, emails, cron, and the post-session PowerPoint
+7. Tests, accessibility pass, and README/runbook
+
+At the end, run the full test suite and a production build, and report what passed, what failed, and anything I need to configure (keys, domain, Supabase project).
