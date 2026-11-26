@@ -13,7 +13,7 @@ Build a production-ready web app for the **Harvard Business School (HBS) YPL pro
 - **Start time:** 12:30 PM
 - **End time:** 2:00 PM (placeholder; the facilitator can change it on the admin page)
 - **Location:** Tara Hall
-- **Time zone:** America/New_York (placeholder; the facilitator can change it on the admin page)
+- **Time zone:** Eastern Time (`America/New_York`). Show all times as ET.
 
 Create this event automatically on first run, with slug `ypl-week-2-lead-session`, so it works out of the box. Show the date, time, and location on:
 - the registration page header
