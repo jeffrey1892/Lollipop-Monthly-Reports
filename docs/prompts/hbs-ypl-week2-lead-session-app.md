@@ -9,7 +9,7 @@ Build a production-ready web app for the **Harvard Business School Young Preside
 ## 1. How the session works
 
 1. **Before the session**, each participant scans a QR code or opens a link, registers with their **name, email, chapter, and need**, and chooses a **need category**: *Professional Services*, *Fundraising*, or *Other*. They can sign back in later to edit their need.
-2. **Right before the session**, the facilitator downloads a **PowerPoint** with one slide per participant showing their name, chapter, category, and need, plus a "Leads" area.
+2. **Once the leads are in**, the facilitator clicks **Generate PowerPoint** and downloads a deck with one slide per participant showing their name, their need, and their leads. The deck is built from whatever is in the database at the moment of the click.
 3. **During the session**, each participant presents their need in turn. People in the room who have a lead raise their hand. Any signed-in participant can use the app to **tap the names of the people who raised their hands** and rate each lead from **5 (strong) to 1 (weak)**. Participants can also **take notes** on anyone's need.
 4. **After the session**, the app generates a **personal summary** for every registrant. It covers their need, every lead offered (who, contact email, chapter, strength 1–5, notes) and a **sample outreach email** they can send to each lead, written from their need. The app emails each summary to the address the person registered with. It also sends a **group digest** of everyone's needs and leads to all registrants.
 
@@ -81,7 +81,6 @@ Provide `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_AN
 
 - Full-screen, high-contrast QR code pointing to `APP_BASE_URL/e/[slug]/register`, with the short URL printed underneath for people who cannot scan.
 - Buttons to download PNG (2048 px) and SVG, plus a print-friendly layout.
-- Add a QR code slide to the PowerPoint as well (see section F).
 
 ### C. Live session board: `/e/[slug]/live` (the main in-room screen)
 
@@ -109,18 +108,13 @@ Provide `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_AN
 
 - Participant table with edit, remove, and set presentation order, plus CSV export of participants, needs, leads, and notes.
 - Event status controls: open registration, lock registration, start the live session, close the session.
-- **Download PowerPoint (pre-session)**. Generate it on the server with `pptxgenjs`, as a clean 16:9 deck in HBS crimson (`#A51C30`), white, and dark gray:
-  1. Title slide: "HBS YPL · Week 2 · Lead Session", the date, and the number of participants.
-  2. QR code slide with the registration link.
-  3. One slide per participant, in presentation order:
-     - Name, large
-     - Chapter
-     - Category badge
-     - Need title and description; shrink the font to fit long text
-     - A "Leads" box with blank lines to fill in by hand
-     - Speaker notes containing the full need text
-  4. An index slide grouping names by category.
-- **Download PowerPoint (post-session)**: the same deck with each participant's leads filled in (giver name and strength).
+- **Generate PowerPoint**: a single button. One click builds the deck on the server with `pptxgenjs` from the current data and downloads it as `YPL-Week2-Lead-Session-YYYY-MM-DD.pptx`. There are no other slides or versions.
+  - A clean 16:9 deck in HBS crimson (`#A51C30`), white, and dark gray.
+  - One slide per participant, in presentation order, showing:
+    - **Name**, large
+    - **Need**: title and description; shrink the font to fit long text
+    - **Leads**: each lead's giver name and strength (5–1), sorted strongest first. If there are none yet, show "No leads yet".
+  - Clicking again rebuilds the deck from the latest data.
 - **Summaries workflow**:
   1. Generate all summaries.
   2. Show a preview list where each summary can be opened, edited inline, and approved.
@@ -175,19 +169,19 @@ Keep the prompts in versioned files. Never include anyone else's private notes i
     1. Open registration
     2. Project the QR code
     3. Lock registration
-    4. Download the PowerPoint
-    5. Go live
-    6. Close the session
+    4. Go live
+    5. Close the session
+    6. Click Generate PowerPoint
     7. Review and send the summaries
 
 ## 8. Delivery phases
 
 1. Scaffold, database schema, RLS, auth, and seed data
 2. Registration, My Need, and sample email generation
-3. QR code page and the pre-session PowerPoint
+3. QR code page
 4. Live session board with leads, ratings, notes, and realtime
 5. Index tab and participant detail pages
-6. Admin dashboard, summaries, emails, cron, and the post-session PowerPoint
+6. Admin dashboard, Generate PowerPoint button, summaries, emails, and cron
 7. Tests, accessibility pass, and README/runbook
 
 At the end, run the full test suite and a production build, and report what passed, what failed, and anything I need to configure (keys, domain, Supabase project).
