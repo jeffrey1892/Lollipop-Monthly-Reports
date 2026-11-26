@@ -11,7 +11,7 @@ Build a production-ready web app for the **Harvard Business School (HBS) YPL pro
 - **Event:** HBS YPL, Week 2: Lead Session
 - **Date:** Wednesday, January 20, 2027
 - **Start time:** 12:30 PM
-- **End time:** 2:00 PM (placeholder; the facilitator can change it on the admin page)
+- **End time:** not known yet. Leave it blank; the facilitator can set it on the admin page if they find out.
 - **Location:** Tara Hall
 - **Time zone:** Eastern Time (`America/New_York`). Show all times as ET.
 
@@ -50,7 +50,7 @@ Provide `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_AN
 ## 3. Data model (Supabase migrations in `supabase/migrations/`)
 
 - `events`
-  - `id`, `slug` (for example `ypl-week-2-lead-session`), `title`, `starts_at`, `ends_at`, `timezone`
+  - `id`, `slug` (for example `ypl-week-2-lead-session`), `title`, `starts_at`, `ends_at` (optional), `timezone`
   - `status`: `registration_open` | `registration_locked` | `live` | `closed`
   - `summaries_sent_at`
   - Build for multiple events so the app can be reused in later weeks.
@@ -163,7 +163,7 @@ All database access goes through server routes and server actions using the serv
   - Clicking again rebuilds the deck from the latest data.
 - **Summaries are sent automatically.** There is no approval step.
   1. When the facilitator clicks **Close session**, the app waits a set delay (default 30 minutes, adjustable on the admin page) so late lead ratings get in. Then it generates every summary and emails it with no further clicks.
-  2. As a backstop, if the facilitator forgets to close the session, it closes itself and sends at the event's `ends_at` plus the same delay.
+  2. As a backstop, if the facilitator forgets to close the session, it closes itself and sends at the event's `ends_at` plus the same delay. If no end time is set, the backstop is **6:00 PM ET on the event day**.
   3. A Vercel Cron job (secured with `CRON_SECRET`) checks every 5 minutes and does the sending.
   4. Before the session, the admin page has a **"Send test summary to me"** button, which uses the seed or demo data.
   5. The admin page shows a countdown to the send, then each person's send status. Admins can open any sent summary and click **Retry** for failures.
