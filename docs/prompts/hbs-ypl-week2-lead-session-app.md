@@ -49,7 +49,7 @@ Provide `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_AN
   - Unique on (`need_id`, `giver_participant_id`). A repeat tap updates the existing row instead of creating a duplicate. If the giver offers a lead and the owner also checks that same person, both end up on the one row.
   - Keep a `lead_history` audit table for every change.
 - `notes`
-  - `id`, `need_id`, `author_participant_id`, `body`, `visibility` (`shared` | `private`), `created_at`, `updated_at`
+  - `id`, `need_id`, `author_participant_id`, `body`, `visibility` (`private` | `shared`, **default `private`**), `created_at`, `updated_at`
 - `summaries`
   - `id`, `participant_id`, `event_id`, `content_json`, `html`, `status` (`pending` | `sent` | `failed`), `sent_at`, `error`
 
@@ -112,7 +112,7 @@ All database access goes through server routes and server actions using the serv
   - Unchecking withdraws the offer, until the owner has rated it.
   - The presenter's panel updates in real time, so the presenter can rate offers as hands go up.
 - **Realtime**: after each lead change, the server sends a "leads changed" message on a Supabase Realtime Broadcast channel for the event. The message carries no personal data, and clients refetch from the API when they receive it, so changes show up on every device within about 1 second. Use optimistic UI, retry on failure, and show an offline banner that queues writes in IndexedDB and syncs on reconnect.
-- **Notes panel**: a notes box on each presenter card with a Shared/Private toggle. It autosaves after 800 ms of inactivity, with a "Saved ✓" indicator. Show shared notes from others underneath, with author and time.
+- **Notes panel**: a notes box on each presenter card with a Private/Shared toggle. **Notes are private by default**; a note becomes visible to others only if its author switches it to Shared. Show a small lock icon on private notes. It autosaves after 800 ms of inactivity, with a "Saved ✓" indicator. Show shared notes from others underneath, with author and time.
 - **Follow mode**: participants' screens can follow the facilitator's current presenter, or they can browse on their own.
 - **Projector view** at `/e/[slug]/live?display=projector`: read-only, large type, showing the current presenter's need and a live count and list of leads.
 
@@ -165,9 +165,10 @@ All database access goes through server routes and server actions using the serv
    - `leads[]`, each with `giver_name`, `giver_email`, `chapter`, `strength`, `suggested_next_step`, and `outreach_draft` (reuse the saved draft from `draftOutreachEmail` if there is one)
    - `leads_i_offered[]`: each person this participant offered a lead to, with that person's need and the participant's note, so they remember to follow up
    - `top_3_actions`
-   - `notes_digest`, built only from shared notes plus the participant's own private notes
+   - `notes_about_my_need`: shared notes others wrote on this participant's need. Never include other people's private notes.
+   - `my_notes`: the notes this participant wrote, private and shared, grouped by whose need they were on
    - Sort leads from strongest to weakest. If there are no leads, include encouragement and suggested next steps.
-3. **`generateGroupDigest(event)`**: a short overview of all needs by category, with lead counts and the total number of connections made.
+3. **`generateGroupDigest(event)`**: a short overview of all needs by category: each person's name, chapter, need, and the names of the people who offered them leads, plus the total number of connections made. Leave out lead ratings and all notes.
 
 Outreach drafts are for copy and paste only; never send them from the app. Keep the prompts in versioned files. Never include anyone else's private notes in a prompt. Use prompt caching on the shared system prompt. Run generation for all participants in parallel with a concurrency limit of 5, and use exponential backoff on HTTP 429 and 5xx errors.
 
@@ -178,9 +179,11 @@ Outreach drafts are for copy and paste only; never send them from the app. Keep 
   - A table of leads with a ★ strength rating, each with a mailto link to the giver
   - Each lead's outreach draft in a plain, copy-friendly block
   - "Leads you offered": who you promised to help and with what
+  - "Notes on your need": shared notes others wrote about your need
+  - "Your notes": everything you wrote, including your private notes, which only you receive
   - Top 3 actions
   - A link back to the app
-- **Group digest email**: everyone's needs grouped by category, with lead counts.
+- **Group digest email**: sent automatically to every registrant at the same time as the personal summaries, and covered by the same no-duplicates rule. It shows everyone's needs grouped by category, with each person's name, chapter, need, lead count, and the names of the people who offered leads. It contains **no ratings and no notes**.
 - These two are the only emails the app sends. There is no registration confirmation email and no login email.
 
 ## 7. Quality bar
