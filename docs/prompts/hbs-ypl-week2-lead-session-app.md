@@ -11,7 +11,7 @@ Build a production-ready web app for the **Harvard Business School Young Preside
 1. **Before the session**, each participant scans a QR code or opens a link, registers with their **name, email, chapter, and need**, and chooses a **need category**: *Professional Services*, *Fundraising*, or *Other*. They can sign back in later to edit their need.
 2. **Once the leads are in**, the facilitator clicks **Generate PowerPoint** and downloads a deck with one slide per participant showing their name, their need, and their leads. The deck is built from whatever is in the database at the moment of the click.
 3. **During the session**, each participant presents their need in turn. People in the room who have a lead raise their hand. Each signed-in participant checks the leads that apply to **their own need**: they **tick the names of the people who raised their hands** for them and rate each lead from **5 (strong) to 1 (weak)**. The facilitator can record or correct leads for anyone. Participants can also **take notes** on anyone's need.
-4. **After the session**, the app generates a **personal summary** for every registrant. It covers their need, every lead offered (who, contact email, chapter, strength 1–5, notes) and a **sample outreach email** they can send to each lead, written from their need. The app emails each summary to the address the person registered with. It also sends a **group digest** of everyone's needs and leads to all registrants.
+4. **After the session**, the app generates a **personal summary** for every registrant. It covers their need, every lead offered (who, contact email, chapter, strength 1–5, notes) and suggested next steps. The app does **not** write draft or outreach emails for anyone. The app emails each summary to the address the person registered with. It also sends a **group digest** of everyone's needs and leads to all registrants.
 
 ## 2. Tech stack (use unless there is a strong reason not to)
 
@@ -21,7 +21,7 @@ Build a production-ready web app for the **Harvard Business School Young Preside
   - Realtime Broadcast, so lead changes show up on every device at once
 - **Simple email-only login, no password and no emailed code** (see section 4, "Login"). Do not use Supabase Auth. Keep the session in a signed, httpOnly cookie (use `jose` or `iron-session`).
   - Row Level Security
-- **Anthropic TypeScript SDK (`@anthropic-ai/sdk`)** to write the summaries and sample emails
+- **Anthropic TypeScript SDK (`@anthropic-ai/sdk`)** to write the summaries
   - Model `claude-opus-5-5`, set through the `ANTHROPIC_MODEL` environment variable
   - Use `output_config.effort` = `"medium"`
   - Use structured outputs (`output_config.format`) so the JSON can be parsed reliably
@@ -43,7 +43,7 @@ Provide `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_AN
 - `participants`
   - `id`, `event_id`, `name`, `email` (stored lowercase and trimmed; unique per event), `chapter`, `role` (`participant` | `facilitator`), `presentation_order`, `created_at`, `updated_at`
 - `needs`
-  - `id`, `participant_id`, `event_id`, `category` (`professional_services` | `fundraising` | `other`), `title` (short headline), `description`, `sample_email` (AI draft), `updated_at`
+  - `id`, `participant_id`, `event_id`, `category` (`professional_services` | `fundraising` | `other`), `title` (short headline), `description`, `updated_at`
   - One active need per participant per event.
 - `leads`
   - `id`, `need_id`, `giver_participant_id`, `strength` (integer 1–5), `recorded_by`, `created_at`, `updated_at`
@@ -82,8 +82,7 @@ All database access goes through server routes and server actions using the serv
 - On submit:
   1. Create the participant and need records.
   2. Sign the person in, the same way as the login page.
-  3. Generate the **sample outreach email** in the background.
-  4. Show a confirmation screen with a preview of the sample email and an "Edit my need" button.
+  3. Show a confirmation screen with their need and an "Edit my need" button.
 - If the email is already registered, sign the person in and open their existing registration for editing. Do not create a duplicate.
 - Registering on a new phone or laptop, or logging in again with the same email, opens the same record.
 - Autosave drafts and show a "Saved ✓" indicator.
@@ -113,11 +112,11 @@ All database access goes through server routes and server actions using the serv
 - A tab in the main navigation that groups all needs under three headings: **Professional Services**, **Fundraising**, and **Other**.
 - Each entry shows name, chapter, need title and description, number of leads, and average lead strength.
 - Add search, a chapter filter, sorting (by name, chapter, or number of leads), and a "My notes" indicator.
-- Clicking an entry opens the person's detail page with the full need, all leads, notes (where the notes box is also editable), and their sample email.
+- Clicking an entry opens the person's detail page with the full need, all leads, and notes (where the notes box is also editable).
 
 ### E. My need: `/e/[slug]/me`
 
-- Lets a participant edit their need and category, regenerate their sample email, **check and rate the leads for their need** (the same panel as the live board), and see the notes they have written.
+- Lets a participant edit their need and category, **check and rate the leads for their need** (the same panel as the live board), and see the notes they have written.
 
 ### F. Facilitator admin: `/e/[slug]/admin`
 
@@ -139,31 +138,25 @@ All database access goes through server routes and server actions using the serv
 
 ## 5. AI generation (in `lib/ai/`, server-side only)
 
-1. **`generateSampleEmail(need, participant)`**: write a short, warm, specific outreach email of 120–180 words that the participant could send to a fellow YPL member who offered a lead.
-   - Include a subject line.
-   - Use placeholders such as `{{LeadName}}`.
-   - Refer to the YPL Week 2 session, say exactly what the need is, and make a clear, low-friction ask (for example, a 20-minute call or an introduction).
-   - Return JSON: `{ subject, body }`.
-2. **`generateParticipantSummary(participant, need, leads[], notes[])`**: return JSON with:
+1. **`generateParticipantSummary(participant, need, leads[], notes[])`**: return JSON with:
    - `need_recap` (2–3 sentences)
-   - `leads[]`, each with `giver_name`, `giver_email`, `chapter`, `strength`, `suggested_next_step`, and `personalized_email` (`subject` and `body`, adapted from the sample email with the giver's name filled in)
+   - `leads[]`, each with `giver_name`, `giver_email`, `chapter`, `strength`, and `suggested_next_step`
    - `top_3_actions`
    - `notes_digest`, built only from shared notes plus the participant's own private notes
    - Sort leads from strongest to weakest. If there are no leads, include encouragement and suggested next steps.
-3. **`generateGroupDigest(event)`**: a short overview of all needs by category, with lead counts and the total number of connections made.
+2. **`generateGroupDigest(event)`**: a short overview of all needs by category, with lead counts and the total number of connections made.
 
-Keep the prompts in versioned files. Never include anyone else's private notes in a prompt. Use prompt caching on the shared system prompt. Run generation for all participants in parallel with a concurrency limit of 5, and use exponential backoff on HTTP 429 and 5xx errors.
+Do not generate draft, sample, or outreach emails anywhere in the app. Keep the prompts in versioned files. Never include anyone else's private notes in a prompt. Use prompt caching on the shared system prompt. Run generation for all participants in parallel with a concurrency limit of 5, and use exponential backoff on HTTP 429 and 5xx errors.
 
 ## 6. Emails (`emails/`)
 
 - **Personal summary email**, subject "Your YPL Week 2 Lead Session summary: N leads":
   - Need recap
   - A table of leads with a ★ strength rating, each with a mailto link to the giver
-  - Each personalized email draft in a copy-friendly block, plus a "Open in my email" mailto link with the subject and body pre-filled
   - Top 3 actions
   - A link back to the app
 - **Group digest email**: everyone's needs grouped by category, with lead counts.
-- **Registration confirmation email**: confirms their need, includes their sample email, and links to edit.
+- These two are the only emails the app sends. There is no registration confirmation email and no login email.
 
 ## 7. Quality bar
 
@@ -192,7 +185,7 @@ Keep the prompts in versioned files. Never include anyone else's private notes i
 ## 8. Delivery phases
 
 1. Scaffold, database schema, email-only login, access rules, and seed data
-2. Registration, My Need, and sample email generation
+2. Registration and My Need
 3. QR code page
 4. Live session board with leads, ratings, notes, and realtime
 5. Index tab and participant detail pages
