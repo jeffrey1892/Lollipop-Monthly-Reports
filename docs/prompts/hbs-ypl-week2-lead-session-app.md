@@ -6,6 +6,21 @@ Copy everything below the line into a new Claude Code session, ideally in a new,
 
 Build a production-ready web app for the **Harvard Business School (HBS) YPL program, Week 2: Lead Session**. Work through the phases below in order. Commit after each phase. Ask me only about things you cannot decide yourself, such as API keys or the sending domain. For everything else, pick a sensible default and write it down in the README.
 
+## Event details
+
+- **Event:** HBS YPL, Week 2: Lead Session
+- **Date:** Wednesday, January 20, 2027
+- **Start time:** 12:30 PM
+- **End time:** 2:00 PM (placeholder; the facilitator can change it on the admin page)
+- **Location:** Tara Hall
+- **Time zone:** America/New_York (placeholder; the facilitator can change it on the admin page)
+
+Create this event automatically on first run, with slug `ypl-week-2-lead-session`, so it works out of the box. Show the date, time, and location on:
+- the registration page header
+- the QR code page
+- the live board header
+- both emails
+
 ## 1. How the session works
 
 1. **Before the session**, each participant scans a QR code or opens a link, registers with their **name, email, chapter, and need**, and chooses a **need category**: *Professional Services*, *Fundraising*, or *Other*. They can sign back in later to edit their need.
@@ -194,7 +209,7 @@ Outreach drafts are for copy and paste only; never send them from the app. Keep 
 - Tests:
   - Vitest unit tests for the Zod schemas, lead upsert and dedupe logic (including an owner check and a giver offer merging into one row), and summary assembly, with Claude and Resend mocked
   - Playwright end-to-end tests: register → sign out → sign in with email only → edit need → a second participant checks "I have a lead for you" on the first participant's need → the first participant sees the offer and rates it (and confirm a participant cannot rate someone else's leads or offer a lead on their own need) → notes autosave → admin generates the PowerPoint → close session → summaries generate and send automatically after the delay (mocked, with time faked) → no one is emailed twice
-- A seed script (`npm run seed`) that creates a demo event with 12 fake participants across 4 chapters, needs in all three categories, leads, and notes, so I can rehearse the session.
+- A seed script (`npm run seed`) that creates a separate demo event (slug `demo`, never the real event) with 12 fake participants across 4 chapters, needs in all three categories, leads, and notes, so I can rehearse the session.
 - README covering:
   - Setup
   - Supabase project creation
