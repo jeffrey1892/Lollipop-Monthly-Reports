@@ -9,7 +9,7 @@ Build a production-ready web app for the **Harvard Business School (HBS) YPL pro
 ## 1. How the session works
 
 1. **Before the session**, each participant scans a QR code or opens a link, registers with their **name, email, chapter, and need**, and chooses a **need category**: *Professional Services*, *Fundraising*, or *Other*. They can sign back in later to edit their need.
-2. **During the session**, each participant presents their need in turn. People in the room who have a lead raise their hand. Each signed-in participant checks the leads that apply to **their own need**: they **tick the names of the people who raised their hands** for them and rate each lead from **5 (strong) to 1 (weak)**. The facilitator can record or correct leads for anyone. Participants can also **take notes** on anyone's need.
+2. **During the session**, each participant presents their need in turn. People in the room who have a lead raise their hand. Each signed-in participant checks the leads that apply to **their own need**: they **tick the names of the people who raised their hands** for them and rate each lead from **5 (strong) to 1 (weak)**. Any participant can also **check a box on someone else's need to say "I have a lead for you"**, with an optional one-line note on what the lead is. The person with the need sees each offer and rates it. The facilitator can record or correct leads for anyone. Participants can also **take notes** on anyone's need.
 3. **Once the leads are in**, the facilitator clicks **Generate PowerPoint** and downloads a deck with one slide per participant showing their name, their need, and their leads. The deck is built from whatever is in the database at the moment of the click.
 4. **After the session**, the app generates a **personal summary** for every registrant. It covers their need, every lead offered (who, contact email, chapter, strength 1–5, notes), suggested next steps and a **draft outreach email to each lead** for the person to copy and paste into their own email. The app never sends outreach emails itself. The app emails each summary to the address the person registered with. It also sends a **group digest** of everyone's needs and leads to all registrants.
 
@@ -45,8 +45,8 @@ Provide `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_AN
   - `id`, `participant_id`, `event_id`, `category` (`professional_services` | `fundraising` | `other`), `title` (short headline), `description`, `updated_at`
   - One active need per participant per event.
 - `leads`
-  - `id`, `need_id`, `giver_participant_id`, `strength` (integer 1–5), `outreach_subject`, `outreach_body` (the saved cut-and-paste draft), `recorded_by`, `created_at`, `updated_at`
-  - Unique on (`need_id`, `giver_participant_id`). A repeat tap updates the existing row instead of creating a duplicate.
+  - `id`, `need_id`, `giver_participant_id`, `strength` (integer 1–5, empty until the person with the need rates it), `source` (`owner` | `giver` | `facilitator`: who first checked the box), `giver_note` (optional note from the person offering the lead), `outreach_subject`, `outreach_body` (the saved cut-and-paste draft), `recorded_by`, `created_at`, `updated_at`
+  - Unique on (`need_id`, `giver_participant_id`). A repeat tap updates the existing row instead of creating a duplicate. If the giver offers a lead and the owner also checks that same person, both end up on the one row.
   - Keep a `lead_history` audit table for every change.
 - `notes`
   - `id`, `need_id`, `author_participant_id`, `body`, `visibility` (`shared` | `private`), `created_at`, `updated_at`
@@ -60,7 +60,9 @@ All database access goes through server routes and server actions using the serv
 - Only signed-in participants of an event can read that event's needs, leads, and shared notes.
 - Participants can only edit their own registration and their own notes.
 - Private notes are visible only to their author.
-- **Leads**: a participant can only add, change, or remove leads on **their own need**. They can do this while the event is `live`, and after it is `closed` until summaries are sent. Facilitators can do this for anyone at any time.
+- **Leads I received**: a participant can only rate, change, or remove leads on **their own need**.
+- **Leads I offer**: any participant can check or uncheck "I have a lead for you" on **someone else's** need and edit their own `giver_note`. They can uncheck only until the owner has rated the lead. After that, only the owner or a facilitator can remove it. No one can offer a lead on their own need.
+- **Timing for both kinds**: participants can make lead changes at any time until summaries are sent, so offers can be made from the Index before the session. Facilitators can change any lead at any time.
 - **Needs**: participants can edit their own need until the event is `closed`. Locking registration only stops new sign-ups.
 - **Outreach drafts**: participants can create and edit drafts for their own leads at any time.
 - Facilitators can do everything.
@@ -103,7 +105,12 @@ All database access goes through server routes and server actions using the serv
   - Unchecking a name removes that lead. Tapping the rating changes it.
   - **Add someone not on the list**: if the person who raised their hand never registered, type their name (and optionally email and chapter). Save them as a `guest` participant who cannot sign in, so the lead still counts and appears in the PowerPoint and summary.
   - Participants can also open this panel at any time from **My Need**, so they can check leads after they finish presenting.
-  - Everyone else sees the presenter's checked leads as read-only chips with ratings, and cannot change them.
+  - Offers from other participants ("I have a lead for you") appear in this panel already checked, with the giver's note and a "Rate it" prompt.
+  - Everyone else sees the presenter's leads as read-only chips with ratings, and cannot change them.
+- **"I have a lead for you" checkbox**: everyone except the presenter sees a large checkbox on the presenter's card.
+  - Checking it records the signed-in participant as a lead for that need. An optional one-line note box opens ("Who or what is the lead?") and autosaves.
+  - Unchecking withdraws the offer, until the owner has rated it.
+  - The presenter's panel updates in real time, so the presenter can rate offers as hands go up.
 - **Realtime**: after each lead change, the server sends a "leads changed" message on a Supabase Realtime Broadcast channel for the event. The message carries no personal data, and clients refetch from the API when they receive it, so changes show up on every device within about 1 second. Use optimistic UI, retry on failure, and show an offline banner that queues writes in IndexedDB and syncs on reconnect.
 - **Notes panel**: a notes box on each presenter card with a Shared/Private toggle. It autosaves after 800 ms of inactivity, with a "Saved ✓" indicator. Show shared notes from others underneath, with author and time.
 - **Follow mode**: participants' screens can follow the facilitator's current presenter, or they can browse on their own.
@@ -114,11 +121,13 @@ All database access goes through server routes and server actions using the serv
 - A tab in the main navigation that groups all needs under three headings: **Professional Services**, **Fundraising**, and **Other**.
 - Each entry shows name, chapter, need title and description, number of leads, and average lead strength.
 - Add search, a chapter filter, sorting (by name, chapter, or number of leads), and a "My notes" indicator.
-- Clicking an entry opens the person's detail page with the full need, all leads, and notes (where the notes box is also editable).
+- Each entry also has the **"I have a lead for you"** checkbox, so people can offer leads before or after the person presents.
+- Clicking an entry opens the person's detail page with the full need, all leads, the same checkbox, and notes (where the notes box is also editable).
 
 ### E. My need: `/e/[slug]/me`
 
 - Lets a participant edit their need and category, **check and rate the leads for their need** (the same panel as the live board), and see the notes they have written.
+- **Leads I've offered**: a list of everyone this participant checked "I have a lead for you" for, with their need, the participant's note, and the owner's rating if there is one. This is their follow-up list.
 - **Outreach drafts (cut and paste)**: next to each checked lead, a **Draft email** button.
   - Clicking it writes a short draft from the participant to that lead, based on the participant's need and the lead's name and chapter.
   - Show the draft in an editable box with separate **Copy subject** and **Copy body** buttons, plus an "Open in my email" mailto link with both pre-filled.
@@ -135,7 +144,7 @@ All database access goes through server routes and server actions using the serv
   - One slide per participant, in presentation order, showing:
     - **Name**, large
     - **Need**: title and description; shrink the font to fit long text
-    - **Leads**: each lead's giver name and strength (5–1), sorted strongest first. If there are none yet, show "No leads yet".
+    - **Leads**: each lead's giver name and strength (5–1), sorted strongest first, with unrated offers last marked "not rated". If there are none yet, show "No leads yet".
   - Clicking again rebuilds the deck from the latest data.
 - **Summaries workflow**:
   1. Generate all summaries.
@@ -153,6 +162,7 @@ All database access goes through server routes and server actions using the serv
 2. **`generateParticipantSummary(participant, need, leads[], notes[])`**: return JSON with:
    - `need_recap` (2–3 sentences)
    - `leads[]`, each with `giver_name`, `giver_email`, `chapter`, `strength`, `suggested_next_step`, and `outreach_draft` (reuse the saved draft from `draftOutreachEmail` if there is one)
+   - `leads_i_offered[]`: each person this participant offered a lead to, with that person's need and the participant's note, so they remember to follow up
    - `top_3_actions`
    - `notes_digest`, built only from shared notes plus the participant's own private notes
    - Sort leads from strongest to weakest. If there are no leads, include encouragement and suggested next steps.
@@ -166,6 +176,7 @@ Outreach drafts are for copy and paste only; never send them from the app. Keep 
   - Need recap
   - A table of leads with a ★ strength rating, each with a mailto link to the giver
   - Each lead's outreach draft in a plain, copy-friendly block
+  - "Leads you offered": who you promised to help and with what
   - Top 3 actions
   - A link back to the app
 - **Group digest email**: everyone's needs grouped by category, with lead counts.
@@ -177,8 +188,8 @@ Outreach drafts are for copy and paste only; never send them from the app. Keep 
 - Every change saves automatically. A participant can never lose input on refresh. Show a "Saved ✓" indicator everywhere.
 - Navigation tabs: **Live · Index · My Need · (Admin)**.
 - Tests:
-  - Vitest unit tests for the Zod schemas, lead upsert and dedupe logic, and summary assembly, with Claude and Resend mocked
-  - Playwright end-to-end tests: register → sign out → sign in with email only → edit need → check and rate own leads (and confirm a participant cannot change someone else's leads) → notes autosave → admin generates the PowerPoint → generate summaries → send (mocked)
+  - Vitest unit tests for the Zod schemas, lead upsert and dedupe logic (including an owner check and a giver offer merging into one row), and summary assembly, with Claude and Resend mocked
+  - Playwright end-to-end tests: register → sign out → sign in with email only → edit need → a second participant checks "I have a lead for you" on the first participant's need → the first participant sees the offer and rates it (and confirm a participant cannot rate someone else's leads or offer a lead on their own need) → notes autosave → admin generates the PowerPoint → generate summaries → send (mocked)
 - A seed script (`npm run seed`) that creates a demo event with 12 fake participants across 4 chapters, needs in all three categories, leads, and notes, so I can rehearse the session.
 - README covering:
   - Setup
