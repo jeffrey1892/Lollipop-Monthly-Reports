@@ -51,7 +51,7 @@ Provide `.env.example` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_AN
 - `notes`
   - `id`, `need_id`, `author_participant_id`, `body`, `visibility` (`shared` | `private`), `created_at`, `updated_at`
 - `summaries`
-  - `id`, `participant_id`, `event_id`, `content_json`, `html`, `status` (`draft` | `approved` | `sent` | `failed`), `sent_at`, `error`
+  - `id`, `participant_id`, `event_id`, `content_json`, `html`, `status` (`pending` | `sent` | `failed`), `sent_at`, `error`
 
 **Access rules:**
 
@@ -146,12 +146,13 @@ All database access goes through server routes and server actions using the serv
     - **Need**: title and description; shrink the font to fit long text
     - **Leads**: each lead's giver name and strength (5–1), sorted strongest first, with unrated offers last marked "not rated". If there are none yet, show "No leads yet".
   - Clicking again rebuilds the deck from the latest data.
-- **Summaries workflow**:
-  1. Generate all summaries.
-  2. Show a preview list where each summary can be opened, edited inline, and approved.
-  3. Offer a "Send all approved" button and a "Send test to me" button.
-  4. Add an **auto-send option**: a Vercel Cron job (secured with `CRON_SECRET`) checks every 10 minutes. When an event's status is `closed`, or its `ends_at` plus a configurable delay (default 30 minutes) has passed, and summaries have not been sent yet, it generates and sends them automatically.
-  5. Sending must be idempotent: never email the same person twice for the same event. Record each send's status in `summaries`, and offer a retry for failures.
+- **Summaries are sent automatically.** There is no approval step.
+  1. When the facilitator clicks **Close session**, the app waits a set delay (default 30 minutes, adjustable on the admin page) so late lead ratings get in. Then it generates every summary and emails it with no further clicks.
+  2. As a backstop, if the facilitator forgets to close the session, it closes itself and sends at the event's `ends_at` plus the same delay.
+  3. A Vercel Cron job (secured with `CRON_SECRET`) checks every 5 minutes and does the sending.
+  4. Before the session, the admin page has a **"Send test summary to me"** button, which uses the seed or demo data.
+  5. The admin page shows a countdown to the send, then each person's send status. Admins can open any sent summary and click **Retry** for failures.
+  6. Sending must be idempotent: never email the same person twice for the same event. Record each send's status in `summaries`.
 
 ## 5. AI generation (in `lib/ai/`, server-side only)
 
@@ -189,7 +190,7 @@ Outreach drafts are for copy and paste only; never send them from the app. Keep 
 - Navigation tabs: **Live · Index · My Need · (Admin)**.
 - Tests:
   - Vitest unit tests for the Zod schemas, lead upsert and dedupe logic (including an owner check and a giver offer merging into one row), and summary assembly, with Claude and Resend mocked
-  - Playwright end-to-end tests: register → sign out → sign in with email only → edit need → a second participant checks "I have a lead for you" on the first participant's need → the first participant sees the offer and rates it (and confirm a participant cannot rate someone else's leads or offer a lead on their own need) → notes autosave → admin generates the PowerPoint → generate summaries → send (mocked)
+  - Playwright end-to-end tests: register → sign out → sign in with email only → edit need → a second participant checks "I have a lead for you" on the first participant's need → the first participant sees the offer and rates it (and confirm a participant cannot rate someone else's leads or offer a lead on their own need) → notes autosave → admin generates the PowerPoint → close session → summaries generate and send automatically after the delay (mocked, with time faked) → no one is emailed twice
 - A seed script (`npm run seed`) that creates a demo event with 12 fake participants across 4 chapters, needs in all three categories, leads, and notes, so I can rehearse the session.
 - README covering:
   - Setup
@@ -204,7 +205,7 @@ Outreach drafts are for copy and paste only; never send them from the app. Keep 
     4. Go live
     5. Close the session
     6. Click Generate PowerPoint
-    7. Review and send the summaries
+    7. Summaries send automatically 30 minutes after closing; check the send status on the admin page
 
 ## 8. Delivery phases
 
