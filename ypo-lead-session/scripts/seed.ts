@@ -44,7 +44,7 @@ async function main() {
       await tx`delete from events where slug = 'demo'`;
       const [event] = await tx<{ id: string }[]>`
         insert into events (slug, title, location, starts_at, ends_at, timezone, status, send_delay_minutes)
-        values ('demo', 'DEMO · HBS YPO · Lead Session rehearsal', 'Tara Hall',
+        values ('demo', 'DEMO · HBS YPO · Lead Session rehearsal', 'Tata 100 (downstairs)',
           date_trunc('hour', now()) , null, 'America/New_York', 'live', 30)
         returning id`;
       const ids: string[] = [];

@@ -12,7 +12,7 @@ Build a production-ready web app for the **Harvard Business School (HBS) YPO pro
 - **Date:** Wednesday, January 20, 2027
 - **Start time:** 12:30 PM
 - **End time:** 1:30 PM (the facilitator can change it on the admin page)
-- **Location:** Tara Hall
+- **Location:** Tata 100 (downstairs)
 - **Time zone:** Eastern Time (`America/New_York`). Show all times as ET.
 
 Create this event automatically on first run, with slug `ypo-week-2-lead-session`, so it works out of the box. Show the date, time, and location on:

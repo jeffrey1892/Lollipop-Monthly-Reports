@@ -13,7 +13,7 @@ async function makeEvent(opts: { endsAt: string | null; delay?: number }) {
   await sql`delete from email_log`;
   const [e] = await sql<{ id: string }[]>`
     insert into events (slug, title, location, starts_at, ends_at, timezone, status, send_delay_minutes)
-    values ('test-event', 'Test', 'Tara Hall', '2027-01-20 17:30:00+00', ${opts.endsAt}, 'America/New_York', 'live', ${opts.delay ?? 30})
+    values ('test-event', 'Test', 'Tata 100 (downstairs)', '2027-01-20 17:30:00+00', ${opts.endsAt}, 'America/New_York', 'live', ${opts.delay ?? 30})
     returning id`;
   eventId = e.id;
   const mk = async (name: string, email: string, order: number) =>

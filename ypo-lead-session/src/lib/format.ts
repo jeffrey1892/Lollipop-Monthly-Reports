@@ -14,7 +14,7 @@ export function tzAbbrev(d: Date | string, tz: string): string {
   return part?.value ?? tz;
 }
 
-/** "Wednesday, January 20, 2027 · 12:30 PM – 1:30 PM ET · Tara Hall" */
+/** "Wednesday, January 20, 2027 · 12:30 PM – 1:30 PM ET · Tata 100 (downstairs)" */
 export function eventWhenWhere(e: { startsAt: string | Date; endsAt: string | Date | null; timezone: string; location: string }): string {
   const date = formatEventDate(e.startsAt, e.timezone);
   const start = formatTime(e.startsAt, e.timezone);

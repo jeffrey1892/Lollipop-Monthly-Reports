@@ -4,7 +4,7 @@ Web app for the **HBS YPO program, Week 2: Lead Session**:
 
 - **Date:** Wednesday, January 20, 2027
 - **Time:** 12:30–1:30 PM ET
-- **Location:** Tara Hall
+- **Location:** Tata 100 (downstairs)
 
 ## What it does
 

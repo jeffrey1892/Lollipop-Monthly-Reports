@@ -61,7 +61,7 @@ describe("personal summary", () => {
   it("never includes other people's private notes, but includes all of their own", () => {
     expect(c.notesAboutMyNeed.map((n) => n.body)).toEqual(["Shared idea for Ann"]);
     expect(c.myNotes.map((n) => n.body)).toEqual(["Ann's private note on Bob"]);
-    const email = renderPersonalEmail({ title: "T", startsAt: t, endsAt: null, timezone: "America/New_York", location: "Tara Hall", appUrl: "http://x" }, c);
+    const email = renderPersonalEmail({ title: "T", startsAt: t, endsAt: null, timezone: "America/New_York", location: "Tata 100 (downstairs)", appUrl: "http://x" }, c);
     expect(email.html).not.toContain("Cy's private thought");
     expect(email.text).toContain("Ann's private note on Bob");
   });
