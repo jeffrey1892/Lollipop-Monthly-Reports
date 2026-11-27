@@ -163,7 +163,7 @@ describe("PowerPoint email before the session", () => {
     const decks = await sql`select to_email, subject, attachment_names from email_log where kind = 'deck'`;
     expect(decks).toHaveLength(1);
     expect(decks[0].to_email).toBe("facilitator@example.com");
-    expect(decks[0].subject).toContain("2 slides");
+    expect(decks[0].subject).toContain("(2 presenters)");
     expect(decks[0].attachment_names).toBe("YPO-Week2-Lead-Session-2027-01-20.pptx");
   });
 

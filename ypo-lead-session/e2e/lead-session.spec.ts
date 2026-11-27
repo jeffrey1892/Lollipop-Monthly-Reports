@@ -123,10 +123,14 @@ test("register → sign in by email → offer and rate leads → notes → Power
   expect(download.suggestedFilename()).toBe("YPO-Week2-Lead-Session-2027-01-20.pptx");
   const file = await download.path();
   expect(fs.readFileSync(file).subarray(0, 2).toString()).toBe("PK");
-  const slide1 = execFileSync("unzip", ["-p", file, "ppt/slides/slide1.xml"]).toString();
-  expect(slide1).toContain("Ann Able");
-  expect(slide1).toContain("Bob Baker");
-  expect(slide1).toContain("5/5");
+  const slide = (n: number) => execFileSync("unzip", ["-p", file, `ppt/slides/slide${n}.xml`]).toString();
+  expect(slide(1)).toContain("Needs &amp; Leads"); // opening slide
+  expect(slide(2)).toContain("1.  Ann Able"); // speaking order
+  expect(slide(2)).toContain("2.  Bob Baker");
+  expect(slide(3)).toContain("Ann Able"); // Ann's numbered slide
+  expect(slide(3)).toContain("Bob Baker");
+  expect(slide(3)).toContain("5/5");
+  expect(slide(3)).toContain("1 of 2");
 
   // 10b. "Email it to me now" sends the deck to the facilitator.
   await fac.getByRole("button", { name: "Email it to me now" }).click();

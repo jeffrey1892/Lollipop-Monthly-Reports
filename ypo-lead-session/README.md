@@ -23,7 +23,10 @@ Web app for the **HBS YPO program, Week 2: Lead Session**:
   - draft an outreach email to each lead for **cut and paste** (the app never sends these)
   - see the leads you offered to others
 - **PowerPoint emailed before the session:** at **12:00 PM ET on January 20**, 30 minutes before the start, the app builds the deck from the latest data and emails it as an attachment to every address in `ADMIN_EMAILS`. Put your own email there. The admin page also has an **Email it to me now** button.
-- **Generate PowerPoint:** one click builds the deck from the data at that moment. It has one slide per person showing name, need and leads (strongest first).
+- **Generate PowerPoint:** one click builds the deck from the data at that moment:
+  - an opening slide with the logos, date, time and place
+  - a numbered speaking-order list
+  - one numbered slide per person ("3 of 12", with who's up next) showing their name, chapter, need and leads, strongest first
 - **Automatic summaries:** these go out on **Saturday, January 23, 2027 at 9:00 AM ET**, the Saturday after the session. Until then, people can enter and rate the leads from the photos they took in the room.
   - If the session is never closed, it closes itself at the end time (1:30 PM ET). The send still happens on Saturday.
   - The send day and time are set in Admin → Event setup. If they're left blank, summaries go out a set number of minutes after closing.

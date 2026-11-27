@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { renderDigestEmail, renderPersonalEmail } from "@/lib/email/templates";
 import { assemblePersonalContent, collectDigestFacts, type EventData } from "@/lib/summaries";
-import { slideData } from "@/lib/pptx";
+import { buildDeck, orderPages, slideData } from "@/lib/pptx";
+import { execFileSync } from "node:child_process";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import type { LeadRow, NeedRow, NoteRow, ParticipantRow } from "@/lib/types";
 
 const t = new Date("2027-01-20T17:30:00Z");
@@ -90,11 +94,38 @@ describe("group digest", () => {
 describe("PowerPoint data", () => {
   it("one slide per participant with a need, in speaking order, leads strongest first", () => {
     const slides = slideData(data);
-    expect(slides.map((s) => s.name)).toEqual(["Ann Able", "Bob Baker"]);
+    expect(slides.map((s) => `${s.number}. ${s.name}`)).toEqual(["1. Ann Able", "2. Bob Baker"]);
     expect(slides[0].leads).toEqual([
       { name: "Cy Cole", strength: 5 },
       { name: "Bob Baker", strength: 2 },
       { name: "Gus Guest", strength: null },
     ]);
+  });
+});
+
+describe("PowerPoint layout", () => {
+  it("speaking order fits 36 names per slide, then continues", () => {
+    expect(orderPages(Array.from({ length: 12 })).map((p) => p.length)).toEqual([12]);
+    expect(orderPages(Array.from({ length: 40 })).map((p) => p.length)).toEqual([36, 4]);
+  });
+
+  it("opening slide, speaking order, then one numbered slide per person", async () => {
+    const event = { title: "HBS YPO · Week 2 · Lead Session", starts_at: t, ends_at: null, timezone: "America/New_York", location: "Tata 100 (downstairs)" };
+    const buf = await buildDeck(event as never, data);
+    const file = path.join(os.tmpdir(), `deck-${Date.now()}.pptx`);
+    fs.writeFileSync(file, buf);
+    const slide = (n: number) => execFileSync("unzip", ["-p", file, `ppt/slides/slide${n}.xml`]).toString();
+    const count = execFileSync("unzip", ["-l", file]).toString().match(/ppt\/slides\/slide\d+\.xml/g)!.length;
+    expect(count).toBe(4); // opening + order + 2 people
+    expect(slide(1)).toContain("Needs &amp; Leads");
+    expect(slide(1)).toContain("Tata 100 (downstairs)");
+    expect(slide(2)).toContain("Speaking order");
+    expect(slide(2)).toContain("1.  Ann Able");
+    expect(slide(2)).toContain("2.  Bob Baker");
+    expect(slide(3)).toContain("Ann Able");
+    expect(slide(3)).toContain("1 of 2");
+    expect(slide(3)).toContain("Up next: 2. Bob Baker");
+    expect(slide(4)).toContain("2 of 2");
+    expect(slide(4)).toContain("Last presenter");
   });
 });

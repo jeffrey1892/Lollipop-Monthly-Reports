@@ -11,22 +11,23 @@ import type { EventRow } from "./types";
 export async function emailDeck(event: EventRow, to: string[], now = new Date()): Promise<number> {
   const data = await loadEventData(event.id);
   const deck = await buildDeck(event, data);
-  const slides = slideData(data).length;
+  const people = slideData(data).length;
+  const plural = people === 1 ? "presenter" : "presenters";
   const filename = deckFileName(event);
   const when = `${formatTime(now, event.timezone)} ${tzAbbrev(now, event.timezone)}`;
   const adminUrl = `${env.appBaseUrl}/e/${event.slug}/admin`;
-  const subject = `PowerPoint for today's Needs & Leads session (${slides} slide${slides === 1 ? "" : "s"})`;
+  const subject = `PowerPoint for today's Needs & Leads session (${people} ${plural})`;
   const text = [
     `${event.title}`,
     eventWhenWhere({ startsAt: event.starts_at, endsAt: event.ends_at, timezone: event.timezone, location: event.location }),
     "",
-    `Attached is the PowerPoint, generated at ${when} with ${slides} slide${slides === 1 ? "" : "s"}: one per person, with their name and need.`,
+    `Attached is the PowerPoint, generated at ${when}: an opening slide, the numbered speaking order, then one numbered slide for each of the ${people} ${plural}.`,
     `If anyone edits their need after this, click Generate PowerPoint on the admin page for the latest version: ${adminUrl}`,
   ].join("\n");
   const html = `<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:#1f2937;max-width:560px">
 <p style="font-weight:700;color:#A51C30;margin:0">${escapeHtml(event.title)}</p>
 <p style="margin:4px 0 16px;color:#4b5563;font-size:14px">${escapeHtml(eventWhenWhere({ startsAt: event.starts_at, endsAt: event.ends_at, timezone: event.timezone, location: event.location }))}</p>
-<p>Attached is the PowerPoint, generated at ${escapeHtml(when)} with <b>${slides} slide${slides === 1 ? "" : "s"}</b>: one per person, with their name and need.</p>
+<p>Attached is the PowerPoint, generated at ${escapeHtml(when)}: an opening slide, the numbered speaking order, then one numbered slide for each of the <b>${people} ${plural}</b>.</p>
 <p>If anyone edits their need after this, click <b>Generate PowerPoint</b> on the <a href="${escapeHtml(adminUrl)}" style="color:#A51C30">admin page</a> for the latest version.</p>
 </div>`;
   for (const addr of to) {

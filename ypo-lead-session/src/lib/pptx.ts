@@ -1,17 +1,26 @@
-// One click, one deck: a slide per participant with their name, need and leads, from current data.
+// The session deck, built from current data:
+//   1. an opening slide (logos, title, date, time, place)
+//   2. the speaking order: everyone numbered, so people know when they're up
+//   3. one numbered slide per person with their name, need and leads
 import PptxGenJS from "pptxgenjs";
 import { sortLeads } from "./leads";
+import { HBS_LOGO, YPO_LOGO } from "./logos";
 import { presenters } from "./repo";
 import type { EventData } from "./summaries";
-import { localParts } from "./format";
+import { eventWhenWhere, localParts } from "./format";
 import type { EventRow } from "./types";
 
 const CRIMSON = "A51C30";
 const DARK = "2B2B2B";
 const GRAY = "6B7280";
+const FONT = "Calibri";
+const W = 13.33; // LAYOUT_WIDE, inches
+const H = 7.5;
 
 export interface SlideData {
+  number: number; // speaking order, from 1
   name: string;
+  chapter: string;
   needTitle: string;
   needDescription: string;
   leads: { name: string; strength: number | null }[];
@@ -19,13 +28,13 @@ export interface SlideData {
 
 export function slideData(data: EventData): SlideData[] {
   const byId = new Map(data.participants.map((p) => [p.id, p]));
-  return presenters(data.participants, data.needs).map((p) => {
+  return presenters(data.participants, data.needs).map((p, i) => {
     const need = data.needs.find((n) => n.participant_id === p.id)!;
     const leads = sortLeads(data.leads.filter((l) => l.need_id === need.id)).map((l) => ({
       name: byId.get(l.giver_participant_id)?.name ?? "A member",
       strength: l.strength,
     }));
-    return { name: p.name, needTitle: need.title, needDescription: need.description, leads };
+    return { number: i + 1, name: p.name, chapter: p.chapter, needTitle: need.title, needDescription: need.description, leads };
   });
 }
 
@@ -39,36 +48,121 @@ function fitSize(text: string, base: number, min: number, charsAtBase: number): 
   return Math.max(min, Math.round(base * Math.sqrt(charsAtBase / text.length)));
 }
 
+/** How the speaking-order list is split: up to 3 columns of up to 12 names per slide. */
+export const ORDER_PER_COLUMN = 12;
+export const ORDER_COLUMNS = 3;
+export function orderPages<T>(items: T[]): T[][] {
+  const perSlide = ORDER_PER_COLUMN * ORDER_COLUMNS;
+  const pages: T[][] = [];
+  for (let i = 0; i < items.length; i += perSlide) pages.push(items.slice(i, i + perSlide));
+  return pages.length ? pages : [[]];
+}
+
+function topBar(pptx: PptxGenJS, slide: PptxGenJS.Slide) {
+  slide.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: W, h: 0.18, fill: { color: CRIMSON }, line: { color: CRIMSON } });
+}
+
+function logos(slide: PptxGenJS.Slide, x: number, y: number, height: number) {
+  const hbsW = (HBS_LOGO.w / HBS_LOGO.h) * height;
+  const ypoW = (YPO_LOGO.w / YPO_LOGO.h) * height;
+  slide.addImage({ data: HBS_LOGO.data, x, y, w: hbsW, h: height });
+  slide.addImage({ data: YPO_LOGO.data, x: x + hbsW + height * 0.4, y, w: ypoW, h: height });
+  return hbsW + height * 0.4 + ypoW;
+}
+
 export async function buildDeck(event: EventRow, data: EventData): Promise<Buffer> {
   const pptx = new PptxGenJS();
   pptx.layout = "LAYOUT_WIDE"; // 13.33 x 7.5 in, 16:9
   pptx.title = event.title;
+  const people = slideData(data);
+  const total = people.length;
+  const whenWhere = eventWhenWhere({ startsAt: event.starts_at, endsAt: event.ends_at, timezone: event.timezone, location: event.location });
 
-  for (const s of slideData(data)) {
+  // 1. Opening slide
+  {
     const slide = pptx.addSlide();
     slide.background = { color: "FFFFFF" };
-    slide.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: 13.33, h: 0.18, fill: { color: CRIMSON }, line: { color: CRIMSON } });
+    topBar(pptx, slide);
+    const logoH = 1.3;
+    const logoW = (HBS_LOGO.w / HBS_LOGO.h) * logoH + logoH * 0.4 + (YPO_LOGO.w / YPO_LOGO.h) * logoH;
+    logos(slide, (W - logoW) / 2, 0.9, logoH);
+    slide.addText("Needs & Leads", { x: 0.6, y: 2.75, w: W - 1.2, h: 1.1, align: "center", fontFace: FONT, fontSize: 54, bold: true, color: CRIMSON });
+    slide.addText(event.title, { x: 0.6, y: 3.85, w: W - 1.2, h: 0.6, align: "center", fontFace: FONT, fontSize: 24, color: DARK });
+    slide.addText(whenWhere, { x: 0.6, y: 4.5, w: W - 1.2, h: 0.5, align: "center", fontFace: FONT, fontSize: 18, color: GRAY });
+    slide.addText(
+      [
+        { text: "Come up when your number is next  ·  ", options: {} },
+        { text: "Under a minute each  ·  ", options: {} },
+        { text: "Can help? Raise your hand and hold up your name tag", options: {} },
+      ],
+      { x: 0.6, y: 5.6, w: W - 1.2, h: 0.5, align: "center", fontFace: FONT, fontSize: 16, color: DARK },
+    );
+    slide.addText(`${total} ${total === 1 ? "member" : "members"} sharing needs today`, {
+      x: 0.6, y: 6.2, w: W - 1.2, h: 0.4, align: "center", fontFace: FONT, fontSize: 14, italic: true, color: GRAY,
+    });
+  }
 
-    slide.addText(s.name, { x: 0.6, y: 0.45, w: 12.1, h: 1.0, fontFace: "Calibri", fontSize: 40, bold: true, color: CRIMSON });
+  // 2. Speaking order (more than one slide only if there are more than 36 people)
+  const pages = orderPages(people);
+  pages.forEach((page, pi) => {
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    topBar(pptx, slide);
+    slide.addText(pages.length > 1 ? `Speaking order (${pi + 1} of ${pages.length})` : "Speaking order", {
+      x: 0.6, y: 0.4, w: 9, h: 0.8, fontFace: FONT, fontSize: 34, bold: true, color: CRIMSON,
+    });
+    slide.addText("Be ready when the person before you is presenting.", { x: 0.6, y: 1.1, w: 9, h: 0.4, fontFace: FONT, fontSize: 16, color: GRAY });
+    if (!page.length) {
+      slide.addText("No one has signed up yet.", { x: 0.6, y: 2, w: 9, h: 0.5, fontFace: FONT, fontSize: 20, italic: true, color: GRAY });
+      return;
+    }
+    // Spread names across columns (about 10 per column) so the list reads well from the back of the room.
+    const cols = Math.min(ORDER_COLUMNS, Math.max(1, Math.ceil(page.length / 10)));
+    const perCol = Math.ceil(page.length / cols);
+    const colW = (W - 1.2) / cols;
+    const size = perCol <= 8 ? 22 : perCol <= 10 ? 19 : 17;
+    for (let c = 0; c < cols; c++) {
+      const chunk = page.slice(c * perCol, (c + 1) * perCol);
+      slide.addText(
+        chunk.map((p) => ({
+          text: `${p.number}.  ${p.name}${p.chapter ? `  ·  ${p.chapter}` : ""}`,
+          options: { breakLine: true },
+        })),
+        { x: 0.6 + c * colW, y: 1.75, w: colW - 0.2, h: H - 2.3, valign: "top", fontFace: FONT, fontSize: size, color: DARK, paraSpaceAfter: 6, fit: "shrink" },
+      );
+    }
+  });
+
+  // 3. One numbered slide per person
+  for (const s of people) {
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    topBar(pptx, slide);
+
+    // Speaking number badge + name
+    slide.addShape(pptx.ShapeType.ellipse, { x: 0.6, y: 0.5, w: 0.95, h: 0.95, fill: { color: CRIMSON }, line: { color: CRIMSON } });
+    slide.addText(String(s.number), { x: 0.6, y: 0.5, w: 0.95, h: 0.95, align: "center", valign: "middle", fontFace: FONT, fontSize: s.number > 99 ? 22 : 30, bold: true, color: "FFFFFF" });
+    slide.addText(s.name, { x: 1.75, y: 0.45, w: 9.4, h: 0.75, fontFace: FONT, fontSize: 38, bold: true, color: CRIMSON, fit: "shrink" });
+    if (s.chapter) slide.addText(s.chapter, { x: 1.75, y: 1.12, w: 9.4, h: 0.4, fontFace: FONT, fontSize: 16, color: GRAY });
 
     // Need (left)
-    slide.addText("NEED", { x: 0.6, y: 1.6, w: 7.2, h: 0.4, fontFace: "Calibri", fontSize: 14, bold: true, color: GRAY, charSpacing: 2 });
+    slide.addText("NEED", { x: 0.6, y: 1.75, w: 7.2, h: 0.4, fontFace: FONT, fontSize: 14, bold: true, color: GRAY, charSpacing: 2 });
     slide.addText(s.needTitle, {
-      x: 0.6, y: 2.0, w: 7.2, h: 1.2, fontFace: "Calibri", bold: true, color: DARK, valign: "top",
+      x: 0.6, y: 2.15, w: 7.2, h: 1.2, fontFace: FONT, bold: true, color: DARK, valign: "top",
       fontSize: fitSize(s.needTitle, 26, 16, 60), fit: "shrink",
     });
     if (s.needDescription) {
       slide.addText(s.needDescription, {
-        x: 0.6, y: 3.25, w: 7.2, h: 3.7, fontFace: "Calibri", color: DARK, valign: "top",
-        fontSize: fitSize(s.needDescription, 20, 11, 280), fit: "shrink",
+        x: 0.6, y: 3.4, w: 7.2, h: 3.3, fontFace: FONT, color: DARK, valign: "top",
+        fontSize: fitSize(s.needDescription, 20, 11, 260), fit: "shrink",
       });
     }
 
     // Leads (right)
-    slide.addShape(pptx.ShapeType.rect, { x: 8.2, y: 1.6, w: 4.55, h: 5.35, fill: { color: "F9F2F3" }, line: { color: "E8C9CE" } });
-    slide.addText("LEADS", { x: 8.45, y: 1.7, w: 4.1, h: 0.4, fontFace: "Calibri", fontSize: 14, bold: true, color: CRIMSON, charSpacing: 2 });
+    slide.addShape(pptx.ShapeType.rect, { x: 8.2, y: 1.75, w: 4.55, h: 4.95, fill: { color: "F9F2F3" }, line: { color: "E8C9CE" } });
+    slide.addText("LEADS", { x: 8.45, y: 1.85, w: 4.1, h: 0.4, fontFace: FONT, fontSize: 14, bold: true, color: CRIMSON, charSpacing: 2 });
     if (!s.leads.length) {
-      slide.addText("No leads yet", { x: 8.45, y: 2.2, w: 4.1, h: 0.5, fontFace: "Calibri", fontSize: 18, italic: true, color: GRAY });
+      slide.addText("No leads yet", { x: 8.45, y: 2.35, w: 4.1, h: 0.5, fontFace: FONT, fontSize: 18, italic: true, color: GRAY });
     } else {
       const size = s.leads.length > 10 ? 13 : s.leads.length > 7 ? 15 : 18;
       slide.addText(
@@ -76,9 +170,14 @@ export async function buildDeck(event: EventRow, data: EventData): Promise<Buffe
           text: `${l.name}   ${l.strength === null ? "not rated" : `${l.strength}/5`}`,
           options: { bullet: true, breakLine: true },
         })),
-        { x: 8.45, y: 2.2, w: 4.1, h: 4.6, fontFace: "Calibri", fontSize: size, color: DARK, valign: "top", fit: "shrink" },
+        { x: 8.45, y: 2.35, w: 4.1, h: 4.2, fontFace: FONT, fontSize: size, color: DARK, valign: "top", fit: "shrink" },
       );
     }
+
+    // Footer: "3 of 12" and who's next
+    const next = people[s.number]; // number is 1-based, so this is the following person
+    slide.addText(next ? `Up next: ${next.number}. ${next.name}` : "Last presenter", { x: 0.6, y: 6.85, w: 7.5, h: 0.4, fontFace: FONT, fontSize: 13, color: GRAY });
+    slide.addText(`${s.number} of ${total}`, { x: W - 2.6, y: 6.85, w: 2, h: 0.4, align: "right", fontFace: FONT, fontSize: 14, bold: true, color: CRIMSON });
   }
 
   const out = await pptx.write({ outputType: "nodebuffer" });

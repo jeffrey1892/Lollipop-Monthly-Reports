@@ -168,10 +168,13 @@ All database access goes through server routes and server actions using the serv
 - Event status controls: open registration, lock registration, start the live session, close the session.
 - **Generate PowerPoint**: a single button. One click builds the deck on the server with `pptxgenjs` from the current data and downloads it as `YPO-Week2-Lead-Session-YYYY-MM-DD.pptx`. There are no other slides or versions.
   - A clean 16:9 deck in HBS crimson (`#A51C30`), white, and dark gray.
-  - One slide per participant, in presentation order, showing:
-    - **Name**, large
+  - Slide 1, opening: HBS and YPO logos, "Needs & Leads", the event title, date, time and location, and a one-line reminder of how it works.
+  - Slide 2, speaking order: every presenter numbered in order with their chapter, in two or three columns, continuing onto more slides past 36 people.
+  - Then one slide per participant, in speaking order, showing:
+    - Their **number** in a crimson circle, then **name**, large, and chapter
     - **Need**: title and description; shrink the font to fit long text
     - **Leads**: each lead's giver name and strength (5–1), sorted strongest first, with unrated offers last marked "not rated". If there are none yet, show "No leads yet".
+    - Footer: "Up next: 4. Name" on the left and "3 of 12" on the right
   - Clicking again rebuilds the deck from the latest data.
 - **PowerPoint by email:** 30 minutes before the session starts (12:00 PM ET on January 20), the scheduler builds the deck from the latest data and emails it as an attachment to the facilitator email(s) in `ADMIN_EMAILS`, exactly once. Add an **Email it to me now** button next to Generate PowerPoint.
 - **Summaries are sent automatically.** There is no approval step.
