@@ -92,14 +92,9 @@ describe("group digest", () => {
 });
 
 describe("PowerPoint data", () => {
-  it("one slide per participant with a need, in speaking order, leads strongest first", () => {
+  it("one slide per participant with a need, in speaking order", () => {
     const slides = slideData(data);
     expect(slides.map((s) => `${s.number}. ${s.name}`)).toEqual(["1. Ann Able", "2. Bob Baker"]);
-    expect(slides[0].leads).toEqual([
-      { name: "Cy Cole", strength: 5 },
-      { name: "Bob Baker", strength: 2 },
-      { name: "Gus Guest", strength: null },
-    ]);
   });
 });
 
@@ -134,5 +129,8 @@ describe("PowerPoint layout", () => {
     expect(slide(3)).toContain("Up next: 2. Bob Baker");
     expect(slide(4)).toContain("2 of 2");
     expect(slide(4)).toContain("Last presenter");
+    // No leads on the slides, even though Ann has three
+    expect(slide(3)).not.toContain("LEADS");
+    expect(slide(3)).not.toContain("5/5");
   });
 });

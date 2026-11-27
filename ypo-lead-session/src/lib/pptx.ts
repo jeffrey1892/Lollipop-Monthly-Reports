@@ -1,9 +1,8 @@
 // The session deck, built from current data:
 //   1. an opening slide (logos, title, date, time, place)
 //   2. the speaking order: everyone numbered, so people know when they're up
-//   3. one numbered slide per person with their name, need and leads
+//   3. one numbered slide per person with their name, chapter and need (no leads: those are captured after the session)
 import PptxGenJS from "pptxgenjs";
-import { sortLeads } from "./leads";
 import { HBS_LOGO, YPO_LOGO } from "./logos";
 import { presenters } from "./repo";
 import type { EventData } from "./summaries";
@@ -23,18 +22,12 @@ export interface SlideData {
   chapter: string;
   needTitle: string;
   needDescription: string;
-  leads: { name: string; strength: number | null }[];
 }
 
-export function slideData(data: EventData): SlideData[] {
-  const byId = new Map(data.participants.map((p) => [p.id, p]));
+export function slideData(data: Pick<EventData, "participants" | "needs">): SlideData[] {
   return presenters(data.participants, data.needs).map((p, i) => {
     const need = data.needs.find((n) => n.participant_id === p.id)!;
-    const leads = sortLeads(data.leads.filter((l) => l.need_id === need.id)).map((l) => ({
-      name: byId.get(l.giver_participant_id)?.name ?? "A member",
-      strength: l.strength,
-    }));
-    return { number: i + 1, name: p.name, chapter: p.chapter, needTitle: need.title, needDescription: need.description, leads };
+    return { number: i + 1, name: p.name, chapter: p.chapter, needTitle: need.title, needDescription: need.description };
   });
 }
 
@@ -152,33 +145,22 @@ export async function buildDeck(event: EventRow, data: EventData): Promise<Buffe
     slide.addText(s.name, { x: 1.75, y: 0.45, w: 9.4, h: 0.75, fontFace: FONT, fontSize: 38, bold: true, color: CRIMSON, fit: "shrink" });
     if (s.chapter) slide.addText(s.chapter, { x: 1.75, y: 1.12, w: 9.4, h: 0.4, fontFace: FONT, fontSize: 16, color: GRAY });
 
-    // Need (left)
-    slide.addText("NEED", { x: 0.6, y: 1.75, w: 7.2, h: 0.4, fontFace: FONT, fontSize: 14, bold: true, color: GRAY, charSpacing: 2 });
+    // Need, full width and large enough to read from the back of the room
+    slide.addShape(pptx.ShapeType.line, { x: 0.6, y: 1.75, w: W - 1.2, h: 0, line: { color: "E5E7EB", width: 1 } });
+    // Place the details right under the headline: about 60 characters fit per line at this size.
+    const titleSize = fitSize(s.needTitle, 36, 22, 70);
+    const titleLines = Math.min(3, Math.max(1, Math.ceil((s.needTitle.length * titleSize) / (60 * 36))));
+    const titleH = titleLines * (titleSize / 72) * 1.25 + 0.15;
     slide.addText(s.needTitle, {
-      x: 0.6, y: 2.15, w: 7.2, h: 1.2, fontFace: FONT, bold: true, color: DARK, valign: "top",
-      fontSize: fitSize(s.needTitle, 26, 16, 60), fit: "shrink",
+      x: 0.6, y: 2.0, w: W - 1.2, h: titleH, fontFace: FONT, bold: true, color: DARK, valign: "top",
+      fontSize: titleSize, fit: "shrink",
     });
     if (s.needDescription) {
+      const descY = 2.0 + titleH + 0.25;
       slide.addText(s.needDescription, {
-        x: 0.6, y: 3.4, w: 7.2, h: 3.3, fontFace: FONT, color: DARK, valign: "top",
-        fontSize: fitSize(s.needDescription, 20, 11, 260), fit: "shrink",
+        x: 0.6, y: descY, w: W - 1.2, h: 6.65 - descY, fontFace: FONT, color: DARK, valign: "top",
+        fontSize: fitSize(s.needDescription, 26, 14, 300), fit: "shrink",
       });
-    }
-
-    // Leads (right)
-    slide.addShape(pptx.ShapeType.rect, { x: 8.2, y: 1.75, w: 4.55, h: 4.95, fill: { color: "F9F2F3" }, line: { color: "E8C9CE" } });
-    slide.addText("LEADS", { x: 8.45, y: 1.85, w: 4.1, h: 0.4, fontFace: FONT, fontSize: 14, bold: true, color: CRIMSON, charSpacing: 2 });
-    if (!s.leads.length) {
-      slide.addText("No leads yet", { x: 8.45, y: 2.35, w: 4.1, h: 0.5, fontFace: FONT, fontSize: 18, italic: true, color: GRAY });
-    } else {
-      const size = s.leads.length > 10 ? 13 : s.leads.length > 7 ? 15 : 18;
-      slide.addText(
-        s.leads.map((l) => ({
-          text: `${l.name}   ${l.strength === null ? "not rated" : `${l.strength}/5`}`,
-          options: { bullet: true, breakLine: true },
-        })),
-        { x: 8.45, y: 2.35, w: 4.1, h: 4.2, fontFace: FONT, fontSize: size, color: DARK, valign: "top", fit: "shrink" },
-      );
     }
 
     // Footer: "3 of 12" and who's next

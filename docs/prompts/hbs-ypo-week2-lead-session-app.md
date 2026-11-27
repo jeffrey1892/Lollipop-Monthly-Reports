@@ -173,7 +173,7 @@ All database access goes through server routes and server actions using the serv
   - Then one slide per participant, in speaking order, showing:
     - Their **number** in a crimson circle, then **name**, large, and chapter
     - **Need**: title and description; shrink the font to fit long text
-    - **Leads**: each lead's giver name and strength (5–1), sorted strongest first, with unrated offers last marked "not rated". If there are none yet, show "No leads yet".
+    - No leads on the slides: leads are captured after the session and only appear in the app and the summary emails. Use the full slide width for the need, in large type.
     - Footer: the next three presenters ("Up next: 4. Name · 5. Name · 6. Name") on the left and "3 of 12" on the right
   - Clicking again rebuilds the deck from the latest data.
 - **PowerPoint by email:** 30 minutes before the session starts (12:00 PM ET on January 20), the scheduler builds the deck from the latest data and emails it as an attachment to the facilitator email(s) in `ADMIN_EMAILS`, exactly once. Add an **Email it to me now** button next to Generate PowerPoint.

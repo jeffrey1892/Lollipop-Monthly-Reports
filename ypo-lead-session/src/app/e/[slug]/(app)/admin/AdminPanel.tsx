@@ -158,7 +158,7 @@ function PowerPointCard() {
         PowerPoint
       </h2>
       <p className="mt-1 text-sm text-gray-600">
-        One slide per person ({people}) with their name, need and leads, built from the data at the moment you click. Click again any time for the latest.
+        An opening slide, the numbered speaking order, then one numbered slide per person ({people}) with their name, chapter and need, built from the data at the moment you click. Click again any time for the latest.
       </p>
       <div className="mt-3 flex flex-wrap gap-2">
         <a className="btn btn-primary" href={`/api/e/${slug}/admin/pptx`}>
