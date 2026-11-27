@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { LogoStrip } from "@/components/LogoStrip";
 import { eventWhenWhere } from "@/lib/format";
 import { getEventBySlug } from "@/lib/repo";
 
@@ -10,6 +11,7 @@ export default async function EventLayout({ children, params }: { children: Reac
   if (!event) notFound();
   return (
     <div className="min-h-screen">
+      <LogoStrip />
       <header className="bg-crimson text-white">
         <div className="mx-auto max-w-5xl px-4 py-3">
           <div className="text-lg font-bold leading-tight sm:text-xl">{event.title}</div>
