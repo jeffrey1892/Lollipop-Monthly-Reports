@@ -96,12 +96,14 @@ All database access goes through server routes and server actions using the serv
 ### How it works (short walkthrough)
 
 - Opens automatically the first time each person signs in (remember it per person, not per device). Reopens any time from a **How it works** button in the top menu ("Help" on phones).
-- Five short steps with Next, Back and Skip:
-  1. Welcome: everyone shares one need; edit it on My Need until the session closes.
-  2. When it's your turn: tick who raised their hand and rate each lead 5–1.
-  3. Have a lead for someone? Tick "I have a lead for…" with a short note. The Index lists every need by category.
-  4. Notes are private unless switched to Shared.
-  5. Afterwards: the summary email with leads and ready-to-paste follow-up emails; how long you stay signed in.
+- One page per feature, seven pages, with **← Back**, **Next →** and Skip. Titles at most 24 characters, descriptions at most 120 characters (enforce with a unit test):
+  1. Share your need
+  2. Check your leads
+  3. Offer a lead
+  4. Browse the Index
+  5. Take notes
+  6. Draft follow-ups
+  7. Get your summary (includes the send delay and how long people stay signed in)
 
 ### A. Registration: `/e/[slug]/register`
 

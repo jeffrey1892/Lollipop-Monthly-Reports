@@ -3,16 +3,11 @@
 // and any time from the "How it works" button.
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { api } from "@/lib/client/api";
+import { walkthroughSteps } from "@/lib/walkthrough";
 import { useEvent } from "./EventProvider";
 
 const Ctx = createContext<{ open: () => void }>({ open: () => {} });
 export const useWalkthrough = () => useContext(Ctx);
-
-function untilLabel(date: string | null): string {
-  if (!date) return "for 30 days";
-  const d = new Date(`${date}T12:00:00Z`);
-  return `through ${d.toLocaleDateString("en-US", { month: "long", day: "numeric", timeZone: "UTC" })}`;
-}
 
 export function WalkthroughProvider({ children }: { children: React.ReactNode }) {
   const { snap } = useEvent();
@@ -20,60 +15,9 @@ export function WalkthroughProvider({ children }: { children: React.ReactNode })
   const [step, setStep] = useState(0);
   const marked = useRef(false);
   const dialogRef = useRef<HTMLDivElement>(null);
-  const first = snap.viewer.name.split(" ")[0];
-  const delay = snap.event.sendDelayMinutes;
+  const first = snap.viewer.participantId ? snap.viewer.name.split(" ")[0] : "";
 
-  const steps: { icon: string; title: string; body: React.ReactNode }[] = [
-    {
-      icon: "👋",
-      title: `Welcome${snap.viewer.participantId ? `, ${first}` : ""}`,
-      body: (
-        <>
-          Everyone shares one business need, then the room offers leads. You can change your need any time on the <b>My Need</b> tab until the session closes. It
-          saves automatically.
-        </>
-      ),
-    },
-    {
-      icon: "🎤",
-      title: "When it's your turn",
-      body: (
-        <>
-          The <b>Live</b> tab follows whoever is presenting. When it&apos;s you, tick the people who raise their hand and rate each lead from <b>5 (strong)</b> to{" "}
-          <b>1 (weak)</b>.
-        </>
-      ),
-    },
-    {
-      icon: "🙋",
-      title: "Have a lead for someone?",
-      body: (
-        <>
-          Tick <b>&ldquo;I have a lead for…&rdquo;</b> on their card, with a quick note on who or what it is. They&apos;ll see it right away. The <b>Index</b> tab lists
-          every need by category.
-        </>
-      ),
-    },
-    {
-      icon: "📝",
-      title: "Take notes",
-      body: (
-        <>
-          Every need has a notes box. Notes are <b>🔒 private</b> unless you switch them to Shared.
-        </>
-      ),
-    },
-    {
-      icon: "📬",
-      title: "Afterwards",
-      body: (
-        <>
-          {delay} minutes after the session closes, you&apos;ll get an email with your leads, their contact details and ready-to-paste follow-up emails. You stay signed
-          in {untilLabel(snap.event.signInUntil)}.
-        </>
-      ),
-    },
-  ];
+  const steps = walkthroughSteps({ sendDelayMinutes: snap.event.sendDelayMinutes, signInUntil: snap.event.signInUntil });
 
   const open = useCallback(() => {
     setStep(0);
@@ -120,7 +64,8 @@ export function WalkthroughProvider({ children }: { children: React.ReactNode })
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-                How it works · {step + 1} of {steps.length}
+                {step === 0 && first ? `Welcome, ${first} · ` : "How it works · "}
+                {step + 1} of {steps.length}
               </span>
               <button type="button" onClick={close} className="min-h-11 px-2 text-sm font-semibold text-gray-500 hover:text-gray-800">
                 Skip
@@ -132,7 +77,7 @@ export function WalkthroughProvider({ children }: { children: React.ReactNode })
             <h2 id="wt-title" className="mt-2 text-xl font-bold text-crimson">
               {s.title}
             </h2>
-            <p className="mt-2 text-base leading-relaxed text-gray-700">{s.body}</p>
+            <p className="mt-2 min-h-[5.5rem] text-base leading-relaxed text-gray-700">{s.body}</p>
             <div className="mt-5 flex items-center justify-between gap-3">
               <div className="flex gap-1.5" aria-hidden>
                 {steps.map((_, i) => (
@@ -140,13 +85,11 @@ export function WalkthroughProvider({ children }: { children: React.ReactNode })
                 ))}
               </div>
               <div className="flex gap-2">
-                {step > 0 && (
-                  <button type="button" className="btn btn-secondary" onClick={() => setStep(step - 1)}>
-                    Back
-                  </button>
-                )}
+                <button type="button" className="btn btn-secondary" onClick={() => setStep(step - 1)} disabled={step === 0}>
+                  ← Back
+                </button>
                 <button type="button" className="btn btn-primary" onClick={() => (last ? close() : setStep(step + 1))}>
-                  {last ? "Got it" : "Next"}
+                  {last ? "Done" : "Next →"}
                 </button>
               </div>
             </div>

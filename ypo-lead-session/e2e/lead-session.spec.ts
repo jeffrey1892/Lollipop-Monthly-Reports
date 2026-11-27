@@ -36,10 +36,16 @@ test("register → sign in by email → offer and rate leads → notes → Power
   await page.goto(`/e/${SLUG}/live`);
   // First time in: the short walkthrough opens by itself.
   const tour = page.getByRole("dialog");
-  await expect(tour.getByRole("heading", { name: "Welcome, Ann" })).toBeVisible();
-  for (let i = 0; i < 4; i++) await tour.getByRole("button", { name: "Next", exact: true }).click();
-  await expect(tour.getByText(/You stay signed in through January 30/)).toBeVisible();
-  await tour.getByRole("button", { name: "Got it" }).click();
+  await expect(tour.getByText("Welcome, Ann · 1 of 7")).toBeVisible();
+  await expect(tour.getByRole("heading", { name: "Share your need" })).toBeVisible();
+  await tour.getByRole("button", { name: "Next →" }).click();
+  await expect(tour.getByRole("heading", { name: "Check your leads" })).toBeVisible();
+  await tour.getByRole("button", { name: "← Back" }).click();
+  await expect(tour.getByRole("heading", { name: "Share your need" })).toBeVisible();
+  for (let i = 0; i < 6; i++) await tour.getByRole("button", { name: "Next →" }).click();
+  await expect(tour.getByRole("heading", { name: "Get your summary" })).toBeVisible();
+  await expect(tour.getByText(/You stay signed in through Jan 30/)).toBeVisible();
+  await tour.getByRole("button", { name: "Done" }).click();
   await expect(tour).toHaveCount(0);
   await page.getByRole("button", { name: "Sign out" }).click();
   await expect(page).toHaveURL(/\/login$/);

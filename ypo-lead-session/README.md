@@ -14,7 +14,7 @@ Web app for the **HBS YPO program, Week 2: Lead Session**:
   - The presenter ticks the people who raised their hands and rates each lead from **5 (strong) to 1 (weak)**.
   - Anyone else can tick **"I have a lead for you"**, optionally adding a note on what the lead is. The presenter then rates it.
   - Changes appear on every device within seconds.
-- **How it works:** a five-step walkthrough that opens the first time each person signs in, and any time from the button in the top menu.
+- **How it works:** a seven-page walkthrough (one page per feature) that opens the first time each person signs in, and any time from the button in the top menu.
 - **Notes** on any need. Notes are **private by default**, and the author can switch one to Shared.
 - **Index tab:** all needs grouped by category, with search, a chapter filter and sorting.
 - **My Need tab:**
