@@ -15,7 +15,8 @@ const GRAY = "6B7280";
 const FONT = "Calibri";
 const W = 13.33; // LAYOUT_WIDE, inches
 const H = 7.5;
-const PANEL_X = W * 0.85; // the right-hand 15% of each person's slide is the "Up next" column
+const PANEL_W = W * 0.15 * 1.15; // "Up next" column: 15% of the slide, made 15% wider (about 17%)
+const PANEL_X = W - PANEL_W;
 
 export interface SlideData {
   number: number; // speaking order, from 1
@@ -164,7 +165,7 @@ export async function buildDeck(event: EventRow, data: EventData): Promise<Buffe
       });
     }
 
-    // Right-hand column (last 15% of the slide): "3 of 12", then the next five presenters in large type
+    // Right-hand column (about 17% of the slide): "3 of 12", then the next five presenters in large type
     const colW = W - PANEL_X;
     const inX = PANEL_X + 0.2;
     const inW = colW - 0.35;
