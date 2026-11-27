@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { renderDigestEmail, renderPersonalEmail } from "@/lib/email/templates";
 import { assemblePersonalContent, collectDigestFacts, type EventData } from "@/lib/summaries";
-import { buildDeck, orderPages, slideData, upNextLine } from "@/lib/pptx";
+import { buildDeck, orderPages, slideData, upNext } from "@/lib/pptx";
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
@@ -99,11 +99,11 @@ describe("PowerPoint data", () => {
 });
 
 describe("PowerPoint layout", () => {
-  it("each slide shows the next three presenters", () => {
-    const people = ["Ann", "Bob", "Cy", "Dee", "Eve"].map((name, i) => ({ number: i + 1, name }));
-    expect(upNextLine(people, 1)).toBe("Up next: 2. Bob   ·   3. Cy   ·   4. Dee");
-    expect(upNextLine(people, 3)).toBe("Up next: 4. Dee   ·   5. Eve");
-    expect(upNextLine(people, 5)).toBe("Last presenter");
+  it("each slide lists the next five presenters", () => {
+    const people = ["Ann", "Bob", "Cy", "Dee", "Eve", "Fay", "Gus", "Hal"].map((name, i) => ({ number: i + 1, name }));
+    expect(upNext(people, 1).map((p) => p.name)).toEqual(["Bob", "Cy", "Dee", "Eve", "Fay"]);
+    expect(upNext(people, 6).map((p) => p.name)).toEqual(["Gus", "Hal"]);
+    expect(upNext(people, 8)).toEqual([]);
   });
 
   it("speaking order fits 36 names per slide, then continues", () => {
@@ -126,7 +126,8 @@ describe("PowerPoint layout", () => {
     expect(slide(2)).toContain("2.  Bob Baker");
     expect(slide(3)).toContain("Ann Able");
     expect(slide(3)).toContain("1 of 2");
-    expect(slide(3)).toContain("Up next: 2. Bob Baker");
+    expect(slide(3)).toContain("UP NEXT");
+    expect(slide(3)).toContain("Bob Baker");
     expect(slide(4)).toContain("2 of 2");
     expect(slide(4)).toContain("Last presenter");
     // No leads on the slides, even though Ann has three

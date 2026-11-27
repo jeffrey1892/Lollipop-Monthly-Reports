@@ -15,6 +15,7 @@ const GRAY = "6B7280";
 const FONT = "Calibri";
 const W = 13.33; // LAYOUT_WIDE, inches
 const H = 7.5;
+const PANEL_X = 9.55; // left edge of the "Up next" panel on each person's slide
 
 export interface SlideData {
   number: number; // speaking order, from 1
@@ -51,11 +52,9 @@ export function orderPages<T>(items: T[]): T[][] {
   return pages.length ? pages : [[]];
 }
 
-/** Footer text: the next three presenters after this one, so they can get ready. */
-export function upNextLine(people: { number: number; name: string }[], number: number, count = 3): string {
-  const next = people.slice(number, number + count); // number is 1-based, so this starts with the following person
-  if (!next.length) return "Last presenter";
-  return `Up next: ${next.map((p) => `${p.number}. ${p.name}`).join("   ·   ")}`;
+/** The next presenters after this one (5 by default), for the "Up next" panel. */
+export function upNext<T extends { number: number }>(people: T[], number: number, count = 5): T[] {
+  return people.slice(number, number + count); // number is 1-based, so this starts with the following person
 }
 
 function topBar(pptx: PptxGenJS, slide: PptxGenJS.Slide) {
@@ -142,30 +141,54 @@ export async function buildDeck(event: EventRow, data: EventData): Promise<Buffe
     // Speaking number badge + name
     slide.addShape(pptx.ShapeType.ellipse, { x: 0.6, y: 0.5, w: 0.95, h: 0.95, fill: { color: CRIMSON }, line: { color: CRIMSON } });
     slide.addText(String(s.number), { x: 0.6, y: 0.5, w: 0.95, h: 0.95, align: "center", valign: "middle", fontFace: FONT, fontSize: s.number > 99 ? 22 : 30, bold: true, color: "FFFFFF" });
-    slide.addText(s.name, { x: 1.75, y: 0.45, w: 9.4, h: 0.75, fontFace: FONT, fontSize: 38, bold: true, color: CRIMSON, fit: "shrink" });
-    if (s.chapter) slide.addText(s.chapter, { x: 1.75, y: 1.12, w: 9.4, h: 0.4, fontFace: FONT, fontSize: 16, color: GRAY });
+    slide.addText(s.name, { x: 1.75, y: 0.45, w: PANEL_X - 2.15, h: 0.75, fontFace: FONT, fontSize: 38, bold: true, color: CRIMSON, fit: "shrink" });
+    if (s.chapter) slide.addText(s.chapter, { x: 1.75, y: 1.12, w: PANEL_X - 2.15, h: 0.4, fontFace: FONT, fontSize: 16, color: GRAY });
 
-    // Need, full width and large enough to read from the back of the room
-    slide.addShape(pptx.ShapeType.line, { x: 0.6, y: 1.75, w: W - 1.2, h: 0, line: { color: "E5E7EB", width: 1 } });
-    // Place the details right under the headline: about 60 characters fit per line at this size.
-    const titleSize = fitSize(s.needTitle, 36, 22, 70);
-    const titleLines = Math.min(3, Math.max(1, Math.ceil((s.needTitle.length * titleSize) / (60 * 36))));
+    // Need on the left, large enough to read from the back of the room
+    const needW = PANEL_X - 0.6 - 0.4;
+    slide.addShape(pptx.ShapeType.line, { x: 0.6, y: 1.75, w: needW, h: 0, line: { color: "E5E7EB", width: 1 } });
+    // Place the details right under the headline: about 43 characters fit per line at this size.
+    const titleSize = fitSize(s.needTitle, 34, 22, 60);
+    const titleLines = Math.min(3, Math.max(1, Math.ceil((s.needTitle.length * titleSize) / (43 * 34))));
     const titleH = titleLines * (titleSize / 72) * 1.25 + 0.15;
     slide.addText(s.needTitle, {
-      x: 0.6, y: 2.0, w: W - 1.2, h: titleH, fontFace: FONT, bold: true, color: DARK, valign: "top",
+      x: 0.6, y: 2.0, w: needW, h: titleH, fontFace: FONT, bold: true, color: DARK, valign: "top",
       fontSize: titleSize, fit: "shrink",
     });
     if (s.needDescription) {
       const descY = 2.0 + titleH + 0.25;
       slide.addText(s.needDescription, {
-        x: 0.6, y: descY, w: W - 1.2, h: 6.65 - descY, fontFace: FONT, color: DARK, valign: "top",
-        fontSize: fitSize(s.needDescription, 26, 14, 300), fit: "shrink",
+        x: 0.6, y: descY, w: needW, h: 6.75 - descY, fontFace: FONT, color: DARK, valign: "top",
+        fontSize: fitSize(s.needDescription, 24, 14, 240), fit: "shrink",
       });
     }
 
     // Footer: "3 of 12" and who's next
-    slide.addText(upNextLine(people, s.number), { x: 0.6, y: 6.85, w: 9.9, h: 0.4, fontFace: FONT, fontSize: 14, color: DARK, fit: "shrink" });
-    slide.addText(`${s.number} of ${total}`, { x: W - 2.6, y: 6.85, w: 2, h: 0.4, align: "right", fontFace: FONT, fontSize: 14, bold: true, color: CRIMSON });
+    // "Up next" panel on the right: the next five presenters, so they can get ready
+    const panelW = W - 0.6 - PANEL_X;
+    slide.addShape(pptx.ShapeType.rect, { x: PANEL_X, y: 0.45, w: panelW, h: 6.3, fill: { color: "F9F2F3" }, line: { color: "E8C9CE" } });
+    slide.addText("UP NEXT", { x: PANEL_X + 0.25, y: 0.6, w: panelW - 0.5, h: 0.4, fontFace: FONT, fontSize: 14, bold: true, color: CRIMSON, charSpacing: 2 });
+    const next = upNext(people, s.number);
+    if (!next.length) {
+      slide.addText("Last presenter. Thank you, everyone!", { x: PANEL_X + 0.25, y: 1.1, w: panelW - 0.5, h: 1, fontFace: FONT, fontSize: 18, italic: true, color: GRAY, valign: "top" });
+    } else {
+      next.forEach((p, i) => {
+        const y = 1.1 + i * 1.08;
+        slide.addText(String(p.number), {
+          x: PANEL_X + 0.25, y, w: 0.6, h: 0.5, fontFace: FONT, fontSize: 22, bold: true, color: i === 0 ? CRIMSON : GRAY, valign: "middle",
+        });
+        slide.addText(
+          [
+            { text: p.name, options: { bold: i === 0, fontSize: 19, color: DARK, breakLine: true } },
+            { text: p.chapter || " ", options: { fontSize: 13, color: GRAY } },
+          ],
+          { x: PANEL_X + 0.85, y, w: panelW - 1.05, h: 0.9, fontFace: FONT, valign: "top", fit: "shrink" },
+        );
+      });
+    }
+
+    // Footer: "3 of 12"
+    slide.addText(`${s.number} of ${total}`, { x: 0.6, y: 6.85, w: 2, h: 0.4, fontFace: FONT, fontSize: 14, bold: true, color: CRIMSON });
   }
 
   const out = await pptx.write({ outputType: "nodebuffer" });
