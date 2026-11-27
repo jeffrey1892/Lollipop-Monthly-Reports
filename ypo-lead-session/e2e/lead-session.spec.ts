@@ -130,7 +130,7 @@ test("register → sign in by email → offer and rate leads → notes → Power
   expect(slide(3)).toContain("Ann Able"); // Ann's numbered slide
   expect(slide(3)).toContain("UP NEXT");
   expect(slide(3)).toContain("Bob Baker");
-  expect(slide(3)).toContain("1 of 2");
+  expect(slide(3)).toContain(" of 2</a:t>"); // "1" large, " of 2" smaller
   expect(slide(3)).not.toContain("5/5"); // leads aren't shown in the deck
 
   // 10b. "Email it to me now" sends the deck to the facilitator.

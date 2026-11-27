@@ -125,10 +125,10 @@ describe("PowerPoint layout", () => {
     expect(slide(2)).toContain("1.  Ann Able");
     expect(slide(2)).toContain("2.  Bob Baker");
     expect(slide(3)).toContain("Ann Able");
-    expect(slide(3)).toContain("1 of 2");
+    expect(slide(3)).toContain(" of 2</a:t>"); // "1" large, " of 2" smaller
     expect(slide(3)).toContain("UP NEXT");
     expect(slide(3)).toContain("Bob Baker");
-    expect(slide(4)).toContain("2 of 2");
+    expect(slide(4)).toContain(" of 2</a:t>");
     expect(slide(4)).toContain("Last presenter");
     // No leads on the slides, even though Ann has three
     expect(slide(3)).not.toContain("LEADS");
