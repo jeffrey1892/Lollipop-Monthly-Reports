@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { renderDigestEmail, renderPersonalEmail } from "@/lib/email/templates";
 import { assemblePersonalContent, collectDigestFacts, type EventData } from "@/lib/summaries";
-import { buildDeck, orderPages, slideData } from "@/lib/pptx";
+import { buildDeck, orderPages, slideData, upNextLine } from "@/lib/pptx";
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
@@ -104,6 +104,13 @@ describe("PowerPoint data", () => {
 });
 
 describe("PowerPoint layout", () => {
+  it("each slide shows the next three presenters", () => {
+    const people = ["Ann", "Bob", "Cy", "Dee", "Eve"].map((name, i) => ({ number: i + 1, name }));
+    expect(upNextLine(people, 1)).toBe("Up next: 2. Bob   ·   3. Cy   ·   4. Dee");
+    expect(upNextLine(people, 3)).toBe("Up next: 4. Dee   ·   5. Eve");
+    expect(upNextLine(people, 5)).toBe("Last presenter");
+  });
+
   it("speaking order fits 36 names per slide, then continues", () => {
     expect(orderPages(Array.from({ length: 12 })).map((p) => p.length)).toEqual([12]);
     expect(orderPages(Array.from({ length: 40 })).map((p) => p.length)).toEqual([36, 4]);

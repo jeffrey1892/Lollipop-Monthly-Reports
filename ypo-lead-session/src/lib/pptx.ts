@@ -58,6 +58,13 @@ export function orderPages<T>(items: T[]): T[][] {
   return pages.length ? pages : [[]];
 }
 
+/** Footer text: the next three presenters after this one, so they can get ready. */
+export function upNextLine(people: { number: number; name: string }[], number: number, count = 3): string {
+  const next = people.slice(number, number + count); // number is 1-based, so this starts with the following person
+  if (!next.length) return "Last presenter";
+  return `Up next: ${next.map((p) => `${p.number}. ${p.name}`).join("   ·   ")}`;
+}
+
 function topBar(pptx: PptxGenJS, slide: PptxGenJS.Slide) {
   slide.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: W, h: 0.18, fill: { color: CRIMSON }, line: { color: CRIMSON } });
 }
@@ -175,8 +182,7 @@ export async function buildDeck(event: EventRow, data: EventData): Promise<Buffe
     }
 
     // Footer: "3 of 12" and who's next
-    const next = people[s.number]; // number is 1-based, so this is the following person
-    slide.addText(next ? `Up next: ${next.number}. ${next.name}` : "Last presenter", { x: 0.6, y: 6.85, w: 7.5, h: 0.4, fontFace: FONT, fontSize: 13, color: GRAY });
+    slide.addText(upNextLine(people, s.number), { x: 0.6, y: 6.85, w: 9.9, h: 0.4, fontFace: FONT, fontSize: 14, color: DARK, fit: "shrink" });
     slide.addText(`${s.number} of ${total}`, { x: W - 2.6, y: 6.85, w: 2, h: 0.4, align: "right", fontFace: FONT, fontSize: 14, bold: true, color: CRIMSON });
   }
 
