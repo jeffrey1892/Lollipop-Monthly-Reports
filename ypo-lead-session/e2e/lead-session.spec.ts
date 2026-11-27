@@ -131,7 +131,7 @@ test("register → sign in by email → offer and rate leads → notes → Power
   // 11. Close the session; summaries send automatically after the delay, exactly once.
   fac.once("dialog", (d) => d.accept());
   await fac.getByRole("button", { name: "4. Close session" }).click();
-  await expect(fac.getByText(/Summaries will email automatically at/)).toBeVisible();
+  await expect(fac.getByText(/Summaries will email automatically on Saturday, January 23 at 9:00 AM ET/)).toBeVisible();
   const [ev] = await sql`select send_due_at from events where slug = ${SLUG}`;
   const later = new Date(new Date(ev.send_due_at).getTime() + 60_000).toISOString();
   for (let i = 0; i < 2; i++) {

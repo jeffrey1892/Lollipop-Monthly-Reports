@@ -18,7 +18,7 @@ export const POST = handle(async (req: Request, { params }: Ctx) => {
     if (e.status !== "closed") {
       await sql`
         update events set status = 'closed', closed_at = now(),
-          send_due_at = now() + make_interval(mins => send_delay_minutes), updated_at = now()
+          send_due_at = coalesce(summaries_send_at, now() + make_interval(mins => send_delay_minutes)), updated_at = now()
         where id = ${e.id}`;
     }
   } else {

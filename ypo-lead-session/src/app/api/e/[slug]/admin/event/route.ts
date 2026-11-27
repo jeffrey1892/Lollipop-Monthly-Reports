@@ -13,6 +13,7 @@ export const PUT = handle(async (req: Request, { params }: Ctx) => {
   const parsed = eventUpdateSchema.safeParse(await req.json());
   if (!parsed.success) throw new HttpError(400, firstError(parsed.error));
   const d = parsed.data;
+  const sendAt = d.sendDate ? `${d.sendDate} ${d.sendTime || "09:00"}` : "";
   try {
     await sql`
       update events set
@@ -23,7 +24,11 @@ export const PUT = handle(async (req: Request, { params }: Ctx) => {
         ends_at = case when ${d.endTime} = '' then null else (${d.date}::date + nullif(${d.endTime}, '')::time) at time zone ${d.timezone} end,
         send_delay_minutes = ${d.sendDelayMinutes},
         sign_in_until = nullif(${d.signInUntil}, '')::date,
-        send_due_at = case when status = 'closed' and summaries_started_at is null then closed_at + make_interval(mins => ${d.sendDelayMinutes}) else send_due_at end,
+        summaries_send_at = case when ${sendAt} = '' then null else nullif(${sendAt}, '')::timestamp at time zone ${d.timezone} end,
+        send_due_at = case when status = 'closed' and summaries_started_at is null
+          then coalesce(case when ${sendAt} = '' then null else nullif(${sendAt}, '')::timestamp at time zone ${d.timezone} end,
+                        closed_at + make_interval(mins => ${d.sendDelayMinutes}))
+          else send_due_at end,
         updated_at = now()
       where id = ${viewer.event.id}`;
   } catch {

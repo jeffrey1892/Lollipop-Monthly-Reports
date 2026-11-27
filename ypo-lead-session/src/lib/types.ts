@@ -29,6 +29,7 @@ export interface EventRow {
   summaries_sent_at: Date | null;
   digest_json: unknown;
   sign_in_until: string | null; // YYYY-MM-DD
+  summaries_send_at: Date | null; // fixed send time; if null, send_delay_minutes after closing
 }
 
 export interface ParticipantRow {
@@ -101,6 +102,7 @@ export interface Snapshot {
     summariesSentAt: string | null;
     leadsLocked: boolean;
     signInUntil: string | null; // YYYY-MM-DD
+    summariesSendAt: string | null;
 
   };
   participants: {

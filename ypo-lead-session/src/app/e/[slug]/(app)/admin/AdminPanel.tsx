@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { CategoryBadge } from "@/components/bits";
 import { useEvent } from "@/components/EventProvider";
 import { api } from "@/lib/client/api";
-import { formatTime, localParts, tzAbbrev } from "@/lib/format";
+import { formatEventDate, formatTime, localParts, tzAbbrev } from "@/lib/format";
 import { CATEGORIES, type Category, type EventStatus } from "@/lib/types";
 
 const STATUS_LABEL: Record<EventStatus, string> = {
@@ -102,7 +102,9 @@ function SessionControls() {
       action: "close",
       label: "4. Close session",
       active: s === "closed",
-      confirm: `Close the session? Summaries will email automatically in ${snap.event.sendDelayMinutes} minutes.`,
+      confirm: snap.event.summariesSendAt
+        ? `Close the session? Summaries will email automatically on ${formatEventDate(snap.event.summariesSendAt, snap.event.timezone)} at ${formatTime(snap.event.summariesSendAt, snap.event.timezone)}.`
+        : `Close the session? Summaries will email automatically in ${snap.event.sendDelayMinutes} minutes.`,
     },
   ];
   return (
@@ -207,12 +209,21 @@ function SummariesCard() {
 
   const tz = e.timezone;
   const at = (iso: string) => `${formatTime(iso, tz)} ${tzAbbrev(iso, tz)}`;
+  const onAt = (iso: string) => `on ${formatEventDate(iso, tz).replace(/, \d{4}$/, "")} at ${at(iso)}`;
+  const until = (iso: string) => {
+    const mins = Math.max(0, Math.ceil((new Date(iso).getTime() - now) / 60000));
+    if (mins <= 0) return "any moment now";
+    if (mins < 120) return `in ${mins} minute${mins === 1 ? "" : "s"}`;
+    if (mins < 48 * 60) return `in about ${Math.round(mins / 60)} hours`;
+    return `in ${Math.round(mins / 1440)} days`;
+  };
   let statusLine: string;
   if (e.summariesSentAt) statusLine = `All summaries were sent at ${at(e.summariesSentAt)}.`;
   else if (e.summariesStartedAt) statusLine = "Summaries are being sent now…";
   else if (e.status === "closed" && e.sendDueAt) {
-    const mins = Math.max(0, Math.ceil((new Date(e.sendDueAt).getTime() - now) / 60000));
-    statusLine = `Summaries will email automatically at ${at(e.sendDueAt)} (${mins <= 0 ? "any moment now" : `in ${mins} minute${mins === 1 ? "" : "s"}`}).`;
+    statusLine = `Summaries will email automatically ${onAt(e.sendDueAt)} (${until(e.sendDueAt)}). Until then, people can keep entering and rating their leads.`;
+  } else if (e.summariesSendAt) {
+    statusLine = `Summaries email automatically ${onAt(e.summariesSendAt)}. Until then, people can keep entering and rating their leads.`;
   } else {
     const backstop = e.endsAt ? at(e.endsAt) : "6:00 PM";
     statusLine = `Summaries email automatically ${e.sendDelayMinutes} minutes after you close the session. If it isn't closed by ${backstop}, it closes itself then.`;
@@ -472,8 +483,18 @@ function ParticipantsCard() {
 
 const TIMEZONES = ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "Europe/London", "UTC"];
 
-function eventFormFrom(e: { title: string; location: string; startsAt: string; endsAt: string | null; timezone: string; sendDelayMinutes: number; signInUntil: string | null }) {
+function eventFormFrom(e: {
+  title: string;
+  location: string;
+  startsAt: string;
+  endsAt: string | null;
+  timezone: string;
+  sendDelayMinutes: number;
+  signInUntil: string | null;
+  summariesSendAt: string | null;
+}) {
   const s = localParts(e.startsAt, e.timezone);
+  const send = e.summariesSendAt ? localParts(e.summariesSendAt, e.timezone) : null;
   return {
     title: e.title,
     location: e.location,
@@ -483,6 +504,8 @@ function eventFormFrom(e: { title: string; location: string; startsAt: string; e
     timezone: e.timezone,
     sendDelayMinutes: e.sendDelayMinutes,
     signInUntil: e.signInUntil ?? "",
+    sendDate: send?.date ?? "",
+    sendTime: send?.time ?? "",
   };
 }
 
@@ -524,9 +547,19 @@ function EventFields({ form, setForm }: { form: EventForm; setForm: (f: EventFor
         </select>
       </div>
       <div>
-        <label className="label">Send summaries this many minutes after closing</label>
-        <input className="input" type="number" min={0} max={1440} value={form.sendDelayMinutes} onChange={(e) => setForm({ ...form, sendDelayMinutes: Number(e.target.value) })} />
+        <label className="label">Send summaries on</label>
+        <div className="flex gap-2">
+          <input className="input" type="date" value={form.sendDate} onChange={(e) => setForm({ ...form, sendDate: e.target.value })} aria-label="Send summaries on date" />
+          <input className="input max-w-36" type="time" value={form.sendTime} onChange={(e) => setForm({ ...form, sendTime: e.target.value })} aria-label="Send summaries at time" />
+        </div>
+        <p className="mt-1 text-xs text-gray-500">Leave blank to send a set number of minutes after you close the session instead.</p>
       </div>
+      {!form.sendDate && (
+        <div>
+          <label className="label">Send summaries this many minutes after closing</label>
+          <input className="input" type="number" min={0} max={1440} value={form.sendDelayMinutes} onChange={(e) => setForm({ ...form, sendDelayMinutes: Number(e.target.value) })} />
+        </div>
+      )}
       <div>
         <label className="label">Keep people signed in through</label>
         <input className="input" type="date" value={form.signInUntil} onChange={(e) => setForm({ ...form, signInUntil: e.target.value })} />

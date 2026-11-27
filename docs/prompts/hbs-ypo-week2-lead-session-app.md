@@ -103,7 +103,7 @@ All database access goes through server routes and server actions using the serv
   4. Browse the Index
   5. Take notes
   6. Draft follow-ups
-  7. Get your summary (includes the send delay and how long people stay signed in)
+  7. Get your summary (includes the send day and how long people stay signed in)
 
 ### A. Registration: `/e/[slug]/register`
 
@@ -174,8 +174,8 @@ All database access goes through server routes and server actions using the serv
     - **Leads**: each lead's giver name and strength (5–1), sorted strongest first, with unrated offers last marked "not rated". If there are none yet, show "No leads yet".
   - Clicking again rebuilds the deck from the latest data.
 - **Summaries are sent automatically.** There is no approval step.
-  1. When the facilitator clicks **Close session**, the app waits a set delay (default 30 minutes, adjustable on the admin page) so late lead ratings get in. Then it generates every summary and emails it with no further clicks.
-  2. As a backstop, if the facilitator forgets to close the session, it closes itself and sends at the event's `ends_at` plus the same delay. For this event that is 1:30 PM ET plus 30 minutes, so 2:00 PM ET. If an event has no end time set, the backstop is 6:00 PM ET on the event day.
+  1. **Send day:** for this event, summaries go out on **Saturday, January 23, 2027 at 9:00 AM ET**, the Saturday after the session. That gives people time to enter their leads from the photos they took in the room. Make the send day and time a setting on the event. If it's blank, send a set delay (default 30 minutes) after the facilitator clicks **Close session**.
+  2. Leads stay open until the send. As a backstop, if the facilitator forgets to close the session, it closes itself at the event's `ends_at` (1:30 PM ET), or at 6:00 PM ET if there is no end time. The send still happens on the send day.
   3. A Vercel Cron job (secured with `CRON_SECRET`) checks every 5 minutes and does the sending.
   4. Before the session, the admin page has a **"Send test summary to me"** button, which uses the seed or demo data.
   5. The admin page shows a countdown to the send, then each person's send status. Admins can open any sent summary and click **Retry** for failures.
@@ -235,7 +235,7 @@ Outreach drafts are for copy and paste only; never send them from the app. Keep 
     4. Go live
     5. Close the session
     6. Click Generate PowerPoint
-    7. Summaries send automatically 30 minutes after closing; check the send status on the admin page
+    7. Summaries send automatically on Saturday, January 23 at 9:00 AM ET; check the send status on the admin page
 
 ## 8. Delivery phases
 

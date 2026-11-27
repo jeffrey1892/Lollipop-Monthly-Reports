@@ -207,7 +207,7 @@ async function autoClose(now: Date) {
     update events set
       status = 'closed',
       closed_at = b.backstop,
-      send_due_at = b.backstop + make_interval(mins => events.send_delay_minutes),
+      send_due_at = coalesce(events.summaries_send_at, b.backstop + make_interval(mins => events.send_delay_minutes)),
       updated_at = now()
     from (
       select id, coalesce(ends_at, (((starts_at at time zone timezone)::date + time '18:00') at time zone timezone)) as backstop

@@ -132,3 +132,22 @@ describe("sign-in length", () => {
     expect((await signInEndsAt(eventId))?.toISOString()).toBe("2027-01-31T05:00:00.000Z");
   });
 });
+
+describe("fixed send day", () => {
+  it("sends on the set day (the Saturday after), not 30 minutes after closing, and leads stay open until then", async () => {
+    await makeEvent({ endsAt: "2027-01-20 18:30:00+00", delay: 30 });
+    await sql`update events set summaries_send_at = '2027-01-23 14:00:00+00' where id = ${eventId}`; // Sat 9:00 AM ET
+    await runScheduler(new Date("2027-01-20T18:31:00Z")); // auto-closes at 1:30 PM ET
+    const e = (await sql`select status, send_due_at from events where id = ${eventId}`)[0];
+    expect(e.status).toBe("closed");
+    expect(new Date(e.send_due_at).toISOString()).toBe("2027-01-23T14:00:00.000Z");
+    await runScheduler(new Date("2027-01-22T20:00:00Z")); // Friday: nothing sent, leads still open
+    expect((await sql`select summaries_started_at from events where id = ${eventId}`)[0].summaries_started_at).toBeNull();
+    await offerLead(needAnn, bob, "entered from my photo on Friday");
+    await runScheduler(new Date("2027-01-23T14:01:00Z"));
+    const sent = await sql`select count(*)::int as n from email_log where event_id = ${eventId} and kind = 'personal'`;
+    expect(sent[0].n).toBe(2);
+    const annMail = (await sql`select text_body from email_log where kind = 'personal' and to_email = 'ann@example.com'`)[0].text_body as string;
+    expect(annMail).toContain("entered from my photo on Friday");
+  });
+});

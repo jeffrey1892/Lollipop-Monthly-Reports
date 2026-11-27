@@ -17,7 +17,12 @@ export function WalkthroughProvider({ children }: { children: React.ReactNode })
   const dialogRef = useRef<HTMLDivElement>(null);
   const first = snap.viewer.participantId ? snap.viewer.name.split(" ")[0] : "";
 
-  const steps = walkthroughSteps({ sendDelayMinutes: snap.event.sendDelayMinutes, signInUntil: snap.event.signInUntil });
+  const steps = walkthroughSteps({
+    sendDelayMinutes: snap.event.sendDelayMinutes,
+    signInUntil: snap.event.signInUntil,
+    summariesSendAt: snap.event.summariesSendAt,
+    timezone: snap.event.timezone,
+  });
 
   const open = useCallback(() => {
     setStep(0);

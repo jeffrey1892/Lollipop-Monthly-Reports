@@ -14,7 +14,13 @@ function untilLabel(date: string | null): string {
   return `through ${d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })}`;
 }
 
-export function walkthroughSteps(opts: { sendDelayMinutes: number; signInUntil: string | null }): WalkthroughStep[] {
+function sendLabel(opts: { sendDelayMinutes: number; summariesSendAt: string | null; timezone: string }): string {
+  if (!opts.summariesSendAt) return `${opts.sendDelayMinutes} minutes after the session closes`;
+  const day = new Intl.DateTimeFormat("en-US", { weekday: "long", month: "short", day: "numeric", timeZone: opts.timezone }).format(new Date(opts.summariesSendAt));
+  return `On ${day}`;
+}
+
+export function walkthroughSteps(opts: { sendDelayMinutes: number; signInUntil: string | null; summariesSendAt: string | null; timezone: string }): WalkthroughStep[] {
   return [
     {
       icon: "✍️",
@@ -24,7 +30,7 @@ export function walkthroughSteps(opts: { sendDelayMinutes: number; signInUntil: 
     {
       icon: "🎤",
       title: "Check your leads",
-      body: "When you present, tick each person who raises a hand and rate their lead from 5 (strong) to 1 (weak).",
+      body: "Snap a photo of the raised hands and name tags. Then tick each person here and rate the lead 5 to 1.",
     },
     {
       icon: "🙋",
@@ -49,7 +55,7 @@ export function walkthroughSteps(opts: { sendDelayMinutes: number; signInUntil: 
     {
       icon: "📬",
       title: "Get your summary",
-      body: `${opts.sendDelayMinutes} minutes after the session closes, we email your leads and drafts. You stay signed in ${untilLabel(opts.signInUntil)}.`,
+      body: `${sendLabel(opts)}, we email your leads and drafts. You stay signed in ${untilLabel(opts.signInUntil)}.`,
     },
   ];
 }
