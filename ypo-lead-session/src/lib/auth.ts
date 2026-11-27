@@ -62,6 +62,7 @@ export function viewerSummary(v: Viewer) {
     email: v.email,
     isAdmin: v.isAdmin,
     isAdminEmail: v.isAdminEmail,
+    showWalkthrough: !!v.participant && v.participant.walkthrough_seen_at === null,
   };
 }
 

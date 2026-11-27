@@ -34,10 +34,22 @@ test("register → sign in by email → offer and rate leads → notes → Power
   // 1. Ann registers, signs out, and signs back in with just her email.
   await register(page, { name: "Ann Able", email: "Ann@Example.com", chapter: "Boston", title: "Find healthcare investors", category: /^Fundraising$/ });
   await page.goto(`/e/${SLUG}/live`);
+  // First time in: the short walkthrough opens by itself.
+  const tour = page.getByRole("dialog");
+  await expect(tour.getByRole("heading", { name: "Welcome, Ann" })).toBeVisible();
+  for (let i = 0; i < 4; i++) await tour.getByRole("button", { name: "Next", exact: true }).click();
+  await expect(tour.getByText(/You stay signed in through January 30/)).toBeVisible();
+  await tour.getByRole("button", { name: "Got it" }).click();
+  await expect(tour).toHaveCount(0);
   await page.getByRole("button", { name: "Sign out" }).click();
   await expect(page).toHaveURL(/\/login$/);
   await signIn(page, "ann@example.com");
   await expect(page).toHaveURL(/\/live$/);
+  // It doesn't open again, but the How it works button brings it back.
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await page.getByRole("button", { name: "How it works" }).click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await page.getByRole("button", { name: "Skip" }).click();
   // She stays signed in through January 30 (until midnight Eastern that night).
   const cookie = (await page.context().cookies()).find((c) => c.name === "ypo_session")!;
   expect(Math.abs(cookie.expires * 1000 - Date.parse("2027-01-31T05:00:00Z"))).toBeLessThan(5000);
@@ -63,6 +75,7 @@ test("register → sign in by email → offer and rate leads → notes → Power
 
   // 5. Bob sees Ann presenting and checks "I have a lead for Ann" with a note.
   await bob.goto(`/e/${SLUG}/live`);
+  await bob.getByRole("dialog").getByRole("button", { name: "Skip" }).click();
   await expect(bob.getByRole("heading", { name: "Ann Able" })).toBeVisible();
   await bob.getByText("I have a lead for Ann").click();
   await bob.getByPlaceholder("Who or what is the lead?").fill("My old boss runs a family office");

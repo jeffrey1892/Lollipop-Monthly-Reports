@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { api } from "@/lib/client/api";
 import { useEvent } from "./EventProvider";
+import { HowItWorksButton } from "./Walkthrough";
 
 export function Nav() {
   const { snap, offline, pending } = useEvent();
@@ -35,7 +36,8 @@ export function Nav() {
             </Link>
           );
         })}
-        <div className="ml-auto flex items-center gap-2 pl-2">
+        <div className="ml-auto flex items-center gap-1 pl-2">
+          <HowItWorksButton />
           <span className="hidden max-w-40 truncate text-sm text-gray-500 sm:inline">{snap.viewer.name}</span>
           <button type="button" onClick={signOut} className="min-h-11 whitespace-nowrap px-2 text-sm font-medium text-gray-600 hover:text-crimson">
             Sign out

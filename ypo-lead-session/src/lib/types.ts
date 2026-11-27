@@ -40,6 +40,7 @@ export interface ParticipantRow {
   role: Role;
   presentation_order: number;
   created_at: Date;
+  walkthrough_seen_at: Date | null;
 }
 
 export interface NeedRow {
@@ -82,6 +83,7 @@ export interface Snapshot {
     email: string;
     isAdmin: boolean;
     isAdminEmail: boolean;
+    showWalkthrough: boolean; // first sign-in: open "How it works" automatically
   };
   event: {
     id: string;

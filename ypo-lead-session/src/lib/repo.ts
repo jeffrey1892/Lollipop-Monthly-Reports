@@ -97,7 +97,7 @@ const iso = (d: Date | null) => (d ? new Date(d).toISOString() : null);
 
 export async function buildSnapshot(
   event: EventRow,
-  viewer: { participantId: string | null; name: string; email: string; isAdmin: boolean; isAdminEmail: boolean },
+  viewer: Snapshot["viewer"],
 ): Promise<Snapshot> {
   const [participants, needs, leads, notes] = await Promise.all([
     listParticipants(event.id),

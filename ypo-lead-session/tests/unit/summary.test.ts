@@ -6,7 +6,7 @@ import type { LeadRow, NeedRow, NoteRow, ParticipantRow } from "@/lib/types";
 
 const t = new Date("2027-01-20T17:30:00Z");
 const P = (id: string, name: string, order: number, role: ParticipantRow["role"] = "participant"): ParticipantRow => ({
-  id, event_id: "e", name, email: `${id}@x.com`, chapter: "Boston", role, presentation_order: order, created_at: t,
+  id, event_id: "e", name, email: `${id}@x.com`, chapter: "Boston", role, presentation_order: order, created_at: t, walkthrough_seen_at: null,
 });
 const N = (id: string, owner: string, title: string): NeedRow => ({ id, participant_id: owner, event_id: "e", category: "fundraising", title, description: "", updated_at: t });
 const L = (id: string, need: string, giver: string, strength: number | null, extra: Partial<LeadRow> = {}): LeadRow => ({
