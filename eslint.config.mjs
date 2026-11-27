@@ -12,7 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    "ypl-lead-session/**",
+    "ypo-lead-session/**",
   ]),
 ]);
 
