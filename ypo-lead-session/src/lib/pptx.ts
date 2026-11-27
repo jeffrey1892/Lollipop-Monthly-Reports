@@ -54,9 +54,13 @@ export function orderPages<T>(items: T[]): T[][] {
 }
 
 /** "Hannah Okafor" → "Hannah O." for the Up next column. Single names are left as they are. */
+const NAME_SUFFIXES = new Set(["jr", "sr", "ii", "iii", "iv", "v", "md", "phd", "dds", "cpa", "esq", "mba", "jd"]);
+
 export function shortName(name: string): string {
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (parts.length < 2) return name.trim();
+  const parts = name.trim().replace(/,/g, " ").split(/\s+/).filter(Boolean);
+  // Drop trailing suffixes such as "Jr." or "III" so the initial comes from the surname.
+  while (parts.length > 2 && NAME_SUFFIXES.has(parts[parts.length - 1].toLowerCase().replace(/\./g, ""))) parts.pop();
+  if (parts.length < 2) return parts[0] ?? "";
   const last = parts[parts.length - 1].replace(/^[^\p{L}]+/u, "");
   return last ? `${parts[0]} ${last[0].toUpperCase()}.` : parts[0];
 }

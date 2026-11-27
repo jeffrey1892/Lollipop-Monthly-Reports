@@ -104,6 +104,10 @@ describe("PowerPoint layout", () => {
     expect(shortName("Mary Ann van der Berg")).toBe("Mary B.");
     expect(shortName("  Cher ")).toBe("Cher");
     expect(shortName("José (Pepe) álvarez")).toBe("José Á.");
+    expect(shortName("John Smith Jr.")).toBe("John S.");
+    expect(shortName("Robert Jones, III")).toBe("Robert J.");
+    expect(shortName("Ann Lee MD")).toBe("Ann L.");
+    expect(shortName("Ana de la Cruz")).toBe("Ana C.");
   });
 
   it("each slide lists the next five presenters", () => {
