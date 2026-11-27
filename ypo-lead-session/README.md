@@ -26,7 +26,7 @@ Web app for the **HBS YPO program, Week 2: Lead Session**:
 - **Generate PowerPoint:** one click builds the deck from the data at that moment:
   - an opening slide with the logos, date, time and place
   - a numbered speaking-order list
-  - one numbered slide per person showing their name, chapter and need in large type. A column on the right (about 17% of the slide) shows "3 of 12" at the top and the next five presenters below it. Leads are not shown; they're captured after the session.
+  - one numbered slide per person showing their name, chapter and need in large type. A column on the right (about 17% of the slide) shows "3 of 12" at the top and the next five presenters below it (first name and last initial). Leads are not shown; they're captured after the session.
 - **Automatic summaries:** these go out on **Saturday, January 23, 2027 at 9:00 AM ET**, the Saturday after the session. Until then, people can enter and rate the leads from the photos they took in the room.
   - If the session is never closed, it closes itself at the end time (1:30 PM ET). The send still happens on Saturday.
   - The send day and time are set in Admin → Event setup. If they're left blank, summaries go out a set number of minutes after closing.

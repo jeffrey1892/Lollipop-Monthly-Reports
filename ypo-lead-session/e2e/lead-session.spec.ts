@@ -129,7 +129,7 @@ test("register → sign in by email → offer and rate leads → notes → Power
   expect(slide(2)).toContain("2.  Bob Baker");
   expect(slide(3)).toContain("Ann Able"); // Ann's numbered slide
   expect(slide(3)).toContain("UP NEXT");
-  expect(slide(3)).toContain("Bob Baker");
+  expect(slide(3)).toContain(">Bob B.<");
   expect(slide(3)).toContain(" of 2</a:t>"); // "1" large, " of 2" smaller
   expect(slide(3)).not.toContain("5/5"); // leads aren't shown in the deck
 

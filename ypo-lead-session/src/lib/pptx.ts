@@ -53,6 +53,14 @@ export function orderPages<T>(items: T[]): T[][] {
   return pages.length ? pages : [[]];
 }
 
+/** "Hannah Okafor" → "Hannah O." for the Up next column. Single names are left as they are. */
+export function shortName(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length < 2) return name.trim();
+  const last = parts[parts.length - 1].replace(/^[^\p{L}]+/u, "");
+  return last ? `${parts[0]} ${last[0].toUpperCase()}.` : parts[0];
+}
+
 /** The next presenters after this one (5 by default), for the "Up next" panel. */
 export function upNext<T extends { number: number }>(people: T[], number: number, count = 5): T[] {
   return people.slice(number, number + count); // number is 1-based, so this starts with the following person
@@ -187,7 +195,7 @@ export async function buildDeck(event: EventRow, data: EventData): Promise<Buffe
         slide.addText(
           [
             { text: `${p.number}`, options: { fontSize: 24, bold: true, color: i === 0 ? CRIMSON : GRAY, breakLine: true } },
-            { text: p.name, options: { fontSize: 20, bold: i === 0, color: DARK } },
+            { text: shortName(p.name), options: { fontSize: 20, bold: i === 0, color: DARK } },
           ],
           { x: inX, y: 1.8 + i * 1.1, w: inW, h: 1.05, fontFace: FONT, valign: "top", fit: "shrink", paraSpaceAfter: 0 },
         );

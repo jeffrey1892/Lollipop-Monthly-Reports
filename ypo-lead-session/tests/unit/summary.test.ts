@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { renderDigestEmail, renderPersonalEmail } from "@/lib/email/templates";
 import { assemblePersonalContent, collectDigestFacts, type EventData } from "@/lib/summaries";
-import { buildDeck, orderPages, slideData, upNext } from "@/lib/pptx";
+import { buildDeck, orderPages, shortName, slideData, upNext } from "@/lib/pptx";
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
@@ -99,6 +99,13 @@ describe("PowerPoint data", () => {
 });
 
 describe("PowerPoint layout", () => {
+  it("Up next uses first name and last initial", () => {
+    expect(shortName("Hannah Okafor")).toBe("Hannah O.");
+    expect(shortName("Mary Ann van der Berg")).toBe("Mary B.");
+    expect(shortName("  Cher ")).toBe("Cher");
+    expect(shortName("José (Pepe) álvarez")).toBe("José Á.");
+  });
+
   it("each slide lists the next five presenters", () => {
     const people = ["Ann", "Bob", "Cy", "Dee", "Eve", "Fay", "Gus", "Hal"].map((name, i) => ({ number: i + 1, name }));
     expect(upNext(people, 1).map((p) => p.name)).toEqual(["Bob", "Cy", "Dee", "Eve", "Fay"]);
@@ -127,7 +134,7 @@ describe("PowerPoint layout", () => {
     expect(slide(3)).toContain("Ann Able");
     expect(slide(3)).toContain(" of 2</a:t>"); // "1" large, " of 2" smaller
     expect(slide(3)).toContain("UP NEXT");
-    expect(slide(3)).toContain("Bob Baker");
+    expect(slide(3)).toContain(">Bob B.<");
     expect(slide(4)).toContain(" of 2</a:t>");
     expect(slide(4)).toContain("Last presenter");
     // No leads on the slides, even though Ann has three
