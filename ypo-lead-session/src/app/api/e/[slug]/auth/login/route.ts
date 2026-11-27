@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { handle, HttpError } from "@/lib/auth";
 import { isAdminEmail } from "@/lib/env";
-import { getEventBySlug, getParticipantByEmail } from "@/lib/repo";
+import { getEventBySlug, getParticipantByEmail, signInEndsAt } from "@/lib/repo";
 import { firstError, loginSchema } from "@/lib/schemas";
-import { readSession, writeSession } from "@/lib/session";
+import { readSession, sessionExpiry, writeSession } from "@/lib/session";
 
 type Ctx = { params: Promise<{ slug: string }> };
 
@@ -20,11 +20,11 @@ export const POST = handle(async (req: Request, { params }: Ctx) => {
   if (participant && participant.role !== "guest") {
     const prev = await readSession();
     const keepPin = !!prev && prev.eid === event.id && prev.email === email && prev.pin;
-    await writeSession({ eid: event.id, pid: participant.id, email, pin: keepPin });
+    await writeSession({ eid: event.id, pid: participant.id, email, pin: keepPin }, sessionExpiry(await signInEndsAt(event.id)));
     return NextResponse.json({ ok: true, next: isAdminEmail(email) && !keepPin ? `/e/${slug}/admin` : `/e/${slug}/live` });
   }
   if (isAdminEmail(email)) {
-    await writeSession({ eid: event.id, pid: null, email, pin: false });
+    await writeSession({ eid: event.id, pid: null, email, pin: false }, sessionExpiry(await signInEndsAt(event.id)));
     return NextResponse.json({ ok: true, next: `/e/${slug}/admin` });
   }
   return NextResponse.json({ ok: false, notRegistered: true, next: `/e/${slug}/register?email=${encodeURIComponent(email)}` });

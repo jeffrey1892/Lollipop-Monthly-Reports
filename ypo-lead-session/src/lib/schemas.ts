@@ -76,6 +76,7 @@ export const eventUpdateSchema = z.object({
   endTime: z.union([z.string().regex(/^\d{2}:\d{2}$/), z.literal("")]),
   timezone: z.string().min(1).max(64),
   sendDelayMinutes: z.number().int().min(0).max(24 * 60),
+  signInUntil: z.union([z.string().regex(/^\d{4}-\d{2}-\d{2}$/), z.literal("")]).default(""),
 });
 
 export const eventCreateSchema = eventUpdateSchema.extend({

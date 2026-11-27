@@ -28,6 +28,7 @@ export interface EventRow {
   summaries_started_at: Date | null;
   summaries_sent_at: Date | null;
   digest_json: unknown;
+  sign_in_until: string | null; // YYYY-MM-DD
 }
 
 export interface ParticipantRow {
@@ -97,6 +98,8 @@ export interface Snapshot {
     summariesStartedAt: string | null;
     summariesSentAt: string | null;
     leadsLocked: boolean;
+    signInUntil: string | null; // YYYY-MM-DD
+
   };
   participants: {
     id: string;

@@ -2,18 +2,28 @@ import { sql } from "./db";
 import type { EventRow, LeadRow, NeedRow, NoteRow, ParticipantRow, Snapshot } from "./types";
 import { leadsLocked, noteVisibleTo, canSeeDrafts } from "./access";
 
+// sign_in_until comes back as a plain YYYY-MM-DD string.
+const EVENT_COLS = sql`*, to_char(sign_in_until, 'YYYY-MM-DD') as sign_in_until`;
+
 export async function getEventBySlug(slug: string): Promise<EventRow | null> {
-  const rows = await sql<EventRow[]>`select * from events where slug = ${slug}`;
+  const rows = await sql<EventRow[]>`select ${EVENT_COLS} from events where slug = ${slug}`;
   return rows[0] ?? null;
 }
 
+/** End of the event's "signed in through" date, in the event's time zone. */
+export async function signInEndsAt(eventId: string): Promise<Date | null> {
+  const rows = await sql<{ ends: Date | null }[]>`
+    select ((sign_in_until + 1)::timestamp at time zone timezone) as ends from events where id = ${eventId}`;
+  return rows[0]?.ends ?? null;
+}
+
 export async function getEventById(id: string): Promise<EventRow | null> {
-  const rows = await sql<EventRow[]>`select * from events where id = ${id}`;
+  const rows = await sql<EventRow[]>`select ${EVENT_COLS} from events where id = ${id}`;
   return rows[0] ?? null;
 }
 
 export async function listEvents(): Promise<EventRow[]> {
-  return sql<EventRow[]>`select * from events where slug <> 'demo' order by starts_at desc`;
+  return sql<EventRow[]>`select ${EVENT_COLS} from events where slug <> 'demo' order by starts_at desc`;
 }
 
 export async function getParticipant(id: string): Promise<ParticipantRow | null> {
@@ -116,6 +126,7 @@ export async function buildSnapshot(
       summariesStartedAt: iso(event.summaries_started_at),
       summariesSentAt: iso(event.summaries_sent_at),
       leadsLocked: leadsLocked(event),
+      signInUntil: event.sign_in_until,
     },
     participants: participants.map((p) => ({
       id: p.id,

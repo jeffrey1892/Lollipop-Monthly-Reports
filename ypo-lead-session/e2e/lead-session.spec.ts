@@ -38,6 +38,9 @@ test("register → sign in by email → offer and rate leads → notes → Power
   await expect(page).toHaveURL(/\/login$/);
   await signIn(page, "ann@example.com");
   await expect(page).toHaveURL(/\/live$/);
+  // She stays signed in through January 30 (until midnight Eastern that night).
+  const cookie = (await page.context().cookies()).find((c) => c.name === "ypo_session")!;
+  expect(Math.abs(cookie.expires * 1000 - Date.parse("2027-01-31T05:00:00Z"))).toBeLessThan(5000);
 
   // 2. She edits her need on My Need; it autosaves.
   await page.getByRole("link", { name: "My Need" }).click();

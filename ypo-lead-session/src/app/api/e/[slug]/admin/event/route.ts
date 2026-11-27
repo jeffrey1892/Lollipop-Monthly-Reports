@@ -22,6 +22,7 @@ export const PUT = handle(async (req: Request, { params }: Ctx) => {
         starts_at = (${d.date}::date + ${d.startTime}::time) at time zone ${d.timezone},
         ends_at = case when ${d.endTime} = '' then null else (${d.date}::date + nullif(${d.endTime}, '')::time) at time zone ${d.timezone} end,
         send_delay_minutes = ${d.sendDelayMinutes},
+        sign_in_until = nullif(${d.signInUntil}, '')::date,
         send_due_at = case when status = 'closed' and summaries_started_at is null then closed_at + make_interval(mins => ${d.sendDelayMinutes}) else send_due_at end,
         updated_at = now()
       where id = ${viewer.event.id}`;

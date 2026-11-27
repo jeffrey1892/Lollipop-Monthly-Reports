@@ -4,9 +4,9 @@ import { handle, HttpError } from "@/lib/auth";
 import { sql } from "@/lib/db";
 import { isAdminEmail } from "@/lib/env";
 import { broadcastChange } from "@/lib/realtime";
-import { getEventBySlug, getParticipantByEmail, nextPresentationOrder } from "@/lib/repo";
+import { getEventBySlug, getParticipantByEmail, nextPresentationOrder, signInEndsAt } from "@/lib/repo";
 import { firstError, registerSchema } from "@/lib/schemas";
-import { readSession, writeSession } from "@/lib/session";
+import { readSession, sessionExpiry, writeSession } from "@/lib/session";
 
 type Ctx = { params: Promise<{ slug: string }> };
 
@@ -50,7 +50,7 @@ export const POST = handle(async (req: Request, { params }: Ctx) => {
 
   const prev = await readSession();
   const keepPin = !!prev && prev.eid === event.id && prev.email === d.email && prev.pin;
-  await writeSession({ eid: event.id, pid: participantId, email: d.email, pin: keepPin });
+  await writeSession({ eid: event.id, pid: participantId, email: d.email, pin: keepPin }, sessionExpiry(await signInEndsAt(event.id)));
   await broadcastChange(slug);
   return NextResponse.json({ ok: true, updated: !!existing, participantId });
 });

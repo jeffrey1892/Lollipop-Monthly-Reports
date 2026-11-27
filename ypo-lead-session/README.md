@@ -9,7 +9,7 @@ Web app for the **HBS YPO program, Week 2: Lead Session**:
 ## What it does
 
 - **Registration by QR code:** people enter their name, email, chapter and need, and pick a category: Professional Services, Fundraising or Other.
-- **Email-only sign-in:** no password and no emailed code.
+- **Email-only sign-in:** no password and no emailed code. People stay signed in **through January 30, 2027** (until midnight ET). You can change this in Admin → Event setup.
 - **Live board:** the facilitator moves through presenters, and every phone can follow along.
   - The presenter ticks the people who raised their hands and rates each lead from **5 (strong) to 1 (weak)**.
   - Anyone else can tick **"I have a lead for you"**, optionally adding a note on what the lead is. The presenter then rates it.

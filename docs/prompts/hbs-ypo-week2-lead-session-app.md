@@ -87,7 +87,7 @@ All database access goes through server routes and server actions using the serv
 ### Login: `/e/[slug]/login`
 
 - One field, **Email**, and a **Sign in** button. There is no password and no emailed code.
-- If the email is registered for this event, sign the person in right away with a signed, httpOnly cookie that lasts 30 days, and send them to the live board.
+- If the email is registered for this event, sign the person in right away with a signed, httpOnly cookie, and send them to the live board. Keep them signed in **through January 30, 2027** (until midnight ET that night). Make this date a setting on the event ("Keep people signed in through"), defaulting to 30 days if blank.
 - If it isn't registered, send them to registration with the email already filled in.
 - Every page except registration and login sends signed-out visitors here. Add a Sign out link in the menu.
 - **Facilitators**: an email listed in `ADMIN_EMAILS` can sign in without registering as a participant, but has to enter the shared `ADMIN_PIN` once before admin features turn on. Without the PIN, anyone who typed the facilitator's email would get admin access.

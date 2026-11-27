@@ -472,7 +472,7 @@ function ParticipantsCard() {
 
 const TIMEZONES = ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "Europe/London", "UTC"];
 
-function eventFormFrom(e: { title: string; location: string; startsAt: string; endsAt: string | null; timezone: string; sendDelayMinutes: number }) {
+function eventFormFrom(e: { title: string; location: string; startsAt: string; endsAt: string | null; timezone: string; sendDelayMinutes: number; signInUntil: string | null }) {
   const s = localParts(e.startsAt, e.timezone);
   return {
     title: e.title,
@@ -482,6 +482,7 @@ function eventFormFrom(e: { title: string; location: string; startsAt: string; e
     endTime: e.endsAt ? localParts(e.endsAt, e.timezone).time : "",
     timezone: e.timezone,
     sendDelayMinutes: e.sendDelayMinutes,
+    signInUntil: e.signInUntil ?? "",
   };
 }
 
@@ -525,6 +526,11 @@ function EventFields({ form, setForm }: { form: EventForm; setForm: (f: EventFor
       <div>
         <label className="label">Send summaries this many minutes after closing</label>
         <input className="input" type="number" min={0} max={1440} value={form.sendDelayMinutes} onChange={(e) => setForm({ ...form, sendDelayMinutes: Number(e.target.value) })} />
+      </div>
+      <div>
+        <label className="label">Keep people signed in through</label>
+        <input className="input" type="date" value={form.signInUntil} onChange={(e) => setForm({ ...form, signInUntil: e.target.value })} />
+        <p className="mt-1 text-xs text-gray-500">End of this day, event time. Applies the next time someone signs in. Blank means 30 days.</p>
       </div>
     </div>
   );

@@ -4,7 +4,19 @@ import { cookies } from "next/headers";
 import { env } from "./env";
 
 export const SESSION_COOKIE = "ypo_session";
-const MAX_AGE_SECONDS = 60 * 60 * 24 * 30; // 30 days
+const DEFAULT_SECONDS = 60 * 60 * 24 * 30; // when an event has no "signed in through" date
+const MIN_SECONDS = 60 * 60 * 24; // never sign someone in for less than a day
+
+/**
+ * When a sign-in expires: the end of the event's "signed in through" date, in the event's time zone
+ * (for the Jan 20 event: through January 30, 2027 ET). Falls back to 30 days, and never less than a day.
+ */
+export function sessionExpiry(endOfDay: Date | null, now = new Date()): Date {
+  const fallback = new Date(now.getTime() + DEFAULT_SECONDS * 1000);
+  if (!endOfDay) return fallback;
+  const min = new Date(now.getTime() + MIN_SECONDS * 1000);
+  return endOfDay > min ? endOfDay : min;
+}
 
 export interface SessionData {
   eid: string; // event id
@@ -21,11 +33,11 @@ function key() {
   return new TextEncoder().encode(env.sessionSecret);
 }
 
-export async function encodeSession(data: SessionData): Promise<string> {
+export async function encodeSession(data: SessionData, expiresAt: Date): Promise<string> {
   return new SignJWT({ ...data })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime(`${MAX_AGE_SECONDS}s`)
+    .setExpirationTime(Math.floor(expiresAt.getTime() / 1000))
     .sign(key());
 }
 
@@ -50,14 +62,14 @@ export async function readSession(): Promise<SessionData | null> {
   return decodeSession(store.get(SESSION_COOKIE)?.value);
 }
 
-export async function writeSession(data: SessionData): Promise<void> {
+export async function writeSession(data: SessionData, expiresAt: Date): Promise<void> {
   const store = await cookies();
-  store.set(SESSION_COOKIE, await encodeSession(data), {
+  store.set(SESSION_COOKIE, await encodeSession(data, expiresAt), {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: MAX_AGE_SECONDS,
+    expires: expiresAt,
   });
 }
 

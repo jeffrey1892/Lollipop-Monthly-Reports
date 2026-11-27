@@ -17,11 +17,11 @@ export const POST = handle(async (req: Request) => {
   if (d.slug === "demo" || (await getEventBySlug(d.slug))) throw new HttpError(409, "That link name is already taken");
   try {
     await sql`
-      insert into events (slug, title, location, timezone, starts_at, ends_at, send_delay_minutes)
+      insert into events (slug, title, location, timezone, starts_at, ends_at, send_delay_minutes, sign_in_until)
       values (${d.slug}, ${d.title}, ${d.location}, ${d.timezone},
         (${d.date}::date + ${d.startTime}::time) at time zone ${d.timezone},
         case when ${d.endTime} = '' then null else (${d.date}::date + nullif(${d.endTime}, '')::time) at time zone ${d.timezone} end,
-        ${d.sendDelayMinutes})`;
+        ${d.sendDelayMinutes}, nullif(${d.signInUntil}, '')::date)`;
   } catch {
     throw new HttpError(400, "Check the date, times and time zone");
   }

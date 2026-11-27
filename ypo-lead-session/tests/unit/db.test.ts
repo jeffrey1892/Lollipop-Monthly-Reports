@@ -2,6 +2,7 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { sql } from "@/lib/db";
 import { offerLead, rateLead, setLeadByOwner, withdrawOffer } from "@/lib/leads";
+import { signInEndsAt } from "@/lib/repo";
 import { runScheduler } from "@/lib/summaries";
 
 let eventId: string;
@@ -121,5 +122,13 @@ describe("automatic send", () => {
     await runScheduler(new Date("2027-01-20T18:31:00Z"));
     const e = (await sql`select summaries_started_at from events where id = ${eventId}`)[0];
     expect(e.summaries_started_at).not.toBeNull();
+  });
+});
+
+describe("sign-in length", () => {
+  it("signed in through January 30 means until midnight Eastern that night", async () => {
+    await makeEvent({ endsAt: null });
+    await sql`update events set sign_in_until = '2027-01-30' where id = ${eventId}`;
+    expect((await signInEndsAt(eventId))?.toISOString()).toBe("2027-01-31T05:00:00.000Z");
   });
 });

@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import { handle, HttpError, requireViewer } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { pinSchema } from "@/lib/schemas";
-import { writeSession } from "@/lib/session";
+import { signInEndsAt } from "@/lib/repo";
+import { sessionExpiry, writeSession } from "@/lib/session";
 
 type Ctx = { params: Promise<{ slug: string }> };
 
@@ -23,6 +24,6 @@ export const POST = handle(async (req: Request, { params }: Ctx) => {
     await new Promise((r) => setTimeout(r, 800)); // slow down guessing
     throw new HttpError(401, "That PIN is not right");
   }
-  await writeSession({ eid: viewer.event.id, pid: viewer.participantId, email: viewer.email, pin: true });
+  await writeSession({ eid: viewer.event.id, pid: viewer.participantId, email: viewer.email, pin: true }, sessionExpiry(await signInEndsAt(viewer.event.id)));
   return NextResponse.json({ ok: true });
 });
