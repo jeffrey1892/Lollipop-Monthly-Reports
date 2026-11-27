@@ -128,6 +128,12 @@ test("register → sign in by email → offer and rate leads → notes → Power
   expect(slide1).toContain("Bob Baker");
   expect(slide1).toContain("5/5");
 
+  // 10b. "Email it to me now" sends the deck to the facilitator.
+  await fac.getByRole("button", { name: "Email it to me now" }).click();
+  await expect(fac.getByText("PowerPoint emailed to facilitator@example.com.")).toBeVisible();
+  const deckMail = await sql`select attachment_names from email_log where kind = 'deck' and to_email = 'facilitator@example.com'`;
+  expect(deckMail[0].attachment_names).toBe("YPO-Week2-Lead-Session-2027-01-20.pptx");
+
   // 11. Close the session; summaries send automatically after the delay, exactly once.
   fac.once("dialog", (d) => d.accept());
   await fac.getByRole("button", { name: "4. Close session" }).click();
@@ -138,7 +144,7 @@ test("register → sign in by email → offer and rate leads → notes → Power
     const r = await request.get(`/api/cron/send-summaries?now=${encodeURIComponent(later)}`, { headers: { Authorization: "Bearer e2e-cron" } });
     expect(r.ok()).toBeTruthy();
   }
-  const log = await sql<{ kind: string; to_email: string }[]>`select kind, to_email from email_log order by kind, to_email`;
+  const log = await sql<{ kind: string; to_email: string }[]>`select kind, to_email from email_log where kind in ('personal', 'digest') order by kind, to_email`;
   expect(log.map((r) => `${r.kind}:${r.to_email}`)).toEqual([
     "digest:ann@example.com",
     "digest:bob@example.com",

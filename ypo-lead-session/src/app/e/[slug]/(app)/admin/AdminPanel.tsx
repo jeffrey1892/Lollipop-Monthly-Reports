@@ -145,7 +145,13 @@ function SessionControls() {
 function PowerPointCard() {
   const { snap } = useEvent();
   const slug = snap.event.slug;
+  const { busy, error, message, run } = useAction();
   const people = snap.participants.filter((p) => p.role !== "guest" && snap.needs.some((n) => n.participantId === p.id)).length;
+  const tz = snap.event.timezone;
+  const at = (iso: string) => `${formatTime(iso, tz)} ${tzAbbrev(iso, tz)}`;
+  const deckLine = snap.event.deckSentAt
+    ? `Emailed to the facilitator email at ${at(snap.event.deckSentAt)} on ${formatEventDate(snap.event.deckSentAt, tz).replace(/, \d{4}$/, "")}.`
+    : `It's also emailed automatically to the facilitator email(s) at ${at(snap.event.deckEmailAt)} on ${formatEventDate(snap.event.deckEmailAt, tz).replace(/, \d{4}$/, "")}, 30 minutes before the session.`;
   return (
     <section className="card" aria-labelledby="ppt">
       <h2 id="ppt" className="text-lg font-bold">
@@ -154,9 +160,22 @@ function PowerPointCard() {
       <p className="mt-1 text-sm text-gray-600">
         One slide per person ({people}) with their name, need and leads, built from the data at the moment you click. Click again any time for the latest.
       </p>
-      <a className="btn btn-primary mt-3" href={`/api/e/${slug}/admin/pptx`}>
-        Generate PowerPoint
-      </a>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <a className="btn btn-primary" href={`/api/e/${slug}/admin/pptx`}>
+          Generate PowerPoint
+        </a>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          disabled={busy}
+          onClick={() => run(async () => (await api<{ message: string }>(`/api/e/${slug}/admin/pptx/email`, {})).message)}
+        >
+          {busy ? "Sending…" : "Email it to me now"}
+        </button>
+      </div>
+      <p className="mt-2 text-sm text-gray-700">📧 {deckLine}</p>
+      {message && <p className="mt-1 text-sm text-green-700">{message}</p>}
+      {error && <p className="mt-1 text-sm text-red-700">{error}</p>}
       <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
         <span className="text-gray-600">CSV exports:</span>
         {(["participants", "needs", "leads", "notes"] as const).map((t) => (

@@ -173,6 +173,7 @@ All database access goes through server routes and server actions using the serv
     - **Need**: title and description; shrink the font to fit long text
     - **Leads**: each lead's giver name and strength (5–1), sorted strongest first, with unrated offers last marked "not rated". If there are none yet, show "No leads yet".
   - Clicking again rebuilds the deck from the latest data.
+- **PowerPoint by email:** 30 minutes before the session starts (12:00 PM ET on January 20), the scheduler builds the deck from the latest data and emails it as an attachment to the facilitator email(s) in `ADMIN_EMAILS`, exactly once. Add an **Email it to me now** button next to Generate PowerPoint.
 - **Summaries are sent automatically.** There is no approval step.
   1. **Send day:** for this event, summaries go out on **Saturday, January 23, 2027 at 9:00 AM ET**, the Saturday after the session. That gives people time to enter their leads from the photos they took in the room. Make the send day and time a setting on the event. If it's blank, send a set delay (default 30 minutes) after the facilitator clicks **Close session**.
   2. Leads stay open until the send. As a backstop, if the facilitator forgets to close the session, it closes itself at the event's `ends_at` (1:30 PM ET), or at 6:00 PM ET if there is no end time. The send still happens on the send day.

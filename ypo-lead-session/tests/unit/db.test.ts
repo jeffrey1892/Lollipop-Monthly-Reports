@@ -83,11 +83,11 @@ describe("automatic send", () => {
     const e1 = (await sql`select status, send_due_at from events where id = ${eventId}`)[0];
     expect(e1.status).toBe("closed");
     expect(new Date(e1.send_due_at).toISOString()).toBe("2027-01-20T19:00:00.000Z"); // 2:00 PM ET
-    expect((await sql`select count(*)::int as n from email_log`)[0].n).toBe(0);
+    expect((await sql`select count(*)::int as n from email_log where kind in ('personal', 'digest')`)[0].n).toBe(0);
 
     await runScheduler(new Date("2027-01-20T19:01:00Z"));
     await runScheduler(new Date("2027-01-20T19:06:00Z")); // second run must not resend
-    const log = await sql<{ kind: string; to_email: string }[]>`select kind, to_email from email_log where event_id = ${eventId} order by kind, to_email`;
+    const log = await sql<{ kind: string; to_email: string }[]>`select kind, to_email from email_log where event_id = ${eventId} and kind in ('personal', 'digest') order by kind, to_email`;
     // personal summaries go to the two people with needs; the digest goes to all three registrants
     expect(log.map((r) => `${r.kind}:${r.to_email}`)).toEqual([
       "digest:ann@example.com",
@@ -149,5 +149,27 @@ describe("fixed send day", () => {
     expect(sent[0].n).toBe(2);
     const annMail = (await sql`select text_body from email_log where kind = 'personal' and to_email = 'ann@example.com'`)[0].text_body as string;
     expect(annMail).toContain("entered from my photo on Friday");
+  });
+});
+
+describe("PowerPoint email before the session", () => {
+  it("emails the deck to the facilitator 30 minutes before the start, exactly once", async () => {
+    await makeEvent({ endsAt: "2027-01-20 18:30:00+00" }); // starts 12:30 PM ET
+    await runScheduler(new Date("2027-01-20T16:59:00Z")); // 11:59 AM ET
+    expect((await sql`select count(*)::int as n from email_log where kind = 'deck'`)[0].n).toBe(0);
+
+    await runScheduler(new Date("2027-01-20T17:00:30Z")); // 12:00 PM ET
+    await runScheduler(new Date("2027-01-20T17:05:00Z")); // next cron run must not resend
+    const decks = await sql`select to_email, subject, attachment_names from email_log where kind = 'deck'`;
+    expect(decks).toHaveLength(1);
+    expect(decks[0].to_email).toBe("facilitator@example.com");
+    expect(decks[0].subject).toContain("2 slides");
+    expect(decks[0].attachment_names).toBe("YPO-Week2-Lead-Session-2027-01-20.pptx");
+  });
+
+  it("doesn't send a deck for a session that already happened", async () => {
+    await makeEvent({ endsAt: "2027-01-20 18:30:00+00" });
+    await runScheduler(new Date("2027-01-23T14:00:00Z"));
+    expect((await sql`select count(*)::int as n from email_log where kind = 'deck'`)[0].n).toBe(0);
   });
 });

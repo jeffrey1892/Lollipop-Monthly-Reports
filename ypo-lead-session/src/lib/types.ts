@@ -30,6 +30,8 @@ export interface EventRow {
   digest_json: unknown;
   sign_in_until: string | null; // YYYY-MM-DD
   summaries_send_at: Date | null; // fixed send time; if null, send_delay_minutes after closing
+  deck_minutes_before: number;
+  deck_sent_at: Date | null;
 }
 
 export interface ParticipantRow {
@@ -103,6 +105,8 @@ export interface Snapshot {
     leadsLocked: boolean;
     signInUntil: string | null; // YYYY-MM-DD
     summariesSendAt: string | null;
+    deckEmailAt: string; // when the PowerPoint is emailed to the facilitators
+    deckSentAt: string | null;
 
   };
   participants: {

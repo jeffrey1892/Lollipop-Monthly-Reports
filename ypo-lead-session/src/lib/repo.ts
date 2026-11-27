@@ -128,6 +128,8 @@ export async function buildSnapshot(
       leadsLocked: leadsLocked(event),
       signInUntil: event.sign_in_until,
       summariesSendAt: iso(event.summaries_send_at),
+      deckEmailAt: new Date(new Date(event.starts_at).getTime() - event.deck_minutes_before * 60_000).toISOString(),
+      deckSentAt: iso(event.deck_sent_at),
     },
     participants: participants.map((p) => ({
       id: p.id,

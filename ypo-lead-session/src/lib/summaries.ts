@@ -296,6 +296,12 @@ async function markFinishedEvents() {
  */
 export async function runScheduler(now = new Date(), budgetMs = 240_000): Promise<{ processed: number }> {
   const started = Date.now();
+  try {
+    const { sendDueDecks } = await import("./deckEmail");
+    await sendDueDecks(now);
+  } catch (err) {
+    console.error("PowerPoint email step failed", err);
+  }
   await autoClose(now);
   await startDueEvents(now);
 
